@@ -1,0 +1,23 @@
+﻿<include file="Public:header" />
+
+<div class="content">
+
+    <div class="dingdan_info1">
+        <div class="mat10 font18 c333 aleft">{$vo.name}</div>
+        <div class="mat10 font12 c999 ">发布日期：{$vo.addtime|date="Y-m-d",###}</div>
+        <if condition="$vo.stime neq null">
+            <div class="mat10 font12 c999 ">开始时间：{$vo.stime|date="Y-m-d",###}</div>
+        </if>
+        <if condition="$vo.etime neq null">
+            <div class="mat10 font12 c999 ">截止时间：{$vo.etime|date="Y-m-d",###}</div>
+        </if>
+        <div class="clear"></div>
+        <div class="xian"></div>
+        <div class="mat10 font18 c333 aleft">请扫描下方活动二维码：</div>
+        <div class="danye_main mat20">
+            <img src="http://xt.wxlyz.com/index.php/Mobile/Article/event_qrcode/id/{$vo.id}">
+        </div>
+    </div>
+</div>
+
+<include file="Public:footer" />

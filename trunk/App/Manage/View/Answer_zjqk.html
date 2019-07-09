@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+	<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+
+	<script type="text/javascript">
+        var data_path = "__DATA__";
+        var tpl_public = "__PUBLIC__";
+        var tpl_upload = "__UPLOAD__";
+	</script>
+
+</head>
+<body>
+
+<div class="main">
+	<div class="pos">530抽奖活动结果</div>
+	</br>
+
+	<div class="operate">
+		<style>
+			ul,li,a{ text-decoration:none;list-style: none; }
+			.vatice{overflow: hidden;border-bottom:1px solid #ccc;font-size: 16px;}
+			.vatice li{ float: left;padding:0 10px 5px; text-align:center;  }
+			.vatice li a{ color:#666; }
+			.vatice li.on,.vatice li:hover{ border-bottom:2px solid #21a0fd; }
+		</style>
+		<ul class="vatice">
+			<li <?php if($qs==99){ ?>class="on" <?php }?>><a href="{:U('Answer/zjqk',array('qs'=>99))}">抽奖结果</a></li>
+			<li <?php if($qs==100){ ?>class="on" <?php }?>><a href="{:U('Answer/zjqk',array('qs'=>100))}">备选抽奖结果</a></li>
+		</ul>
+	</div>
+	<div class="list">
+		<form action="{:U('Answer/question_delALL')}" method="post" id="form_do" name="form_do">
+			<table width="100%">
+				<tr>
+					<th >编号</th>
+					<th >期数</th>
+					<th >真实姓名</th>
+					<th >手机号</th>
+					<th >公司名</th>
+					<th >获得奖品</th>
+					<th >中奖时间</th>
+				</tr>
+
+				<foreach name='vlist' item='v'>
+					<tr>
+						<td >{$v.id}</td>
+						<td style="width: 120px">{$v.qs}</td>
+						<td  >{$v.uname}</td>
+						<td >{$v.phone}</td>
+						<td  >{$v.company}</td>
+						<td >{$v.cj_name}</td>
+						<td>{$v.cj_addtime|date='Y-m-d H:i:s', ###}</td>
+					</tr>
+				</foreach>
+			</table>
+		</form>
+	</div>
+</div>
+
+</body>
+</html>

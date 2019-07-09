@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+ <script language="JavaScript">
+        <!--
+        var URL = '__URL__';
+        var APP	 = '__APP__';
+        var SELF='__SELF__';
+        var PUBLIC='__PUBLIC__';
+        //-->
+        </script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">{$type}
+    </div>
+    <div class="operate">
+        <div class="left">
+            <input type="button" onclick="goUrl('{:U('Abc/add')}')" class="btn_blue btn_red" value="添加广告位">     
+        </div>
+        <div class="clear"></div>
+    </div>
+	<form action="{:U('Abc/delAll')}" method="post" id="form_do" name="form_do">
+		<foreach name='vlist' item='v'>
+			<div class="list_new">
+				<h2><span>
+					<a href="{:U('Abc/addDetail',array('aid' => $v['id']), '')}">添加图片</a>
+					-
+					<a href="{:U('Abc/detail',array('aid' => $v['id']), '')}">图片列表</a>
+				</span>
+                ID:{$v.id} <a href="{:U('Abc/edit',array('id' => $v['id']), '')}">{$v.name}</a>
+				
+				</h2>
+			<ul class="tab">
+			<volist name="v['pics']" id="v1" key="k">
+				<a>{$k}</a>
+			</volist>
+			</ul>
+	    	<if condition="$v['pics'] neq null">
+		<volist name="v['pics']" id="v1" key="k">
+			<div class="tab_bottom">
+				<img src="__UPLOAD__{$v1|GetPic=###}" />
+			</div>
+		</volist>
+		<else/>
+			<div class="tab_bottom">
+				<img src="__UPLOAD__system/nopic.png" />
+			</div>
+		</if>
+        <h3><a href="javascript:;" onclick="toConfirm('{:U('Abc/del',array('id' => $v['id']), '')}', '确实要删除吗？')">删除广告位</a></h3>
+		</div>
+		</foreach>
+	</form>
+</div>
+</body>
+</html>

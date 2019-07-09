@@ -1,0 +1,47 @@
+﻿<include file="Public:header" />
+
+<div class="content">
+    <form method="post" id="form">
+        <div class="zc_box2 mat10" style="margin-top:20px;">
+            <div class="zc_list">
+                <div class="zc_name">订单编号</div>
+                <div class="zc_text">{$info.order_id}</div>
+            </div>
+            <div class="zc_list">
+                <div class="zc_name">实付金额</div>
+                <div class="zc_text">{$info.order_money} 元</div>
+            </div>
+            <div class="zc_list">
+                <div class="zc_name">支付方式</div>
+                <div class="zc_text">{$info.order_payment_name}</div>
+            </div>
+            <div class="zc_list zc_textarea">
+                <div class="zc_name">修改内容</div>
+                <div class="zc_text">
+                    <textarea type="text" name="order_closetext" placeholder="请填写订单修改的内容" /></textarea>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="loginbtn" style="margin:20px;">
+    <input type="hidden" name="id" value="{$order_id}">
+    <input type="button" class="btn_sub" value="申请修改" />
+</div>
+</form>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $(".btn_sub").click(function(){
+            if ($(":input[name='order_closetext']").val() == '') {
+                app_tip('请填写订单修改的内容');
+                return false;
+            }
+            var url='{:U(MODULE_NAME."/User/orderapply",array("id"=>$info["order_id"]))}';
+            app_submit(url, function(json){
+                if (json.result) app_iframe_close(true, 1000);
+                app_open('{:U(MODULE_NAME."/User/order")}', 1000);
+            })
+        })
+    })
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,69 @@
+.pinpai_wrap {
+  width: 100%;
+  padding: 10px;
+  background: white;
+  box-sizing: border-box;
+}
+.pinpai_wrap a {
+  display: block;
+  float: left;
+  margin-right: 10px;
+}
+.pinpai_wrap a img {
+  width: 140px;
+  height: 56px;
+  border: 1px solid #999999;
+}
+.pinpai_wrap a p {
+  width: 100%;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+}
+.fenlei_wrap {
+  width: 100%;
+  height: auto;
+}
+.fenlei_wrap ul {
+  width: 100%;
+}
+.fenlei_wrap ul li {
+  padding: 10px;
+  border-bottom: 1px solid #999999;
+}
+.fenlei_wrap ul li .left {
+  width: 70%;
+  float: left;
+}
+.fenlei_wrap ul li .left a {
+  display: block;
+  line-height: 30px;
+  font-size: 18px;
+  color: black;
+}
+.fenlei_wrap ul li .left span {
+  display: block;
+  line-height: 24px;
+  font-size: 12px;
+  color: #888888;
+}
+.fenlei_wrap ul li .right {
+  width: 28%;
+  float: right;
+  height: 78px;
+  border: 1px solid #999999;
+}
+.content p {
+  text-indent: 0 !important;
+}
+#hui_top {
+  width: 50px;
+  height: 50px;
+  background: url(../images/hui_top.png) no-repeat center;
+  background-size: 100% 100%;
+  position: fixed;
+  bottom: 65px;
+  right: 10px;
+  z-index: 999;
+  display: none;
+}

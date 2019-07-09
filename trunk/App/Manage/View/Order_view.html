@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style_shop.css" />
+    <script type="text/javascript" src="__PUBLIC__/shop/js/global.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/shop/js/arttpl.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/shop/plugin/layer/layer.js"></script>
+</head>
+<body>
+<div class="">
+    <div class="now">
+        <a href="javascript:;" class="sel">订单详情<i></i></a>
+        <div class="clear"></div>
+    </div>
+    <div class="right_main mab15">
+        <div class="huiyuan_main" style="padding:0 35px 20px;">
+            <div class="liucheng mat20">订单状态</div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="order_view_bak mat10">
+                <tr>
+                    <td align="right" class="c888" width="80">订单编号：</td>
+                    <td>{$info['order_id']}</td>
+                </tr>
+                <tr>
+                    <td align="right" class="c888">当前状态：</td>
+                    <td>
+                        <span class="mar20">{$info['order_state']|order_stateshow}</span>
+
+                        <if condition="$info['order_state'] eq 'wpay'">
+                            <a class="tag_gray mar10" href="{:U('Order/changem', array('id' => $info['order_id']))}" onclick="return pe_dialog(this, '修改订单', 950, 550, 'order_money')">修改订单</a>
+                        </if>
+
+                        <if condition="$info['order_state'] eq 'wget'">
+                            <a class="tag_gray mar10" href="{:U('Order/changem', array('id' => $info['order_id']))}" onclick="return pe_dialog(this, '修改订单', 950, 550, 'order_money')">修改订单</a>
+                            <a class="tag_green mar10" href="{:U('Order/fh', array('key' => $info['order_id']))}" onclick="return pe_cfone(this, '你确定发货吗')">确认发货</a>
+                        </if>
+                    </td>
+                </tr>
+                <if condition="$info['order_state'] eq 'close'">
+                <tr>
+                    <td align="right">关闭说明：</td>
+                    <td>{$info['order_closetext']}</td>
+                </tr>
+                </if>
+            </table>
+
+            <if condition="$elist">
+            <div class="shixian mat20"></div>
+            <div class="liucheng mat20">订单修改记录</div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="order_view_bak mat10">
+                <foreach name="elist" item="v" key="k">
+                <tr>
+                    <td align="right" class="c888" width="80"><span style="color: #ff5500">({$k+1})&nbsp;</span></td>
+                    <td><span class="c888">{$v}</span></td>
+                </tr>
+                </foreach>
+            </table>
+            </if>
+
+            <div class="shixian mat20"></div>
+            <div class="liucheng mat20">收货信息</div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="order_view_bak mat10">
+                <tr>
+                    <td align="right" class="c888" width="80">用户帐号：</td>
+                    <td><span class="c888">{$info['user_name']}</span></td>
+                </tr>
+                <tr>
+                    <td align="right" class="c888">姓　　名：</td>
+                    <td>{$info['user_tname']}</td>
+                </tr>
+                <tr>
+                    <td align="right" class="c888">手机号码：</td>
+                    <td>{$info['user_phone']}</td>
+                </tr>
+                <tr>
+                    <td align="right" class="c888">收货地址：</td>
+                    <td>{$info['user_address']}</td>
+                </tr>
+                <tr>
+                    <td align="right" class="c888">订单备注：</td>
+                    <td>{$info['order_text']}</td>
+                </tr>
+
+            </table>
+
+            <div class="shixian mat20"></div>
+            <div class="liucheng mat20">订单信息</div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="order_view_bak mat10">
+                <tr>
+                    <td align="right" class="c888" width="80">下单时间：</td>
+                    <td>{$info['order_atime']|pe_date}</td>
+                </tr>
+                <tr>
+                    <td align="right" class="c888">付款时间：</td>
+                    <td>
+                        <if condition="$info['order_ptime']">
+                        {$info['order_ptime']|pe_date}
+                        </if>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="c888">发货时间：</td>
+                    <td>
+                        <if condition="$info['order_stime']">
+                            {$info['order_stime']|pe_date}
+                        </if>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="c888">付款方式：</td>
+                    <td>{$info['order_payment_name']}</td>
+                </tr>
+            </table>
+            <div class="shixian mat20"></div>
+            <div class="liucheng mat20">商品清单</div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="order_view_list mat20">
+                <tr>
+                    <td class="bgtt1" width="" align="center" colspan="3">商品名称</td>
+                    <td class="bgtt1" width="90" align="center">单价(元)</td>
+                    <td class="bgtt1" width="90" align="center">数量</td>
+                    <td class="bgtt1" width="150" align="center">商品优惠</td>
+                    <td class="bgtt1" width="110" align="center">小计(元)</td>
+                </tr>
+
+                <foreach name="product_list" item="v" key="k">
+                <tr>
+                    <td style="border-right:0;width:60px">
+                        <a href="#">
+                            <img src="__UPLOAD__/{$v['product_logo']|get_picture=100,100}" width="50" height="50" class="imgbg">
+                        </a>
+                    </td>
+                    <td style="border-left:0;border-right:0;text-align:left;">
+                        <a href="#" title="{$v['product_name']}" target="_blank" class="cblue dd_name">
+                            {$v['product_name']}
+                        </a>
+                        <p class="c888 mat5">{$v['product_rule']|order_skushow}</p>
+                    </td>
+                    <td style="border-left:0;width:80px;">
+
+                    </td>
+                    <td>¥ <span class="num">{$v['product_money']}</span></td>
+                    <td><span class="num">{$v['product_num']}</span></td>
+                    <td>{$v['product_jjmoney']|order_jjmoney_show}</td>
+                    <td>¥ <span class="num">{$v['product_allmoney']}</span></td>
+                </tr>
+                </foreach>
+            </table>
+            <div class="dingdan_jiesuan" style="padding:10px; line-height:30px; font-family:微软雅黑; font-size:14px;">
+
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>商品金额：</td>
+                        <td width="100">¥ {$info['order_product_money']}</td>
+                    </tr>
+                    <tr>
+                        <td>运费：</td>
+                        <td>¥ {$info['order_wl_money']}</td>
+                    </tr>
+                    <tr>
+                        <td>应付金额：</td>
+                        <td class="font16 cred strong">¥ {$info['order_money']}</td>
+                    </tr>
+                </table>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">{$type}题目</div>
+	<div class="form">
+		<form method='post' id="form_do" name="form_do" action="<if condition='$id'>{:U('Answer/editquestion')}<else/>{:U('Answer/addquestion')}</if>">
+		<dl>
+			<dt> 选择期数</dt>
+			<dd>
+				<select name="f">
+					<foreach name='select_qs' item='qs'>
+					<option <?php if($list['f']==$qs['value']){ ?>selected="selected"<?php }?> value="{$qs.value}">{$qs.name}</option>
+					</foreach>
+				</select>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt> 题目</dt>
+			<dd>
+				<input type="text" name="name" class="inp_one" value="{$list.name}"/>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt> 选项A</dt>
+			<dd>
+				<input type="text" name="aaa" class="inp_one" value="{$list.a}"/>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt> 选项B</dt>
+			<dd>
+				<input type="text" name="b" class="inp_one" value="{$list.b}"/>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt> 选项C</dt>
+			<dd>
+				<input type="text" name="c" class="inp_one" value="{$list.c}"/>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt> 选项D</dt>
+			<dd>
+				<input type="text" name="d" class="inp_one" value="{$list.d}"/>
+			</dd>
+		</dl>
+
+			<dl>
+				<dt> 排序</dt>
+				<dd>
+					<input type="text" name="sort" class="inp_one" value="{$list.sort}"/>
+				</dd>
+			</dl>
+
+		<dl>
+			<dt> 正确答案</dt>
+			<dd>
+				<input type="text" name="value" class="inp_one" value="{$list.value}"/>
+			</dd>
+			<dd>
+				<div style="color: red">注意:请输入小写字母,多选的时候请以逗号隔开</div>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt> 题目类型</dt>
+			<dd>
+				<input type="radio" name="type" value="1" <if condition=' $list.type eq 1'>checked="checked"</if> />单选
+				<input type="radio" name="type" value="2" <if condition='$list.type eq 2'>checked="checked"</if> />多选
+			</dd>
+		</dl>
+        <div class="form_b">
+
+			<if condition="$id">
+			<input type="hidden" name="id" value="{$id}" />
+			</if>
+			<input type="submit" class="btn_blue" id="submit" value="提 交">
+
+		</div>
+		
+	   </form>
+	</div>
+
+
+</body>
+</html>

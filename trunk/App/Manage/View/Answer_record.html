@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+	<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+
+	<script type="text/javascript">
+        var data_path = "__DATA__";
+        var tpl_public = "__PUBLIC__";
+        var tpl_upload = "__UPLOAD__";
+	</script>
+	<script type="text/javascript">
+        $(function () {
+
+            upload_ex("picture_tip_1",'fileupload_1',1,"{:U('Answer/import_ex_1')}");
+            upload_ex("picture_tip_2",'fileupload_2',2,"{:U('Answer/import_ex_2')}");
+            upload_ex("picture_tip_3",'fileupload_3',3,"{:U('Answer/import_ex_3')}");
+            upload_ex("picture_tip_4",'fileupload_4',4,"{:U('Answer/import_ex_4')}");
+
+            //抽奖活动
+            upload_ex("picture_tip_99",'fileupload_99',99,"{:U('Answer/import_ex_99')}");
+
+            //备选抽奖活动
+            upload_ex("picture_tip_100",'fileupload_100',100,"{:U('Answer/import_ex_100')}");
+
+			function upload_ex(picture_tip_class,fileupload_id,id,url) {
+                //图片集上传
+                var picture_tip = $("."+picture_tip_class);
+                $("#"+fileupload_id).wrap("<form id='picture_form_"+id+"' action='"+url+"' method='post' enctype='multipart/form-data'></form>");
+                $("#"+fileupload_id).change(function(){
+                    if($("#"+fileupload_id).val() == "") return;
+
+                    $("#picture_form_"+id).ajaxSubmit({
+                        dataType:  'json',
+                        beforeSend: function() {
+                            picture_tip.html("上传中...");
+                        },
+                        success: function(data) {
+                            if(data.state == 'SUCCESS'){
+                                //picture_tip.html(""+ tpl_upload+data.info[0].name +" 上传成功("+data.info[0].size+"k)");
+                                picture_tip.html("上传成功");
+                            }else {
+                                picture_tip.html(data.info);
+                            }
+
+                        },
+                        error:function(xhr){
+                            picture_tip.html("上传失败"+xhr);
+
+                        }
+                    });
+                });
+            }
+        });
+
+	</script>
+</head>
+<body>
+
+<div class="main">
+	<div class="pos">中奖情况导入并查询
+
+		<?php if($_SESSION['yang_adm_username']!="admin"){?>
+
+		<div style="float: right"><a href="/index.php?s=/Manage/Login/logout">退出</a></div>
+		<div style="float: right"><a>你好，<?php echo $_SESSION['yang_adm_username'];?><i></i></a></div>
+		<div style="clear: both"></div>
+		<?php }?>
+	</div>
+	</br>
+
+	<div class="operate">
+		<div class="left">
+			<div class="sub clear"><span>说明：</span>1、重复导入会覆盖 2、导入文件的格式：前5列必须为序号、昵称、真实姓名、手机号、公司
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="left">
+		<?php if($_SESSION['yang_adm_username']=="admin"){?>
+		<foreach name='tab_list' item='tab'>
+
+			<div style="float: left">
+				<div class="litpic_show">
+
+					<div class="litpic_btn" <?php if($tab['type']==99){?>style="background:#ff9932;color: #ffffff"<?php } ?>>
+						<span>导入{$tab.qs}</span>
+						<input  id="fileupload_<?php echo $tab['type'];?>" type="file" name="mypic_<?php echo $tab['type'];?>">
+					</div>
+					<div class="picture_tip_<?php echo $tab['type'];?>" style="color:red;"></div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</foreach>
+		<?php }?>
+
+		<div style="clear: both"></div>
+	</div>
+	<div class="operate">
+		<div class="left">
+			<form method="post" action="{:U('Answer/record')}">
+				<span class="s_span">姓名</span><input type="text" name="sname" class="inp_one" value="{$sname}" >
+				<span class="s_span">昵称</span><input type="text" name="snick" class="inp_one" value="{$snick}" >
+				<span class="s_span">公司名</span><input type="text" name="scompany" class="inp_one" value="{$scompany}" >
+				<input type="hidden" name="qtype" value="{$qtype}"/>
+				<span class="s_span">手机号</span><input type="text" name="sphone" class="inp_one" value="{$sphone}" >
+				<input type="hidden" name="qtype" value="{$qtype}"/>
+				<input type="submit" class="btn_blue" style="float: none" value="查  询">
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="operate">
+		<style>
+			ul,li,a{ text-decoration:none;list-style: none; }
+			.vatice{overflow: hidden;border-bottom:1px solid #ccc;font-size: 16px;}
+			.vatice li{ float: left;padding:0 10px 5px; text-align:center;  }
+			.vatice li a{ color:#666; }
+			.vatice li.on,.vatice li:hover{ border-bottom:2px solid #21a0fd; }
+		</style>
+		<ul class="vatice">
+			<li <?php if(empty($qtype)){ ?>class="on" <?php }?>><a href="{:U('Answer/record')}">全部</a></li>
+			<foreach name='tab_list' item='tab'>
+				<li <?php if($qtype==$tab['type']){ ?>class="on" <?php }?>><a href="{:U('Answer/record',array('qtype'=>$tab['type']))}">{$tab.qs}</a></li>
+			</foreach>
+
+		</ul>
+	</div>
+	<div class="list">
+		<form action="{:U('Answer/question_delALL')}" method="post" id="form_do" name="form_do">
+			<table width="100%">
+				<tr>
+					<th rowspan="2">编号</th>
+					<th rowspan="2">期数</th>
+					<th colspan="4">基本信息</th>
+					<th rowspan="2">其他信息</th>
+					<th rowspan="2">获得奖品</th>
+					<th rowspan="2">导入时间</th>
+					<th rowspan="2">操作</th>
+				</tr>
+				<tr>
+					<th>昵称</th>
+					<th>真实姓名</th>
+					<th>手机号</th>
+					<th>公司名</th>
+				</tr>
+				<foreach name='vlist' item='v'>
+					<tr>
+						<td >{$v.id}</td>
+						<td style="width: 120px">{$v.qs}</td>
+						<td  style="width: 120px">{$v.unick}</td>
+						<td  >{$v.uname}</td>
+						<td >{$v.phone}</td>
+						<td  >{$v.company}</td>
+						<td >
+							<?php foreach($v['remark'] as $kk=>$vv){ ?>
+								<?php foreach($vv as $kkk=>$vvv){ ?>
+								<?php echo $vvv;?><br/>
+								<?php } ?>
+							<?php } ?>
+						</td>
+						<td >{$v.reward}</td>
+						<td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
+						<td>#</td>
+					</tr>
+				</foreach>
+			</table>
+			<div class="page" style="clear: both;">{$page}</div>
+		</form>
+	</div>
+</div>
+
+</body>
+</html>

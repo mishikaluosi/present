@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>统计测试</title>
+
+		<script type="text/javascript" src="__PUBLIC__/js/jquery-1.8.3.min.js"></script>
+		<script src="__PUBLIC__/js/highcharts.js"></script>
+		<script src="__PUBLIC__/js/exporting.js"></script>
+		<script language="javascript" type="text/javascript" src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>
+
+
+
+		
+		<!--<script type="text/javascript">
+$(function () {
+    chart();
+});
+		</script>-->
+		
+<script>
+
+function search(){
+	var starttime = $("#starttime").val();
+	var endtime = $("#endtime").val();
+	
+	if(starttime==''){
+		alert("请选择开始时间");
+		return false;
+	}
+	if(endtime==''){
+		alert("请选择结束时间");
+		return false;
+	}
+	if(endtime<starttime){
+		alert("结束时间不能小于开始时间");
+		return false;
+	}
+	
+	var data = {
+		'starttime':starttime,
+		'endtime':endtime
+	};
+	$.post("{:U('Statistic/index')}",data,function(result){
+		var arr = eval(result);
+		var product = arr[0];
+		var article = arr[1];
+		var cases = arr[2];
+		var index = arr[3];
+		var category = arr[4];
+		
+		//alert(arr[4]);
+		$('#container').highcharts({
+			title: {
+				text: '江苏百拓',
+				x: -20 //center
+			},
+			subtitle: {
+				text: '来源: 测试',
+				x: -20
+			},
+			xAxis: {
+				categories: category
+			},
+			yAxis: {
+				title: {
+					text: '访问数'
+				},
+				plotLines: [{
+					value: 0,
+					width: 1,
+					color: '#808080'
+				}]
+			},
+			tooltip: {
+				valueSuffix: ''
+			},
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'middle',
+				borderWidth: 0
+			},
+			series: [{
+				name: '产品',
+				data: product
+			}, {
+				name: '文章',
+				data: article
+			}, {
+				name: '案例',
+				data: cases
+			}, {
+				name: '首页',
+				data: index
+			}]
+		});
+		
+		
+	})
+	
+	
+}
+
+</script>
+	</head>
+	<body>
+
+	<input type="text" name="starttime" id="starttime" value="" onClick="WdatePicker()">--<input type="text" name="endtime" id="endtime" value="" onClick="WdatePicker()"> 
+	<input type="button" value="查询" onclick="search()">
+
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+	</body>
+</html>

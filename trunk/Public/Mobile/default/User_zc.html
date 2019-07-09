@@ -1,0 +1,39 @@
+﻿<include file="Public:header" />
+
+<div class="main">
+
+    <div class="zc_box2" style="margin-top:22px">
+        <div class="zc_list">
+            <div class="zc_name">职场名：</div>
+            <div class="zc_text">{$zc.name}</div>
+        </div>
+        <div class="zc_list">
+            <div class="zc_name">区域：</div>
+            <div class="zc_text">{$zc.prov}-{$zc.city}-{$zc.area}</div>
+        </div>
+        <div class="zc_list">
+            <div class="zc_name">地址：</div>
+            <div class="zc_text">{$zc.addr}</div>
+        </div>
+        <div class="zc_list">
+            <div class="zc_name">联系人：</div>
+            <div class="zc_text">{$zc.contact}</div>
+        </div>
+        <div class="zc_list">
+            <div class="zc_name">联系电话：</div>
+            <div class="zc_text">{$zc.tel}</div>
+        </div>
+        <div class="loginbtn" style="margin:20px 10px;">
+            <input type="button" class="return_u" value="返 回" />
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(function(){
+        $(".return_u").click(function(){
+            app_open('{:U("User/index")}', 1000);
+        })
+    })
+</script>
+<include file="Public:footer" />

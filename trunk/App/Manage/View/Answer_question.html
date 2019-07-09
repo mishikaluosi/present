@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+	<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+
+	<script language="JavaScript">
+        function psorts(id)
+        {
+            var sort = $(".psort"+id).val();
+            $.ajax({
+                type: "POST",
+                url: "{:U('Answer/question_sort')}",
+                data: {sort:sort,id:id},
+                dataType: "text",
+                success: function(data){
+
+                }
+
+            });
+        }
+	</script>
+</head>
+<body>
+
+<div class="main">
+	<div class="pos">{$type}</div>
+	</br>
+	<div class="operate">
+		<div class="left">
+			<div class="sub clear"><span>说明：</span>1、排序：前台题目按从小到大正序排列
+				&nbsp;&nbsp;&nbsp;2、显示数量:不足20条情况下，前台显示所有题目。20及以上前台仅显示前20条
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="left"><input type="button" onclick="goUrl('{:U('Answer/addquestion')}')" class="btn_blue btn_red" value="添加题目">
+	</div>
+
+	<div class="operate">
+		<style>
+			ul,li,a{ text-decoration:none;list-style: none; }
+			.vatice{overflow: hidden;border-bottom:1px solid #ccc;font-size: 16px;}
+			.vatice li{ float: left;padding:0 10px 5px; text-align:center;  }
+			.vatice li a{ color:#666; }
+			.vatice li.on,.vatice li:hover{ border-bottom:2px solid #21a0fd; }
+		</style>
+		<ul class="vatice">
+			<foreach name='tab_list' item='tab'>
+				<?php if($tab['type']<5){ ?>
+				<li <?php if($qtype==$tab['type']){ ?>class="on" <?php }?>><a href="{:U('Answer/question',array('qtype'=>$tab['type']))}">{$tab.name}</a></li>
+				<?php }?>
+			</foreach>
+
+		</ul>
+	</div>
+	<div class="list">
+		<form action="{:U('Answer/question_delALL')}" method="post" id="form_do" name="form_do">
+			<table width="100%">
+				<tr>
+					<th><input type="checkbox" id="check"></th>
+					<th>编号</th>
+					<th>题目</th>
+					<th>选项A</th>
+					<th>选项B</th>
+					<th>选项C</th>
+					<th>选项D</th>
+					<th>正确答案</th>
+					<th>排序</th>
+					<th>添加时间</th>
+					<th>修改时间</th>
+					<th>操作</th>
+				</tr>
+				<foreach name='vlist' item='v'>
+					<?php $tmp_val=explode(",",$v['value']); ?>
+					<tr>
+						<td><input type="checkbox" name="key[]" value="{$v.id}"></td>
+						<td>{$v.id}</td>
+						<td style="text-align: left">
+							{$v.name}
+							<?php if($v['type']==1){echo '(单选)';}else{ echo '(多选)';}?>
+						</td>
+						<td style="text-align: left">
+							<?php if(in_array('a',$tmp_val)){ ?>
+							<span class="red"><?php echo $v['a'];?></span>
+							<?php }else{ echo $v['a'];} ?>
+						</td>
+						<td style="text-align: left">
+							<?php if(in_array('b',$tmp_val)){ ?>
+							<span class="red"><?php echo $v['b'];?></span>
+							<?php }else{ echo $v['b'];} ?>
+						</td>
+						<td style="text-align: left">
+							<?php if(in_array('c',$tmp_val)){ ?>
+							<span class="red"><?php echo $v['c'];?></span>
+							<?php }else{ echo $v['c'];} ?>
+						</td>
+						<td style="text-align: left">
+							<?php if(in_array('d',$tmp_val)){ ?>
+							<span class="red"><?php echo $v['d'];?></span>
+							<?php }else{ echo $v['d'];} ?>
+						</td>
+						<td>{$v.value}</td>
+						<td><input type="text" name="psort" value="{$v.sort}" onblur="psorts({$v.id})" class="psort{$v.id}"  size="5" /></td>
+						<td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
+						<td>{$v.edittime|date='Y-m-d H:i:s', ###}</td>
+						<td>
+							<a href="{:U('Answer/addquestion',array('id' => $v['id']))}">修改</a>
+
+							<a href="javascript:;" onclick="toConfirm('{:U('Answer/question_del',array('id' => $v['id']), '')}', '确实要删除吗？')">删除</a>
+						</td>
+					</tr>
+				</foreach>
+			</table>
+			<div class="page" style="clear: both;">
+				<input type="button" onclick="doConfirmBatch('{:U('Answer/question_del', array('batchFlag' => 1))}', '确实要删除选择项吗？')" class="btn_blue btn_f" value="删除">
+				{$page}</div>
+		</form>
+	</div>
+</div>
+
+</body>
+</html>

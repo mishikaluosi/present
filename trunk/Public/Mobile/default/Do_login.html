@@ -1,0 +1,63 @@
+﻿<include file="Public:header2" />
+
+<div class="login_top">
+    <div class="zc_tt">保礼街</div>
+    <div class="top_dl">
+        <img src="__PUBLIC__/images/logo.png" alt="" />
+    </div>
+    <a class="u_fh" href="{:U('Index/index')}"><i class="sy_ico"></i></a>
+</div>
+<form method="post" id="form">
+    <div class="zc_box1" style="padding:0 10px">
+        <div class="zc_list">
+            <div class="zc_mal zc_i1">
+                <i class="icon-icon icon  iconfont"></i>
+                <input type="text" name="phone" class="zc_input1" placeholder=" 手机号 " /></div>
+        </div>
+        <div class="zc_list">
+            <div class="zc_mal zc_i2">
+                <i class="icon-mima icon  iconfont"></i>
+                <input type="text" name="user_pw" class="zc_input1" placeholder="登录密码" onfocus="this.type='password'" /></div>
+        </div>
+    </div>
+    <div class="loginbtn" style="margin:30px 20px;">
+        <input type="button" id="login_btn" value="登 录" />
+    </div>
+</form>
+<div class="zh_zc1">
+    <a href="{:U('do/register')}" class="mar10">还没有账户，点此免费注册</a>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $("#login_btn").click(function() {
+            if ($(":input[name='phone']").val() == '') {
+                app_tip('请填写手机号');
+                return false;
+            } else {
+                var pattern = /^(((13[0-9]{1})|(14[0-9]{1})|(19[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/;
+                if(!pattern.test($(":input[name='phone']").val())){
+                    app_tip('手机号格式不正确');
+                    return false;
+                }
+            }
+
+            if ($(":input[name='user_pw']").val() == '') {
+                app_tip('请填写密码');
+                return false;
+            }
+            $(this).val('登录中...');
+            app_submit("{:U('Do/login')}", function(json) {
+                if (json.result) {
+                    if ('' != '') {
+                        app_open('', 1000);
+                    } else {
+                        app_open("{:U('User/index')}", 1000);
+                    }
+                } else {
+                    $("#login_btn").val('登 录');
+                }
+            })
+        })
+    })
+</script>
+<include file="Public:footer2" />

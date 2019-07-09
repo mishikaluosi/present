@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+
+    <link rel='stylesheet' type="text/css" href="__PUBLIC__/layui/css/layui.css" />
+    <script type="text/javascript" src="__PUBLIC__/layui/layui.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/dmAddress.js"></script>
+ <script language="JavaScript">
+        <!--
+        var URL = '__URL__';
+        var APP	 = '__APP__';
+        var SELF='__SELF__';
+        var PUBLIC='__PUBLIC__';
+        //-->
+        </script>
+
+</head>
+<body>
+<div class="main">
+    <div class="pos">{$type_title}</div>
+    <div class="form">
+        <form method='post' id="form_do" name="form_do" action="{:U('Zc/msg')}" onsubmit="return chk()">
+
+            <dl>
+                <dt> 职场名称</dt>
+                <dd>
+                    <input type="text" name="name" id="name" class="inp_w250" value="{$vo.name}"/>
+                </dd>
+            </dl>
+            <dl>
+                <dt> 联系人<dt>
+                <dd>
+                    <input type="text" name="contact" id="contact" class="inp_w250" value="{$vo.contact}"/>
+                </dd>
+            </dl>
+            <dl>
+                <dt> 联系电话</dt>
+                <dd>
+                    <input type="text" name="tel" id="tel" class="inp_w250" value="{$vo.tel}"/>
+                </dd>
+            </dl>
+            <dl>
+                <dt> 联系地址</dt>
+                <dd>
+                    <input type="text" name="addr" id="addr" class="inp_w250" value="{$vo.addr}"/>
+                </dd>
+            </dl>
+            <dl>
+                <dt>所在区域</dt>
+                <dd>
+                    <select id="cmbProvince" name='prov'></select>
+                    <select id="cmbCity" name='city'></select>
+                    <select id="cmbArea" name='area'></select>
+                    <script type="text/javascript">
+                        $.ajax({
+                            type: "POST",
+                            url: "{:U('Zc/get_region_jsdata')}",
+                            dataType: "json",
+                            success: function(data){
+                                var provinceList=data;
+                                addressInit('cmbProvince', 'cmbCity', 'cmbArea', '江苏', '无锡', '崇安区',provinceList);
+                            }
+                        });
+                    </script>
+                </dd>
+            </dl>
+            <dl>
+                <dt> 排序</dt>
+                <dd>
+                    <input type="text" name="sort" id="sort" class="inp_w250" <if condition="$vo">value="{$vo.sort}"<else/>value="1"</if>/>
+                    <if condition="$vo">
+                        <input type="hidden" name="id" value="{$vo.id}"/>
+                    </if>
+                </dd>
+            </dl>
+
+                <div class="form_b">
+                    <input type="submit" class="btn_blue" id="submit" value="保 存">
+                </div>
+        </form>
+    </div>
+</div>
+<script >
+    function chk() {
+        var name=$("#name").val();
+        var contact=$("#contact").val();
+        var tel=$("#tel").val();
+        var addr=$("#addr").val();
+
+        if(name==""){
+            alert('名称不得为空');
+            return false;
+        }
+        if(contact==""){
+            alert('联系人不得为空');
+            return false;
+        }
+        if(tel==""){
+            alert('联系电话不得为空');
+            return false;
+        }
+        if(addr==""){
+            alert('联系地址不得为空');
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

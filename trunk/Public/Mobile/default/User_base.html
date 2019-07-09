@@ -1,0 +1,47 @@
+﻿<include file="Public:header" />
+
+<div class="main">
+
+    <div class="zc_box2" style="margin-top:22px">
+        <div class="zc_list">
+            <div class="zc_name">姓名：</div>
+            <div class="zc_text">{$info.name}</div>
+        </div>
+        <div class="zc_list">
+            <div class="zc_name">手机号：</div>
+            <div class="zc_text">{$info.phone}</div>
+        </div>
+        <div class="zc_list">
+            <div class="zc_name">所属职场：</div>
+            <div class="zc_text">{$zc.name}</div>
+        </div>
+        <div class="zc_list">
+            <div class="zc_name">组号：</div>
+            <div class="zc_text">{$info.group_no}</div>
+        </div>
+        <div class="zc_list">
+            <div class="zc_name">工号：</div>
+            <div class="zc_text">{$info.work_no}</div>
+        </div>
+        <div class="zc_list">
+            <div class="zc_name">注册时间：</div>
+            <div class="zc_text">{$info.regtime|pe_date}</div>
+        </div>
+        <div class="zc_list">
+            <div class="zc_name">登录时间：</div>
+            <div class="zc_text">{$info.logintime|pe_date}</div>
+        </div>
+        <div class="loginbtn" style="margin:20px 10px;">
+            <input type="button" class="return_u" value="返 回" />
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(function(){
+        $(".return_u").click(function(){
+            app_open('{:U("User/index")}', 1000);
+        })
+    })
+</script>
+<include file="Public:footer" />

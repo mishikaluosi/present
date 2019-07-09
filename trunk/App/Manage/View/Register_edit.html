@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">修改</div>
+	<div class="form">
+		<form method='post' id="form_do" name="form_do" action="{:U('Register/edit')}">
+		<dl>
+			<dt> 姓名</dt>
+			<dd>
+				<input type="text" name="name" class="inp_w250" value="{$register.name}" />
+			</dd>
+		</dl>
+		<dl>
+			<dt> 年龄</dt>
+			<dd>
+				<input type="text" name="age" class="inp_w250" value="{$register.age}" />
+			</dd>
+		</dl>	
+		<dl>
+			<dt> Email</dt>
+			<dd>
+				<input type="text" name="email" class="inp_w250" value="{$register.email}" />
+			</dd>
+		</dl>	
+		<dl>
+			<dt> 国家</dt>
+			<dd>
+				<input type="text" name="country" class="inp_w250" value="{$register.country}" />
+			</dd>
+		</dl>
+		<dl>
+			<dt> 公司</dt>
+			<dd>
+				<input type="text" name="company" class="inp_w250" value="{$register.company}" />
+			</dd>
+		</dl>
+		<dl>
+			<dt> 旅游日期</dt>
+			<dd>
+				<input type="text" name="trip" class="inp_w250" value="{$register.trip}" />
+			</dd>
+		</dl>
+		<dl>
+			<dt> 旅行人数</dt>
+			<dd>
+				<input type="text" name="count" class="inp_w250" value="{$register.count}" />
+			</dd>
+		</dl>
+		<dl>
+			<dt> 如何得知我们</dt>
+			<dd>
+				<input type="text" name="about" class="inp_w250" value="{$register.about}" />
+			</dd>
+		</dl>
+		<dl>
+			<dt> 机场接送服务</dt>
+			<dd>
+				<input type="text" name="transfer" class="inp_w250" value="{$register.transfer}" />
+			</dd>
+		</dl>
+		
+		<div class="form_b">
+			<input type="hidden" name="id" value="{$register.id}">
+			<input type="submit" class="btn_blue" id="submit" value="提 交">
+		</div>
+	   </form>
+	</div>
+</div>
+
+
+</body>
+</html>

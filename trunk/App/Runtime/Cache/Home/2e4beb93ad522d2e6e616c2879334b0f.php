@@ -1,0 +1,1 @@
+<?php if (!defined('THINK_PATH')) exit();?>﻿新之礼 在线商城

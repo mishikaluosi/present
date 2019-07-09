@@ -1,0 +1,27 @@
+﻿
+<link rel="stylesheet" href="__PUBLIC__/css/weui.min.css">
+<link rel="stylesheet" href="__PUBLIC__/css/layer.css">
+<link rel="stylesheet" href="__PUBLIC__/css/jquery-weui.min.css">
+<script src="__PUBLIC__/js/jquery-weui.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/app.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.scrollloading.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("img.js_imgload").scrollLoading();
+    });
+    //顶部菜单点击
+    function top_menu() {
+        if ($("#top_menu").is(":hidden")) {
+            $("#top_menu").show();
+        } else {
+            $("#top_menu").hide();
+        }
+        $("#top_menu a").live("click", function() {
+            $("#top_menu").hide();
+        })
+    }
+</script>
+</body>
+
+</html>

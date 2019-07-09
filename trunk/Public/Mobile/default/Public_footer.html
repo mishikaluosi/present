@@ -1,0 +1,43 @@
+﻿<div class="foot_nav">
+    <ul>
+        <ul>
+            <li style='width:25%'><a href="{:U('Index/index')}" <if condition="$_C_NAME eq 'Index'">class="sel"</if>><i class="foot_i1"></i><span>首页</span></a></li>
+            <li style='width:25%'><a href="{:U('Cart/index')}" <if condition="$_C_NAME eq 'Cart'">class="sel"</if>><i class="foot_i5"></i><span>购物车</span></a></li>
+            <li style='width:25%'><a href="{:U('User/index')}" <if condition="$_C_NAME eq 'User' and $_A_NAME neq 'order'">class="sel"</if>><i class="foot_i4"></i><span>个人中心</span></a></li>
+            <li style='width:25%'><a href="{:U('User/order')}" <if condition="$_C_NAME eq 'User' and $_A_NAME eq 'order'">class="sel"</if>><i class="foot_i2"></i><span>订单</span></a></li>
+        </ul>
+    </ul>
+    <div class="clear"></div>
+</div>
+
+
+<div class="fenye mat10  mab60">
+    <div class="clear"></div>
+</div>
+
+<link rel="stylesheet" href="__PUBLIC__/css/weui.min.css">
+<link rel="stylesheet" href="__PUBLIC__/css/layer.css">
+<link rel="stylesheet" href="__PUBLIC__/css/jquery-weui.min.css">
+<script src="__PUBLIC__/js/jquery-weui.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/layer.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/app.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.scrollloading.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("img.js_imgload").scrollLoading();
+    });
+    //顶部菜单点击
+    function top_menu() {
+        if ($("#top_menu").is(":hidden")) {
+            $("#top_menu").show();
+        } else {
+            $("#top_menu").hide();
+        }
+        $("#top_menu a").live("click", function() {
+            $("#top_menu").hide();
+        })
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+﻿<include file="Public:header" />
+
+<div class="content">
+    <div class="subnav1" style="margin-top:24px;">
+        <foreach name="clist" item="co">
+            <a href="{:U('article/index',array('cid'=>$co['id']))}" title="{$co.name}" <if condition="$cate['id'] eq $co['id']">class="sel"</if>>{$co.name}</a>
+        </foreach>
+        <div class="clear"></div>
+    </div>
+    <div class="dingdan_info1">
+        <div class="mat10 font18 c333 aleft">{$vo.title}</div>
+        <div class="mat10 font12 c999 fl">发布日期：{$vo.publishtime|date="Y-m-d",###}</div>
+        <div class="clear"></div>
+        <div class="xian"></div>
+        <div class="danye_main mat20">
+            {$vo.content}
+        </div>
+    </div>
+</div>
+
+<include file="Public:footer" />

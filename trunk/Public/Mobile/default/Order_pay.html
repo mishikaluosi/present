@@ -1,0 +1,111 @@
+﻿<include file="Public:header" />
+<div class="content" >
+<form method="post" id="form">
+    <div class="content" style="margin-top:20px">
+        <div class="tjdz_box">
+            <div class="xzdz_btn" style="width: 90%;" >
+                <a href="#" style="color: #ff0000">提示:本商城所有商品一旦支付，不接受退款退货。</a>
+            </div>
+            <i class="jt_r"></i>
+        </div>
+        <div class="order_cg">
+            <i class="tjcg_dui"></i>
+            <div class="tjcg_tt">订单已提交，请尽快付款！</div>
+        </div>
+        <div class="yhq_box">
+            <div class="yhq_sel">
+                <span class="fl c666">订单编号：</span>
+                <span class="fr">{$info['order_id']}</span>
+                <div class="clear"></div>
+            </div>
+            <div class="yhq_sel">
+                <span class="fl c666">应付金额：</span>
+                <span class="fr">¥ {$info['order_money']}</span>
+                <div class="clear"></div>
+            </div>
+            <div class="yhq_sel">
+                <span class="fl c666">支付方式：</span>
+                <span class="fr r_jt" style="position:relative;">
+                    <span style="padding-right:15px;" onclick="app_page('page_payment');" id="payment_btn">
+                        {$info['order_payment_name']}
+                    </span>
+                    <i></i>
+                </span>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="loginbtn" style="margin:15px 12px;">
+            <input type="hidden" name="id" value="{$info['order_id']}">
+            <input type="button" value="去付款" onclick="pay_btn()" />
+        </div>
+
+    </div>
+    <div id="page_payment" class="divhide" style="margin-bottom:57px;">
+        <div class="add_tt">选择支付方式</div>
+        <div class="close_btn" onclick="app_page_close();"></div>
+        <div id="payment_list">
+            <foreach name="payment_list" item="v" key="k">
+                <label class="add_sel js_radio <if condition='$k eq $info["order_payment"]'>sel</if>" for="order_payment_{$k}">
+                <input type="radio" name="order_payment"   value="{$k}" payment_name="{$v['payment_name']}" id="order_payment_{$k}" class="divhide"  <if condition="$k eq $info['order_payment']">checked</if> />
+                    <div class="fl mar5" style="width:22px; overflow:hidden;">
+                        <img src="__PUBLIC__/images/payment/{$k}.png" width="85" />
+                    </div>
+                    <div class="fl mat2">
+                        {$v['payment_name']}
+                        <if condition="$k eq 'balance'">
+                        <span class="">：<span class="corg">{$user['user_money']}元</span></span>
+                        </if>
+                    </div>
+                    <div class="dui_1"></div>
+                    <div class="clear"></div>
+                </label>
+            </foreach>
+        </div>
+    </div>
+    <div id="bank_text" style="display:none">
+        <?php
+        $payment = $cache_payment['bank']['payment_config'];
+        echo nl2br($payment['bank_text']);
+        ?>
+    </div>
+</form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/wechat.js"></script>
+<script type="text/javascript">
+    $(function() {
+        //支付方式
+        let val = $('.sel input').val();
+        pe_select_radio('order_payment', val, function(json) {
+            $("#payment_btn").html($(":input[name='order_payment']:checked").attr("payment_name"));
+            app_page_close();
+            if ($(":input[name='order_payment']:checked").val() == val) {
+                $("#user_paypw").show();
+            } else {
+                $("#user_paypw").hide();
+            }
+        });
+    })
+    //支付提交按钮
+    function pay_btn() {
+        order_payment = $(":input[name='order_payment']:checked").val();
+        if (order_payment == 'bank') {
+            layer.open({
+                content: $("#bank_text").html(),
+                btn: '确认'
+            });
+            return false;
+        }
+        app_submit("{:U('Order/pay_save')}", function(json) {
+            if (json.result) {
+                if (order_payment == 'wechat') {
+                    //console.log(json.url);
+                    wx_pay(json.id,json.url);
+                } else {
+                    app_open(json.url, 1000);
+                }
+            }
+        })
+    }
+</script>
+
+<include file="Public:footer" />
