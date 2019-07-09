@@ -1327,11 +1327,11 @@ eot;
             $end_array[$c_array[$excel_index]]='';
             $excel_index+=1;
             $objPHPExcel->setActiveSheetIndex(0)->setCellValue($c_array[$excel_index].$num, $V['uname']);
-            $head_array[$c_array[$excel_index]]='收货人姓名';
+            $head_array[$c_array[$excel_index]]='姓名';
             $end_array[$c_array[$excel_index]]='';
             $excel_index+=1;
             $objPHPExcel->setActiveSheetIndex(0)->setCellValue($c_array[$excel_index].$num, $V['tel']);
-            $head_array[$c_array[$excel_index]]='收货人手机';
+            $head_array[$c_array[$excel_index]]='手机';
             $end_array[$c_array[$excel_index]]='';
             $excel_index+=1;
             foreach ($pro_list as $pro){
