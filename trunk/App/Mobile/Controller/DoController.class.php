@@ -126,6 +126,13 @@ class DoController extends Controller{
         }
         $this->display();
 	}
+    public function login_code(){
+        if(IS_POST){
+            $this->login_in();
+            exit();
+        }
+        $this->display();
+    }
 
 	public function register(){
         if(IS_POST){
