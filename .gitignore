@@ -3,3 +3,5 @@ trunk/.idea/
 trunk/App/Common/Conf/db.php
 trunk/App/Runtime/Cache/
 trunk/App/Runtime/Logs/
+trunk/App/Runtime/Data/
+trunk/App/Runtime/Temp/
