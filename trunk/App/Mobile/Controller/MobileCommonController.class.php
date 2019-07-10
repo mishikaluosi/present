@@ -13,7 +13,8 @@ class MobileCommonController extends Controller {
         parent::__construct();
         $this->_xzl_uid=$_SESSION['user_id'];
         if(empty($_SESSION['user_id'])&&CONTROLLER_NAME!='Login'&&CONTROLLER_NAME!='Wechat'&&CONTROLLER_NAME!='Wenjuan'){
-            $this->error('请先登陆',U(MODULE_NAME."/Do/login"));
+//            $this->error('请先登陆',U(MODULE_NAME."/Do/login"));
+            header("location:".U(MODULE_NAME."/Do/login"));
         }
         $zc=M('member')->field('zc_id')->find($_SESSION['user_id']);//$_SESSION['user_zcid'];
         if($zc){
