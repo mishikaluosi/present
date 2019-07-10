@@ -114,7 +114,22 @@ class DoController extends Controller{
         echo json_encode(array('result'=>$result, 'show'=>$show));
         exit();
     }
-
+    public function success($data,$message='ok'){
+        echo json_encode(array(
+            'status' => 0,
+            'data' => $data,
+            'message' => $message
+        ));
+        exit();
+    }
+    public function error($message='error'){
+        echo json_encode(array(
+            'status' => 1,
+            'data' => null,
+            'message' => $message
+        ));
+    exit();
+}
 	public function index(){
 		$this->display();
 	}
@@ -128,7 +143,7 @@ class DoController extends Controller{
 	}
     public function login_code(){
         if(IS_POST){
-            $this->login_in();
+            $this->login_in_code();
             exit();
         }
         $this->display();
@@ -166,7 +181,38 @@ class DoController extends Controller{
             $this->_frm_json_login(false,'手机号或密码错误');
         }
     }
+    public function login_in_code(){
+        $phone=I('phone', '');
+        $exc_code=I('exc_code', '');
+        if(empty($phone)){
+            $this->_frm_json_login(false,'手机号不得为空');
+        }
+        if(empty($exc_code)){
+            $this->_frm_json_login(false,'验证码不得为空');
+        }
+        //验证用户
+        $where=array('phone'=>pe_dbhold($phone));
+        $user=M('member')->where($where)->find();
+        if($user){
+            //验证验证码
+            $send_code=M('send_code')->where(array('phone'=>$phone,'code'=>$exc_code,'type'=>'login'))->order('id',"desc")->find();
+            if(!$send_code){
+                $this->_frm_json_login(false,'验证码不存在');
+            }
+            $pass_time = time()-$send_code['created_at'];
+            if($pass_time>15*60){
+                $this->_frm_json_login(false,'验证码已超时，请重新获取');
+            }
+            if($user['islock']==1){
+                $this->_frm_json_login(false,'您的账户已被锁定，请联系管理员解锁');
+            }
 
+            $this->_user_login_callback($user);
+            $this->_frm_json_login(true,'登录成功');
+        }else{
+            $this->_frm_json_login(false,'手机号错误或用户不存在');
+        }
+    }
     /**
      * 保存业务员信息
      */
@@ -271,6 +317,26 @@ class DoController extends Controller{
         if(!empty($user['user_wx_openid'])){
         //    $_SESSION['U']['openid']=$user['user_wx_openid'];
         }
+    }
+    public function sendCode(){
+        $phone = I("phone");
+        $code = rand(100000, 999999);
+        if(!pe_formcheck('phone',$phone)) {
+            $this->error('手机号格式不正确');
+        }
+        //发送验证码给手机
+        $item = array(
+            'phone'	=> 	$phone,
+            'code'	=> 	$code,
+            'type' => 	'login',
+            'created_at'	=> 	time(),
+        );
+        $id = M('send_code')->add($item);
+       if(!$id){
+           $this->error('验证码获取失败');
+       }
+        $this->success($phone);
+        exit();
     }
 }
 

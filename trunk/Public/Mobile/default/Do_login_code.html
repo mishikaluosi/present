@@ -12,13 +12,14 @@
         <div class="zc_list">
             <div class="zc_mal zc_i1">
                 <i class="icon-icon icon  iconfont"></i>
-                <input type="text" id="phone" class="zc_input1" placeholder=" 手机号 " /></div>
+                <input type="text" name="phone" id="phone" class="zc_input1" placeholder=" 手机号 " /></div>
         </div>
         <div class="zc_list">
             <div class="zc_mal zc_i2">
                 <i class="icon-mima icon  iconfont"></i>
-                <input type="text" class="zc_input1" id="exc_code"  placeholder=" 验证码 " /></div>
-                <button class="sbtn_green mr20 fl" id="exc_send_code" style="padding: 0px;">发送验证码</button>
+                <input style="width: 60%;" type="text" class="fl zc_input1" id="exc_code" name="exc_code"  placeholder=" 验证码 " />
+                <div style="width:40%;text-align: center;" class="fl" id="exc_send_code">发送验证码</div>
+            </div>
         </div>
     </div>
     <div class="loginbtn" style="margin:30px 20px;">
@@ -32,37 +33,40 @@
 <script type="text/javascript">
     var sendCode=0;
     $(function() {
-    //     $("#login_btn").click(function() {
-    //         if ($(":input[name='phone']").val() == '') {
-    //             app_tip('请填写手机号');
-    //             return false;
-    //         } else {
-    //             var pattern = /^1[3|4|5|6|7|8|9][0-9]{9}$/;
-    //             // var pattern = /^(((13[0-9]{1})|(14[0-9]{1})|(19[0-9]{1})|(17[0-9]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/;
-    //             if(!pattern.test($(":input[name='phone']").val())){
-    //                 app_tip('手机号格式不正确');
-    //                 return false;
-    //             }
-    //         }
-    //
-    //         if ($(":input[name='user_pw']").val() == '') {
-    //             app_tip('请填写密码');
-    //             return false;
-    //         }
-    //         $(this).val('登录中...');
-    //         app_submit("{:U('Do/login')}", function(json) {
-    //             if (json.result) {
-    //                 if ('' != '') {
-    //                     app_open('', 1000);
-    //                 } else {
-    //                     app_open("{:U('User/index')}", 1000);
-    //                 }
-    //             } else {
-    //                 $("#login_btn").val('登 录');
-    //             }
-    //         })
-    //     })
+        $("#login_btn").click(login);
+        $("#exc_send_code").click(sendOrderCode);
     })
+    function login(){
+        var phone = $("#phone").val();
+        var exc_code = $("#exc_code").val();
+        if (!phone) {
+             app_tip('请填写手机号');
+             return false;
+        } else {
+            var pattern = /^1[3|4|5|6|7|8|9][0-9]{9}$/;
+            if(!pattern.test(phone)){
+                app_tip('手机号格式不正确');
+                return false;
+            }
+        }
+        if (!exc_code) {
+             app_tip('请填写验证码');
+             return false;
+        }
+        $(this).val('登录中...');
+        app_submit("{:U('Do/login_code')}", function(json) {
+         if (json.result) {
+             if ('' != '') {
+                 app_open('', 1000);
+             } else {
+                 app_open("{:U('User/index')}", 1000);
+             }
+         } else {
+             $("#login_btn").val('登 录');
+         }
+        })
+
+    }
     function sendOrderCode() {
         var phone = $("#phone").val();
         if (phone == '') {
@@ -80,49 +84,35 @@
             return false;
         }
         sendCode=1;
-        $.ajax({
-            url: '?r=uploadExcel/sendOrderCode',
-            type: 'POST',
-            data: {'admin_phone': phone},
-            dataType: 'json',
-            success: function(data) {
-                console.log(data);
-                if(data.code === 0) {
-                    var InterValObj;
-                    var total_count = 60;//总倒计时秒数
-                    var current_count;
-                    current_count = total_count;
-                    $("#exc_send_code").text(current_count + "(s)后重发");
+        $.post("{:U('Do/sendCode')}",{phone:phone},function(data){
+            if(data.status === 0) {
+                var InterValObj;
+                var total_count = 60;//总倒计时秒数
+                var current_count;
+                current_count = total_count;
+                $("#exc_send_code").text(current_count + "(s)后重发");
 
-                    InterValObj = window.setInterval(setRemainTime, 1000);
-                    $("#exc_send_code").attr('disabled','disabled');
+                InterValObj = window.setInterval(setRemainTime, 1000);
+                $("#exc_send_code").attr('disabled','disabled');
 
-                    //计时器
-                    function setRemainTime() {
-                        if (current_count == 0) {
-                            window.clearInterval(InterValObj);
-                            $("#exc_send_code").removeAttr("disabled");
-                            $("#exc_send_code").text("发送验证码");
-                            sendCode=0;
-                        } else {
-                            current_count--;
-                            $("#exc_send_code").text(current_count + "(s)后重发");
-
-                        }
+                //计时器
+                function setRemainTime() {
+                    if (current_count == 0) {
+                        window.clearInterval(InterValObj);
+                        $("#exc_send_code").removeAttr("disabled");
+                        $("#exc_send_code").text("发送验证码");
+                        sendCode=0;
+                    } else {
+                        current_count--;
+                        $("#exc_send_code").text(current_count + "(s)后重发");
                     }
-
-                } else {
-                    sendCode=0;
-                    $("#error_tips_customer").text(data['msg']).show();
-                    return false;
                 }
-            },
-            error: function(data) {
+            } else {
                 sendCode=0;
-                $("#error_tips_customer").text(data['msg']).show();
+                app_tip(data.message);
                 return false;
-            },
-        });
+            }
+        },'json');
     }
 </script>
 <include file="Public:footer2" />
