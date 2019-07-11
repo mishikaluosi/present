@@ -315,7 +315,7 @@ class DoController extends Controller{
         $_SESSION['user_zcid'] = $user['zc_id'];
         $_SESSION['user_ltime'] = $user['logintime'];
         if(!empty($user['user_wx_openid'])){
-        //    $_SESSION['U']['openid']=$user['user_wx_openid'];
+//            $_SESSION['U']['openid']=$user['user_wx_openid'];
         }
     }
     public function sendCode(){
