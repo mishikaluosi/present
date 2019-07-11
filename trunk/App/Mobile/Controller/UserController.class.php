@@ -213,7 +213,12 @@ class UserController extends MobileCommonController{
         echo json_encode(array('result'=>true, 'info'=>$info));
         exit();
     }
-
+    public function customer(){
+        $user_id=$this->_xzl_uid;
+        $customer=M('wenjuan_answer')->where(['user_id'=>$user_id])->select();
+        $this->assign('customer',$customer);
+        $this->display();
+    }
 }
 
 ?>

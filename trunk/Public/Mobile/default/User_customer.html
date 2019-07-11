@@ -1,0 +1,102 @@
+<include file="Public:header" />
+<div class="search_bar" style="position:relative;margin-top:54px;height:50px;">
+    <img class="search_icon" src="__PUBLIC__/images/search_2.png" style="
+    top: 13px;
+    display: block;
+    width: 17px;
+    position: absolute;
+    left: 8%;">
+    <input type="text" placeholder="请输入用户名或手机号" style="
+    line-height: 40px;
+    height: 40px;
+    padding-left: 35px;
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    color:#666;
+    ">
+    <div class="clear"></div>
+</div>
+<div class="page__hd">
+    <foreach name="customer" item="vo">
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__hd" style="
+            color: rgba(0, 0, 0, 0.9);
+            font-size: 15px;
+            font-weight: 700;
+            height: 30px;
+            line-height: 30px;
+            ">
+                <p class="fl" style="
+                width:50%;
+                line-height: 30px;
+                height: 30px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                    ">
+                    <img class="fl" src="__PUBLIC__/images/user.png" style="margin-right:5px;width:16px;margin-top:7px;">{$vo.uname}
+                </p>
+                <p class="fl" style="
+                width:50%;
+                line-height: 30px;
+                height: 30px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;">
+                    <img class="fl" src="__PUBLIC__/images/phone.png" style="margin-right:5px;width:16px;margin-top:7px;">{$vo.phone}
+                </p>
+            </div>
+            <div class="weui-panel__bd">
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">推荐客户1</h4>
+                    <p class="weui-media-box__desc" style="height:25px;line-height: 25px;">姓名：{$vo.khname1}</p>
+                    <p class="weui-media-box__desc" style="height:25px;line-height: 25px;">手机：{$vo.khtel1}</p>
+                </div>
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">推荐客户2</h4>
+                    <p class="weui-media-box__desc" style="height:25px;line-height: 25px;">姓名：{$vo.khname2}</p>
+                    <p class="weui-media-box__desc" style="height:25px;line-height: 25px;">手机：{$vo.khtel2}</p>
+                </div>
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">推荐客户3</h4>
+                    <p class="weui-media-box__desc" style="height:25px;line-height: 25px;">姓名：{$vo.khname3}</p>
+                    <p class="weui-media-box__desc" style="height:25px;line-height: 25px;">手机：{$vo.khtel3}</p>
+                </div>
+            </div>
+        </div>
+    </foreach>
+</div>
+<!--<div class="fenlei_list zx_list">-->
+    <!--<ul>-->
+        <!--<foreach name="customer" item="vo">-->
+            <!--<li>-->
+                <!--<div>-->
+                    <!--我的客户-->
+                    <!--<p>{$vo.uname}</p>-->
+                    <!--<p>{$vo.phone}</p>-->
+                    <!--<div>-->
+                        <!--<p>推荐客户1</p>-->
+                        <!--<p>{$vo.khname1}</p>-->
+                        <!--<p>{$vo.khtel1}</p>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<p>推荐客户2</p>-->
+                        <!--<p>{$vo.khname2}</p>-->
+                        <!--<p>{$vo.khtel2}</p>-->
+                    <!--</div>-->
+                    <!--<div>-->
+                        <!--<p>推荐客户3</p>-->
+                        <!--<p>{$vo.khname3}</p>-->
+                        <!--<p>{$vo.khtel3}</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+        <!--</foreach>-->
+    <!--</ul>-->
+    <!--<div class="clear"></div>-->
+<!--</div>-->
+<include file="Public:footer" />
