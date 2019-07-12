@@ -21,3 +21,6 @@ ALTER TABLE `bestop_event`
   ADD COLUMN `is_draw` tinyint(1) DEFAULT 0 COMMENT '是否抽奖',
   ADD COLUMN `is_order` tinyint(1) DEFAULT 0 COMMENT '是否预约保费',
   ADD COLUMN `max_member` int(11) DEFAULT 0 COMMENT '活动限制人数';
+
+ALTER TABLE `bestop_event`
+ADD COLUMN `area`  tinyint(1) NULL DEFAULT 1 COMMENT '活动区域';

@@ -204,7 +204,8 @@ class EventController extends CommonController {
         $wj['area'] = I('area');
         $wj['is_draw'] = I('is_draw') ? I('is_draw') : 0;
         $wj['is_order'] = I('is_order')? I('is_order') : 0;
-        $wj['max_member'] = is_int(I('max_member')) ? I('max_member') : 100;
+        $wj['max_member'] = I('max_member')? I('max_member') : 0;
+        $wj['area']  = I('area')? I('area') : 1;
         $zc_info =I('zc_info',null);
         if (!empty($zc_info)) {
             $where = ' id in (' . trim($zc_info) . ')';
