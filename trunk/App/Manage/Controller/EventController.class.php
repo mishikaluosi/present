@@ -653,6 +653,13 @@ eot;
         $objWriter->save('php://output');
         exit;
     }
+    public function draw(){
+        $e_id = I('e_id');
+        $this->assign('e_id',$e_id);
+        $awards = M('award')->select();
+        $this->assign('awards',$awards);
+        $this->display();
+    }
 
 }
 

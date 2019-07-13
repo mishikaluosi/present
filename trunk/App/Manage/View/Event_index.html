@@ -129,9 +129,10 @@
                     <td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
                     <td>
                         <a href="{:U('Home/'.'Event/index',array('id' => $v['id']), '')}" target="_blank">查看二维码</a>
-
+                        <if condition="$v['is_draw'] eq 1">
+                            <a href="{:U('Event/draw',array('e_id' => $v['id']), '')}">奖项设置</a>
+                        </if>
                         <a href="{:U('Event/msg',array('id' => $v['id']), '')}">编辑</a>
-
                         <if condition="$v['acnt'] lt 1">
                             <a href="javascript:;" onclick="toConfirm('{:U('Event/del',array('id' => $v['id']), '')}', '确实要删除吗？')">删除</a>
                         </if>
