@@ -24,3 +24,19 @@ ALTER TABLE `bestop_event`
 
 ALTER TABLE `bestop_event`
 ADD COLUMN `area`  tinyint(1) NULL DEFAULT 1 COMMENT '活动区域';
+
+
+/*
+
+添加奖品表
+Date: 2019-07-13 14:08
+*/
+CREATE TABLE `bestop_award` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
+  `desc` varchar(255) DEFAULT NULL,
+  `created_at` int(10) DEFAULT NULL,
+  `adduser` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
