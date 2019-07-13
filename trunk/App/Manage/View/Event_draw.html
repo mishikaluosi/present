@@ -57,13 +57,14 @@
 	<div class="pos">
 		<span style="float:left;">奖项设置</span>
 		<input style="float:left;margin-left: 20px;" type="button" onclick="location.reload()" class="btn_blue" value="刷新">
-		<input style="float:left;margin-left: 20px;" type="button" onclick="javascript:;" class="btn_blue btn_green" value="添加奖项">
+		<input id="add_draw" style="float:left;margin-left: 20px;" type="button" class="btn_blue btn_green" value="添加奖项">
 	</div>
-	<div class="form">
-		<dl>
-			<dt>奖项一</dt>
-			<dd>
-				<input style="
+	<div class="form_box">
+		<div class="form" alt="-1">
+			<dl>
+				<dt>奖项<span class="award_tip">1</span> </dt>
+				<dd>
+					<input style="
 					background: #d9534f;
 					height: 31px;
 					min-width: 80px;
@@ -76,52 +77,53 @@
 					color: #fff;
 					font-size: 12px;
 					cursor: pointer;
-					float: left;"type="button" onclick="" value="删除">
-			</dd>
-		</dl>
-		<dl>
-			<dt>奖项等级</dt>
-			<dd>
-				<input type="text" name="draw_level" class="inp_large draw_level" value="一等奖" />
-			</dd>
-		</dl>
-		<dl>
-			<dt>奖品信息</dt>
-			<dd>
-				<select name="draw_award" class="draw_award" style="width:180px;height:30px;border: solid 1px #d7d7d7;">
-					<foreach name='awards' item='value'>
-						<option value="{$value['id']}">{$value['name']}</option>
-					</foreach>
-				</select>
-			</dd>
-		</dl>
-		<dl>
-			<dt>奖品数量</dt>
-			<dd>
-				<input type="number" name="draw_num" class="inp_large draw_num" min="1" value="">
-			</dd>
-		</dl>
-		<dl>
-		<dt>中奖率</dt>
-			<dd>
-				<input style="float: left;width: 20%;" type="number" name="draw_percent" class="inp_large draw_percent" value="0" readonly>
-				<div class="scale_panel">
-					<div class="scale" >
-						<div class="div"></div>
-						<span class="btn"></span>
+					float: left;"type="button" class="del_form" value="删除">
+				</dd>
+			</dl>
+			<dl>
+				<dt>奖项等级</dt>
+				<dd>
+					<input type="text" name="draw_level" class="inp_large draw_level" value="" />
+				</dd>
+			</dl>
+			<dl>
+				<dt>奖品信息</dt>
+				<dd>
+					<select name="draw_award" class="draw_award" style="width:180px;height:30px;border: solid 1px #d7d7d7;">
+						<foreach name='awards' item='value'>
+							<option value="{$value['id']}">{$value['name']}</option>
+						</foreach>
+					</select>
+				</dd>
+			</dl>
+			<dl>
+				<dt>奖品数量</dt>
+				<dd>
+					<input type="number" name="draw_num" class="inp_large draw_num" min="1" value="">
+				</dd>
+			</dl>
+			<dl>
+				<dt>中奖率</dt>
+				<dd>
+					<input style="float: left;width: 20%;" type="number" name="draw_percent" class="inp_large draw_percent" value="0" readonly>
+					<div class="scale_panel">
+						<div class="scale" >
+							<div class="div"></div>
+							<span class="btn"></span>
+						</div>
 					</div>
-				</div>
-			</dd>
-		</dl>
+				</dd>
+			</dl>
+		</div>
 	</div>
 	<div class="form_b">
 		<input type="hidden" name="id" value="{$vo.id}" />
 		<input type="submit" class="btn_blue" id="submit" value="保 存">
 	</div>
 </div>
-<div class="empty_from form" style="display:none;">
+<div class="empty_form form" alt="-1" style="display:none;">
 	<dl>
-		<dt>奖项一</dt>
+		<dt>奖项<span class="award_tip"></span></dt>
 		<dd>
 			<input style="
 					background: #d9534f;
@@ -136,7 +138,7 @@
 					color: #fff;
 					font-size: 12px;
 					cursor: pointer;
-					float: left;"type="button" onclick="" value="删除">
+					float: left;"type="button" class="del_form" value="删除">
 		</dd>
 	</dl>
 	<dl>
