@@ -676,7 +676,7 @@ eot;
         $tmp_sql = "";
         foreach($draw_data as $value){
             $line_id = $value['id']>0 ? $value['id']:'null';
-            $tmp_sql .= "('{$line_id}','{$e_id}','{$value['draw_level']}','{$value['award_id']}',
+            $tmp_sql .= "($line_id,'{$e_id}','{$value['draw_level']}','{$value['award_id']}',
                         '{$value['draw_num']}','{$value['draw_percent']}','{$adduser}','$time','$time'),";
         }
         if($tmp_sql) {
