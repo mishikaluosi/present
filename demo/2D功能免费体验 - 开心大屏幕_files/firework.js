@@ -1,5 +1,5 @@
 define(function (require, exports, module) {
-    exports.httpURL = 'https://activity.kxdpm.com';
+    exports.httpURL = '';
 
     var canvas;
     var ctx;

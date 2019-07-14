@@ -623,7 +623,7 @@ define(function (require, exports, module) {
         var menuCurrIndex = 0;
         var menuLength = 0;
         //绑定开启活动按钮的点击事件
-        $('#index>#code>a.clickBtn').on('click', function () {
+        // $('#index>#code>a.clickBtn').on('click', function () {
             //移除活动准备开始界面
             $('#btnBox').show();
             $("#index").remove();
@@ -761,7 +761,7 @@ define(function (require, exports, module) {
             //在body上触发active事件
             $('body').triggerHandler('active');
             $('body').triggerHandler('modulechange', [$('#btnBox .module-box:not(.btn_fullscreen):eq(0)').data('name')]);
-        });
+        // });
 
         $('body').on('modulechange', function (e, moduleName) {
             if ($('#hideBtn').hasClass('btn_hidden')) {
