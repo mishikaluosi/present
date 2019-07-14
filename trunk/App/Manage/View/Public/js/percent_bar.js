@@ -1,6 +1,6 @@
 var is_double = false;
 $(function(){
-    $('.scale_panel').click(setBar);
+    $('.scale_panel').mouseover(setBar);
     $("#add_draw").click(function(){
         var dom = $(".empty_form").clone().removeClass("empty_form").show();
         var award_tip = parseInt($(".form_box").find(".form:last").find('.award_tip').text());
@@ -11,7 +11,7 @@ $(function(){
         }
         dom.find('.award_tip').text(award_tip)
         $(".form_box").append(dom);
-        $('.scale_panel').click(setBar);
+        $('.scale_panel').mouseover(setBar);
         $('.del_form').bind("click",deleteFrom);
     })
     $('.del_form').click(deleteFrom);
@@ -64,12 +64,10 @@ function deleteFrom(){
     }
     var form = $(this).parents(".form");
     var draw_id = parseInt(form.attr("alt"));
-    form.remove();
-    $(".form_box .form").each(function(i){
-        var key = i+1;
-        $(this).find('.award_tip').text(key);
-    })
     if(draw_id>0){
+        if(!confirm("是否确定删除奖项")){
+            return false;
+        }
         var del_url = $('#del_url').val()
         $.post(del_url,{id:draw_id},function(ret){
             if(ret.status!=1){
@@ -78,6 +76,11 @@ function deleteFrom(){
             }
         },'json')
     }
+    form.remove();
+    $(".form_box .form").each(function(i){
+        var key = i+1;
+        $(this).find('.award_tip').text(key);
+    })
 }
 function saveDraw(){
     var e_id = $('#e_id').val();
