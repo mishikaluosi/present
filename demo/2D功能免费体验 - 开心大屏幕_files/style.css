@@ -1,0 +1,5 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body { background:url(images/bg.jpg) top center no-repeat; background-color:#7cb7e0;}
+a.clickBtn,a.btn {background:#36b27a;} /*按钮背景色*/
+a.clickBtn:hover,a.btn:hover {background:#079287;}
