@@ -46,5 +46,23 @@ CREATE TABLE `bestop_award` (
 添加菜单
 Date: 2019-07-13 23:08
 */
-INSERT INTO bestop_menu` (`name`, `pid`, `module`, `action`, `parameter`, `quick`, `status`, `sort`) VALUES ('抽奖管理', '1', 'Award', '', NULL, NULL, '1', '12');
-INSERT INTO bestop_menu` (`name`, `pid`, `module`, `action`, `parameter`, `quick`, `status`, `sort`) VALUES ('奖品列表', '107', 'Award', 'index', NULL, NULL, '1', '1');
+INSERT INTO `bestop_menu` (`name`, `pid`, `module`, `action`, `parameter`, `quick`, `status`, `sort`) VALUES ('抽奖管理', '1', 'Award', '', NULL, NULL, '1', '12');
+INSERT INTO `bestop_menu` (`name`, `pid`, `module`, `action`, `parameter`, `quick`, `status`, `sort`) VALUES ('奖品列表', '107', 'Award', 'index', NULL, NULL, '1', '1');
+
+/*
+
+添加活动抽奖表
+Date: 2019-07-14 10:39
+*/
+CREATE TABLE `bestop_event_draw` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_id` int(11) DEFAULT NULL COMMENT '活动id',
+  `draw_level` varchar(255) DEFAULT NULL COMMENT '奖品等级',
+  `award_id` int(11) DEFAULT NULL COMMENT '奖品id',
+  `draw_num` int(11) DEFAULT NULL COMMENT '奖品数量',
+  `draw_percent` int(11) DEFAULT NULL COMMENT '中奖率 0-100',
+  `adduser` varchar(255) DEFAULT NULL,
+  `created_at` int(10) DEFAULT NULL COMMENT '创建时间',
+  `updated_at` int(10) DEFAULT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
