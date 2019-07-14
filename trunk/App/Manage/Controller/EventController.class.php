@@ -667,7 +667,7 @@ eot;
         $this->display();
     }
     public function draw_save(){
-        $_zcinfo=$this->_get_zcinfo();
+        $adduser=$_SESSION['yang_adm_username'];
         $e_id = I('e_id');
         $draw_data = I('draw_data');
         $time = time();
@@ -677,14 +677,14 @@ eot;
         foreach($draw_data as $value){
             $line_id = $value['id']>0 ? $value['id']:'null';
             $tmp_sql .= "('{$line_id}','{$e_id}','{$value['draw_level']}','{$value['award_id']}',
-                        '{$value['draw_num']}','{$value['draw_percent']}','{$_zcinfo['username']}','$time','$time'),";
+                        '{$value['draw_num']}','{$value['draw_percent']}','{$adduser}','$time','$time'),";
         }
         if($tmp_sql) {
             $tmp_sql = rtrim($tmp_sql, ',');
             $sql .= $tmp_sql;
             $sql .= " ON DUPLICATE KEY 	UPDATE `e_id`= VALUES(`e_id`), `draw_level` = VALUES(`draw_level`), 
             `award_id` = VALUES(`award_id`),`draw_num` = VALUES(`draw_num`),`draw_percent` = VALUES(`draw_percent`),
-            `updated_at` = VALUES(`updated_at`)";
+            `adduser` = VALUES(`adduser`),`updated_at` = VALUES(`updated_at`)";
             $flag =M('event_draw')->execute($sql);
             if ($flag) {
                 $this->success();
@@ -693,6 +693,14 @@ eot;
             }
         }else{
             $this->error('添加失败');
+        }
+    }
+    public function draw_delete(){
+        $id = I('id');
+        if (false !== M('event_draw')->where(array('id' => $id))->delete()) {
+            $this->success();
+        }else {
+            $this->error('删除失败');
         }
     }
 

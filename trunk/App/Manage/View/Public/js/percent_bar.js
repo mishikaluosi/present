@@ -70,7 +70,13 @@ function deleteFrom(){
         $(this).find('.award_tip').text(key);
     })
     if(draw_id>0){
-        // 执行删除操作
+        var del_url = $('#del_url').val()
+        $.post(del_url,{id:draw_id},function(ret){
+            if(ret.status!=1){
+                alert(ret.info);
+                return false;
+            }
+        },'json')
     }
 }
 function saveDraw(){
@@ -78,7 +84,7 @@ function saveDraw(){
     var draw_data = new Array();
     var tip = "";
     var check_pass = true;
-    $(".form_box .form input,.form_box .form select").css("background", "transparent")
+    $(".form_box .form input[type=text],.form_box .form input[type=number],.form_box .form select").css("background", "transparent")
     $('.form_box').find(".form").each(function(){
         var _tmp =new Object();
         _tmp.id =parseInt($(this).attr("alt"));
@@ -125,11 +131,12 @@ function saveDraw(){
         var url = $('#save_url').val();
         $.post(url,{e_id:e_id,draw_data:draw_data},function(ret){
             is_double = false;
-            // if(ret!='yes'){
-            //     alert(ret);
-            //     is_double = false;
-            //     return false;
-            // }
+            if(ret.status!=1){
+                alert(ret.info);
+                is_double = false;
+                return false;
+            }
+            location.reload();
         },'json')
     }
 
