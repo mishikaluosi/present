@@ -11,9 +11,27 @@ $(function () {
     /*
      一次抽几人改变事件
      */
-    $(".select_lucky_number").bind('change', function () {
-        Obj.luckyNum = $(this).val();
+    $(".icon-add").bind('click',function(){
+        var cur_num = parseInt($(".select_lucky_number").val());
+        cur_num++;
+        $(".select_lucky_number").val(cur_num);
+        $(".show_lucky_number").text(cur_num);
+        Obj.luckyNum =  cur_num;
     })
+    $(".icon-reduce").bind('click',function(){
+        var cur_num = parseInt($(".select_lucky_number").val());
+        if(cur_num<=1){
+            return false;
+        }
+        cur_num--;
+        $(".select_lucky_number").val(cur_num);
+        $(".show_lucky_number").text(cur_num);
+        Obj.luckyNum =  cur_num;
+    })
+    // $(".select_lucky_number").bind('change', function () {
+
+    // })
+
     /*
      图片预加载
      */
@@ -208,6 +226,7 @@ $(function () {
         Obj.luckyPrize = i;
         $('.lucky_prize_show').hide().eq(i - 1).show();
         $(".lucky_prize_title").html($('.lucky_prize_show').eq(i - 1).attr('alt'));
+        $("#current").html($('.lucky_prize_show').eq(i - 1).attr('award_level'));
         $('.lpl_list').removeClass('active').hide().eq(i - 1).show().addClass('active');
     }
     tabPrize();

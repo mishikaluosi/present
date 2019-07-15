@@ -9,3 +9,14 @@ personArray.push({id: 1718, image: "public/img/tx6.png", thumb_image: "public/im
 personArray.push({id: 1730, image: "public/img/tx.png", thumb_image: "public/img/tx.png", name: "飞翔"});
 personArray.push({id: 1732, image: "public/img/tx1.png", thumb_image: "public/img/tx1.png", name: "左慧子"});
 personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
+personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
+personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
+personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
+personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
+personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
+personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
+personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
+personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
+personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
+personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
+personArray.push({id: 1738, image: "public/img/tx2.png", thumb_image: "public/img/tx2.png", name: "园园妹纸"});
