@@ -68,10 +68,18 @@
 				<dt>活动地点</dt>
 				<dd>
 					<input type="text" name="address" id="address" class="inp_large" maxlength="255"  value="{$vo.address}" />
-
 				</dd>
 			</dl>
-
+			<dl>
+				<dt>活动范围</dt>
+				<dd>
+					<select name="area" id="area" style="width:180px;height:30px;border: solid 1px #d7d7d7;">
+						<option value="1">市活动</option>
+						<option value="2">分公司活动</option>
+						<option value="3">职场活动</option>
+					</select>
+				</dd>
+			</dl>
 			<div class="right_main" style="border-bottom: 1px solid #EDEDED;padding-top: 8px;padding-bottom: 8px">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="wenzhang mat20 mab20">
 					<tr>
@@ -117,7 +125,26 @@
 					</tr>
 				</table>
 			</div>
-
+			<dl>
+				<dt>是否抽奖</dt>
+				<dd>
+					<input type="radio" name="is_draw" value="1" <?php if($vo['is_draw']==1){ ?>checked="checked"<?php } ?> />是
+					<input type="radio" name="is_draw" value="0" <?php if($vo['is_draw']!=1){ ?>checked="checked"<?php } ?> />否
+				</dd>
+			</dl>
+			<dl>
+				<dt>是否预约保费</dt>
+				<dd>
+					<input type="radio" name="is_order" value="1" <?php if($vo['is_order']==1){ ?>checked="checked"<?php } ?> />是
+					<input type="radio" name="is_order" value="0" <?php if($vo['is_order']!=1){ ?>checked="checked"<?php } ?> />否
+				</dd>
+			</dl>
+			<dl>
+				<dt>最大报名人数</dt>
+				<dd>
+					<input type="number" name="max_member" id="max_member" class="inp_large" value="{$vo.max_member}" />
+				</dd>
+			</dl>
 			<dl>
 				<dt>活动内容</dt>
 				<dd>

@@ -214,9 +214,24 @@ class UserController extends MobileCommonController{
         exit();
     }
     public function customer(){
+        $keywords = I("keywords");
         $user_id=$this->_xzl_uid;
-        $customer=M('wenjuan_answer')->where(['user_id'=>$user_id])->select();
+        if($keywords){
+            $where['uname'] = array('LIKE', "%{$keywords}%");
+            $where['phone'] = array('LIKE', "%{$keywords}%");
+            $where['khname1'] = array('LIKE', "%{$keywords}%");
+            $where['khtel1'] = array('LIKE', "%{$keywords}%");
+            $where['khname2'] = array('LIKE', "%{$keywords}%");
+            $where['khtel2'] = array('LIKE', "%{$keywords}%");
+            $where['khname3'] = array('LIKE', "%{$keywords}%");
+            $where['khtel3'] = array('LIKE', "%{$keywords}%");
+            $where['_logic'] = 'or';
+            $map['_complex'] = $where;
+        }
+        $map['user_id'] = $user_id;
+        $customer=M('wenjuan_answer')->where($map)->select();
         $this->assign('customer',$customer);
+        $this->assign('keywords',$keywords);
         $this->display();
     }
 }

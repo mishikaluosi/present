@@ -201,6 +201,11 @@ class EventController extends CommonController {
         $wj['stime']=I('stime',null);
         $wj['etime']=I('etime',null);
         $wj['content'] = I('content', '', '');
+        $wj['area'] = I('area');
+        $wj['is_draw'] = I('is_draw') ? I('is_draw') : 0;
+        $wj['is_order'] = I('is_order')? I('is_order') : 0;
+        $wj['max_member'] = I('max_member')? I('max_member') : 0;
+        $wj['area']  = I('area')? I('area') : 1;
         $zc_info =I('zc_info',null);
         if (!empty($zc_info)) {
             $where = ' id in (' . trim($zc_info) . ')';
@@ -647,6 +652,56 @@ eot;
         $objWriter = $iofactory::createWriter($objPHPExcel, 'Excel2007');
         $objWriter->save('php://output');
         exit;
+    }
+    public function draw(){
+        $e_id = I('e_id');
+        if(!$e_id){
+            $this->error('无有效的活动',U('Event/index'));exit();
+        }
+        $wj['e_id'] = $e_id;
+        $event_draw =M('event_draw')->where($wj)->select();
+        $this->assign('event_draw',$event_draw);
+        $this->assign('e_id',$e_id);
+        $awards = M('award')->select();
+        $this->assign('awards',$awards);
+        $this->display();
+    }
+    public function draw_save(){
+        $adduser=$_SESSION['yang_adm_username'];
+        $e_id = I('e_id');
+        $draw_data = I('draw_data');
+        $time = time();
+        $sql = "insert into __TABLE__  
+                (id,e_id,draw_level,award_id,draw_num,draw_percent,adduser,created_at,updated_at) VALUES ";
+        $tmp_sql = "";
+        foreach($draw_data as $value){
+            $line_id = $value['id']>0 ? $value['id']:'null';
+            $tmp_sql .= "($line_id,'{$e_id}','{$value['draw_level']}','{$value['award_id']}',
+                        '{$value['draw_num']}','{$value['draw_percent']}','{$adduser}','$time','$time'),";
+        }
+        if($tmp_sql) {
+            $tmp_sql = rtrim($tmp_sql, ',');
+            $sql .= $tmp_sql;
+            $sql .= " ON DUPLICATE KEY 	UPDATE `e_id`= VALUES(`e_id`), `draw_level` = VALUES(`draw_level`), 
+            `award_id` = VALUES(`award_id`),`draw_num` = VALUES(`draw_num`),`draw_percent` = VALUES(`draw_percent`),
+            `adduser` = VALUES(`adduser`),`updated_at` = VALUES(`updated_at`)";
+            $flag =M('event_draw')->execute($sql);
+            if ($flag) {
+                $this->success();
+            } else {
+                $this->error('添加失败');
+            }
+        }else{
+            $this->error('添加失败');
+        }
+    }
+    public function draw_delete(){
+        $id = I('id');
+        if (false !== M('event_draw')->where(array('id' => $id))->delete()) {
+            $this->success();
+        }else {
+            $this->error('删除失败');
+        }
     }
 
 }

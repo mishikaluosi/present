@@ -63,6 +63,10 @@
                 <th>地点</th>
                 <th>发起人</th>
                 <th>参与人数</th>
+                <th>限制人数</th>
+                <th>是否抽奖</th>
+                <th>是否预约报费</th>
+                <th>活动区域</th>
                 <th>状态</th>
                 <th>有效时间</th>
                 <th>添加时间</th>
@@ -82,6 +86,30 @@
                     <td>{$v.address}</td>
                     <td>{$v.adduser}</td>
                     <td>{$v.acnt}</td>
+                    <td>{$v.max_member}</td>
+                    <td>
+                        <if condition="$v.is_draw eq 1">
+                        是
+                        <else/>
+                        否
+                        </if>
+                    </td>
+                    <td>
+                        <if condition="$v.is_order eq 1">
+                            是
+                            <else/>
+                            否
+                        </if>
+                    </td>
+                    <td>
+                        <if condition="$v.area eq 1">
+                            市活动
+                            <elseif condition="$v.area eq 2" />
+                            分公司活动
+                            <elseif condition="$v.area eq 3" />
+                            职场活动
+                        </if>
+                    </td>
                     <td>
                         <if condition="$v['status'] eq 1">
                             <img src="__PUBLIC__/images/dui.png" onclick="toConfirm('{:U('Event/status',array('id' => $v['id'],'flag' =>0))}', '确定要下线该活动吗？')">
@@ -101,9 +129,10 @@
                     <td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
                     <td>
                         <a href="{:U('Home/'.'Event/index',array('id' => $v['id']), '')}" target="_blank">查看二维码</a>
-
+                        <if condition="$v['is_draw'] eq 1">
+                            <a href="{:U('Event/draw',array('e_id' => $v['id']), '')}">奖项设置</a>
+                        </if>
                         <a href="{:U('Event/msg',array('id' => $v['id']), '')}">编辑</a>
-
                         <if condition="$v['acnt'] lt 1">
                             <a href="javascript:;" onclick="toConfirm('{:U('Event/del',array('id' => $v['id']), '')}', '确实要删除吗？')">删除</a>
                         </if>

@@ -6,7 +6,7 @@
     width: 17px;
     position: absolute;
     left: 8%;">
-    <input type="text" placeholder="请输入用户名或手机号" style="
+    <input id="keywords" type="text" value="{$keywords}" placeholder="请输入用户名或手机号" style="
     line-height: 40px;
     height: 40px;
     padding-left: 35px;
@@ -70,33 +70,19 @@
         </div>
     </foreach>
 </div>
-<!--<div class="fenlei_list zx_list">-->
-    <!--<ul>-->
-        <!--<foreach name="customer" item="vo">-->
-            <!--<li>-->
-                <!--<div>-->
-                    <!--我的客户-->
-                    <!--<p>{$vo.uname}</p>-->
-                    <!--<p>{$vo.phone}</p>-->
-                    <!--<div>-->
-                        <!--<p>推荐客户1</p>-->
-                        <!--<p>{$vo.khname1}</p>-->
-                        <!--<p>{$vo.khtel1}</p>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<p>推荐客户2</p>-->
-                        <!--<p>{$vo.khname2}</p>-->
-                        <!--<p>{$vo.khtel2}</p>-->
-                    <!--</div>-->
-                    <!--<div>-->
-                        <!--<p>推荐客户3</p>-->
-                        <!--<p>{$vo.khname3}</p>-->
-                        <!--<p>{$vo.khtel3}</p>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</li>-->
-        <!--</foreach>-->
-    <!--</ul>-->
-    <!--<div class="clear"></div>-->
-<!--</div>-->
+
+<script type="text/javascript">
+    $(function() {
+        $("#keywords").bind("keypress",function(event){
+            if(event.keyCode == 13) {
+                var keywords = $("#keywords").val();
+                var url = "{:U('User/customer')}&keywords="+keywords;
+                window.location.href= url;
+                return false;
+
+            }
+        })
+    })
+</script>
 <include file="Public:footer" />
+

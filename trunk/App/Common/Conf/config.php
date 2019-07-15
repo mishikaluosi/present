@@ -1,7 +1,7 @@
 <?php
 return array(
 	//'配置项'=>'配置值'
-	'MODULE_ALLOW_LIST' => array('Home','Mobile','Manage','Api'),//模块列表
+	'MODULE_ALLOW_LIST' => array('Home','Mobile','Manage','Api','BigScreen'),//模块列表
     'MODULE_DENY_LIST'   => array('Common'),
 	'DEFAULT_MODULE' => 'Home', //默认分组
 
