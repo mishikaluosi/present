@@ -126,6 +126,20 @@
     </style>
 </head>
 <body style="">
+<!--初始化数据请求url-->
+<input type="hidden" id="get_member_url" value="{:U('Index/getEventInfo')}">
+<!--已中奖数据请求url 获取当前奖项已经中奖数据-->
+<input type="hidden" id="get_prize_url" value="{:U('Index/getPrizeInfo')}">
+<!--获取中奖结果请求url-->
+<input type="hidden" id="get_lucky_info" value="{:U('Index/getLuckyInfo')}">
+<!--活动id-->
+<input type="hidden" id="e_id" value="{$e_id}">
+<!--当前奖项最大中奖数量-->
+<input type="hidden" id="curent_award_num" value="">
+<!--未中奖数量-->
+<input type="hidden" id="event_members_left" value="">
+<!--当前奖项id-->
+<input type="hidden" id="cur_award_id" value="">
 <div class="container none" style="">
 </div>
 <div class="mask"></div>
@@ -139,12 +153,16 @@
         <div class="lucky_prize_box">
             <button class="lucky_prize_left lucky_prize_direction">&lt;</button>
             <div data-default="1" class="lucky_prize_picture">
-                <img class="lucky_prize_show none" src="__PUBLIC__/img/bXshiKc7Z2mQusImhSzC33czcBci3K.png" award_level="一等奖" alt="笔记本"
-                     style="display: inline;">
-                <img class="none lucky_prize_show" src="__PUBLIC__/img/szSy9dU21WZnSdGwP9tE533ntEd1WE.png" award_level="二等奖"  alt="平衡车"
-                     style="display: none;">
-                <img class="none lucky_prize_show" src="__PUBLIC__/img/gLz4H2xZ8XxkXlDDGdd8Fd2xF35kjX.png" award_level="三等奖" alt="现金红包"
-                     style="display: none;">
+                <foreach name="event_draw" item="draw">
+                    <img class="lucky_prize_show none" src="__UPLOAD__{$draw['image']}" award_level="{$draw['draw_level']}" alt="{$draw['name']}" award_num="{$draw['draw_num']}" award_id="{$draw['id']}"
+                         style="
+                         <if condition="$key== 0">
+                        display: inline;
+                        <else/>
+                        display: none;
+                        </if>
+                        ">
+                </foreach>
             </div>
             <button class="lucky_prize_right active lucky_prize_direction">&gt;</button>
             <div class="lucky_prize_title"></div>
@@ -157,16 +175,18 @@
         </div>
         <div class="lucky_setting" style="margin-top: 30px;">
             抽取人数：
-            <span class="select-number" data-amount="1">
+            <span class="select-number">
                 <i class="icon-common icon-reduce"></i>
-                <input type="hidden" class="select_lucky_number" value="1">
-                <label><span class="show_lucky_number">1</span>人</label>
+                <input type="hidden" class="select_lucky_number" value="">
+                <label><span class="show_lucky_number"></span>人</label>
                 <i class="icon-common icon-add"></i>
             </span>
         </div>
     </div>
     <div class="lucky_mid">
-        <h1 class="game-title">抽奖</h1>
+        <h1 class="game-title">抽奖人员(<i id="member_count"></i>人)
+            <a href="javascript:;" id="show-all-member" class="prize-user-all">全部</a>
+        </h1>
         <div class="img-qrcode">
             <img src="__PUBLIC__/img/qrcode.png">
         </div>
@@ -175,19 +195,24 @@
 
     <div class="lucky_people_list">
         <h1 class="game-title">获奖名单(<i id="prizelotteryNum">0</i>人)
-            <a href="javascript:;" class="prize-user-all">全部</a>
+            <a href="javascript:;" id="show-prize-user" class="prize-user-all">全部</a>
         </h1>
         <div class="lpl_list clearfix none active" style="display: block;">
 
 
         </div>
-        <div class="lpl_list clearfix none" style="display: none;">
-        </div>
-        <div class="lpl_list clearfix none" style="display: none;">
-        </div>
+        <!--<div class="lpl_list clearfix none" style="display: none;">-->
+        <!--</div>-->
+        <!--<div class="lpl_list clearfix none" style="display: none;">-->
+        <!--</div>-->
     </div>
 </div>
-
+<div class="lottery-all" style="display: none;">
+    <h1 class="game-title">获奖名单</h1>
+    <ul class="lucky_user" id="lotteryAll">
+    </ul>
+    <div class="btn btn-back" id="backLottery">返回抽奖</div>
+</div>
 <script src="__PUBLIC__/jquery-1.10.2.js"></script>
 <script src="__PUBLIC__/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/transform.js"></script>
@@ -197,7 +222,6 @@
 <script type="text/javascript" src="__PUBLIC__/3d.js"></script>
 
 <script type="text/javascript" src="__PUBLIC__/lucky.js"></script>
-
 
 <script type="text/javascript" src="__PUBLIC__/data.js"></script>
 </body>

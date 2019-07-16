@@ -88,5 +88,4 @@ abstract class Controller {
         $url    =   U($url,$params);
         redirect($url,$delay,$msg);
     }
-
 }

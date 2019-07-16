@@ -66,3 +66,30 @@ CREATE TABLE `bestop_event_draw` (
   `updated_at` int(10) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*
+添加活动中奖表
+Date: 2019-07-16 21:09
+*/
+CREATE TABLE `bestop_prize` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL COMMENT '用户id',
+  `e_id` int(11) DEFAULT NULL COMMENT '活动id',
+  `draw_id` int(11) DEFAULT NULL COMMENT '奖项id',
+  `created_at` int(10) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*
+添加参加活动用户表
+Date: 2019-07-16 21:45
+*/
+CREATE TABLE `bestop_event_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_id` int(11) DEFAULT NULL COMMENT '活动id',
+  `name` varchar(255) DEFAULT NULL COMMENT '用户名',
+  `image` varchar(255) DEFAULT NULL COMMENT '头像',
+  `thumb_image` varchar(255) DEFAULT NULL COMMENT '缩略图',
+  `created_at` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

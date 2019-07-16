@@ -13,6 +13,14 @@ $(function () {
      */
     $(".icon-add").bind('click',function(){
         var cur_num = parseInt($(".select_lucky_number").val());
+        var member_count = parseInt($("#event_members_left").text());
+        var curent_award_num = parseInt($("#curent_award_num").val());
+        if(cur_num>=member_count){
+            return false;
+        }
+        if(cur_num>=curent_award_num){
+            return false;
+        }
         cur_num++;
         $(".select_lucky_number").val(cur_num);
         $(".show_lucky_number").text(cur_num);
@@ -27,6 +35,46 @@ $(function () {
         $(".select_lucky_number").val(cur_num);
         $(".show_lucky_number").text(cur_num);
         Obj.luckyNum =  cur_num;
+    })
+    //显示中奖人员
+    $("#show-prize-user").bind("click",function(){
+        $(".lucky_list").hide();
+        var cur_award_id = $("#cur_award_id").val(); //当前奖项id
+        var e_id = $("#e_id").val();
+        var get_prize_url = $("#get_prize_url").val()+'&e_id='+e_id+'&draw_id='+cur_award_id;
+        $(".lottery-all ul.lucky_user").empty();
+        $.get(get_prize_url,function(ret){
+            if(ret.prize_member.length>0){
+                $.each(ret.prize_member,function() {
+                    var html = '';
+                    html = '<li class="lpl_userInfo">';
+                    html += '<img class="lpl_userImage" src="' + this.image + '">';
+                    html += '<p class="lpl_userName">' + this.name + '</p>';
+                    html += '</li>';
+                    $(".lottery-all ul.lucky_user").append(html);
+                })
+            }
+        },'json');
+        $(".lottery-all").show();
+    })
+    //显示所有参加人员
+    $("#show-all-member").bind("click",function(){
+        $(".lucky_list").hide();
+
+        $(".lottery-all ul.lucky_user").empty();
+        $.each(personArray,function(){
+            var html='';
+            html=   '<li class="lpl_userInfo">';
+            html+=      '<img class="lpl_userImage" src="'+this.image+'">';
+            html+=      '<p class="lpl_userName">'+this.name+'</p>';
+            html+=  '</li>';
+            $(".lottery-all ul.lucky_user").append(html);
+        })
+        $(".lottery-all").show();
+    })
+    $("#backLottery").bind("click",function(){
+        $(".lottery-all").hide();
+        $(".lucky_list").show();
     })
     // $(".select_lucky_number").bind('change', function () {
 
@@ -109,8 +157,9 @@ $(function () {
             $fragEle.append($luckyEle, $userName);
             $('.mask').append($fragEle);
             $(".mask").fadeIn(200);
-            $luckyEle.attr('src', personArray[Obj.luckyResult[num]].image);
-            $userName.text(personArray[Obj.luckyResult[num]].name)
+
+            $luckyEle.attr('src', Obj.luckyResult[num].image);
+            $userName.text(Obj.luckyResult[num].name)
             $fragEle.animate({
                 'left': '50%',
                 'top': '50%',
@@ -160,20 +209,40 @@ $(function () {
         $('.lucky_list').hide();
         $(".container").show();
         Obj.M.open();
-        //此为ajax请求获奖结果
-        //$.get('luckyNum.php',{luckyNum : Obj.luckyNum,luckyPrize:Obj.luckyPrize},function(data){
-        //	  if(data.res == 1){
-        //		  Obj.luckyResult = data.luckyResult;
-        //        $("#stop").show(500);
-        //	  }
-        //})
+        // 此为ajax请求获奖结果
+        var get_lucky_info = $('#get_lucky_info').val();
+        var cur_award_id = $('#cur_award_id').val();
+        var e_id = $('#e_id').val();
+        $.post(get_lucky_info,{luckyNum : Obj.luckyNum,e_id:e_id,cur_award_id:cur_award_id},function(ret){
+        	  if(ret.status != 1){
+        		  Obj.luckyResult = ret.data;
+        		  //该奖项已中奖数修改
+        		  var prizelotteryNum = parseInt($("#prizelotteryNum").text());
+        		  prizelotteryNum = prizelotteryNum+Obj.luckyNum;
+                  $("#prizelotteryNum").text(prizelotteryNum);
+                  //未中奖数修改
+                  var event_members_left = parseInt($("#event_members_left").val());
+                  event_members_left = event_members_left-Obj.luckyNum;
+                  $("#event_members_left").val(event_members_left);
+                  //可抽奖数修改
+                  var select_lucky_number = parseInt($("#select_lucky_number").val());
+                  select_lucky_number = select_lucky_number-Obj.luckyNum;
+                  $("#select_lucky_number").val(select_lucky_number);
+                  //可抽奖数显示修改
+                  var show_lucky_number = parseInt($("#show_lucky_number").text());
+                  show_lucky_number = show_lucky_number-Obj.luckyNum;
+                  $("#show_lucky_number").text(show_lucky_number);
+
+                  $("#stop").show(500);
+        	  }
+        },'json')
         //ajax获奖结果结束
 
         //此为人工写入获奖结果
-        randomLuckyArr();
-        setTimeout(function () {
-            $("#stop").show(500);
-        }, 1000)
+        // randomLuckyArr();
+        // setTimeout(function () {
+        //     $("#stop").show(500);
+        // }, 1000)
         //人工获奖结果结束
     })
 
@@ -226,8 +295,43 @@ $(function () {
         Obj.luckyPrize = i;
         $('.lucky_prize_show').hide().eq(i - 1).show();
         $(".lucky_prize_title").html($('.lucky_prize_show').eq(i - 1).attr('alt'));
+        $.ajaxSettings.async = false;
+        //异步获取该奖项已中奖人数
+        var cur_award_id = parseInt($('.lucky_prize_show').eq(i - 1).attr('award_id'));
+        $("#cur_award_id").val(cur_award_id); //当前奖项id
+        var e_id = $("#e_id").val();
+        var get_prize_url = $("#get_prize_url").val()+'&e_id='+e_id+'&draw_id='+cur_award_id;
+        $('.lpl_list').empty();
+        $.get(get_prize_url,function(ret){
+            $("#prizelotteryNum").text(ret.prize_lottery_num);
+            if(ret.prize_member.length>0){
+                $.each(ret.prize_member,function() {
+                    var html = '';
+                    html = '<div class="lpl_userInfo">';
+                    html += '<img class="lpl_userImage" src="' + this.image + '">';
+                    html += '<p class="lpl_userName">' + this.name + '</p>';
+                    html += '</li>';
+                    $('.lpl_list').append(html);
+                })
+            }
+        },'json');
+        $.ajaxSettings.async = true;
+        var cur_num = parseInt($('.lucky_prize_show').eq(i - 1).attr('award_num'));
+        var member_count = parseInt($("#event_members_left").text());
+        //该奖项已中奖人数
+        var prizelotteryNum = parseInt($("#prizelotteryNum").text());
+        if(cur_num>member_count){ //如果奖项抽奖数量大于参加人员 抽奖数量取参加人员数量
+            cur_num =  member_count;
+        }
+        cur_num = cur_num - prizelotteryNum;  //默认抽奖数量减掉该奖项已中奖人员数量
+        Obj.luckyNum =  cur_num;
+        $(".select_lucky_number").val(cur_num); //默认奖项抽奖数量提取
+        $(".show_lucky_number").text(cur_num); //默认奖项抽奖数量 显示
+        $("#curent_award_num").val(cur_num); //最大奖项抽奖数量
+
         $("#current").html($('.lucky_prize_show').eq(i - 1).attr('award_level'));
         $('.lpl_list').removeClass('active').hide().eq(i - 1).show().addClass('active');
+
     }
     tabPrize();
 })
