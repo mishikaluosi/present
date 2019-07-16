@@ -183,7 +183,7 @@ a{
 }
 
 .lucky_prize {
-    width: 520px;
+    width: 20%;
     padding-left: 20px;
     height: 100%;
     text-align: center;
@@ -204,7 +204,7 @@ a{
     background: url(img/title2.png) no-repeat;
 }
 .lucky_people_list {
-    width: 620px;
+    width: 30%;
     height: 100%;
     text-align: center;
     background: url(img/main-bg-right.png) no-repeat;
@@ -286,7 +286,7 @@ button:focus {
 }
 
 .lucky_setting {
-    width: 404px;
+    width: 80%;
     height: 65px;
     font-size: 24px;
     line-height: 64px;
@@ -362,21 +362,23 @@ button:focus {
 
 .lpl_list {
     margin-top: 20px;
-    height: 655px;
+    height:calc(100% - 180px);
+    height:-moz-calc(100% - 180px);
+    height:-webkit-calc(100% - 250px);
     overflow: auto;
     box-sizing: border-box;
-    padding-left: 66px;
-    padding-right: 50px;
+    padding-left: 7%;
+    padding-right: 12%;
 }
 .lucky_mid{
-    width: 788px;
+    width: 50%;
     height: 100%;
     text-align: center;
     background: url(img/main-bg-mid.png) no-repeat;
     background-size: 100% 100%;
     position: absolute;
     top:0;
-    left: 523px;
+    left: 20%;
 }
 .img-qrcode{
     width:380px;
