@@ -90,6 +90,107 @@ class IndexController extends Controller
         $this->success($prize_member);
     }
     private function getEventMember($e_id){
+//        $data = [
+//            [
+//                "name" => '赞木',
+//                "thumb_image" => 'public/img/tx.png',
+//                "image" => 'public/img/tx.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => 'saray鱼',
+//                "thumb_image" => 'public/img/tx1.png',
+//                "image" => 'public/img/tx1.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => 'Lily',
+//                "thumb_image" => 'public/img/tx2.png',
+//                "image" => 'public/img/tx2.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => '钟道江',
+//                "thumb_image" => 'public/img/tx3.png',
+//                "image" => 'public/img/tx3.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => '小涛',
+//                "thumb_image" => 'public/img/tx4.png',
+//                "image" => 'public/img/tx4.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => '亮亮',
+//                "thumb_image" => 'public/img/tx5.png',
+//                "image" => 'public/img/tx5.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => '小超',
+//                "thumb_image" => 'public/img/tx6.png',
+//                "image" => 'public/img/tx6.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => '赞木2',
+//                "thumb_image" => 'public/img/tx.png',
+//                "image" => 'public/img/tx.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => 'saray鱼2',
+//                "thumb_image" => 'public/img/tx1.png',
+//                "image" => 'public/img/tx1.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => 'Lily2',
+//                "thumb_image" => 'public/img/tx2.png',
+//                "image" => 'public/img/tx2.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => '钟道江2',
+//                "thumb_image" => 'public/img/tx3.png',
+//                "image" => 'public/img/tx3.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => '小涛2',
+//                "thumb_image" => 'public/img/tx4.png',
+//                "image" => 'public/img/tx4.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => '亮亮2',
+//                "thumb_image" => 'public/img/tx5.png',
+//                "image" => 'public/img/tx5.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//            [
+//                "name" => '小超2',
+//                "thumb_image" => 'public/img/tx6.png',
+//                "image" => 'public/img/tx6.png',
+//                "e_id" => $e_id,
+//                "created_at" => time(),
+//            ],
+//        ];
+//        $members = M('event_user')->addAll($data);
         $members = M('event_user')->where(['e_id'=>$e_id])->select();
         return $members;
     }
