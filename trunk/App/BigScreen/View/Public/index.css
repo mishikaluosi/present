@@ -362,8 +362,8 @@ button:focus {
 
 .lpl_list {
     margin-top: 20px;
-    height:calc(100% - 180px);
-    height:-moz-calc(100% - 180px);
+    height:calc(100% - 250px);
+    height:-moz-calc(100% - 250px);
     height:-webkit-calc(100% - 250px);
     overflow: auto;
     box-sizing: border-box;
