@@ -69,10 +69,11 @@ class IndexController extends Controller
             for($i=0;$i<$luckyNum;$i++){
                 $licky_uids[] = $not_prize_uids[$licky_keys[$i]];
             }
+            $licky_uids = join(",",$licky_uids);
         }else{
             $licky_uids =$not_prize_uids[$licky_keys];
         }
-        $licky_uids = join(",",$licky_uids);
+
         $prize_member = M('event_user')->where(['id'=>['in',$licky_uids],'e_id'=>$e_id])->select();
         $data = [];
         foreach($prize_member as $v){

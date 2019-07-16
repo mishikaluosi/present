@@ -13,7 +13,7 @@ $(function () {
      */
     $(".icon-add").bind('click',function(){
         var cur_num = parseInt($(".select_lucky_number").val());
-        var member_count = parseInt($("#event_members_left").text());
+        var member_count = parseInt($("#event_members_left").val());
         var curent_award_num = parseInt($("#curent_award_num").val());
         if(cur_num>=member_count){
             return false;
@@ -225,14 +225,12 @@ $(function () {
                   event_members_left = event_members_left-Obj.luckyNum;
                   $("#event_members_left").val(event_members_left);
                   //可抽奖数修改
-                  var select_lucky_number = parseInt($("#select_lucky_number").val());
-                  select_lucky_number = select_lucky_number-Obj.luckyNum;
-                  $("#select_lucky_number").val(select_lucky_number);
+                  var curent_award_num = parseInt($("#curent_award_num").val());
+                  var select_lucky_number = curent_award_num-prizelotteryNum;
+                  $(".select_lucky_number").val(select_lucky_number);
                   //可抽奖数显示修改
-                  var show_lucky_number = parseInt($("#show_lucky_number").text());
-                  show_lucky_number = show_lucky_number-Obj.luckyNum;
-                  $("#show_lucky_number").text(show_lucky_number);
-
+                  $(".show_lucky_number").text(select_lucky_number);
+                  Obj.luckyNum = select_lucky_number;
                   $("#stop").show(500);
         	  }
         },'json')
@@ -317,7 +315,7 @@ $(function () {
         },'json');
         $.ajaxSettings.async = true;
         var cur_num = parseInt($('.lucky_prize_show').eq(i - 1).attr('award_num'));
-        var member_count = parseInt($("#event_members_left").text());
+        var member_count = parseInt($("#event_members_left").val());
         //该奖项已中奖人数
         var prizelotteryNum = parseInt($("#prizelotteryNum").text());
         if(cur_num>member_count){ //如果奖项抽奖数量大于参加人员 抽奖数量取参加人员数量

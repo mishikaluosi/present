@@ -6,6 +6,6 @@ $.ajaxSettings.async = false;
 $.get(get_member_url,function(ret){
     personArray = ret.event_members;
     $("#member_count").text(ret.member_count);
-    $("#event_members_left").text(ret.event_members_left);
+    $("#event_members_left").val(ret.event_members_left);
 },'json');
 $.ajaxSettings.async = true;
