@@ -93,3 +93,11 @@ CREATE TABLE `bestop_event_user` (
   `created_at` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*
+
+中奖列表添加字段是否禁用
+Date: 2019-07-12 17:25:13
+*/
+ALTER TABLE `bestop_prize`
+  ADD COLUMN `is_disabled`  tinyint(1) NULL DEFAULT 0 COMMENT '是否禁用';

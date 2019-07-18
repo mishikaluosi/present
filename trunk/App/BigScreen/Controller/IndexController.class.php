@@ -47,7 +47,7 @@ class IndexController extends Controller
             ->alias('p')
             ->field('p.*,eu.name,eu.image')
             ->join("{$pre}event_user eu ON eu.id=p.uid","LEFT")
-            ->where(['p.e_id'=>$e_id])
+            ->where(['p.e_id'=>$e_id,'p.draw_id'=>$draw_id])
             ->select();
         //该奖项中奖人数
         $ret['prize_lottery_num'] = M('prize')->where(['e_id'=>$e_id,'draw_id'=>$draw_id])->count();
@@ -58,7 +58,7 @@ class IndexController extends Controller
         $luckyNum = I('luckyNum');
         $cur_award_id = I('cur_award_id');
         //排除已中奖人员id
-        $prize = M("prize")->where(['e_id'=>$e_id])->select();
+        $prize = M("prize")->where(['e_id'=>$e_id,])->select();
         $prize_uids = join(",",array_column($prize,'uid'));
         //获取所有未中奖人员
         $not_prize = M('event_user')->where(['id'=>['not in',$prize_uids],'e_id'=>$e_id])->select();

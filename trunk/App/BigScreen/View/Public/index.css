@@ -230,13 +230,13 @@ a{
 .lucky_prize_left {
     position: absolute;
     top:0;
-    left:-34px;
+    left:-10%;
     z-index: 3;
 }
 .lucky_prize_right {
     position: absolute;
     top:0;
-    right:-31px;
+    right:-10%;
     z-index: 3;
 }
 .lucky_prize_direction {
@@ -258,16 +258,20 @@ button:focus {
 }
 
 .lucky_prize_picture {
-    width: 100%;
-    height: 100%;
+    background: #fff;
+    border-radius: 10px;
+    border:5px solid #e08908;
+    width: 76%;
+    height: 76%;
     position: absolute;
-    top: 0;
-    left:0;
+    top: 6%;
+    left:12%;
     z-index: 1;
 }
 .lucky_prize_picture img{
-    max-width:300px;
-    max-height:300px;
+    margin-top: 5%;
+    width:90%;
+    height:90%;
 }
 
 .lucky_prize_show {

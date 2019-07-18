@@ -47,7 +47,7 @@ $(function () {
             if(ret.prize_member.length>0){
                 $.each(ret.prize_member,function() {
                     var html = '';
-                    html = '<li class="lpl_userInfo">';
+                    html += '<li class="lpl_userInfo">';
                     html += '<img class="lpl_userImage" src="' + this.image + '">';
                     html += '<p class="lpl_userName">' + this.name + '</p>';
                     html += '</li>';
@@ -305,10 +305,10 @@ $(function () {
             if(ret.prize_member.length>0){
                 $.each(ret.prize_member,function() {
                     var html = '';
-                    html = '<div class="lpl_userInfo">';
+                    html += '<div class="lpl_userInfo">';
                     html += '<img class="lpl_userImage" src="' + this.image + '">';
                     html += '<p class="lpl_userName">' + this.name + '</p>';
-                    html += '</li>';
+                    html += '</div>';
                     $('.lpl_list').append(html);
                 })
             }
@@ -318,17 +318,17 @@ $(function () {
         var member_count = parseInt($("#event_members_left").val());
         //该奖项已中奖人数
         var prizelotteryNum = parseInt($("#prizelotteryNum").text());
+        cur_num = cur_num - prizelotteryNum;  //默认抽奖数量减掉该奖项已中奖人员数量
         if(cur_num>member_count){ //如果奖项抽奖数量大于参加人员 抽奖数量取参加人员数量
             cur_num =  member_count;
         }
-        cur_num = cur_num - prizelotteryNum;  //默认抽奖数量减掉该奖项已中奖人员数量
         Obj.luckyNum =  cur_num;
         $(".select_lucky_number").val(cur_num); //默认奖项抽奖数量提取
         $(".show_lucky_number").text(cur_num); //默认奖项抽奖数量 显示
         $("#curent_award_num").val(cur_num); //最大奖项抽奖数量
 
         $("#current").html($('.lucky_prize_show').eq(i - 1).attr('award_level'));
-        $('.lpl_list').removeClass('active').hide().eq(i - 1).show().addClass('active');
+        // $('.lpl_list').removeClass('active').hide().eq(i - 1).show().addClass('active');
 
     }
     tabPrize();
