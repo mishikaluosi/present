@@ -1,0 +1,242 @@
+<?php
+namespace Manage\Controller;
+use Think\Controller;
+
+class AppointmentController extends CommonController
+{
+    public function index()
+    {
+        $this->_get_search();
+        $this->display();
+    }
+    private function _get_search(){
+        $e_id=I('e_id');
+        $pre = C('DB_PREFIX');
+        if(!$e_id){
+            echo '页面错误';
+            exit();
+        }
+        $event = M('event')->where(['id'=>$e_id])->find();
+        if(!$event){
+            echo '活动不存在';
+            exit();
+        }
+        $this->assign('event', $event);
+        $name=I('name');
+        $this->assign('name', $name);
+        $where=" a.e_id = {$e_id} ";
+        if(!empty($name)){
+            $where.=" and (bm.name like '%{$name}%' or a.name like '%{$name}%' or a.phone like '%{$name}%')";
+        }
+        $order='a.id desc';
+        $count = M('appointment')->alias('a')
+            ->join("{$pre}member bm ON bm.id=a.member_id","LEFT")
+            ->where($where)
+            ->count();
+        $page = new \Common\Lib\Page($count, 18);
+        $page->rollPage = 7;
+        $page->setConfig('theme','%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+        $limit = $page->firstRow. ',' .$page->listRows;
+        $list =  M('appointment')->alias('a')
+            ->field('a.*,bm.name as member')
+            ->join("{$pre}member bm ON bm.id=a.member_id","LEFT")
+            ->where($where)
+            ->order($order)
+            ->limit($limit)
+            ->select();
+        $this->assign('page', $page->show());
+        $this->assign('vlist', $list);
+    }
+    public function add()
+    {
+        $id = I('id', 0, 'intval');
+        $pre = C('DB_PREFIX');
+        $vo = [];
+        if(is_numeric($id) && $id>0){
+            $where="a.id =$id ";
+            $vo = M('appointment')->alias('a')
+                ->field('a.*,bm.name as member')
+                ->join("{$pre}member bm ON bm.id=a.member_id","LEFT")
+                ->where($where)->find();
+            $this->assign('title', '修改成品信息');
+        }else{
+            $e_id = I('e_id');
+            if(!$e_id){
+                echo '页面错误';
+                exit();
+            }
+            $event = M('event')->where(['id'=>$e_id])->find();
+            if(!$event){
+                echo '活动不存在';
+                exit();
+            }
+            $vo['e_id'] = $e_id;
+            $this->assign('title', '添加成员');
+        }
+        $this->assign('vo', $vo);
+        $this->display();
+    }
+    public function getMember(){
+        $keywords = I('keywords');
+        $where  = "1";
+        if($keywords){
+            $where .=" and name like '%{$keywords}%'";
+        }
+        $member = M('member')->where($where)->limit(20)->select();
+        $this->success($member);
+    }
+    public function save(){
+        $app_data = I('app_data');
+        $id = $app_data['id'];
+        $wj['e_id'] = $app_data['e_id'];
+        $wj['name'] = $app_data['name'];
+        $wj['phone'] = $app_data['phone'];
+        $wj['member_id'] = $app_data['member_id'];
+        $wj['sex'] = $app_data['sex'];
+        $wj['room_num'] = $app_data['room_num'];
+        if(is_numeric($id) && $id>0){
+            $flag=M('appointment')->where(array('id'=>$id))->save($wj);
+        }else{
+            $wj['created_at']=time();
+            $wj['adduser']=$_SESSION['yang_adm_username'];
+            $flag=M('appointment')->add($wj);
+        }
+        if($flag){
+            $this->success();
+        }else {
+            $this->error('添加失败');
+        }
+    }
+    public function del(){
+        $id = I('id',0 , 'intval');
+        $e_id = I('e_id');
+        if (false !== M('appointment')->where(array('id' => $id))->delete()) {
+            $this->redirect('appointment/index',array('e_id'=>$e_id));
+        }else {
+            $this->error('删除失败');
+        }
+    }
+    public function delBatch() {
+        $idArr = I('key',0 , 'intval');
+        $e_id = I('get.e_id', 0, 'intval');
+        if (!is_array($idArr)) {
+            $this->error('请选择要删除的项');
+        }
+        if (false !== M('appointment')->where(array('id' => array('in', $idArr)))->delete()) {
+            $this->redirect('appointment/index',array('e_id'=>$e_id));
+        }else {
+            $this->error('批量删除失败');
+        }
+    }
+    /***
+     * 导出excel
+     */
+    public function exportEx(){
+        $name='报名人员_'.date(Ymd);
+        import("Org.Util.PHPExcel");
+        import("Org.Util.PHPExcel.IOFactory");
+        $objPHPExcel  = new \PHPExcel();
+        $iofactory = new \IOFactory();
+        $objPHPExcel->setActiveSheetIndex(0);
+        $objActiveSheet = $objPHPExcel->getActiveSheet();
+        $objActiveSheet->setCellValue('A1', '合同号')
+            ->setCellValue('B1', '经销商')
+            ->setCellValue('C1', '终端客户')
+            ->setCellValue('D1', '可用余额')
+            ->setCellValue('E1', '剩余返点')
+            ->setCellValue('F1', '总金额')
+            ->setCellValue('G1', '付款进度')
+            ->setCellValue('H1', '生成日期')
+            ->setCellValue('I1', '完成率')
+            ->setCellValue('J1', '物流')
+            ->setCellValue('K1', '备注')
+            ->setCellValue('L1', '是否已催款');
+        $objPHPExcel->getActiveSheet()->setTitle($name);
+        $objWriter = $iofactory::createWriter($objPHPExcel, 'Excel5');
+        $path = C("TMPL_PARSE_STRING.__UPLOAD__").'excel/'.$name.'.xls';
+        $objWriter->save($path);
+        echo $path;
+    }
+    //导入
+    public function upload(){
+        header("Content-Type:text/html; charset=utf-8");//不然返回中文乱码
+        if(empty($_FILES)){
+            $this->error('必须选择上传文件');
+        }
+        $e_id = I('e_id');
+        $path = $this->_uploadFile();
+        $uploadfile = $_SERVER['DOCUMENT_ROOT'].C("TMPL_PARSE_STRING.__UPLOAD__").$path['inputExcel']['savepath'].$path['inputExcel']['savename'];
+        import("Org.Util.PHPExcel");
+        import("Org.Util.PHPExcel.IOFactory");
+        $objPHPExcel  = new \PHPExcel();
+        $iofactory = new \IOFactory();
+        $objReader = $iofactory::createReader('Excel2007');
+        $objPHPExcel = $objReader->load($uploadfile);
+        $objWorksheet = $objPHPExcel->getActiveSheet();
+        $highestRow = $objWorksheet->getHighestRow();
+        $highestColumn = $objWorksheet->getHighestColumn();//取得总行数
+        $highestColumnIndex =5;//总列数
+        $map=array();
+        for ($col = 0;$col <$highestColumnIndex ;$col++)//注意highestColumnIndex的列数索引从0开始
+        {
+            $map[$col] =trim($objWorksheet->getCellByColumnAndRow($col, 1)->getValue());
+        }
+        $body=array();
+        for ($row = 2;$row <= $highestRow;$row++)//从excel的第二行读取数据，第一行是标题
+        {
+            $strs=array();
+            for ($col = 0;$col < $highestColumnIndex;$col++)//注意highestColumnIndex的列数索引从0开始
+            {
+                $strs[$map[$col]] =(string)$objWorksheet->getCellByColumnAndRow($col, $row)->getValue();
+            }
+            $body[]=$strs;
+        }
+        $data=[];
+        foreach ($body as $value){
+            $tmp_data = $value;
+            $tmp_data['created_at'] =time();
+            $tmp_data['adduser']=$_SESSION['yang_adm_username'];
+            $tmp_data['e_id'] =$e_id;
+            $data[] = $tmp_data;
+        }
+        $ret = M('appointment')->addAll($data);
+        if(!$ret){
+            $this->error('批量导入失败');
+        }
+        $this->success();
+    }
+    public function _uploadFile($sfile = 'excel') {
+        $ext = '';//原文件后缀
+        foreach ($_FILES as $key => $v) {
+            $strtemp = explode('.', $v['name']);
+            $ext = end($strtemp);//获取文件后缀，或$ext = end(explode('.', $_FILES['fileupload']['name']));
+            break;
+        }
+
+
+        $upload = new \Think\Upload();//new Upload($config)
+        //修配置项
+        $upload->autoSub =true;//是否使用子目录保存图片
+        $upload->subType = 'date';//子目录保存规则
+        $upload->subName = array('date', 'Ymd');
+        $upload->maxSize = get_upload_maxsize();//设置上传文件大小
+        $upload->exts = explode(',', C('CFG_UPLOAD_FILE_EXT').',xls,xlsx,XLS,XLSX');//设置上传文件类型
+        $upload->rootPath = C('CFG_UPLOAD_ROOTPATH');//上传根路径
+        $upload->savePath = rtrim($sfile, '/').'/';//上传（子）目录
+        $upload->saveName = array('uniqid', '');//上传文件命名规则
+        $upload->replace = true; //存在同名是否覆盖
+        $upload->callback = false; //检测文件是否存在回调函数，如果存在返回文件信息数组
+
+
+        if($info = $upload->upload()) {
+
+            return $info;
+
+        }else {
+
+            return $upload->getError();
+        }
+
+
+    }
+}

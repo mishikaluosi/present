@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/shop/js/global.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+    <script type="text/javascript">
+        var data_path = "__DATA__";
+    </script>
+</head>
+<body>
+<input type="hidden" id="e_id" value="{$event['id']}">
+<input type="hidden" id="export_url" value="{:U('Appointment/exportEx')}">
+<div class="main">
+    <div class="pos">
+        {$event['name']}--预约列表
+    </div>
+    <div class="operate">
+        <div class="left">
+            <input type="button" onclick="goUrl('{:U('Appointment/add',array('e_id'=>$event['id']))}')" class="btn_blue btn_red" value="添加报名成员">
+        </div>
+        <div class="left">
+            <input type="button" alt="__DATA__/appointment.xlsx" id="exportTemp" class="btn_blue btn_blue" value="导出模板">
+        </div>
+        <div class="left">
+            <form action="" id="importExcelForm" target="upload_excel_ifm" method="post" enctype="multipart/form-data">
+                <input type="button" id="change_input"  class="btn_blue" value="批量导入">
+                <input type="hidden" name="e_id" value="{$event['id']}">
+                <input type="file" alt={:U('appointment/upload')} name="inputExcel" id="inputExcel" style="display:none;" class="btn_blue" value="批量导入">
+            </form>
+        </div>
+        <div class="left">
+            <!--<form action="" id="importExcelForm" target="upload_excel_ifm" method="post" enctype="multipart/form-data">-->
+                <input type="button" id="exportEx"  class="btn_blue btn_red" value="批量导出">
+                <!--<input type="hidden" name="e_id" value="{$event['id']}">-->
+                <!--<input type="file" alt={:U('appointment/upload')} name="inputExcel" id="inputExcel" style="display:none;" class="btn_blue" value="批量导入">-->
+            <!--</form>-->
+        </div>
+    </div>
+    <div class="operate">
+        <div class="left">
+            <form method="post" action="{:U('Appointment/index')}">
+                <span class="s_span">报名成员</span>
+                <input type="text" name="name" class="inp_one" value="{$name}" >
+                <input type="submit" class="btn_blue" style="float: none" value="查  询">
+            </form>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="list guestbook">
+        <form action="" method="post" id="form_do" name="form_do">
+        <table width="100%">
+            <tr>
+                <th ><input type="checkbox" id="check"></th>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>手机号</th>
+                <th>性别</th>
+                <th>业务员</th>
+                <th>房间号</th>
+                <th style="width: 150px">操作</th>
+            </tr>
+            <foreach name='vlist' item='v'>
+                <tr>
+                    <td><input type="checkbox" name="key[]" value="{$v.id}"></td>
+                    <td>{$v.id}</td>
+                    <td class="aleft" style="">
+                        {$v.name}
+                    </td>
+                    <td>
+                        {$v.phone}
+                    </td>
+                    <td>{$v.sex}</td>
+                    <td>{$v.member}</td>
+                    <td>{$v.room_num}</td>
+                    <td>
+                        <a href="{:U('Appointment/add',array('id' => $v['id']), '')}">编辑</a>
+                        <a href="javascript:;" onclick="toConfirm('{:U('Appointment/del',array('id' => $v['id'],'e_id' => $event['id']), '')}', '确实要删除吗？')">删除</a>
+                    </td>
+                </tr>
+            </foreach>
+        </table>
+
+        <div class="page" style="clear: both">
+            <input type="button" onclick="doConfirmBatch('{:U('Appointment/delBatch', array('batchFlag' => 1,'e_id' => $event['id']))}', '确实要删除选择项吗？')" class="btn_blue btn_f" value="删除">
+            {$page}
+        </div>
+        </form>
+    </div>
+</div>
+<style>
+    .list td img {
+        width: 40px!important;
+        height:auto !important;
+    }
+    .list td.aleft img {
+        width: 60px!important;
+        height: auto!important;
+    }
+</style>
+<script>
+    $(function () {
+        /*下载模板*/
+        $("#exportTemp").click(function(){
+            var fname = $(this).attr("alt");
+            downloadTemplate(fname)
+        })
+        $('#inputExcel').bind('change',importExcel);			/*导入*/
+        $("#change_input").bind("click",function(){/*导入执行*/
+            $('#inputExcel').trigger("click");
+        });
+        $("#exportEx").click(exportEx);   /*批量导出*/
+    })
+    function downloadTemplate(fname) {
+        window.open(fname);
+    }
+    function importExcel() {
+        var file = $("#inputExcel").val();
+        if(file!=""){
+            var allowSuffix = "xlsx";  //允许上传文件的后缀名
+            var suffix = file.split(".");
+            suffix = suffix[suffix.length-1].toLowerCase();
+            var find = allowSuffix.indexOf(suffix);
+            if (find < 0) {
+                $("#inputExcel").val("");
+                alert('导入的Excel表格的文件格式不正确，支持扩展名为的.xlsx的Excel文件'); //header_top.js
+                return false;
+            }
+            var action = $('#inputExcel').attr("alt");
+            var thisForm = $("#importExcelForm");
+            thisForm.ajaxSubmit({url:action,success:function(ret){
+                    if(ret.status!=0){
+                        alert(ret.message);
+                        is_double = false;
+                        return false;
+                    }
+                    location.reload();
+            },dataType: "json"})
+        }else{
+            alert('请选择要导入的Excel文件'); //header_top.js
+        }
+        return false;
+    }
+    function exportEx(){
+        var url = $('#export_url').val();
+        $.post(url,function(ret){
+            downloadTemplate(ret);
+        })
+    }
+
+</script>
+</body>
+</html>
