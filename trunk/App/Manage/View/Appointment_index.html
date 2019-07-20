@@ -13,9 +13,39 @@
     </script>
 </head>
 <body>
-<input type="hidden" id="e_id" value="{$event['id']}">
-<input type="hidden" id="export_url" value="{:U('appointment/exportEx')}">
+<style>
+    .form_popup {
+        position: absolute;
+        z-index: 3;
+        top: 33px;
+        left: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        width: 198px;
+        display: block;
+        border-radius: 3px;
+    }
+    .form_popup ul {
+        max-height: 260px;
+        overflow-y: auto;
+    }
+    .form_popup ul li {
+        line-height: 26px;
+        height: 26px;
+        padding-left: 10px;
+        border-radius: 3px;
+    }
+    .form_popup ul li a{color: #333;}
+    .form_popup ul li:hover {
+        background: #32c8af;
+    }
+    .form_popup ul li:hover a{color: #fff;}
 
+</style>
+<input type="hidden" id="e_id" value="{$event['id']}">
+<input type="hidden" id="export_url" value="{:U('Appointment/exportEx')}">
+<input type="hidden" id="index_url" value="{:U('Appointment/index',array('e_id'=>$event['id']))}">
+<input type="hidden" id="member_url" value="{:U('Appointment/getMember')}">
 <div class="main">
     <div class="pos">
         {$event['name']}--预约列表
@@ -31,7 +61,7 @@
             <form action="" id="importExcelForm" target="upload_excel_ifm" method="post" enctype="multipart/form-data">
                 <input type="button" id="change_input"  class="btn_blue" value="批量导入">
                 <input type="hidden" name="e_id" value="{$event['id']}">
-                <input type="file" alt={:U('appointment/upload')} name="inputExcel" id="inputExcel" style="display:none;" class="btn_blue" value="批量导入">
+                <input type="file" alt={:U('Appointment/upload')} name="inputExcel" id="inputExcel" style="display:none;" class="btn_blue" value="批量导入">
             </form>
         </div>
         <div class="left">
@@ -41,12 +71,14 @@
         </div>
     </div>
     <div class="operate">
-        <div class="left">
-            <form method="post" action="{:U('Appointment/index')}">
-                <span class="s_span">报名成员</span>
-                <input type="text" name="name" class="inp_one" value="{$name}" >
-                <input type="submit" class="btn_blue" style="float: none" value="查  询">
-            </form>
+        <div class="left search_box" style="position: relative">
+            <!--<form method="post" action="{:U('Appointment/index')}">-->
+
+                <input type="text" id="member" class="inp_one" autocomplete="off" alt="{$member_id}" value="{$member}" placeholder="业务员搜索" style="margin-right: 50px;">
+                <input type="text" id="name" name="name" class="inp_one" autocomplete="off" value="{$name}" placeholder="关键词">
+                <input type="button" id="search_btn" class="btn_blue" style="float: none" value="查  询">
+
+            <!--</form>-->
         </div>
         <div class="clear"></div>
     </div>
@@ -92,6 +124,12 @@
         </form>
     </div>
 </div>
+<div class="form_popup" id="popupMenuUI" style="display:none; width:180px;overflow: hidden">
+    <ul>
+
+    </ul>
+</div>
+<li id="popupRowUI" style="display:none;"><a href="javascript:" alt="-1"></a></li>
 <style>
     .list td img {
         width: 40px!important;
@@ -104,6 +142,14 @@
 </style>
 <script>
     $(function () {
+        $('#name').bind('keypress',enterOrderSearch);
+        $("#member").bind("click",selectSupplier).bind("keyup",selectSupplier).bind('input',function () {
+            $("#member").attr('alt','');
+        });
+        $(document).unbind().bind("click",function(){ // 点击消失
+            $("div.form_popup:visible").remove();
+        });
+        $("#search_btn").bind("click",choose_data);
         /*下载模板*/
         $("#exportTemp").click(function(){
             var fname = $(this).attr("alt");
@@ -185,7 +231,59 @@
         }
         return result;
     }
+    function choose_data(){
+        var url = $("#index_url").val();
+        var name =$.trim($("#name").val());
+        var member_id = parseInt($("#member").attr("alt"));
+        var member = $("#member").val();
+        if(name){
+            url += "&name="+name;
+        }
+        if(member_id>0){
+            url += "&member_id="+member_id;
+            url += "&member="+member;
+        }
+        location.href=url;
+    }
+    //筛选业务员
+    function selectSupplier(){
+        $(".search_box .form_popup").remove();
+        var thatInput 	= $(this);
+        var url 		= $("#member_url").val();
+        var keywords   = $.trim($(this).val());
+        url += "&keywords="+keywords;
+        $.getJSON(url,function(ret){
+            var popupMenuUI = $("#popupMenuUI").clone().removeAttr("id").show().addClass("form_popup");
+            $.each(ret.data,function(i,v){
+                var popupRowUI = $("#popupRowUI").clone().removeAttr("id").show();
+                popupRowUI.find("a").text(v.name);
+                popupRowUI.find("a").attr('alt',v.id);
+                popupRowUI.find('a').addClass('text-ellipsis');
+                popupMenuUI.find("ul").append(popupRowUI);
+                popupRowUI.bind("click",function(){
+                    var text = $(this).find("a").text();
+                    var alt = $(this).find("a").attr('alt');
+                    if(text!=" "){
+                        thatInput.val(text);
+                        thatInput.attr('alt',alt);
+                        $(".search_box .form_popup").remove();
+                        choose_data();
+                    }
+                });
+            });
+            thatInput.after(popupMenuUI);
+        });
+    }
+    //搜索
+    function enterOrderSearch(event)
+    {
+        if(event.keyCode == 13)
+        {
+            choose_data();//搜索
+            return false;
 
+        }
+    }
 </script>
 </body>
 </html>

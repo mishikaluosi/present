@@ -24,9 +24,16 @@ class AppointmentController extends CommonController
         $this->assign('event', $event);
         $name=I('name');
         $this->assign('name', $name);
+        $member_id=I('member_id');
+        $member=I('member');
+        $this->assign('member_id', $member_id);
+        $this->assign('member', $member);
         $where=" a.e_id = {$e_id} ";
         if(!empty($name)){
-            $where.=" and (bm.name like '%{$name}%' or a.name like '%{$name}%' or a.phone like '%{$name}%')";
+            $where.=" and (a.name like '%{$name}%' or a.phone like '%{$name}%')";
+        }
+        if($member_id>0){
+            $where.=" and a.member_id={$member_id}";
         }
         $order='a.id desc';
         $count = M('appointment')->alias('a')
