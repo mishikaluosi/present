@@ -58,7 +58,7 @@ class AppointmentController extends CommonController
                 ->field('a.*,bm.name as member')
                 ->join("{$pre}member bm ON bm.id=a.member_id","LEFT")
                 ->where($where)->find();
-            $this->assign('title', '修改成品信息');
+            $this->assign('title', '修改成员信息');
         }else{
             $e_id = I('e_id');
             if(!$e_id){
@@ -133,7 +133,15 @@ class AppointmentController extends CommonController
      */
     public function exportEx(){
         $ids = I('ids');
-
+        $where ="1";
+        if($ids){
+            $where .= " and id in ($ids)";
+        }
+        $pre = C('DB_PREFIX');
+        $app = M('appointment')->alias('a')
+            ->field('a.*,bm.name as member')
+            ->join("{$pre}member bm ON bm.id=a.member_id","LEFT")
+            ->where($where)->select();
         $name=date('Y_m_d_H_i_s');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");
@@ -141,18 +149,19 @@ class AppointmentController extends CommonController
         $iofactory = new \IOFactory();
         $objPHPExcel->setActiveSheetIndex(0);
         $objActiveSheet = $objPHPExcel->getActiveSheet();
-        $objActiveSheet->setCellValue('A1', '合同号')
-            ->setCellValue('B1', '经销商')
-            ->setCellValue('C1', '终端客户')
-            ->setCellValue('D1', '可用余额')
-            ->setCellValue('E1', '剩余返点')
-            ->setCellValue('F1', '总金额')
-            ->setCellValue('G1', '付款进度')
-            ->setCellValue('H1', '生成日期')
-            ->setCellValue('I1', '完成率')
-            ->setCellValue('J1', '物流')
-            ->setCellValue('K1', '备注')
-            ->setCellValue('L1', '是否已催款');
+        $objActiveSheet->setCellValue('A1', '姓名')
+            ->setCellValue('B1', '手机号')
+            ->setCellValue('C1', '性别')
+            ->setCellValue('D1', '业务员')
+            ->setCellValue('E1', '房间号');
+        foreach ($app as $k => $v) {
+            $num = $k + 2;
+            $objActiveSheet->setCellValue("A$num", $v['name'])
+                ->setCellValue("B$num", $v['phone'])
+                ->setCellValue("C$num", $v['sex'])
+                ->setCellValue("D$num", $v['member'])
+                ->setCellValue("E$num", $v['room_num']);
+        }
         $objPHPExcel->getActiveSheet()->setTitle($name);
         $objPHPExcel->setActiveSheetIndex(0);
         ob_clean();

@@ -114,11 +114,15 @@
             $('#inputExcel').trigger("click");
         });
         $("#exportEx").bind("click",function(){
-            var url = $("#export_url").val();
+            var ids =getIds();
+            if(!ids.length>0){
+                alert('请选择要导出的项！');
+                return false;
+            }
+            var url = $("#export_url").val()+"&ids="+ids.toString();
             var xhr = new XMLHttpRequest();
             xhr.open('POST', url, true);
             xhr.responseType = 'blob';
-
             xhr.onload = function(e) {
                 if (this.status == 200) {
                     var blob = this.response;
@@ -127,7 +131,7 @@
                     reader.onload = function (e) {
                         // 转换完成，创建一个a标签用于下载
                         var a = document.createElement('a');
-                        a.download = 'data.xlsx';
+                        a.download = '<?php echo date(Ymdhis);?>.xlsx';
                         a.href = e.target.result;
                         $("body").append(a);  // 修复firefox中无法触发click
                         a.click();
@@ -169,13 +173,19 @@
         }
         return false;
     }
+    function getIds(){
+        var obj = document.getElementsByName('key[]');
+        var result =[];
+        var j= 0;
+        for (var i=0;i<obj.length;i++){
+            if (obj[i].checked===true){
+                result.push(obj[i].value);
+                j++;
+            }
+        }
+        return result;
+    }
 
-    // $.ajax( {
-    //     url : "/database/listDriver.do",
-    //     success : function(data) {
-    //         console.log(data);
-    //     }
-    // });
 </script>
 </body>
 </html>
