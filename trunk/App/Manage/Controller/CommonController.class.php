@@ -38,6 +38,22 @@ class CommonController extends Controller {
 
 
 	}
+    public function success($data,$message='ok'){
+        echo json_encode(array(
+            'status' => 0,
+            'data' => $data,
+            'message' => $message
+        ));
+        exit();
+    }
+    public function error($message='error'){
+        echo json_encode(array(
+            'status' => 1,
+            'data' => null,
+            'message' => $message
+        ));
+        exit();
+    }
 }
 
 

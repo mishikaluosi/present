@@ -66,3 +66,56 @@ CREATE TABLE `bestop_event_draw` (
   `updated_at` int(10) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*
+添加活动中奖表
+Date: 2019-07-16 21:09
+*/
+CREATE TABLE `bestop_prize` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` int(11) DEFAULT NULL COMMENT '用户id',
+  `e_id` int(11) DEFAULT NULL COMMENT '活动id',
+  `draw_id` int(11) DEFAULT NULL COMMENT '奖项id',
+  `created_at` int(10) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*
+添加参加活动用户表
+Date: 2019-07-16 21:45
+*/
+CREATE TABLE `bestop_event_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_id` int(11) DEFAULT NULL COMMENT '活动id',
+  `name` varchar(255) DEFAULT NULL COMMENT '用户名',
+  `image` varchar(255) DEFAULT NULL COMMENT '头像',
+  `thumb_image` varchar(255) DEFAULT NULL COMMENT '缩略图',
+  `created_at` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*
+
+中奖列表添加字段是否禁用
+Date: 2019-07-17 17:25:13
+*/
+ALTER TABLE `bestop_prize`
+  ADD COLUMN `is_disabled`  tinyint(1) NULL DEFAULT 0 COMMENT '是否禁用';
+
+/*
+
+添加活动预约表
+Date: 2019-07-20 10:45:13
+*/
+CREATE TABLE `bestop_appointment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_id` int(11) DEFAULT NULL COMMENT '活动id',
+  `member_id` int(11) DEFAULT NULL COMMENT '业务员id',
+  `name` varchar(255) DEFAULT NULL COMMENT '姓名',
+  `phone` varchar(255) DEFAULT NULL COMMENT '手机号',
+  `sex` varchar(255) DEFAULT NULL COMMENT '男|女',
+  `room_num` varchar(255) DEFAULT NULL COMMENT '房间号',
+  `created_at` int(10) DEFAULT NULL,
+  `adduser` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
