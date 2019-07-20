@@ -132,7 +132,9 @@ class AppointmentController extends CommonController
      * 导出excel
      */
     public function exportEx(){
-        $name='报名人员_'.date(Ymd);
+        $ids = I('ids');
+
+        $name=date('Y_m_d_H_i_s');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");
         $objPHPExcel  = new \PHPExcel();
@@ -152,10 +154,14 @@ class AppointmentController extends CommonController
             ->setCellValue('K1', '备注')
             ->setCellValue('L1', '是否已催款');
         $objPHPExcel->getActiveSheet()->setTitle($name);
-        $objWriter = $iofactory::createWriter($objPHPExcel, 'Excel5');
-        $path = C("TMPL_PARSE_STRING.__UPLOAD__").'excel/'.$name.'.xls';
-        $objWriter->save($path);
-        echo $path;
+        $objPHPExcel->setActiveSheetIndex(0);
+        ob_clean();
+        header('Content-type: application/vnd.ms-excel');
+        $name=iconv("utf-8", "gb2312", $name);
+        header('Content-Disposition: attachment;filename="'.$name.'.xlsx"');
+        header('Cache-Control: max-age=0');
+        $objWriter = $iofactory::createWriter($objPHPExcel, 'Excel2007');
+        $objWriter->save('php://output');
     }
     //导入
     public function upload(){

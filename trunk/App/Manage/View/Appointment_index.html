@@ -14,7 +14,8 @@
 </head>
 <body>
 <input type="hidden" id="e_id" value="{$event['id']}">
-<input type="hidden" id="export_url" value="{:U('Appointment/exportEx')}">
+<input type="hidden" id="export_url" value="{:U('appointment/exportEx')}">
+
 <div class="main">
     <div class="pos">
         {$event['name']}--预约列表
@@ -34,10 +35,8 @@
             </form>
         </div>
         <div class="left">
-            <!--<form action="" id="importExcelForm" target="upload_excel_ifm" method="post" enctype="multipart/form-data">-->
-                <input type="button" id="exportEx"  class="btn_blue btn_red" value="批量导出">
-                <!--<input type="hidden" name="e_id" value="{$event['id']}">-->
-                <!--<input type="file" alt={:U('appointment/upload')} name="inputExcel" id="inputExcel" style="display:none;" class="btn_blue" value="批量导入">-->
+            <!--<form action="{:U('appointment/exportEx')}" method="post">-->
+                <input type="button" id="exportEx" class="btn_blue btn_red" value="批量导出">
             <!--</form>-->
         </div>
     </div>
@@ -114,7 +113,31 @@
         $("#change_input").bind("click",function(){/*导入执行*/
             $('#inputExcel').trigger("click");
         });
-        $("#exportEx").click(exportEx);   /*批量导出*/
+        $("#exportEx").bind("click",function(){
+            var url = $("#export_url").val();
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.responseType = 'blob';
+
+            xhr.onload = function(e) {
+                if (this.status == 200) {
+                    var blob = this.response;
+                    var reader = new FileReader();
+                    reader.readAsDataURL(blob);  // 转换为base64，可以直接放入a表情href
+                    reader.onload = function (e) {
+                        // 转换完成，创建一个a标签用于下载
+                        var a = document.createElement('a');
+                        a.download = 'data.xlsx';
+                        a.href = e.target.result;
+                        $("body").append(a);  // 修复firefox中无法触发click
+                        a.click();
+                        $(a).remove();
+                    }
+                }
+            };
+
+            xhr.send();
+        })
     })
     function downloadTemplate(fname) {
         window.open(fname);
@@ -146,13 +169,13 @@
         }
         return false;
     }
-    function exportEx(){
-        var url = $('#export_url').val();
-        $.post(url,function(ret){
-            downloadTemplate(ret);
-        })
-    }
 
+    // $.ajax( {
+    //     url : "/database/listDriver.do",
+    //     success : function(data) {
+    //         console.log(data);
+    //     }
+    // });
 </script>
 </body>
 </html>
