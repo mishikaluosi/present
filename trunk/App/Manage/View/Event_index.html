@@ -131,6 +131,7 @@
                         <a href="{:U('Home/'.'Event/index',array('id' => $v['id']), '')}" target="_blank">查看二维码</a>
                         <if condition="$v['is_draw'] eq 1">
                             <a href="{:U('Event/draw',array('e_id' => $v['id']), '')}">奖项设置</a>
+                            <a href="{:U('BigScreen/'.'Index/index',array('e_id' => $v['id']), '')}"  target="_blank">抽奖链接</a>
                         </if>
                         <a href="{:U('Manage/'.'appointment/index',array('e_id' => $v['id']), '')}">预约管理</a>
                         <a href="{:U('Event/msg',array('id' => $v['id']), '')}">编辑</a>
