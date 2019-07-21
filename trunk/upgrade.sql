@@ -119,3 +119,16 @@ CREATE TABLE `bestop_appointment` (
   `adduser` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*
+
+活动签到表新增字段
+Date: 2019-07-20 10:45:13
+*/
+ALTER TABLE `bestop_event_user`
+ADD COLUMN `province`  varchar(255) NULL COMMENT '省' ,
+ADD COLUMN `city`  varchar(255) NULL COMMENT '城市' ,
+ADD COLUMN `member_id`  int(11) NULL DEFAULT 0 COMMENT '业务员_id' ,
+ADD COLUMN `open_id`  varchar(255) NULL COMMENT '微信授权id',
+ADD COLUMN `sex` varchar(255) DEFAULT NULL COMMENT '男|女',
+ADD COLUMN `phone` varchar(11) DEFAULT NULL COMMENT '手机号';

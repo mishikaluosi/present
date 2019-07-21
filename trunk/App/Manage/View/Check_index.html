@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/shop/js/global.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+    <script type="text/javascript">
+        var data_path = "__DATA__";
+    </script>
+</head>
+<body>
+<style>
+    .form_popup {
+        position: absolute;
+        z-index: 3;
+        top: 33px;
+        left: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        width: 198px;
+        display: block;
+        border-radius: 3px;
+    }
+    .form_popup ul {
+        max-height: 260px;
+        overflow-y: auto;
+    }
+    .form_popup ul li {
+        line-height: 26px;
+        height: 26px;
+        padding-left: 10px;
+        border-radius: 3px;
+    }
+    .form_popup ul li a{color: #333;}
+    .form_popup ul li:hover {
+        background: #32c8af;
+    }
+    .form_popup ul li:hover a{color: #fff;}
+
+</style>
+<input type="hidden" id="e_id" value="{$event['id']}">
+<input type="hidden" id="export_url" value="{:U('Check/exportEx')}">
+<input type="hidden" id="index_url" value="{:U('Check/index',array('e_id'=>$event['id']))}">
+<input type="hidden" id="member_url" value="{:U('Appointment/getMember')}">
+<div class="main">
+    <div class="pos">
+        {$event['name']}--签到列表
+    </div>
+    <div class="operate">
+        <!--<div class="left">-->
+            <!--<input type="button" onclick="goUrl('{:U('Appointment/add',array('e_id'=>$event['id']))}')" class="btn_blue btn_red" value="添加报名成员">-->
+        <!--</div>-->
+        <!--<div class="left">-->
+            <!--<input type="button" alt="__DATA__/appointment.xlsx" id="exportTemp" class="btn_blue btn_blue" value="导出模板">-->
+        <!--</div>-->
+        <!--<div class="left">-->
+            <!--<form action="" id="importExcelForm" target="upload_excel_ifm" method="post" enctype="multipart/form-data">-->
+                <!--<input type="button" id="change_input"  class="btn_blue" value="批量导入">-->
+                <!--<input type="hidden" name="e_id" value="{$event['id']}">-->
+                <!--<input type="file" alt={:U('Appointment/upload')} name="inputExcel" id="inputExcel" style="display:none;" class="btn_blue" value="批量导入">-->
+            <!--</form>-->
+        <!--</div>-->
+        <div class="left">
+            <input type="button" id="exportEx" class="btn_blue btn_red" value="批量导出">
+        </div>
+    </div>
+    <div class="operate">
+        <div class="left search_box" style="position: relative">
+            <!--<form method="post" action="{:U('Appointment/index')}">-->
+                <input type="text" id="member" class="inp_one" autocomplete="off" alt="{$member_id}" value="{$member}" placeholder="业务员搜索" style="margin-right: 50px;">
+                <input type="text" id="name" name="name" class="inp_one" autocomplete="off" value="{$name}" placeholder="关键词">
+                <input type="button" id="search_btn" class="btn_blue" style="float: none" value="查  询">
+            <!--</form>-->
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="list guestbook">
+        <form action="" method="post" id="form_do" name="form_do">
+        <table width="100%">
+            <tr>
+                <th><input type="checkbox" id="check"></th>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>手机号</th>
+                <th>性别</th>
+                <th>业务员</th>
+                <th>头像</th>
+                <th>省</th>
+                <th>城市</th>
+                <!--<th style="width: 150px">操作</th>-->
+            </tr>
+            <foreach name='vlist' item='v'>
+                <tr>
+                    <td><input type="checkbox" name="key[]" value="{$v.id}"></td>
+                    <td>{$v.id}</td>
+                    <td>
+                        {$v.name}
+                    </td>
+                    <td>
+                        {$v.phone}
+                    </td>
+                    <td>{$v.sex}</td>
+                    <td>{$v.member}</td>
+                    <td style="width:40px;"><img src="{$v.image}" alt=""></td>
+                    <td>{$v.province}</td>
+                    <td>{$v.city}</td>
+                    <!--<td>-->
+                        <!--<a href="{:U('Appointment/add',array('id' => $v['id']), '')}">编辑</a>-->
+                        <!--<a href="javascript:;" onclick="toConfirm('{:U('Appointment/del',array('id' => $v['id'],'e_id' => $event['id']), '')}', '确实要删除吗？')">删除</a>-->
+                    <!--</td>-->
+                </tr>
+            </foreach>
+        </table>
+
+        <div class="page" style="clear: both">
+            <!--<input type="button" onclick="doConfirmBatch('{:U('Appointment/delBatch', array('batchFlag' => 1,'e_id' => $event['id']))}', '确实要删除选择项吗？')" class="btn_blue btn_f" value="删除">-->
+            {$page}
+        </div>
+        </form>
+    </div>
+</div>
+<div class="form_popup" id="popupMenuUI" style="display:none; width:180px;overflow: hidden">
+    <ul>
+
+    </ul>
+</div>
+<li id="popupRowUI" style="display:none;"><a href="javascript:" alt="-1"></a></li>
+<style>
+    .list td img {
+        width: 40px!important;
+        height:auto !important;
+    }
+    .list td.aleft img {
+        width: 60px!important;
+        height: auto!important;
+    }
+</style>
+<script>
+    $(function () {
+        $('#name').bind('keypress', enterOrderSearch);
+        $("#member").bind("click", selectSupplier).bind("keyup", selectSupplier).bind('input', function () {
+            $("#member").attr('alt', '');
+        });
+        $(document).unbind().bind("click", function () { // 点击消失
+            $("div.form_popup:visible").remove();
+        });
+        $("#search_btn").bind("click", choose_data);
+    })
+    function choose_data(){
+        var url = $("#index_url").val();
+        var name =$.trim($("#name").val());
+        var member_id = parseInt($("#member").attr("alt"));
+        var member = $("#member").val();
+        if(name){
+            url += "&name="+name;
+        }
+        if(member_id>0){
+            url += "&member_id="+member_id;
+            url += "&member="+member;
+        }
+        location.href=url;
+    }
+    //筛选业务员
+    function selectSupplier(){
+        $(".search_box .form_popup").remove();
+        var thatInput 	= $(this);
+        var url 		= $("#member_url").val();
+        var keywords   = $.trim($(this).val());
+        url += "&keywords="+keywords;
+        $.getJSON(url,function(ret){
+            var popupMenuUI = $("#popupMenuUI").clone().removeAttr("id").show().addClass("form_popup");
+            $.each(ret.data,function(i,v){
+                var popupRowUI = $("#popupRowUI").clone().removeAttr("id").show();
+                popupRowUI.find("a").text(v.name);
+                popupRowUI.find("a").attr('alt',v.id);
+                popupRowUI.find('a').addClass('text-ellipsis');
+                popupMenuUI.find("ul").append(popupRowUI);
+                popupRowUI.bind("click",function(){
+                    var text = $(this).find("a").text();
+                    var alt = $(this).find("a").attr('alt');
+                    if(text!=" "){
+                        thatInput.val(text);
+                        thatInput.attr('alt',alt);
+                        $(".search_box .form_popup").remove();
+                        choose_data();
+                    }
+                });
+            });
+            thatInput.after(popupMenuUI);
+        });
+    }
+    //搜索
+    function enterOrderSearch(event)
+    {
+        if(event.keyCode == 13)
+        {
+            choose_data();//搜索
+            return false;
+
+        }
+    }
+    $("#exportEx").bind("click",function(){
+        var ids =getIds();
+        if(!ids.length>0){
+            alert('请选择要导出的项！');
+            return false;
+        }
+        var url = $("#export_url").val()+"&ids="+ids.toString();
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url, true);
+        xhr.responseType = 'blob';
+        xhr.onload = function(e) {
+            if (this.status == 200) {
+                var blob = this.response;
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);  // 转换为base64，可以直接放入a表情href
+                reader.onload = function (e) {
+                    // 转换完成，创建一个a标签用于下载
+                    var a = document.createElement('a');
+                    a.download = '<?php echo date(Ymdhis);?>.xlsx';
+                    a.href = e.target.result;
+                    $("body").append(a);  // 修复firefox中无法触发click
+                    a.click();
+                    $(a).remove();
+                }
+            }
+        };
+
+        xhr.send();
+    })
+    function getIds(){
+        var obj = document.getElementsByName('key[]');
+        var result =[];
+        var j= 0;
+        for (var i=0;i<obj.length;i++){
+            if (obj[i].checked===true){
+                result.push(obj[i].value);
+                j++;
+            }
+        }
+        return result;
+    }
+</script>
+</body>
+</html>

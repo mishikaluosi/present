@@ -43,6 +43,7 @@ $(function () {
         var e_id = $("#e_id").val();
         var get_prize_url = $("#get_prize_url").val()+'&e_id='+e_id+'&draw_id='+cur_award_id;
         $(".lottery-all ul.lucky_user").empty();
+        $(".lottery-all .game-title").text('获奖名单');
         $.get(get_prize_url,function(ret){
             if(ret.prize_member.length>0){
                 $.each(ret.prize_member,function() {
@@ -62,6 +63,7 @@ $(function () {
         $(".lucky_list").hide();
 
         $(".lottery-all ul.lucky_user").empty();
+        $(".lottery-all .game-title").text('抽奖名单');
         $.each(personArray,function(){
             var html='';
             html=   '<li class="lpl_userInfo">';

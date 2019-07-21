@@ -139,10 +139,10 @@ class AppointmentController extends CommonController
      * 导出excel
      */
     public function exportEx(){
-        $ids = I('ids');
+        $ids = I('get.ids');
         $where ="1";
         if($ids){
-            $where .= " and id in ($ids)";
+            $where .= " and a.id in ($ids)";
         }
         $pre = C('DB_PREFIX');
         $app = M('appointment')->alias('a')
