@@ -12,7 +12,7 @@ class MobileCommonController extends Controller {
     public function __construct(){
         parent::__construct();
         $this->_xzl_uid=$_SESSION['user_id'];
-        if(empty($_SESSION['user_id'])&&CONTROLLER_NAME!='Login'&&CONTROLLER_NAME!='Wechat'&&CONTROLLER_NAME!='Wenjuan'){
+        if(empty($_SESSION['user_id'])&&CONTROLLER_NAME!='Login'&&CONTROLLER_NAME!='Wechat'&&CONTROLLER_NAME!='Wenjuan'&&CONTROLLER_NAME!='Check'){
 //            $this->error('请先登陆',U(MODULE_NAME."/Do/login"));
             header("location:".U(MODULE_NAME."/Do/login"));
         }
@@ -238,5 +238,64 @@ class MobileCommonController extends Controller {
         return $data;
     }
 
+    //抽奖用户授权登录
+    public function check_oauth_login($e_id){
+        $cfg=$this->getWechatConfig();
+        $return_url="http://xt.wxlyz.com/index.php/Mobile/Check/getWechat/e_id/{$e_id}";
+        $url = str_replace(':APPID', trim($cfg['appid']), $this->weichat_api_url('oauth2'));
+        $url = str_replace(':REDIRECT_URI', $return_url, $url);
+        header('Location: ' . $url);
+        exit();
+    }
+    public function get_check_access_token($code,$e_id,$member_id){
+        if($_SESSION['web_info']['access_token']){
+            if($_SESSION['web_info']['expires']>time()){
+                $access_token = $_SESSION['web_info']['access_token'];
+                $openid = $_SESSION['web_info']['openid'];
+            }
+        }
+        $cfg=$this->getWechatConfig();
+        $tokenApi = str_replace(':APPID', trim($cfg['appid']), $this->weichat_api_url('oauth2_2'));
+        $tokenApi = str_replace(':APPSECRET', trim($cfg['appsecret']), $tokenApi);
+        $tokenApi = str_replace(':CODE', trim($code), $tokenApi);
+        $res = json_decode($this->_httpGet($tokenApi),true);
+        if($res['access_token']){
+            $this->_set_webinfo($res);
+            $access_token = $res['access_token'];
+            $openid = $res['openid'];
+        }
+        //判断该活动下用户是否已存在
+        $user = M('event_user')->where(['open_id'=>$openid,'e_id'=>$e_id])->find();
+        if(!$user){
+            //判断活动是否限制人数
+            $event = M('event')->where(['e_id'=>$e_id])->find();
+            $user_count = M('event_user')->where(['e_id'=>$e_id])->count();
+            if($event['max_member']<=$user_count){
+                return false;
+            }
+            $userApi = str_replace(':OPENID', $openid, $this->weichat_api_url('user'));
+            $userApi = str_replace(':ACCESS_TOKEN', $access_token, $userApi);
+            $usr_info = json_decode($this->_httpGet($userApi),true);
+            if($usr_info['sex']==1){
+                $sex = '男';
+            }elseif($usr_info['sex']==2){
+                $sex = '女';
+            }else{
+                $sex = '未知';
+            }
+            $event_user['e_id'] = $e_id;
+            $event_user['name'] = $usr_info['nickname'];
+            $event_user['image'] = $usr_info['headimgurl'];
+            $event_user['thumb_image'] = $usr_info['headimgurl'];
+            $event_user['created_at'] = time();
+            $event_user['province'] = $usr_info['province'];
+            $event_user['city'] = $usr_info['city'];
+            $event_user['open_id'] = $usr_info['openid'];
+            $event_user['sex'] = $sex;
+            $event_user['member_id'] = $member_id;
+            M('event_user')->add($event_user);
+            return true;
+        }
+    }
 }
 ?>

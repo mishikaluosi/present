@@ -58,7 +58,6 @@ class LoginController extends MobileCommonController{
         echo json_encode($return_arr);
         exit();
     }
-
 }
 
 ?>
