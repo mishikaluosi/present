@@ -31,11 +31,11 @@ class CheckController extends MobileCommonController{
             exit();
         }
         if(empty($data['phone'])){
-//            跳转到获取手机号页面;
-            $this->display();
+            echo '跳转到获取手机号页面';
+//            $this->display();
         }else{
-//            跳转到活动信息页
-            $this->display();
+            echo '跳转到活动信息页';
+//            $this->display();
         }
     }
 }
