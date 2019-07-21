@@ -51,21 +51,11 @@
         {$event['name']}--签到列表
     </div>
     <div class="operate">
-        <!--<div class="left">-->
-            <!--<input type="button" onclick="goUrl('{:U('Appointment/add',array('e_id'=>$event['id']))}')" class="btn_blue btn_red" value="添加报名成员">-->
-        <!--</div>-->
-        <!--<div class="left">-->
-            <!--<input type="button" alt="__DATA__/appointment.xlsx" id="exportTemp" class="btn_blue btn_blue" value="导出模板">-->
-        <!--</div>-->
-        <!--<div class="left">-->
-            <!--<form action="" id="importExcelForm" target="upload_excel_ifm" method="post" enctype="multipart/form-data">-->
-                <!--<input type="button" id="change_input"  class="btn_blue" value="批量导入">-->
-                <!--<input type="hidden" name="e_id" value="{$event['id']}">-->
-                <!--<input type="file" alt={:U('Appointment/upload')} name="inputExcel" id="inputExcel" style="display:none;" class="btn_blue" value="批量导入">-->
-            <!--</form>-->
-        <!--</div>-->
         <div class="left">
             <input type="button" id="exportEx" class="btn_blue btn_red" value="批量导出">
+        </div>
+        <div class="left">
+            <a title="生成二维码，请先选择业务员" class="btn_blue btn_red" href="{:U('Check/qrcode',array('e_id'=>$event['id'],'member_id'=>$member_id))}" target="_blank">签到二维码</a>
         </div>
     </div>
     <div class="operate">
