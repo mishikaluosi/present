@@ -17,6 +17,10 @@ class CheckController extends MobileCommonController{
         $code = $_REQUEST['code'];
         if($code) {
             $ret = $this->get_check_access_token($code,$e_id,$member_id);
+            if(!$ret){
+                echo '签到失败,已大于最大报名人数';
+                exit();
+            }
         }
         $openid=$_SESSION['web_info']['openid'];
         if(empty($openid)){
@@ -25,10 +29,6 @@ class CheckController extends MobileCommonController{
         $data= M('event_user')->where(array("open_id"=>$openid,"e_id"=>$e_id))->find();
         if(!$data){
             $this->check_oauth_login($e_id);
-        }
-        if(!$ret){
-            echo '签到失败,已大于最大报名人数';
-            exit();
         }
         if(empty($data['phone'])){
             echo '跳转到获取手机号页面';

@@ -123,7 +123,7 @@ CREATE TABLE `bestop_appointment` (
 /*
 
 活动签到表新增字段
-Date: 2019-07-20 10:45:13
+Date: 2019-07-21 22:45:13
 */
 ALTER TABLE `bestop_event_user`
 ADD COLUMN `province`  varchar(255) NULL COMMENT '省' ,
