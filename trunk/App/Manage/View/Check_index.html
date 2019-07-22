@@ -43,41 +43,27 @@
 
 </style>
 <input type="hidden" id="e_id" value="{$event['id']}">
-<input type="hidden" id="export_url" value="{:U('Appointment/exportEx')}">
-<input type="hidden" id="index_url" value="{:U('Appointment/index',array('e_id'=>$event['id']))}">
+<input type="hidden" id="export_url" value="{:U('Check/exportEx')}">
+<input type="hidden" id="index_url" value="{:U('Check/index',array('e_id'=>$event['id']))}">
 <input type="hidden" id="member_url" value="{:U('Appointment/getMember')}">
 <div class="main">
     <div class="pos">
-        {$event['name']}--预约列表
+        {$event['name']}--签到列表
     </div>
     <div class="operate">
         <div class="left">
-            <input type="button" onclick="goUrl('{:U('Appointment/add',array('e_id'=>$event['id']))}')" class="btn_blue btn_red" value="添加报名成员">
+            <input type="button" id="exportEx" class="btn_blue btn_red" value="批量导出">
         </div>
         <div class="left">
-            <input type="button" alt="__DATA__/appointment.xlsx" id="exportTemp" class="btn_blue btn_blue" value="导出模板">
-        </div>
-        <div class="left">
-            <form action="" id="importExcelForm" target="upload_excel_ifm" method="post" enctype="multipart/form-data">
-                <input type="button" id="change_input"  class="btn_blue" value="批量导入">
-                <input type="hidden" name="e_id" value="{$event['id']}">
-                <input type="file" alt={:U('Appointment/upload')} name="inputExcel" id="inputExcel" style="display:none;" class="btn_blue" value="批量导入">
-            </form>
-        </div>
-        <div class="left">
-            <!--<form action="{:U('appointment/exportEx')}" method="post">-->
-                <input type="button" id="exportEx" class="btn_blue btn_red" value="批量导出">
-            <!--</form>-->
+            <a title="生成二维码，请先选择业务员" class="btn_blue btn_red" href="{:U('Check/qrcode',array('e_id'=>$event['id'],'member_id'=>$member_id))}" target="_blank">签到二维码</a>
         </div>
     </div>
     <div class="operate">
         <div class="left search_box" style="position: relative">
             <!--<form method="post" action="{:U('Appointment/index')}">-->
-
                 <input type="text" id="member" class="inp_one" autocomplete="off" alt="{$member_id}" value="{$member}" placeholder="业务员搜索" style="margin-right: 50px;">
                 <input type="text" id="name" name="name" class="inp_one" autocomplete="off" value="{$name}" placeholder="关键词">
                 <input type="button" id="search_btn" class="btn_blue" style="float: none" value="查  询">
-
             <!--</form>-->
         </div>
         <div class="clear"></div>
@@ -87,20 +73,22 @@
         <form action="" method="post" id="form_do" name="form_do">
         <table width="100%">
             <tr>
-                <th ><input type="checkbox" id="check"></th>
+                <th><input type="checkbox" id="check"></th>
                 <th>编号</th>
                 <th>姓名</th>
                 <th>手机号</th>
                 <th>性别</th>
                 <th>业务员</th>
-                <th>房间号</th>
-                <th style="width: 150px">操作</th>
+                <th>头像</th>
+                <th>省</th>
+                <th>城市</th>
+                <!--<th style="width: 150px">操作</th>-->
             </tr>
             <foreach name='vlist' item='v'>
                 <tr>
                     <td><input type="checkbox" name="key[]" value="{$v.id}"></td>
                     <td>{$v.id}</td>
-                    <td class="aleft" style="">
+                    <td>
                         {$v.name}
                     </td>
                     <td>
@@ -108,17 +96,19 @@
                     </td>
                     <td>{$v.sex}</td>
                     <td>{$v.member}</td>
-                    <td>{$v.room_num}</td>
-                    <td>
-                        <a href="{:U('Appointment/add',array('id' => $v['id']), '')}">编辑</a>
-                        <a href="javascript:;" onclick="toConfirm('{:U('Appointment/del',array('id' => $v['id'],'e_id' => $event['id']), '')}', '确实要删除吗？')">删除</a>
-                    </td>
+                    <td style="width:40px;"><img src="{$v.image}" alt=""></td>
+                    <td>{$v.province}</td>
+                    <td>{$v.city}</td>
+                    <!--<td>-->
+                        <!--<a href="{:U('Appointment/add',array('id' => $v['id']), '')}">编辑</a>-->
+                        <!--<a href="javascript:;" onclick="toConfirm('{:U('Appointment/del',array('id' => $v['id'],'e_id' => $event['id']), '')}', '确实要删除吗？')">删除</a>-->
+                    <!--</td>-->
                 </tr>
             </foreach>
         </table>
 
         <div class="page" style="clear: both">
-            <input type="button" onclick="doConfirmBatch('{:U('Appointment/delBatch', array('batchFlag' => 1,'e_id' => $event['id']))}', '确实要删除选择项吗？')" class="btn_blue btn_f" value="删除">
+            <!--<input type="button" onclick="doConfirmBatch('{:U('Appointment/delBatch', array('batchFlag' => 1,'e_id' => $event['id']))}', '确实要删除选择项吗？')" class="btn_blue btn_f" value="删除">-->
             {$page}
         </div>
         </form>
@@ -142,95 +132,15 @@
 </style>
 <script>
     $(function () {
-        $('#name').bind('keypress',enterOrderSearch);
-        $("#member").bind("click",selectSupplier).bind("keyup",selectSupplier).bind('input',function () {
-            $("#member").attr('alt','');
+        $('#name').bind('keypress', enterOrderSearch);
+        $("#member").bind("click", selectSupplier).bind("keyup", selectSupplier).bind('input', function () {
+            $("#member").attr('alt', '');
         });
-        $(document).unbind().bind("click",function(){ // 点击消失
+        $(document).unbind().bind("click", function () { // 点击消失
             $("div.form_popup:visible").remove();
         });
-        $("#search_btn").bind("click",choose_data);
-        /*下载模板*/
-        $("#exportTemp").click(function(){
-            var fname = $(this).attr("alt");
-            downloadTemplate(fname)
-        })
-        $('#inputExcel').bind('change',importExcel);			/*导入*/
-        $("#change_input").bind("click",function(){/*导入执行*/
-            $('#inputExcel').trigger("click");
-        });
-        $("#exportEx").bind("click",function(){
-            var ids =getIds();
-            if(!ids.length>0){
-                alert('请选择要导出的项！');
-                return false;
-            }
-            var url = $("#export_url").val()+"&ids="+ids.toString();
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', url, true);
-            xhr.responseType = 'blob';
-            xhr.onload = function(e) {
-                if (this.status == 200) {
-                    var blob = this.response;
-                    var reader = new FileReader();
-                    reader.readAsDataURL(blob);  // 转换为base64，可以直接放入a表情href
-                    reader.onload = function (e) {
-                        // 转换完成，创建一个a标签用于下载
-                        var a = document.createElement('a');
-                        a.download = '<?php echo date(Ymdhis);?>.xlsx';
-                        a.href = e.target.result;
-                        $("body").append(a);  // 修复firefox中无法触发click
-                        a.click();
-                        $(a).remove();
-                    }
-                }
-            };
-
-            xhr.send();
-        })
+        $("#search_btn").bind("click", choose_data);
     })
-    function downloadTemplate(fname) {
-        window.open(fname);
-    }
-    function importExcel() {
-        var file = $("#inputExcel").val();
-        if(file!=""){
-            var allowSuffix = "xlsx";  //允许上传文件的后缀名
-            var suffix = file.split(".");
-            suffix = suffix[suffix.length-1].toLowerCase();
-            var find = allowSuffix.indexOf(suffix);
-            if (find < 0) {
-                $("#inputExcel").val("");
-                alert('导入的Excel表格的文件格式不正确，支持扩展名为的.xlsx的Excel文件'); //header_top.js
-                return false;
-            }
-            var action = $('#inputExcel').attr("alt");
-            var thisForm = $("#importExcelForm");
-            thisForm.ajaxSubmit({url:action,success:function(ret){
-                    if(ret.status!=0){
-                        alert(ret.message);
-                        is_double = false;
-                        return false;
-                    }
-                    location.reload();
-            },dataType: "json"})
-        }else{
-            alert('请选择要导入的Excel文件'); //header_top.js
-        }
-        return false;
-    }
-    function getIds(){
-        var obj = document.getElementsByName('key[]');
-        var result =[];
-        var j= 0;
-        for (var i=0;i<obj.length;i++){
-            if (obj[i].checked===true){
-                result.push(obj[i].value);
-                j++;
-            }
-        }
-        return result;
-    }
     function choose_data(){
         var url = $("#index_url").val();
         var name =$.trim($("#name").val());
@@ -283,6 +193,47 @@
             return false;
 
         }
+    }
+    $("#exportEx").bind("click",function(){
+        var ids =getIds();
+        if(!ids.length>0){
+            alert('请选择要导出的项！');
+            return false;
+        }
+        var url = $("#export_url").val()+"&ids="+ids.toString();
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url, true);
+        xhr.responseType = 'blob';
+        xhr.onload = function(e) {
+            if (this.status == 200) {
+                var blob = this.response;
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);  // 转换为base64，可以直接放入a表情href
+                reader.onload = function (e) {
+                    // 转换完成，创建一个a标签用于下载
+                    var a = document.createElement('a');
+                    a.download = '<?php echo date(Ymdhis);?>.xlsx';
+                    a.href = e.target.result;
+                    $("body").append(a);  // 修复firefox中无法触发click
+                    a.click();
+                    $(a).remove();
+                }
+            }
+        };
+
+        xhr.send();
+    })
+    function getIds(){
+        var obj = document.getElementsByName('key[]');
+        var result =[];
+        var j= 0;
+        for (var i=0;i<obj.length;i++){
+            if (obj[i].checked===true){
+                result.push(obj[i].value);
+                j++;
+            }
+        }
+        return result;
     }
 </script>
 </body>
