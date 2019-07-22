@@ -118,6 +118,12 @@ class MobileCommonController extends Controller {
             case 'oauth2_3':
                 $url='https://api.weixin.qq.com/sns/oauth2/refresh_token?appid=:APPID&grant_type=refresh_token&refresh_token=:REFRESH_TOKEN';
                 break;
+            case 'oauth_user':
+                $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid=:APPID&redirect_uri=:REDIRECT_URI&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect';
+                break;
+            case 'oauth_user_info':
+                $url='https://api.weixin.qq.com/sns/userinfo?access_token=:ACCESS_TOKEN&openid=:OPENID&lang=zh_CN';
+                break;
         }
         return $url;
     }
@@ -242,7 +248,7 @@ class MobileCommonController extends Controller {
     public function check_oauth_login($e_id,$member_id){
         $cfg=$this->getWechatConfig();
         $return_url="http://xt.wxlyz.com/index.php/Mobile/Check/getWechat/e_id/{$e_id}/member_id/{$member_id}";
-        $url = str_replace(':APPID', trim($cfg['appid']), $this->weichat_api_url('oauth2'));
+        $url = str_replace(':APPID', trim($cfg['appid']), $this->weichat_api_url('oauth_user'));
         $url = str_replace(':REDIRECT_URI', $return_url, $url);
         header('Location: ' . $url);
         exit();
@@ -273,7 +279,7 @@ class MobileCommonController extends Controller {
             if($event['max_member']<=$user_count){
                 return false;
             }
-            $userApi = str_replace(':OPENID', $openid, $this->weichat_api_url('user'));
+            $userApi = str_replace(':OPENID', $openid, $this->weichat_api_url('oauth_user_info'));
             $userApi = str_replace(':ACCESS_TOKEN', $access_token, $userApi);
             $usr_info = json_decode($this->_httpGet($userApi),true);
             if($usr_info['sex']==1){
