@@ -239,9 +239,9 @@ class MobileCommonController extends Controller {
     }
 
     //抽奖用户授权登录
-    public function check_oauth_login($e_id){
+    public function check_oauth_login($e_id,$member_id){
         $cfg=$this->getWechatConfig();
-        $return_url="http://xt.wxlyz.com/index.php/Mobile/Check/getWechat/e_id/{$e_id}";
+        $return_url="http://xt.wxlyz.com/index.php/Mobile/Check/getWechat/e_id/{$e_id}/member_id/{$member_id}";
         $url = str_replace(':APPID', trim($cfg['appid']), $this->weichat_api_url('oauth2'));
         $url = str_replace(':REDIRECT_URI', $return_url, $url);
         header('Location: ' . $url);
@@ -268,7 +268,7 @@ class MobileCommonController extends Controller {
         $user = M('event_user')->where(['open_id'=>$openid,'e_id'=>$e_id])->find();
         if(!$user){
             //判断活动是否限制人数
-            $event = M('event')->where(['e_id'=>$e_id])->find();
+            $event = M('event')->where(['id'=>$e_id])->find();
             $user_count = M('event_user')->where(['e_id'=>$e_id])->count();
             if($event['max_member']<=$user_count){
                 return false;

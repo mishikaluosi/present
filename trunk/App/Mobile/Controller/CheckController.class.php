@@ -24,11 +24,11 @@ class CheckController extends MobileCommonController{
         }
         $openid=$_SESSION['web_info']['openid'];
         if(empty($openid)){
-            $this->check_oauth_login($e_id);
+            $this->check_oauth_login($e_id,$member_id);
         }
         $data= M('event_user')->where(array("open_id"=>$openid,"e_id"=>$e_id))->find();
         if(!$data){
-            $this->check_oauth_login($e_id);
+            $this->check_oauth_login($e_id,$member_id);
         }
         if(empty($data['phone'])){
             echo '跳转到获取手机号页面';
