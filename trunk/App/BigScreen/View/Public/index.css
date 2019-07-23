@@ -386,15 +386,26 @@ button:focus {
     left: 20%;
 }
 .img-qrcode{
-    width:380px;
-    height:380px;
+    width:250px;
+    height:250px;
+    line-height: 450px;
+    text-align: center;
+    font-size: 30px;
+    color: #fff;
     margin:0 auto;
     margin-top:80px;
-    background: #fff;
+    background: #000;
     padding:20px;
+    border-radius: 50%;
+    opacity: 0.4;
+    border:5px solid #e08908;
+    position: relative;
 }
 .img-qrcode img{
-    width:100%;
+    width:60%;
+    position: absolute;
+    left:20%;
+    top:15%;
 }
 .loader_file {
     position: absolute;

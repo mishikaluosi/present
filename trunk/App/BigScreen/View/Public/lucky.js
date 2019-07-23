@@ -208,6 +208,11 @@ $(function () {
      开始按钮事件函数
      */
     $('#open').click(function () {
+        var luckyNum = Obj.luckyNum;
+        if(luckyNum<=0){
+            alert("抽奖人数必须大于0");
+            return false;
+        }
         $('.lucky_list').hide();
         $(".container").show();
         Obj.M.open();
@@ -215,7 +220,7 @@ $(function () {
         var get_lucky_info = $('#get_lucky_info').val();
         var cur_award_id = $('#cur_award_id').val();
         var e_id = $('#e_id').val();
-        $.post(get_lucky_info,{luckyNum : Obj.luckyNum,e_id:e_id,cur_award_id:cur_award_id},function(ret){
+        $.post(get_lucky_info,{luckyNum : luckyNum,e_id:e_id,cur_award_id:cur_award_id},function(ret){
         	  if(ret.status != 1){
         		  Obj.luckyResult = ret.data;
         		  //该奖项已中奖数修改
