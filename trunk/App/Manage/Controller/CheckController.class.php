@@ -30,7 +30,7 @@ class CheckController extends CommonController
         $this->assign('member', $member);
         $where=" eu.e_id = {$e_id} ";
         if(!empty($name)){
-            $where.=" and (eu.name like '%{$name}%' or eu.phone like '%{$name}%' or eu.city like '%{$name}%' or eu.province like '%{$name}%')";
+            $where.=" and (eu.name like '%{$name}%' or eu.username like '%{$name}%' or eu.phone like '%{$name}%' or eu.city like '%{$name}%' or eu.province like '%{$name}%')";
         }
         if($member_id>0){
             $where.=" and eu.member_id={$member_id}";
@@ -65,9 +65,10 @@ class CheckController extends CommonController
 //        }
         $e_id = I('get.e_id');
         $member_id = I('get.member_id');
+        $name = I('get.name');
         $where=" eu.e_id = {$e_id} ";
         if(!empty($name)){
-            $where.=" and (eu.name like '%{$name}%' or eu.phone like '%{$name}%')";
+            $where.=" and (eu.name like '%{$name}%' or eu.username like '%{$name}%' or eu.phone like '%{$name}%' or eu.city like '%{$name}%' or eu.province like '%{$name}%')";
         }
         if($member_id>0){
             $where.=" and eu.member_id={$member_id}";
@@ -84,20 +85,22 @@ class CheckController extends CommonController
         $iofactory = new \IOFactory();
         $objPHPExcel->setActiveSheetIndex(0);
         $objActiveSheet = $objPHPExcel->getActiveSheet();
-        $objActiveSheet->setCellValue('A1', '姓名')
-            ->setCellValue('B1', '手机号')
-            ->setCellValue('C1', '性别')
-            ->setCellValue('D1', '业务员')
-            ->setCellValue('E1', '省')
-            ->setCellValue('F1', '市');
+        $objActiveSheet->setCellValue('A1', '昵称')
+            ->setCellValue('B1', '姓名')
+            ->setCellValue('C1', '手机号')
+            ->setCellValue('D1', '性别')
+            ->setCellValue('E1', '业务员')
+            ->setCellValue('F1', '省')
+            ->setCellValue('G1', '市');
         foreach ($app as $k => $v) {
             $num = $k + 2;
             $objActiveSheet->setCellValue("A$num", $v['name'])
-                ->setCellValue("B$num", $v['phone'])
-                ->setCellValue("C$num", $v['sex'])
-                ->setCellValue("D$num", $v['member'])
-                ->setCellValue("E$num", $v['province'])
-                ->setCellValue("F$num", $v['city']);
+                ->setCellValue("B$num", $v['username'])
+                ->setCellValue("C$num", $v['phone'])
+                ->setCellValue("D$num", $v['sex'])
+                ->setCellValue("E$num", $v['member'])
+                ->setCellValue("F$num", $v['province'])
+                ->setCellValue("G$num", $v['city']);
         }
         $objPHPExcel->getActiveSheet()->setTitle($name);
         $objPHPExcel->setActiveSheetIndex(0);

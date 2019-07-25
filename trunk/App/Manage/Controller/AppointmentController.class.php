@@ -141,6 +141,7 @@ class AppointmentController extends CommonController
     public function exportEx(){
         $e_id = I('get.e_id');
         $member_id = I('get.member_id');
+        $name = I('get.name');
         $where=" a.e_id = {$e_id} ";
         if(!empty($name)){
             $where.=" and (a.name like '%{$name}%' or a.phone like '%{$name}%')";
