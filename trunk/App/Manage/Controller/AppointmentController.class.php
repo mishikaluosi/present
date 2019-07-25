@@ -139,10 +139,14 @@ class AppointmentController extends CommonController
      * 导出excel
      */
     public function exportEx(){
-        $ids = I('get.ids');
-        $where ="1";
-        if($ids){
-            $where .= " and a.id in ($ids)";
+        $e_id = I('get.e_id');
+        $member_id = I('get.member_id');
+        $where=" a.e_id = {$e_id} ";
+        if(!empty($name)){
+            $where.=" and (a.name like '%{$name}%' or a.phone like '%{$name}%')";
+        }
+        if($member_id>0){
+            $where.=" and a.member_id={$member_id}";
         }
         $pre = C('DB_PREFIX');
         $app = M('appointment')->alias('a')

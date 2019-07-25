@@ -58,10 +58,19 @@ class CheckController extends CommonController
      * 导出excel
      */
     public function exportEx(){
-        $ids = I('get.ids');
-        $where ="1";
-        if($ids){
-            $where .= " and eu.id in ($ids)";
+//        $ids = I('get.ids');
+//        $where ="1";
+//        if($ids){
+//            $where .= " and eu.id in ($ids)";
+//        }
+        $e_id = I('get.e_id');
+        $member_id = I('get.member_id');
+        $where=" eu.e_id = {$e_id} ";
+        if(!empty($name)){
+            $where.=" and (eu.name like '%{$name}%' or eu.phone like '%{$name}%')";
+        }
+        if($member_id>0){
+            $where.=" and eu.member_id={$member_id}";
         }
         $pre = C('DB_PREFIX');
         $app = M('event_user')->alias('eu')
