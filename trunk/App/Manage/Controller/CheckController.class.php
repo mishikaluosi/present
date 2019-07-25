@@ -103,16 +103,11 @@ class CheckController extends CommonController
 //    生成二维码
     public function qrcode(){
         $e_id=I('e_id',null);
-        $member_id=I('member_id',null);
         if(!is_numeric($e_id)){
             echo '活动不能为空';
             exit();
         }
-        if(!is_numeric($member_id)){
-            echo '业务员不能为空';
-            exit();
-        }
-        $url= 'http://'.$_SERVER['HTTP_HOST'].U('Mobile/'.'Check/getWechat/',array('e_id'=>$e_id,'member_id'=>$member_id));
+        $url= 'http://'.$_SERVER['HTTP_HOST'].U('Mobile/'.'Check/getWechat/',array('e_id'=>$e_id));
         $level=3;
         $size=4;
         Vendor('phpqrcode.phpqrcode');
