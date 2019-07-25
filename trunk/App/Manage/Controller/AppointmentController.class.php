@@ -90,7 +90,7 @@ class AppointmentController extends CommonController
             $where .=" and name like '%{$keywords}%'";
         }
         $member = M('member')->where($where)->limit(20)->select();
-        $this->success($member);
+        $this->returnSuccess($member);
     }
     public function save(){
         $app_data = I('app_data');
@@ -109,9 +109,9 @@ class AppointmentController extends CommonController
             $flag=M('appointment')->add($wj);
         }
         if($flag){
-            $this->success();
+            $this->returnSuccess();
         }else {
-            $this->error('添加失败');
+            $this->returnError('添加失败');
         }
     }
     public function del(){
@@ -228,9 +228,9 @@ class AppointmentController extends CommonController
         }
         $ret = M('appointment')->addAll($data);
         if(!$ret){
-            $this->error('批量导入失败');
+            $this->returnError('批量导入失败');
         }
-        $this->success();
+        $this->returnSuccess();
     }
     public function _uploadFile($sfile = 'excel') {
         $ext = '';//原文件后缀
