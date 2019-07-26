@@ -70,8 +70,8 @@ function deleteFrom(){
         }
         var del_url = $('#del_url').val()
         $.post(del_url,{id:draw_id},function(ret){
-            if(ret.status!=1){
-                alert(ret.info);
+            if(ret.status!=0){
+                alert(ret.message);
                 return false;
             }
         },'json')
@@ -135,7 +135,7 @@ function saveDraw(){
         $.post(url,{e_id:e_id,draw_data:draw_data},function(ret){
             is_double = false;
             if(ret.status!=0){
-                alert(ret.info);
+                alert(ret.message);
                 is_double = false;
                 return false;
             }
