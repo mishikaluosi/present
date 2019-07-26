@@ -86,9 +86,9 @@ class IndexController extends Controller
         }
         $ret = M("prize")->addAll($data);
         if(!$ret){
-            $this->error("抽奖失败");
+            $this->returnError("抽奖失败");
         }
-        $this->success($prize_member);
+        $this->returnSuccess($prize_member);
     }
     private function getEventMember($e_id){
 //        $data = [
@@ -195,7 +195,7 @@ class IndexController extends Controller
         $members = M('event_user')->where(['e_id'=>$e_id])->select();
         return $members;
     }
-    public function success($data,$message='ok'){
+    public function returnSuccess($data,$message='ok'){
         echo json_encode(array(
             'status' => 0,
             'data' => $data,
@@ -203,7 +203,7 @@ class IndexController extends Controller
         ));
         exit();
     }
-    public function error($message='error'){
+    public function returnError($message='error'){
         echo json_encode(array(
             'status' => 1,
             'data' => null,
