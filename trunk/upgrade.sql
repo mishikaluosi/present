@@ -141,3 +141,11 @@ Date: 2019-07-25 22:03:13
 */
 ALTER TABLE `bestop_event_user`
 ADD COLUMN `username` varchar(255) NULL COMMENT '姓名';
+
+/*
+
+活动签到表新增字段
+Date: 2019-07-27 17:05:13
+*/
+ALTER TABLE `bestop_event_user`
+ADD COLUMN `apply_at` int(10) DEFAULT '0' COMMENT '同步预约时间';

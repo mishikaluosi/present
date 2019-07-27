@@ -300,7 +300,25 @@ class MobileCommonController extends Controller {
             $event_user['sex'] = $sex;
             M('event_user')->add($event_user);
             return true;
+        }else{
+            return true;
         }
+    }
+    public function returnSuccess($data,$message='ok'){
+        echo json_encode(array(
+            'status' => 0,
+            'data' => $data,
+            'message' => $message
+        ));
+        exit();
+    }
+    public function returnError($message='error'){
+        echo json_encode(array(
+            'status' => 1,
+            'data' => null,
+            'message' => $message
+        ));
+        exit();
     }
 }
 ?>
