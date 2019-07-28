@@ -1,4 +1,9 @@
 <include file="Public:header" />
+<style>
+    a:hover{
+        color: #0bb20c;
+    }
+</style>
 <div style="margin-top: 45px;">
 </div>
 <div class="content">
@@ -27,8 +32,30 @@
                 <label class="weui-form-preview__label">性别</label>
                 <span class="weui-form-preview__value">{$user.sex}</span>
             </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">是否预约保费</label>
+                <span class="weui-form-preview__value">
+                    <if condition="$user.is_appointment eq 1">
+                        否
+                        <else />
+                        是
+                    </if>
+                </span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">预约保费</label>
+                <span class="weui-form-preview__value">{$user.appointment_money}</span>
+            </div>
+            <div class="weui-form-preview__item">
+                <label class="weui-form-preview__label">实际预约保费</label>
+                <span class="weui-form-preview__value">{$user.appointment_money_actual}</span>
+            </div>
+        </div>
+        <div class="weui-form-preview__ft">
+            <a class="weui-form-preview__btn weui-form-preview__btn_primary showDialog" href="javascript:">填写预约报费</a>
         </div>
     </div>
     </foreach>
 </div>
+
 <include file="Public:footer" />
