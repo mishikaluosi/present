@@ -38,7 +38,7 @@ class CommonController extends Controller {
 
 
 	}
-    public function success($data,$message='ok'){
+    public function returnSuccess($data,$message='ok'){
         echo json_encode(array(
             'status' => 0,
             'data' => $data,
@@ -46,7 +46,7 @@ class CommonController extends Controller {
         ));
         exit();
     }
-    public function error($message='error'){
+    public function returnError($message='error'){
         echo json_encode(array(
             'status' => 1,
             'data' => null,

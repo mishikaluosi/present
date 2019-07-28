@@ -114,7 +114,7 @@ class DoController extends Controller{
         echo json_encode(array('result'=>$result, 'show'=>$show));
         exit();
     }
-    public function success($data,$message='ok'){
+    public function returnSuccess($data,$message='ok'){
         echo json_encode(array(
             'status' => 0,
             'data' => $data,
@@ -122,7 +122,7 @@ class DoController extends Controller{
         ));
         exit();
     }
-    public function error($message='error'){
+    public function returnError($message='error'){
         echo json_encode(array(
             'status' => 1,
             'data' => null,
@@ -322,7 +322,7 @@ class DoController extends Controller{
         $phone = I("phone");
         $code = rand(100000, 999999);
         if(!pe_formcheck('phone',$phone)) {
-            $this->error('手机号格式不正确');
+            $this->returnError('手机号格式不正确');
         }
         //发送验证码给手机
         $item = array(
@@ -333,9 +333,9 @@ class DoController extends Controller{
         );
         $id = M('send_code')->add($item);
        if(!$id){
-           $this->error('验证码获取失败');
+           $this->returnError('验证码获取失败');
        }
-        $this->success($phone);
+        $this->returnSuccess($phone);
         exit();
     }
 }

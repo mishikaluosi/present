@@ -70,8 +70,8 @@ function deleteFrom(){
         }
         var del_url = $('#del_url').val()
         $.post(del_url,{id:draw_id},function(ret){
-            if(ret.status!=1){
-                alert(ret.info);
+            if(ret.status!=0){
+                alert(ret.message);
                 return false;
             }
         },'json')
@@ -94,7 +94,7 @@ function saveDraw(){
         _tmp.draw_level =$(this).find(".draw_level").val();
         _tmp.award_id =$(this).find(".draw_award").val();
         _tmp.draw_num =parseInt($(this).find(".draw_num").val());
-        _tmp.draw_percent =parseInt($(this).find(".draw_percent").val());
+        // _tmp.draw_percent =parseInt($(this).find(".draw_percent").val());
         if(!_tmp.draw_level){
             $(this).find('.draw_level').css('background','red');
             tip = "请填写奖项等级";
@@ -113,12 +113,12 @@ function saveDraw(){
             check_pass = false;
             return false;
         }
-        if(isNaN(_tmp.draw_percent) || _tmp.draw_percent < 0){
-            $(this).find('.draw_percent').css('background','red');
-            tip = "请填写中奖率";
-            check_pass = false;
-            return false;
-        }
+        // if(isNaN(_tmp.draw_percent) || _tmp.draw_percent < 0){
+        //     $(this).find('.draw_percent').css('background','red');
+        //     tip = "请填写中奖率";
+        //     check_pass = false;
+        //     return false;
+        // }
         draw_data.push(_tmp)
     });
     if(!check_pass){
@@ -134,8 +134,8 @@ function saveDraw(){
         var url = $('#save_url').val();
         $.post(url,{e_id:e_id,draw_data:draw_data},function(ret){
             is_double = false;
-            if(ret.status!=1){
-                alert(ret.info);
+            if(ret.status!=0){
+                alert(ret.message);
                 is_double = false;
                 return false;
             }

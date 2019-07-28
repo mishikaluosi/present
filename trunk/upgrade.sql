@@ -132,3 +132,20 @@ ADD COLUMN `member_id`  int(11) NULL DEFAULT 0 COMMENT '业务员_id' ,
 ADD COLUMN `open_id`  varchar(255) NULL COMMENT '微信授权id',
 ADD COLUMN `sex` varchar(255) DEFAULT NULL COMMENT '男|女',
 ADD COLUMN `phone` varchar(11) DEFAULT NULL COMMENT '手机号';
+
+
+/*
+
+活动签到表新增字段
+Date: 2019-07-25 22:03:13
+*/
+ALTER TABLE `bestop_event_user`
+ADD COLUMN `username` varchar(255) NULL COMMENT '姓名';
+
+/*
+
+活动签到表新增字段
+Date: 2019-07-27 17:05:13
+*/
+ALTER TABLE `bestop_event_user`
+ADD COLUMN `apply_at` int(10) DEFAULT '0' COMMENT '同步预约时间';

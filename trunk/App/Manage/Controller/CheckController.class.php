@@ -30,7 +30,7 @@ class CheckController extends CommonController
         $this->assign('member', $member);
         $where=" eu.e_id = {$e_id} ";
         if(!empty($name)){
-            $where.=" and (eu.name like '%{$name}%' or eu.phone like '%{$name}%' or eu.city like '%{$name}%' or eu.province like '%{$name}%')";
+            $where.=" and (eu.name like '%{$name}%' or eu.username like '%{$name}%' or eu.phone like '%{$name}%' or eu.city like '%{$name}%' or eu.province like '%{$name}%')";
         }
         if($member_id>0){
             $where.=" and eu.member_id={$member_id}";
@@ -58,10 +58,20 @@ class CheckController extends CommonController
      * 导出excel
      */
     public function exportEx(){
-        $ids = I('get.ids');
-        $where ="1";
-        if($ids){
-            $where .= " and eu.id in ($ids)";
+//        $ids = I('get.ids');
+//        $where ="1";
+//        if($ids){
+//            $where .= " and eu.id in ($ids)";
+//        }
+        $e_id = I('get.e_id');
+        $member_id = I('get.member_id');
+        $name = I('get.name');
+        $where=" eu.e_id = {$e_id} ";
+        if(!empty($name)){
+            $where.=" and (eu.name like '%{$name}%' or eu.username like '%{$name}%' or eu.phone like '%{$name}%' or eu.city like '%{$name}%' or eu.province like '%{$name}%')";
+        }
+        if($member_id>0){
+            $where.=" and eu.member_id={$member_id}";
         }
         $pre = C('DB_PREFIX');
         $app = M('event_user')->alias('eu')
@@ -75,20 +85,22 @@ class CheckController extends CommonController
         $iofactory = new \IOFactory();
         $objPHPExcel->setActiveSheetIndex(0);
         $objActiveSheet = $objPHPExcel->getActiveSheet();
-        $objActiveSheet->setCellValue('A1', '姓名')
-            ->setCellValue('B1', '手机号')
-            ->setCellValue('C1', '性别')
-            ->setCellValue('D1', '业务员')
-            ->setCellValue('E1', '省')
-            ->setCellValue('F1', '市');
+        $objActiveSheet->setCellValue('A1', '昵称')
+            ->setCellValue('B1', '姓名')
+            ->setCellValue('C1', '手机号')
+            ->setCellValue('D1', '性别')
+            ->setCellValue('E1', '业务员')
+            ->setCellValue('F1', '省')
+            ->setCellValue('G1', '市');
         foreach ($app as $k => $v) {
             $num = $k + 2;
             $objActiveSheet->setCellValue("A$num", $v['name'])
-                ->setCellValue("B$num", $v['phone'])
-                ->setCellValue("C$num", $v['sex'])
-                ->setCellValue("D$num", $v['member'])
-                ->setCellValue("E$num", $v['province'])
-                ->setCellValue("F$num", $v['city']);
+                ->setCellValue("B$num", $v['username'])
+                ->setCellValue("C$num", $v['phone'])
+                ->setCellValue("D$num", $v['sex'])
+                ->setCellValue("E$num", $v['member'])
+                ->setCellValue("F$num", $v['province'])
+                ->setCellValue("G$num", $v['city']);
         }
         $objPHPExcel->getActiveSheet()->setTitle($name);
         $objPHPExcel->setActiveSheetIndex(0);
@@ -103,16 +115,11 @@ class CheckController extends CommonController
 //    生成二维码
     public function qrcode(){
         $e_id=I('e_id',null);
-        $member_id=I('member_id',null);
         if(!is_numeric($e_id)){
             echo '活动不能为空';
             exit();
         }
-        if(!is_numeric($member_id)){
-            echo '业务员不能为空';
-            exit();
-        }
-        $url= 'http://'.$_SERVER['HTTP_HOST'].U('Mobile/'.'Check/getWechat/',array('e_id'=>$e_id,'member_id'=>$member_id));
+        $url= 'http://'.$_SERVER['HTTP_HOST'].U('Mobile/'.'Check/getWechat/',array('e_id'=>$e_id));
         $level=3;
         $size=4;
         Vendor('phpqrcode.phpqrcode');

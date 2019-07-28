@@ -43,7 +43,7 @@
 
 </style>
 <input type="hidden" id="e_id" value="{$event['id']}">
-<input type="hidden" id="export_url" value="{:U('Appointment/exportEx')}">
+<input type="hidden" id="export_url" value="{:U('Appointment/exportEx',array('e_id'=>$event['id']))}">
 <input type="hidden" id="index_url" value="{:U('Appointment/index',array('e_id'=>$event['id']))}">
 <input type="hidden" id="member_url" value="{:U('Appointment/getMember')}">
 <div class="main">
@@ -160,12 +160,22 @@
             $('#inputExcel').trigger("click");
         });
         $("#exportEx").bind("click",function(){
-            var ids =getIds();
-            if(!ids.length>0){
-                alert('请选择要导出的项！');
-                return false;
+//            var ids =getIds();
+//            if(!ids.length>0){
+//                alert('请选择要导出的项！');
+//                return false;
+//            }
+            var url = $("#export_url").val();
+            var name =$.trim($("#name").val());
+            var member_id = parseInt($("#member").attr("alt"));
+            var member = $("#member").val();
+            if(name){
+                url += "&name="+name;
             }
-            var url = $("#export_url").val()+"&ids="+ids.toString();
+            if(member_id>0){
+                url += "&member_id="+member_id;
+                url += "&member="+member;
+            }
             var xhr = new XMLHttpRequest();
             xhr.open('POST', url, true);
             xhr.responseType = 'blob';

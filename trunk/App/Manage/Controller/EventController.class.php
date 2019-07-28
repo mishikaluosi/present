@@ -672,35 +672,35 @@ eot;
         $draw_data = I('draw_data');
         $time = time();
         $sql = "insert into __TABLE__  
-                (id,e_id,draw_level,award_id,draw_num,draw_percent,adduser,created_at,updated_at) VALUES ";
+                (id,e_id,draw_level,award_id,draw_num,adduser,created_at,updated_at) VALUES ";
         $tmp_sql = "";
         foreach($draw_data as $value){
             $line_id = $value['id']>0 ? $value['id']:'null';
             $tmp_sql .= "($line_id,'{$e_id}','{$value['draw_level']}','{$value['award_id']}',
-                        '{$value['draw_num']}','{$value['draw_percent']}','{$adduser}','$time','$time'),";
+                        '{$value['draw_num']}','{$adduser}','$time','$time'),";
         }
         if($tmp_sql) {
             $tmp_sql = rtrim($tmp_sql, ',');
             $sql .= $tmp_sql;
             $sql .= " ON DUPLICATE KEY 	UPDATE `e_id`= VALUES(`e_id`), `draw_level` = VALUES(`draw_level`), 
-            `award_id` = VALUES(`award_id`),`draw_num` = VALUES(`draw_num`),`draw_percent` = VALUES(`draw_percent`),
+            `award_id` = VALUES(`award_id`),`draw_num` = VALUES(`draw_num`),
             `adduser` = VALUES(`adduser`),`updated_at` = VALUES(`updated_at`)";
             $flag =M('event_draw')->execute($sql);
             if ($flag) {
-                $this->success();
+                $this->returnSuccess();
             } else {
-                $this->error('添加失败');
+                $this->returnError('添加失败');
             }
         }else{
-            $this->error('添加失败');
+            $this->returnError('添加失败');
         }
     }
     public function draw_delete(){
         $id = I('id');
         if (false !== M('event_draw')->where(array('id' => $id))->delete()) {
-            $this->success();
+            $this->returnSuccess();
         }else {
-            $this->error('删除失败');
+            $this->returnError('删除失败');
         }
     }
 

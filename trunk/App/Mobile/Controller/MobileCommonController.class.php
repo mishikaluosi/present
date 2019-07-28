@@ -245,15 +245,15 @@ class MobileCommonController extends Controller {
     }
 
     //抽奖用户授权登录
-    public function check_oauth_login($e_id,$member_id){
+    public function check_oauth_login($e_id){
         $cfg=$this->getWechatConfig();
-        $return_url="http://xt.wxlyz.com/index.php/Mobile/Check/getWechat/e_id/{$e_id}/member_id/{$member_id}";
+        $return_url="http://xt.wxlyz.com/index.php/Mobile/Check/getWechat/e_id/{$e_id}";
         $url = str_replace(':APPID', trim($cfg['appid']), $this->weichat_api_url('oauth_user'));
         $url = str_replace(':REDIRECT_URI', $return_url, $url);
         header('Location: ' . $url);
         exit();
     }
-    public function get_check_access_token($code,$e_id,$member_id){
+    public function get_check_access_token($code,$e_id){
         if($_SESSION['web_info']['access_token']){
             if($_SESSION['web_info']['expires']>time()){
                 $access_token = $_SESSION['web_info']['access_token'];
@@ -298,10 +298,27 @@ class MobileCommonController extends Controller {
             $event_user['city'] = $usr_info['city'];
             $event_user['open_id'] = $usr_info['openid'];
             $event_user['sex'] = $sex;
-            $event_user['member_id'] = $member_id;
             M('event_user')->add($event_user);
             return true;
+        }else{
+            return true;
         }
+    }
+    public function returnSuccess($data,$message='ok'){
+        echo json_encode(array(
+            'status' => 0,
+            'data' => $data,
+            'message' => $message
+        ));
+        exit();
+    }
+    public function returnError($message='error'){
+        echo json_encode(array(
+            'status' => 1,
+            'data' => null,
+            'message' => $message
+        ));
+        exit();
     }
 }
 ?>
