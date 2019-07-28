@@ -63,7 +63,7 @@ $(function () {
         $(".lucky_list").hide();
 
         $(".lottery-all ul.lucky_user").empty();
-        $(".lottery-all .game-title").text('抽奖名单');
+        $(".lottery-all .game-title").text('签到名单');
         $.each(personArray,function(){
             var html='';
             html=   '<li class="lpl_userInfo">';

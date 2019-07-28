@@ -154,7 +154,7 @@ ADD COLUMN `apply_at` int(10) DEFAULT '0' COMMENT '同步预约时间';
 活动签到用户表新增字段
 Date: 2019-07-28 12:10:02
  */
-ALTER TABLE `46_xzl`.`bestop_event_user`
+ALTER TABLE `bestop_event_user`
 ADD COLUMN `is_appointment` tinyint(2) NULL DEFAULT 1 COMMENT '是否预约保费 1否 2是',
 ADD COLUMN `appointment_money` decimal(10, 2) NULL COMMENT '预约保费',
 ADD COLUMN `appointment_money_actual` decimal(10, 2) NULL COMMENT '实际预约保费';
