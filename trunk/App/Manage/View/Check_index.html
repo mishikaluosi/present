@@ -83,6 +83,9 @@
                 <th>头像</th>
                 <th>省</th>
                 <th>城市</th>
+                <th>是否预约保费</th>
+                <th>预约保费金额(元)</th>
+                <th>实际预约保费金额(元)</th>
                 <!--<th style="width: 150px">操作</th>-->
             </tr>
             <foreach name='vlist' item='v'>
@@ -103,6 +106,9 @@
                     <td style="width:40px;"><img src="{$v.image}" alt=""></td>
                     <td>{$v.province}</td>
                     <td>{$v.city}</td>
+                    <td>{$v['is_appointment'] == 1 ? '否' : '是'}</td>
+                    <td>{$v.appointment_money}</td>
+                    <td>{$v.appointment_money_actual}</td>
                     <!--<td>-->
                         <!--<a href="{:U('Appointment/add',array('id' => $v['id']), '')}">编辑</a>-->
                         <!--<a href="javascript:;" onclick="toConfirm('{:U('Appointment/del',array('id' => $v['id'],'e_id' => $event['id']), '')}', '确实要删除吗？')">删除</a>-->
@@ -226,7 +232,7 @@
                 reader.onload = function (e) {
                     // 转换完成，创建一个a标签用于下载
                     var a = document.createElement('a');
-                    a.download = '<?php echo date(Ymdhis);?>.xlsx';
+                    a.download = '签到用户列表.xlsx';
                     a.href = e.target.result;
                     $("body").append(a);  // 修复firefox中无法触发click
                     a.click();

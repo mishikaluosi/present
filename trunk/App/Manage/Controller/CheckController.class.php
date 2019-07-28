@@ -91,7 +91,10 @@ class CheckController extends CommonController
             ->setCellValue('D1', '性别')
             ->setCellValue('E1', '业务员')
             ->setCellValue('F1', '省')
-            ->setCellValue('G1', '市');
+            ->setCellValue('G1', '市')
+            ->setCellValue('H1', '是否预约保费')
+            ->setCellValue('I1', '预约保费金额')
+            ->setCellValue('J1', '实际预约保费金额');
         foreach ($app as $k => $v) {
             $num = $k + 2;
             $objActiveSheet->setCellValue("A$num", $v['name'])
@@ -100,7 +103,10 @@ class CheckController extends CommonController
                 ->setCellValue("D$num", $v['sex'])
                 ->setCellValue("E$num", $v['member'])
                 ->setCellValue("F$num", $v['province'])
-                ->setCellValue("G$num", $v['city']);
+                ->setCellValue("G$num", $v['city'])
+                ->setCellValue("H$num", $v['is_appointment'] == 1 ? '否' : '是')
+                ->setCellValue("I$num", $v['appointment_money'])
+                ->setCellValue("J$num", $v['appointment_money_actual']);
         }
         $objPHPExcel->getActiveSheet()->setTitle($name);
         $objPHPExcel->setActiveSheetIndex(0);
