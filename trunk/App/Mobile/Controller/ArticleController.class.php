@@ -110,7 +110,17 @@ class ArticleController extends MobileCommonController{
         $object->png($url, false, $errorCorrectionLevel, $matrixPointSize, 2);
         exit();
     }
-
+    public function checkList(){
+        $e_id = I("e_id");
+        $where['e_id'] = $e_id;
+        //获取业务员id；
+        $user_id=$this->_xzl_uid;
+        $info=M('member')->find($user_id);
+        $where['member_id'] = $info['id'];
+        $event_user = M("event_user")->where($where)->select();
+        $this->assign('event_user', $event_user);
+        $this->display();
+    }
 }
 
 ?>
