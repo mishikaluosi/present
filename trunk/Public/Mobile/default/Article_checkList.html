@@ -81,7 +81,7 @@
             </div>
         </div>
         <div class="weui-form-preview__ft">
-            <a class="weui-form-preview__btn weui-form-preview__btn_primary showDialog" appointment_money_actual="{$user.appointment_money_actual}" appointment_money="{$user.appointment_money}"  alt="{$user.id}" href="javascript:">填写预约保费</a>
+            <a class="weui-form-preview__btn weui-form-preview__btn_primary showDialog" username="{$user.username}" appointment_money_actual="{$user.appointment_money_actual}" appointment_money="{$user.appointment_money}"  alt="{$user.id}" href="javascript:">填写预约保费</a>
         </div>
     </div>
     </foreach>
@@ -99,6 +99,12 @@
             </div>
             <div class="weui-half-screen-dialog__bd">
                 <div class="weui-cells weui-cells_form">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd"><label class="weui-label">客户姓名</label></div>
+                        <div class="weui-cell__bd">
+                            <input class="weui-input username" type="text" readonly>
+                        </div>
+                    </div>
                     <div class="weui-cell">
                         <div class="weui-cell__hd"><label class="weui-label">预约保费</label></div>
                         <div class="weui-cell__bd">
@@ -129,6 +135,7 @@
             var user_id = parseInt($(this).attr("alt"));
             $("#dialog").show();
             $("#dialog").find("#user_id").val(user_id);
+            $("#dialog").find(".username").val($(this).attr("username"));
             $("#dialog").find(".appointment_money").val($(this).attr("appointment_money"));
             $("#dialog").find(".appointment_money_actual").val($(this).attr("appointment_money_actual"));
         })
