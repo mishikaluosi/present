@@ -121,6 +121,21 @@ class ArticleController extends MobileCommonController{
         $this->assign('event_user', $event_user);
         $this->display();
     }
+    public function appointment(){
+        $user_id = I("user_id");
+        $appointment_money = I("appointment_money");
+        $appointment_money_actual = I("appointment_money_actual");
+        $data = [];
+        if($appointment_money !=''){
+            $data['appointment_money'] = $appointment_money;
+        }
+        if($appointment_money_actual !=''){
+            $data['appointment_money_actual'] = $appointment_money_actual;
+        }
+        $data['is_appointment'] = 2;
+        M("event_user")->where("id=".$user_id)->save($data);
+        $this->returnSuccess();
+    }
 }
 
 ?>

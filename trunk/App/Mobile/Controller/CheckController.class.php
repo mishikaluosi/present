@@ -87,4 +87,5 @@ class CheckController extends MobileCommonController{
         M('event_user')->where(array('id'=>$uid))->save($data);
         $this->returnSuccess();
     }
+
 }

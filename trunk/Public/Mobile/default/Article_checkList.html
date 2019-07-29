@@ -3,7 +3,36 @@
     a:hover{
         color: #0bb20c;
     }
+    .dialog-mask{
+        position: fixed;
+        z-index: 10000;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6);
+        transition-duration: .3s;
+    }
+    .dialog-half-screen{
+        width:90%;
+        margin:0 auto;
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 20%;
+        height: 60%;
+        z-index: 10005;
+        line-height: 1.4;
+        background-color: #FFFFFF;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+    .weui-toast{
+        z-index: 10010 !important;
+        margin: 0 !important;
+    }
 </style>
+<input id="appointment_url" value="{:U('Article/appointment')}" />
 <div style="margin-top: 45px;">
 </div>
 <div class="content">
@@ -52,10 +81,95 @@
             </div>
         </div>
         <div class="weui-form-preview__ft">
-            <a class="weui-form-preview__btn weui-form-preview__btn_primary showDialog" href="javascript:">填写预约报费</a>
+            <a class="weui-form-preview__btn weui-form-preview__btn_primary showDialog" appointment_money_actual="{$user.appointment_money_actual}" appointment_money="{$user.appointment_money}"  alt="{$user.id}" href="javascript:">填写预约保费</a>
         </div>
     </div>
     </foreach>
+    <div class="js_dialog" id="dialog" style="display: none;">
+        <input type="text" id="user_id" value="0">
+        <div class="dialog-mask"></div>
+        <div class="dialog-half-screen">
+            <div class="weui-half-screen-dialog__hd">
+                <div class="weui-half-screen-dialog__hd__side">
+                    <button class="weui-icon-btn weui-icon-btn_close btn-close"></button>
+                </div>
+                <div class="weui-half-screen-dialog__hd__main">
+                    <strong class="weui-half-screen-dialog__title">修改预约保费</strong>
+                </div>
+            </div>
+            <div class="weui-half-screen-dialog__bd">
+                <div class="weui-cells weui-cells_form">
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd"><label class="weui-label">预约保费</label></div>
+                        <div class="weui-cell__bd">
+                            <input class="weui-input appointment_money" type="number" placeholder="请输入金额">
+                        </div>
+                    </div>
+                    <div class="weui-cell">
+                        <div class="weui-cell__hd"><label class="weui-label">实际保费</label></div>
+                        <div class="weui-cell__bd">
+                            <input class="weui-input appointment_money_actual" type="number" placeholder="请输入金额">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="weui-half-screen-dialog__ft" style="padding: 0;padding-top: 20px;">
+                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary btn-submit">确定</a>
+                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default btn-close">取消</a>
+            </div>
+        </div>
+    </div>
 </div>
 
 <include file="Public:footer" />
+<link rel="stylesheet" href="__PUBLIC__/css/weui.css">
+<script>
+    $(function(){
+        $(".showDialog").bind("click",function () {
+            var user_id = parseInt($(this).attr("alt"));
+            $("#dialog").show();
+            $("#dialog").find("#user_id").val(user_id);
+            $("#dialog").find(".appointment_money").val($(this).attr("appointment_money"));
+            $("#dialog").find(".appointment_money_actual").val($(this).attr("appointment_money_actual"));
+        })
+        $("#dialog .btn-close").bind("click",function(){
+            $("#dialog").hide();
+            $("#user_id").val(0);
+        })
+        $("#dialog .btn-submit").bind("click",function(){
+            var user_id = $("#dialog").find("#user_id").val();
+            var appointment_money = $("#dialog").find(".appointment_money").val();
+            var appointment_money_actual = $("#dialog").find(".appointment_money_actual").val();
+            if(!user_id){
+                app_tip("请选择签到人员");
+                return false;
+            }
+            var pattern=/((^[1-9]\d*)|^0)(\.\d{0,2}){0,1}$/
+            if(appointment_money!=""){
+                if(!pattern.test(appointment_money)){
+                    app_tip('预约保费格式不正确');
+                    return false;
+                }
+            }
+            if(appointment_money_actual!="") {
+                if (!pattern.test(appointment_money_actual)) {
+                    app_tip('实际保费格式不正确');
+                    return false;
+                }
+            }
+            if(appointment_money == "" && appointment_money_actual==""){
+                location.reload();
+                return false;
+            }
+            var url = $("#appointment_url").val();
+            $.post(url,{user_id:user_id,appointment_money:appointment_money,appointment_money_actual:appointment_money_actual},function(ret){
+                if(ret.status!=0){
+                    app_tip('保存失败');
+                    return false;
+                }
+                app_tip('保存成功');
+                location.reload();
+            },"json")
+        })
+    })
+</script>
