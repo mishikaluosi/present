@@ -654,7 +654,7 @@ eot;
             $this->error('没有可导出的记录',U('Order/index'));exit();
         }
 
-        $name='职场统计_'.date(Ymd);
+        $name='职场统计';
         ini_set('max_execution_time', '180');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");
@@ -853,7 +853,7 @@ eot;
             $this->error('没有可导出的记录',U('Order/index'));exit();
         }
 
-        $name='业务员统计_'.date(Ymd);
+        $name='业务员统计';
         ini_set('max_execution_time', '180');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");
@@ -1083,7 +1083,7 @@ eot;
         $pro_list=M('order')->query($pro_sql);
 
 
-        $name='职场商品分类发货清单_'.date(Ymd);
+        $name='职场商品分类发货清单';
         ini_set('max_execution_time', '180');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");
@@ -1270,7 +1270,7 @@ eot;
         $pro_list=M('order')->query($pro_sql);
 
 
-        $name='业务员自购商品数量合计清单_'.date(Ymd);
+        $name='业务员自购商品数量合计清单';
         ini_set('max_execution_time', '180');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");
