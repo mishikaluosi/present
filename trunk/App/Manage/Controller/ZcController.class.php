@@ -261,7 +261,7 @@ class ZcController extends CommonController {
             $this->error('没有可导出的记录',U('Zc/index'));exit();
         }
 
-        $name='职场_'.date(Ymd);    //生成的Excel文件文件名
+        $name='职场';    //生成的Excel文件文件名
         //var_dump($data);exit();
 
         ini_set('max_execution_time', '180');

@@ -285,7 +285,7 @@ class MemberController extends CommonController {
             $this->error('没有可导出的记录',U('Member/index'));exit();
         }
 
-        $name='业务员_'.date(Ymd);    //生成的Excel文件文件名
+        $name='业务员';    //生成的Excel文件文件名
         //var_dump($data);exit();
 
         ini_set('max_execution_time', '180');

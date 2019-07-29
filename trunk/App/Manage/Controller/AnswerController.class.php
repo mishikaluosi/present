@@ -1063,7 +1063,7 @@ class AnswerController extends CommonController {
             $this->error('没有可导出的记录','/Answer/ev14');exit();
         }
 
-        $name=$area.'_投注明细_'.date(Ymd);    //生成的Excel文件文件名
+        $name=$area.'_投注明细';    //生成的Excel文件文件名
         //var_dump($data);exit();
 
         ini_set('max_execution_time', '180');

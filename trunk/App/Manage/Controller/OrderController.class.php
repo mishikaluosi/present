@@ -526,7 +526,7 @@ eot;
             $this->error('没有可导出的记录',U('Order/index'));exit();
         }
 
-        $name='订单_'.date(Ymd);
+        $name='订单';
         ini_set('max_execution_time', '180');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");
