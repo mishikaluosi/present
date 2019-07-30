@@ -1,6 +1,7 @@
 <?php
 namespace Manage\Controller;
 use Think\Controller;
+use Think\Model;
 
 class EventController extends CommonController {
 
@@ -468,6 +469,103 @@ eot;
         return $where;
     }
 
+    /**
+     * 导出客户到会率
+     */
+    public function export_khdhl_ex(){
+        $event = M('event')->field(['id', 'name'])->select();
+        if(count($event)<1){
+            $this->error('没有可导出的记录',U('Event/index'));exit();
+        }
+
+        $data = [];
+        foreach($event as $v){
+            $um = M('event_user')->where(['e_id' => $v['id']])->count('id');
+            $am = M('appointment')->where(['e_id' => $v['id']])->count('id');
+            $data[] = [
+                'id' => $v['id'],
+                'name' => $v['name'],
+                'um' => $um,
+                'am' => $am,
+                'rate' => ($um == 0 || $am == 0) ? 0 : $am / $um * 100
+            ];
+        }
+
+        $name = '活动_客户到会率';
+
+        ini_set('max_execution_time', '180');
+        import("Org.Util.PHPExcel");
+        import("Org.Util.PHPExcel.IOFactory");
+        $objPHPExcel  = new \PHPExcel();
+        $iofactory = new \IOFactory();
+        $objPHPExcel->getProperties()->setCreator("活动统计数据")
+            ->setLastModifiedBy("活动统计数据")
+            ->setTitle($name)
+            ->setSubject($name)
+            ->setDescription("本文档从新之礼系统导出")
+            ->setKeywords("活动统计数据")
+            ->setCategory("result file");
+        $objPHPExcel->setActiveSheetIndex(0)
+            ->setCellValue('A1', '活动名称')
+            ->setCellValue('B1', '预约客户人数')
+            ->setCellValue('C1', '签到客户人数')
+            ->setCellValue('D1', '到会率');
+        $objActSheet = $objPHPExcel->getActiveSheet();
+        $objActSheet->getRowDimension(1)->setRowHeight(25);
+        $objPHPExcel->getDefaultStyle()->getFont()->setName('宋体')->setSize(12);
+        $objActSheet->getStyle( 'A1:D1')->applyFromArray(
+            array(
+                'font'    => array (
+                    'bold'      => true,
+                    'color'  => array ('argb' => '5a9bd5'),
+                ),
+                'alignment' => array ('horizontal' => 'center',),
+                'fill' => array (
+                    'type'       => 'solid',
+                    'rotation'   => 90,
+                    'startcolor' => array ('argb' => 'f3f3f3'),
+                    'endcolor'   => array ('argb' => 'f3f3f3')
+                ),
+                'borders' => array (
+                    'outline'     => array ('style' => 'thin', 'color'  => array ('argb' => 'a7a7a7'),),
+                    'inside'=> array ('style' => 'thin', 'color'  => array ('argb' => 'a7a7a7'),)
+                )
+            )
+        );
+        $objPHPExcel->getActiveSheet()->getStyle('A:D')->getNumberFormat()->setFormatCode('@');
+        foreach ($data as $k=>$V){
+            $num=$k+2;
+
+            $objPHPExcel->setActiveSheetIndex(0)
+                ->setCellValue('A'.$num, $V['name'])
+                ->setCellValue('B'.$num, $V['am'])
+                ->setCellValue('C'.$num, $V['um'])
+                ->setCellValue('D'.$num, $V['am'] == 0 || $V['um'] == 0 ? 0 : $V['um'] / $V['am'] * 100 . '%');
+            $objActSheet->getRowDimension($num)->setRowHeight(25);
+            $objActSheet->getStyle( 'A'.$num.':D'.$num.'')->applyFromArray(
+                array(
+                    'borders' => array (
+                        'outline'     => array ('style' => 'thin', 'color'  => array ('argb' => 'a7a7a7'),),
+                        'inside'=> array ('style' => 'thin', 'color'  => array ('argb' => 'a7a7a7'),)
+                    )
+                )
+            );
+        }
+
+        $objPHPExcel->getActiveSheet()->setTitle($name);
+        $objPHPExcel->setActiveSheetIndex(0);
+        ob_clean();
+        //header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-type: application/vnd.ms-excel');
+        $name=iconv("utf-8", "gb2312", $name);
+        header('Content-Disposition: attachment;filename="'.$name.'.xlsx"');
+        header('Cache-Control: max-age=0');
+        $objWriter = $iofactory::createWriter($objPHPExcel, 'Excel2007');
+        $objWriter->save('php://output');
+        exit;
+
+    }
+
     public function export_zctj_ex(){
         $ret=$this->get_zc();
         $data['list']=$ret['info_list'];
@@ -476,7 +574,7 @@ eot;
             $this->error('没有可导出的记录',U('Wenjuan/index'));exit();
         }
 
-        $name='活动_职场_统计_'.date(Ymd);
+        $name='活动_职场_统计';
         ini_set('max_execution_time', '180');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");
