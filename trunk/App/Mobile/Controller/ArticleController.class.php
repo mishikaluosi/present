@@ -136,6 +136,17 @@ class ArticleController extends MobileCommonController{
         M("event_user")->where("id=".$user_id)->save($data);
         $this->returnSuccess();
     }
+    public function appointmentList(){
+        $e_id = I("e_id");
+        $where['e_id'] = $e_id;
+        //获取业务员id；
+        $user_id=$this->_xzl_uid;
+        $info=M('member')->find($user_id);
+        $where['member_id'] = $info['id'];
+        $appointment = M("appointment")->where($where)->select();
+        $this->assign('appointment', $appointment);
+        $this->display();
+    }
 }
 
 ?>
