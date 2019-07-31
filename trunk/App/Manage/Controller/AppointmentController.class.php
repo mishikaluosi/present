@@ -35,9 +35,22 @@ class AppointmentController extends CommonController
         if($member_id>0){
             $where.=" and a.member_id={$member_id}";
         }
+
+        $zc_id = I('zc_id', 0);
+        $zc = I('zc', '');
+        $this->assign('zc_id', $zc_id);
+        $this->assign('zc', $zc);
+        if($zc_id){
+           $where .= " and z.id={$zc_id}";
+        }
+        if($zc){
+            $where .= " and z.name like '%{$zc}%'";
+        }
+
         $order='a.id desc';
         $count = M('appointment')->alias('a')
             ->join("{$pre}member bm ON bm.id=a.member_id","LEFT")
+            ->join("{$pre}zc z on z.id=bm.zc_id", "LEFT")
             ->where($where)
             ->count();
         $page = new \Common\Lib\Page($count, 18);
@@ -47,6 +60,7 @@ class AppointmentController extends CommonController
         $list =  M('appointment')->alias('a')
             ->field('a.*,bm.name as member')
             ->join("{$pre}member bm ON bm.id=a.member_id","LEFT")
+            ->join("{$pre}zc z on z.id=bm.zc_id", "LEFT")
             ->where($where)
             ->order($order)
             ->limit($limit)
@@ -92,6 +106,17 @@ class AppointmentController extends CommonController
         $member = M('member')->where($where)->limit(20)->select();
         $this->returnSuccess($member);
     }
+
+    public function getZC(){
+        $keywords = I('keywords');
+        $where = "1";
+        if($keywords){
+            $where .= " and name like '%{$keywords}%'";
+        }
+        $zc = M('zc')->where($where)->limit(20)->select();
+        $this->returnSuccess($zc);
+    }
+
     public function save(){
         $app_data = I('app_data');
         $id = $app_data['id'];
@@ -149,10 +174,19 @@ class AppointmentController extends CommonController
         if($member_id>0){
             $where.=" and a.member_id={$member_id}";
         }
+        $zc_id = I('get.zc_id');
+        $zc = I('get.zc');
+        if($zc_id){
+            $where .= " and z.id={$zc_id}";
+        }
+        if($zc){
+            $where .= " and z.name like '%{$zc}%'";
+        }
         $pre = C('DB_PREFIX');
         $app = M('appointment')->alias('a')
             ->field('a.*,bm.name as member')
             ->join("{$pre}member bm ON bm.id=a.member_id","LEFT")
+            ->join("{$pre}zc z on z.id=bm.zc_id", "LEFT")
             ->where($where)->select();
         $name=date('Y_m_d_H_i_s');
         import("Org.Util.PHPExcel");
