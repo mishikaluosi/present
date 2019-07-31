@@ -144,8 +144,45 @@ class ArticleController extends MobileCommonController{
         $info=M('member')->find($user_id);
         $where['member_id'] = $info['id'];
         $appointment = M("appointment")->where($where)->select();
+        $this->assign('e_id', $e_id);
         $this->assign('appointment', $appointment);
         $this->display();
+    }
+    public function deleteApp(){
+	    $ids = I("ids");
+	    if(!$ids){
+            $this->returnError("无有效的id");
+        }
+        $where='id in ('.$ids.')';
+        $ret = M("appointment")->where($where)->delete();
+        if(!$ret){
+            $this->returnError("批量删除失败");
+        }
+        $this->returnSuccess();
+    }
+    public function addApp(){
+        $e_id = I("e_id");
+        $this->assign('e_id', $e_id);
+        $this->display();
+    }
+    public function saveApp(){
+        $data =[];
+        $data['e_id'] = I("get.e_id");
+        $data['name'] = I("name");
+        $data['phone'] = I("phone");
+        $data['sex'] = I("sex");
+        $data['room_num'] = I("room_num");
+        //获取业务员id；
+        $user_id=$this->_xzl_uid;
+        $info=M('member')->find($user_id);
+        $data['member_id'] = $info['id'];
+        $data['adduser'] = $info['name'];
+        $data['created_at'] = time();
+        $ret =  M("appointment")->add($data);
+        if(!$ret){
+            $this->returnError("保存客户失败");
+        }
+        $this->returnSuccess();
     }
 }
 
