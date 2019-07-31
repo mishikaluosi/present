@@ -540,7 +540,7 @@ eot;
                 ->setCellValue('A'.$num, $V['name'])
                 ->setCellValue('B'.$num, $V['am'])
                 ->setCellValue('C'.$num, $V['um'])
-                ->setCellValue('D'.$num, $V['am'] == 0 || $V['um'] == 0 ? 0 : $V['um'] / $V['am'] * 100 . '%');
+                ->setCellValue('D'.$num, $V['rate'] . '%');
             $objActSheet->getRowDimension($num)->setRowHeight(25);
             $objActSheet->getStyle( 'A'.$num.':D'.$num.'')->applyFromArray(
                 array(
