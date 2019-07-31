@@ -320,7 +320,8 @@ class DoController extends Controller{
     }
     public function sendCode(){
         $phone = I("phone");
-        $code = rand(100000, 999999);
+//        $code = rand(100000, 999999);
+        $code = 123456;//未接入短信平台 ，测试123456
         if(!pe_formcheck('phone',$phone)) {
             $this->returnError('手机号格式不正确');
         }

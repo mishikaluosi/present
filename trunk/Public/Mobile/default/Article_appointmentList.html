@@ -1,0 +1,71 @@
+<include file="Public:header" />
+<div style="margin-top: 84px;">
+</div>
+<input type="hidden" id="del_url" value="{:U('Article/deleteApp')}">
+<div class="content">
+    <div class="weui-gallery__opr" style="background:#fff;z-index: 100;top: 45px;position: fixed;height: 50px;width: 100%;">
+        <a id="del-batch" href="javascript:" class="weui-gallery__del" style="height: 50px;">
+            <i class="weui-icon-delete weui-icon_gallery-delete" style="line-height: 50px;color: #666;"></i>
+        </a>
+    </div>
+    <a href="{:U('Article/addApp',array('e_id'=>$e_id))}" style="width: 60px;height: 60px;z-index: 100; border-radius: 30px;background: #07C160;position: fixed;bottom: 80px;right:20px;">
+        <div style="text-align: center;height:60px;line-height: 52px;color: #fff;font-size: 60px;" >+</div>
+    </a>
+        <div class="weui-cells weui-cells_checkbox">
+            <foreach name="appointment" item="user" key="key">
+            <label class="weui-cell weui-check__label row" for="{$user['id']}">
+                <div class="weui-cell__hd">
+                    <input type="checkbox" class="weui-check checkbox" name="checkbox1" id="{$user['id']}">
+                    <i class="weui-icon-checked"></i>
+                </div>
+                <div class="weui-form-preview__bd" style="width: 100%;">
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">姓名</label>
+                        <span class="weui-form-preview__value">{$user['name']}</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">手机号</label>
+                        <span class="weui-form-preview__value"><?php echo substr_replace($user['phone'],'****',3,4); ?></span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">性别</label>
+                        <span class="weui-form-preview__value">{$user['sex']}</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">房间号</label>
+                        <span class="weui-form-preview__value">{$user['room_num']}</span>
+                    </div>
+                    <div class="weui-form-preview__item">
+                        <label class="weui-form-preview__label">预约时间</label>
+                        <span class="weui-form-preview__value"><?php echo date("Y-m-d",$user['created_at']); ?></span>
+                    </div>
+                </div>
+            </label>
+            </foreach>
+        </div>
+</div>
+<include file="Public:footer" />
+<script>
+    $(function(){
+        $("#del-batch").bind("click",function(){
+            var ids=[];
+            $(".row").each(function(){
+                if($(this).find(".checkbox").prop("checked")==true){
+                    ids.push($(this).attr("for"));
+                }
+            })
+            if(!ids.length>0){
+                app_tip("请选择要删除的客户");
+                return false;
+            }
+            var url =$('#del_url').val();
+            $.post(url,{ids:ids.toString()},function(ret){
+                if(ret.status!=0){
+                    app_tip(ret.message);
+                    return false;
+                }
+                location.reload();
+            },"json")
+        })
+    })
+</script>
