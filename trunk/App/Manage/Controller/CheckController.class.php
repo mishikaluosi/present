@@ -35,9 +35,27 @@ class CheckController extends CommonController
         if($member_id>0){
             $where.=" and eu.member_id={$member_id}";
         }
+
+        $zc_id = I('zc_id', 0);
+        $zc = I('zc', '');
+        $this->assign('zc_id', $zc_id);
+        $this->assign('zc', $zc);
+        if($zc_id){
+            $where .= " and z.id={$zc_id}";
+        }
+        if($zc){
+            $where .= " and z.name like '%{$zc}%'";
+        }
+        $is_appointment = I('is_appointment', 0);
+        $this->assign('is_appointment', $is_appointment);
+        if($is_appointment > 0){
+            $where .= " and eu.is_appointment={$is_appointment}";
+        }
+
         $order='eu.id desc';
         $count = M('event_user')->alias('eu')
             ->join("{$pre}member bm ON bm.id=eu.member_id","LEFT")
+            ->join("{$pre}zc z on z.id=bm.zc_id", "LEFT")
             ->where($where)
             ->count();
         $page = new \Common\Lib\Page($count, 18);
@@ -47,6 +65,7 @@ class CheckController extends CommonController
         $list =  M('event_user')->alias('eu')
             ->field('eu.*,bm.name as member')
             ->join("{$pre}member bm ON bm.id=eu.member_id","LEFT")
+            ->join("{$pre}zc z on z.id=bm.zc_id", "LEFT")
             ->where($where)
             ->order($order)
             ->limit($limit)
@@ -73,10 +92,23 @@ class CheckController extends CommonController
         if($member_id>0){
             $where.=" and eu.member_id={$member_id}";
         }
+        $zc_id = I('get.zc_id');
+        $zc = I('get.zc');
+        if($zc_id){
+            $where .= " and z.id={$zc_id}";
+        }
+        if($zc){
+            $where .= " and z.name like '%{$zc}%'";
+        }
+        $is_appointment = I('get.is_appointment', 0);
+        if($is_appointment > 0){
+            $where .= " and eu.is_appointment={$is_appointment}";
+        }
         $pre = C('DB_PREFIX');
         $app = M('event_user')->alias('eu')
             ->field('eu.*,bm.name as member')
             ->join("{$pre}member bm ON bm.id=eu.member_id","LEFT")
+            ->join("{$pre}zc z on z.id=bm.zc_id", "LEFT")
             ->where($where)->select();
         $name=date('Y_m_d_H_i_s');
         import("Org.Util.PHPExcel");
