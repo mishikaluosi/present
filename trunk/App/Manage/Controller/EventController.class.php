@@ -859,9 +859,17 @@ eot;
         $where="1=1";
         $and="1=1";
         //拼接搜索条件
+        if($zc_name){
+            $where .= " and zc_info like '%{$zc_name}%'";
+            $and .= " and e.zc_info like '%{$zc_name}%'";
+        }
         if($area_type){
             $where .= " and area = '{$area_type}'";
             $and .= " and e.area = '{$area_type}'";
+        }
+        if($e_name){
+            $where .= " and name like '%{$e_name}%'";
+            $and .= " and e.name like '%{$e_name}%'";
         }
         if($start_date){
             $start_date = strtotime($start_date);
