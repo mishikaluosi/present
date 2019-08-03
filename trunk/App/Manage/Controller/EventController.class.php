@@ -828,8 +828,51 @@ eot;
     }
     public function total(){
         $pre = C('DB_PREFIX');
+//        获取所有省市区
+        $sql = "select DISTINCT area from {$pre}zc";
+        $area_arr = M('zc')->query($sql);
+        $sql = "select DISTINCT city from {$pre}zc";
+        $city_arr = M('zc')->query($sql);
+        $sql = "select DISTINCT prov from {$pre}zc";
+        $prov_arr = M('zc')->query($sql);
+        $this->assign('areas', $area_arr);
+        $this->assign('citys', $city_arr);
+        $this->assign('provs', $prov_arr);
+        //获取搜索参数
+        $prov =I("prov");
+        $city=I("city");
+        $area =I("area");
+        $zc_name =I("zc_name");
+        $area_type =I("area_type");
+        $e_name =I("e_name");
+        $start_date =I("start_date");
+        $end_date =I("end_date");
+        $this->assign('prov', $prov);
+        $this->assign('city', $city);
+        $this->assign('area', $area);
+        $this->assign('zc_name', $zc_name);
+        $this->assign('area_type', $area_type);
+        $this->assign('e_name', $e_name);
+        $this->assign('start_date', $start_date);
+        $this->assign('end_date', $end_date);
         //获取活动总数量
         $where="1=1";
+        $and="1=1";
+        //拼接搜索条件
+        if($area_type){
+            $where .= " and area = '{$area_type}'";
+            $and .= " and e.area = '{$area_type}'";
+        }
+        if($start_date){
+            $start_date = strtotime($start_date);
+            $where .= " and etime >= '{$start_date}'";
+            $and .= " and e.etime >= '{$start_date}'";
+        }
+        if($end_date){
+            $end_date = strtotime($end_date);
+            $where .= " and etime <= '{$end_date}'";
+            $and .= " and e.etime <= '{$end_date}'";
+        }
         $count = M('event')->where($where)->count();
         $list_row = 18;
         $page = new \Common\Lib\Page($count, $list_row);
@@ -848,7 +891,7 @@ eot;
                 sum(eu.appointment_money_actual) as appointment_money_actual 
                 from {$pre}event as e 
                 left join {$pre}event_user as eu on eu.e_id = e.id
-                where 1=1
+                where $and
                 group by e.id) as a
                 left join {$pre}appointment as app on app.e_id=a.id
                 group by a.id) as b";
@@ -861,7 +904,7 @@ eot;
                 sum(eu.appointment_money_actual) as appointment_money_actual 
                 from {$pre}event as e 
                 left join {$pre}event_user as eu on eu.e_id = e.id
-                where 1=1
+                where $and
                 group by e.id limit $limit) as a
                 left join {$pre}appointment as app on app.e_id=a.id
                 group by a.id";
