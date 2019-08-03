@@ -1589,6 +1589,38 @@ function get_region_jsdata($type=null){
 
     return json_encode($return_arr);
 }
+function get_region_jsdata_new($type=null){//可以选择空
+    $return_arr=array();
+    $top=get_region_bypid();
+    if($type=='select'){
+        $add_index=1;
+        $return_arr[0]['name']='请选择';
+        $return_arr[0]['cityList'][0]['name']='请选择';
+        $return_arr[0]['cityList'][0]['areaList'][]='请选择';
+    }else{
+        $add_index=0;
+    }
+    foreach ($top as $k=>$t){
+        $return_arr[$k+$add_index]['name']=$t['region_name'];
+        $child=get_region_bypid($t['region_id'],$t['region_type']+1);
+        $child_tmp=array();
+        $child_tmp[0]['name']='请选择';
+        $child_tmp[0]['areaList']=array('请选择');
+        foreach ($child as $kk=>$c) {
+            $add_s=1;
+            $end=get_region_bypid($c['region_id'],$c['region_type']+1);
+            $end_tmp=array('请选择');
+            foreach ($end as $kkk=>$e){
+                $end_tmp[]=$e['region_name'];
+            }
+            $child_tmp[$kk+$add_s]['name']=$c['region_name'];
+            $child_tmp[$kk+$add_s]['areaList']=$end_tmp;
+        }
+        $return_arr[$k+$add_index]['cityList']=$child_tmp;
+    }
+
+    return json_encode($return_arr);
+}
 
 
 function get_region_bypid($pid=1,$type=1){

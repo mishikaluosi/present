@@ -9,6 +9,7 @@
     <script type="text/javascript" src="__PUBLIC__/shop/js/global.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/js/date/WdatePicker.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/dmAddress.js"></script>
     <script type="text/javascript">
         var data_path = "__DATA__";
     </script>
@@ -21,24 +22,39 @@
     </div>
     <div class="operate">
         <span style="margin-left: 20px;" class="s_span">区域</span>
-        <select name="" id="prov">
-            <option value="">所有省</option>
-            <foreach name="provs" item="val">
-                <option <?php if($prov==$val['prov']){ ?>selected="selected"<?php } ?> value="{$val['prov']}">{$val['prov']}</option>
-            </foreach>
-        </select>
-        <select name="" id="city">
-            <option value="">所有市</option>
-            <foreach name="citys" item="val">
-                <option <?php if($city==$val['city']){ ?>selected="selected"<?php } ?> value="{$val['city']}">{$val['city']}</option>
-            </foreach>
-        </select>
-        <select name="" id="area">
-            <option value="">所有区</option>
-            <foreach name="areas" item="val">
-                <option <?php if($area==$val['area']){ ?>selected="selected"<?php } ?> value="{$val['area']}">{$val['area']}</option>
-            </foreach>
-        </select>
+        <select id="cmbProvince" name='sprov'></select>
+        <select id="cmbCity" name='scity'></select>
+        <select id="cmbArea" name='sarea'></select>
+        <script type="text/javascript">
+            $.ajax({
+                type: "POST",
+                url: "{:U('Zc/get_region_jsdata_new')}",
+                data:{type:'select'},
+                dataType: "json",
+                success: function(data){
+                    var provinceList=data;
+                    addressInit('cmbProvince', 'cmbCity', 'cmbArea', '{$prov}', '{$city}', '{$area}',provinceList);
+                }
+            });
+        </script>
+        <!--<select name="" id="prov">-->
+            <!--<option value="">所有省</option>-->
+            <!--<foreach name="provs" item="val">-->
+                <!--<option <?php if($prov==$val['prov']){ ?>selected="selected"<?php } ?> value="{$val['prov']}">{$val['prov']}</option>-->
+            <!--</foreach>-->
+        <!--</select>-->
+        <!--<select name="" id="city">-->
+            <!--<option value="">所有市</option>-->
+            <!--<foreach name="citys" item="val">-->
+                <!--<option <?php if($city==$val['city']){ ?>selected="selected"<?php } ?> value="{$val['city']}">{$val['city']}</option>-->
+            <!--</foreach>-->
+        <!--</select>-->
+        <!--<select name="" id="area">-->
+            <!--<option value="">所有区</option>-->
+            <!--<foreach name="areas" item="val">-->
+                <!--<option <?php if($area==$val['area']){ ?>selected="selected"<?php } ?> value="{$val['area']}">{$val['area']}</option>-->
+            <!--</foreach>-->
+        <!--</select>-->
 
         <span style="margin-left: 20px;" class="s_span">职场名称</span>
         <input style="width: 100px;" type="text" name="zc_name" id="zc_name" class="inp_one" value="{$zc_name}" placeholder="职场名称">
@@ -117,21 +133,21 @@
     function choose_data(){
         var url = $("#index_url").val();
 
-        var prov =$.trim($("#prov").val());
-        var city =$.trim($("#city").val());
-        var area =$.trim($("#area").val());
+        var prov =$.trim($("#cmbProvince").val());
+        var city =$.trim($("#cmbCity").val());
+        var area =$.trim($("#cmbArea").val());
         var zc_name =$.trim($("#zc_name").val());
         var area_type =$.trim($("#area_type").val());
         var e_name =$.trim($("#e_name").val());
         var start_date =$.trim($("#start_date").val());
         var end_date =$.trim($("#end_date").val());
-        if(prov){
+        if(prov && prov!='请选择'){
             url += "&prov="+prov;
         }
-        if(city){
+        if(city && city!='请选择'){
             url += "&city="+city;
         }
-        if(area){
+        if(area && area!='请选择'){
             url += "&area="+area;
         }
         if(zc_name){

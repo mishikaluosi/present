@@ -143,7 +143,14 @@ class ZcController extends CommonController {
         echo get_region_jsdata($type);
         exit();
     }
-
+    /***
+     * 新的省市区三级联动的数据 可以选择空
+     */
+    public function get_region_jsdata_new(){
+        $type=I('type',null);
+        echo get_region_jsdata_new($type);
+        exit();
+    }
     /**
      * 省
      */

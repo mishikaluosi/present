@@ -858,7 +858,61 @@ eot;
         //获取活动总数量
         $where="1=1";
         $and="1=1";
+        $area_range = '';
+        $area_range_count = '';
         //拼接搜索条件
+        if($prov){//转换成匹配职场
+            $area_range = '';
+            $area_range_count = '';
+            $zc = M("zc")->field(array('id'))->where("prov = '{$prov}'")->select();
+            if(count($zc)>0){
+                foreach($zc as $key => $zc_value){
+                    if($key ==0){
+                        $area_range .= " zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                        $area_range_count .=" e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                    }else{
+                        $area_range .= " or zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                        $area_range_count .=" or e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                    }
+                }
+            }
+        }
+        if($city){//转换成匹配职场
+            $area_range = '';
+            $area_range_count = '';
+            $zc = M("zc")->field(array('id'))->where("city = '{$city}'")->select();
+            if(count($zc)>0){
+                foreach($zc as $key => $zc_value){
+                    if($key ==0){
+                        $area_range .= " zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                        $area_range_count .=" e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                    }else{
+                        $area_range .= " or zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                        $area_range_count .=" or e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                    }
+                }
+            }
+        }
+        if($area){//转换成匹配职场
+            $area_range = '';
+            $area_range_count = '';
+            $zc = M("zc")->field(array('id'))->where("area = '{$area}'")->select();
+            if(count($zc)>0){
+                foreach($zc as $key => $zc_value){
+                    if($key ==0){
+                        $area_range .= " zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                        $area_range_count .=" e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                    }else{
+                        $area_range .= " or zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                        $area_range_count .=" or e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
+                    }
+                }
+            }
+        }
+        if($area_range){
+            $where .= " and ($area_range)";
+            $and .=  " and ($area_range_count)";
+        }
         if($zc_name){
             $where .= " and zc_info like '%{$zc_name}%'";
             $and .= " and e.zc_info like '%{$zc_name}%'";
