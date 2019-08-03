@@ -28,8 +28,7 @@ class UserController extends MobileCommonController{
         $where=' 1=1 and status=1';
         $where.=' and (stime<='.strtotime(date("Y-m-d 00:00:00")).' or stime is null or stime="")';
         $where.=' and (etime>='.strtotime(date("Y-m-d 00:00:00")).' or etime is null or etime="")';
-//        $where.=' and  zc_ids like "%$$$'.$_SESSION['user_zcid'].'%" ';
-//        业务员加载活动 是否有职场限制（原因 活动分区域 不一定有职场）
+        $where.=' and  zc_ids like "%$$$'.$_SESSION['user_zcid'].'%" ';
         $velist=M('event')->where($where)->order($orderby)->limit(10)->select();
         $this->assign('velist',$velist);
 

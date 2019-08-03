@@ -220,12 +220,15 @@ class EventController extends CommonController {
         $zc_info =I('zc_info',null);
 
         if($wj['area']==1){ //市活动
-            $zc_info='';
             $wj['areas']='';
-        }
-        else if($wj['area']==2){
-            $zc_info='';
+            $where = "city ='{$wj['citys']}'";
+            $zc_info = M('zc')->where($where)->select();
+            $zc_info = join(',',array_column($zc_info,"id"));
+        }else if($wj['area']==2){//分公司活动
             $wj['citys']='';
+            $where = "area ='{$wj['areas']}'";
+            $zc_info = M('zc')->where($where)->select();
+            $zc_info = join(',',array_column($zc_info,"id"));
         }else{
             $wj['areas']='';
             $wj['citys']='';
