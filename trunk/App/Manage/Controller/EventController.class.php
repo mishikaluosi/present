@@ -992,31 +992,17 @@ eot;
             $zc_ids = join(",",$zc_ids);
             if($zc_ids){
                 $zc = M("zc")->where("id in ($zc_ids)")->select();
-                $prov = join(',',array_unique(array_column($zc,'prov')));
-                $city = join(',',array_unique(array_column($zc,'city')));
-                $area = join(',',array_unique(array_column($zc,'area')));
-                $event_info[$key]['prov'] = $prov;
-                $event_info[$key]['city'] = $city;
-                $event_info[$key]['e_area'] = $area;
+//                $prov = join(',',array_unique(array_column($zc,'prov')));
+//                $city = join(',',array_unique(array_column($zc,'city')));
+//                $area = join(',',array_unique(array_column($zc,'area')));
+//                $event_info[$key]['prov'] = $prov;
+//                $event_info[$key]['city'] = $city;
+                $event_info[$key]['zc'] = $zc;
             }
         }
         $this->assign('vlist',$event_info);
         $this->assign('page', $page->show());
         $this->display();
-//        echo json_encode($event_info);
-//        $app = M('event')->alias('e')
-//            ->field('e.id,e.name,e.area')
-//            ->join("{$pre} bm ON bm.id=eu.member_id","LEFT")
-//            ->join("{$pre}zc z on z.id=bm.zc_id", "LEFT")
-//            ->where($where)->select();
-//        $where="1=1";
-//        $count = M('event')->where($where)->count();
-//        $page = new \Common\Lib\Page($count, 18);
-//        $page->rollPage = 7;
-//        $page->setConfig('theme','%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
-//        $limit = $page->firstRow. ',' .$page->listRows;
-//        print_r($event);
-
     }
 
 }

@@ -26,35 +26,7 @@
         <select id="cmbCity" name='scity'></select>
         <select id="cmbArea" name='sarea'></select>
         <script type="text/javascript">
-            $.ajax({
-                type: "POST",
-                url: "{:U('Zc/get_region_jsdata_new')}",
-                data:{type:'select'},
-                dataType: "json",
-                success: function(data){
-                    var provinceList=data;
-                    addressInit('cmbProvince', 'cmbCity', 'cmbArea', '{$prov}', '{$city}', '{$area}',provinceList);
-                }
-            });
         </script>
-        <!--<select name="" id="prov">-->
-            <!--<option value="">所有省</option>-->
-            <!--<foreach name="provs" item="val">-->
-                <!--<option <?php if($prov==$val['prov']){ ?>selected="selected"<?php } ?> value="{$val['prov']}">{$val['prov']}</option>-->
-            <!--</foreach>-->
-        <!--</select>-->
-        <!--<select name="" id="city">-->
-            <!--<option value="">所有市</option>-->
-            <!--<foreach name="citys" item="val">-->
-                <!--<option <?php if($city==$val['city']){ ?>selected="selected"<?php } ?> value="{$val['city']}">{$val['city']}</option>-->
-            <!--</foreach>-->
-        <!--</select>-->
-        <!--<select name="" id="area">-->
-            <!--<option value="">所有区</option>-->
-            <!--<foreach name="areas" item="val">-->
-                <!--<option <?php if($area==$val['area']){ ?>selected="selected"<?php } ?> value="{$val['area']}">{$val['area']}</option>-->
-            <!--</foreach>-->
-        <!--</select>-->
 
         <span style="margin-left: 20px;" class="s_span">职场名称</span>
         <input style="width: 100px;" type="text" name="zc_name" id="zc_name" class="inp_one" value="{$zc_name}" placeholder="职场名称">
@@ -66,7 +38,6 @@
             <option  <?php if($area_type==2){ ?>selected="selected"<?php } ?> value="2">分公司活动</option>
             <option  <?php if($area_type==3){ ?>selected="selected"<?php } ?> value="3">职场活动</option>
         </select>
-
         <span  style="margin-left: 20px;" class="s_span">活动名称</span>
         <input style="width: 100px;" type="text" id="e_name" name="e_name" class="inp_one" value="{$e_name}" placeholder="活动名称">
 
@@ -90,10 +61,7 @@
                     <th>编号</th>
                     <th>活动名称</th>
                     <th>活动范围</th>
-                    <th>省</th>
-                    <th>市</th>
-                    <th>区</th>
-                    <th>职场</th>
+                    <th>省|市|区|职场</th>
                     <th>预约人数</th>
                     <th>签到人数</th>
                     <th>预约保费</th>
@@ -106,10 +74,18 @@
                         <td>{$v.id}</td>
                         <td>{$v.name}</td>
                         <td>{$v.area}</td>
-                        <td>{$v.prov}</td>
-                        <td>{$v.city}</td>
-                        <td>{$v.e_area}</td>
-                        <td>{$v.zc}</td>
+                        <td>
+                            <table style="width: 100%">
+                                <foreach name='v.zc' item='vv'>
+                                <tr>
+                                    <td>{$vv.prov}</td>
+                                    <td>{$vv.city}</td>
+                                    <td>{$vv.area}</td>
+                                    <td>{$vv.name}</td>
+                                </tr>
+                                </foreach>
+                            </table>
+                        </td>
                         <td>{$v.app_num}</td>
                         <td>{$v.check_num}</td>
                         <td>{$v.appointment_money}</td>
@@ -129,6 +105,16 @@
 <script>
     $(function(){
         $("#btn_submit").bind("click",choose_data);
+        $.ajax({
+            type: "POST",
+            url: "{:U('Zc/get_region_jsdata_new')}",
+            data:{type:'select'},
+            dataType: "json",
+            success: function(data){
+                var provinceList=data;
+                addressInit('cmbProvince', 'cmbCity', 'cmbArea', '{$prov}', '{$city}', '{$area}',provinceList);
+            }
+        });
     })
     function choose_data(){
         var url = $("#index_url").val();
