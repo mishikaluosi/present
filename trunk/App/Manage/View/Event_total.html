@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/shop/js/global.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/date/WdatePicker.js"></script>
+    <script type="text/javascript">
+        var data_path = "__DATA__";
+    </script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">
+        统计列表
+    </div>
+    <div class="operate">
+        <span style="margin-left: 30px;" class="s_span">职场名称</span>
+        <input type="text" name="zc_name" class="inp_one" value="" placeholder="职场名称">
+
+        <span  style="margin-left: 30px;" class="s_span">活动范围</span>
+        <select class="area_type">
+            <option value="">所有活动</option>
+            <option value="1">市活动</option>
+            <option value="2">分公司活动</option>
+            <option value="3">职场活动</option>
+        </select>
+
+        <span  style="margin-left: 30px;" class="s_span">活动名称</span>
+        <input type="text" name="e_name" class="inp_one" value="" placeholder="活动名称">
+
+        <span  style="margin-left: 30px;" class="s_span">活动开始时间</span>
+        <input type='text' class="inp_one Wdate start_date" value="" onClick="WdatePicker()" placeholder="开始时间" readonly/>~
+        <input type='text' class="inp_one Wdate start_date" value="" onClick="WdatePicker()" placeholder="结束时间" readonly/>
+
+        <input type="submit" class="btn_blue" style="float: none" value="查  询">
+    </div>
+    <div class="operate" style="text-align: center;font-size: 20px;">
+        <span style="margin-left: 30px;">活动数：{$event_total['e_num']}</span>
+        <span style="margin-left: 30px;">预约人数：{$event_total['total_app_num']}</span>
+        <span style="margin-left: 30px;">签到人数：{$event_total['total_check_num']}</span>
+        <span style="margin-left: 30px;">预约保费：{$event_total['total_appointment_money']}</span>
+        <span style="margin-left: 30px;">实际保费：{$event_total['total_appointment_money_actual']}</span>
+    </div>
+    <div class="list guestbook">
+        <form action="" method="post" id="form_do" name="form_do">
+            <table width="100%">
+                <tr>
+                    <th>编号</th>
+                    <th>活动名称</th>
+                    <th>活动范围</th>
+                    <th>省</th>
+                    <th>市</th>
+                    <th>区</th>
+                    <th>职场</th>
+                    <th>预约人数</th>
+                    <th>签到人数</th>
+                    <th>预约保费</th>
+                    <th>实签保费</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                </tr>
+                <foreach name='vlist' item='v'>
+                    <tr>
+                        <td>{$v.id}</td>
+                        <td>{$v.name}</td>
+                        <td>{$v.area}</td>
+                        <td>{$v.prov}</td>
+                        <td>{$v.city}</td>
+                        <td>{$v.e_area}</td>
+                        <td>{$v.zc}</td>
+                        <td>{$v.app_num}</td>
+                        <td>{$v.check_num}</td>
+                        <td>{$v.appointment_money}</td>
+                        <td>{$v.appointment_money_actual}</td>
+                        <td>{$v.stime|date='Y-m-d',###}</td>
+                        <td>{$v.etime|date='Y-m-d',###}</td>
+                    </tr>
+                </foreach>
+            </table>
+            <div class="page" style="clear: both">
+                {$page}
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

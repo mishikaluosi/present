@@ -177,6 +177,14 @@ class EventController extends CommonController {
     }
 
 	public function msg(){
+        $pre = C('DB_PREFIX');
+        //获取分公司,所有市
+        $sql = "select DISTINCT area from {$pre}zc";
+        $area_arr = M('zc')->query($sql);
+        $sql = "select DISTINCT city from {$pre}zc";
+        $city_arr = M('zc')->query($sql);
+        $this->assign('areas', $area_arr);
+        $this->assign('citys', $city_arr);
         $_zc_id=$this->_get_zcinfo();
 
         $id = I('id', 0, 'intval');
@@ -206,8 +214,22 @@ class EventController extends CommonController {
         $wj['is_draw'] = I('is_draw') ? I('is_draw') : 0;
         $wj['is_order'] = I('is_order')? I('is_order') : 0;
         $wj['max_member'] = I('max_member')? I('max_member') : 0;
-        $wj['area']  = I('area')? I('area') : 1;
+        $wj['area']  = I('area')? I('area') : 3;
+        $wj['areas']  = I('areas')? I('areas') : "";  //活动分公司
+        $wj['citys']  = I('citys')? I('citys') : "";  //活动城市
         $zc_info =I('zc_info',null);
+
+        if($wj['area']==1){ //市活动
+            $zc_info='';
+            $wj['areas']='';
+        }
+        else if($wj['area']==2){
+            $zc_info='';
+            $wj['citys']='';
+        }else{
+            $wj['areas']='';
+            $wj['citys']='';
+        }
         if (!empty($zc_info)) {
             $where = ' id in (' . trim($zc_info) . ')';
             $zc_info = M('zc')->where($where)->select();
@@ -800,6 +822,93 @@ eot;
         }else {
             $this->returnError('删除失败');
         }
+    }
+    public function total(){
+        $pre = C('DB_PREFIX');
+        //获取活动总数量
+        $where="1=1";
+        $count = M('event')->where($where)->count();
+        $list_row = 18;
+        $page = new \Common\Lib\Page($count, $list_row);
+        $page->rollPage = 7;
+        $page->setConfig('theme','%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+        $limit = $page->firstRow. ',' .$page->listRows;
+//        汇总
+        $sql = "select count(b.id) as e_num,
+                sum(b.check_num) as total_check_num,
+                sum(b.app_num) as total_app_num,
+                sum(b.appointment_money) as total_appointment_money,
+                sum(b.appointment_money_actual) as total_appointment_money_actual
+                from (select a.*,count(app.id) as app_num from (select e.id,
+                count(eu.id) as check_num,
+                sum(eu.appointment_money) as appointment_money,
+                sum(eu.appointment_money_actual) as appointment_money_actual 
+                from {$pre}event as e 
+                left join {$pre}event_user as eu on eu.e_id = e.id
+                where 1=1
+                group by e.id) as a
+                left join {$pre}appointment as app on app.e_id=a.id
+                group by a.id) as b";
+        $event_total = M('event')->query($sql);
+        $this->assign('event_total',$event_total[0]);
+//        获取列表数据
+        $sql = "select a.*,count(app.id) as app_num from (select e.id,e.name,e.area,e.zc_ids,e.zc_info,e.address,e.stime,e.etime,
+                count(eu.id) as check_num,
+                sum(eu.appointment_money) as appointment_money,
+                sum(eu.appointment_money_actual) as appointment_money_actual 
+                from {$pre}event as e 
+                left join {$pre}event_user as eu on eu.e_id = e.id
+                where 1=1
+                group by e.id limit $limit) as a
+                left join {$pre}appointment as app on app.e_id=a.id
+                group by a.id";
+        $event_info = M('event')->query($sql);
+        foreach ($event_info as $key => $value){
+            if($value['area']==1){
+                $event_info[$key]['area']='市活动';
+            }else if($value['area']==2){
+                $event_info[$key]['area']='分公司活动';
+            }else if($value['area']==3){
+                $event_info[$key]['area']='职场活动';
+            }else{
+                $event_info[$key]['area']='市活动';
+            }
+            $zc_info = unserialize($value['zc_info']);
+            $event_info[$key]['zc'] = join(",",array_column($zc_info,'name'));
+            $event_info[$key]['prov'] = "";
+            $event_info[$key]['city'] = "";
+            $event_info[$key]['e_area'] = "";
+//            根据职场id获取省市区
+            $zc_ids = explode("$$$",$value['zc_ids']);
+            $zc_ids = array_filter($zc_ids);
+            $zc_ids = join(",",$zc_ids);
+            if($zc_ids){
+                $zc = M("zc")->where("id in ($zc_ids)")->select();
+                $prov = join(',',array_unique(array_column($zc,'prov')));
+                $city = join(',',array_unique(array_column($zc,'city')));
+                $area = join(',',array_unique(array_column($zc,'area')));
+                $event_info[$key]['prov'] = $prov;
+                $event_info[$key]['city'] = $city;
+                $event_info[$key]['e_area'] = $area;
+            }
+        }
+        $this->assign('vlist',$event_info);
+        $this->assign('page', $page->show());
+        $this->display();
+//        echo json_encode($event_info);
+//        $app = M('event')->alias('e')
+//            ->field('e.id,e.name,e.area')
+//            ->join("{$pre} bm ON bm.id=eu.member_id","LEFT")
+//            ->join("{$pre}zc z on z.id=bm.zc_id", "LEFT")
+//            ->where($where)->select();
+//        $where="1=1";
+//        $count = M('event')->where($where)->count();
+//        $page = new \Common\Lib\Page($count, 18);
+//        $page->rollPage = 7;
+//        $page->setConfig('theme','%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
+//        $limit = $page->firstRow. ',' .$page->listRows;
+//        print_r($event);
+
     }
 
 }

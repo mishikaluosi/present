@@ -74,13 +74,34 @@
 				<dt>活动范围</dt>
 				<dd>
 					<select name="area" id="area" style="width:180px;height:30px;border: solid 1px #d7d7d7;">
-						<option value="1">市活动</option>
-						<option value="2">分公司活动</option>
-						<option value="3">职场活动</option>
+						<option <?php if($vo['area']==3){ ?>selected="selected"<?php } ?> value="3">职场活动</option>
+						<option <?php if($vo['area']==2){ ?>selected="selected"<?php } ?>  value="2">分公司活动</option>
+						<option <?php if($vo['area']==1){ ?>selected="selected"<?php } ?> value="1">市活动</option>
 					</select>
 				</dd>
 			</dl>
-			<div class="right_main" style="border-bottom: 1px solid #EDEDED;padding-top: 8px;padding-bottom: 8px">
+			<dl class="area_show city_box" style="display: none;">
+				<dt>选择市</dt>
+				<dd>
+					<select name="citys" id="citys" style="width:180px;height:30px;border: solid 1px #d7d7d7;">
+						<foreach name="citys" item="val">
+							<option <?php if($vo['citys']==$val['city']){ ?>selected="selected"<?php } ?> value="{$val['city']}">{$val['city']}</option>
+						</foreach>
+
+					</select>
+				</dd>
+			</dl>
+			<dl class="area_show fgs_box" style="display: none;">
+				<dt>选择分公司</dt>
+				<dd>
+					<select name="areas" id="areas" style="width:180px;height:30px;border: solid 1px #d7d7d7;">
+						<foreach name="areas" item="val">
+							<option <?php if($vo['areas']==$val['area']){ ?>selected="selected"<?php } ?> value="{$val['area']}">{$val['area']}</option>
+						</foreach>
+					</select>
+				</dd>
+			</dl>
+			<div  class="right_main area_show zc_box" style="border-bottom: 1px solid #EDEDED;padding-top: 8px;padding-bottom: 8px">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0" class="wenzhang mat20 mab20">
 					<tr>
 						<td style="width:160px;">参与职场<span class="c999 mal10">（可多选）</span>：</td>
@@ -163,8 +184,23 @@
 <script type="text/javascript" charset="utf-8">
     $(function(){
         get_prov();
+        //初始化显示分公司 市 还是职场
+        box_change();
+        $("#area").bind("change",function(){
+            box_change();
+		})
     });
-
+	function box_change(){
+        var area = $("#area").val();
+        $(".area_show").hide()
+        if(area==1){
+            $(".city_box").show()
+        }else if(area==2){
+            $(".fgs_box").show()
+        }else{
+            $(".zc_box").show()
+        }
+	}
     function get_prov() {
         $.getJSON("{:U('Zc/get_prov_jsdata')}", function(json){
             add_option('selProvinces',json);

@@ -23,7 +23,7 @@ ALTER TABLE `bestop_event`
   ADD COLUMN `max_member` int(11) DEFAULT 0 COMMENT '活动限制人数';
 
 ALTER TABLE `bestop_event`
-ADD COLUMN `area`  tinyint(1) NULL DEFAULT 1 COMMENT '活动区域';
+ADD COLUMN `area`  tinyint(1) NULL DEFAULT 3 COMMENT '活动区域';
 
 
 /*
@@ -158,3 +158,11 @@ ALTER TABLE `bestop_event_user`
 ADD COLUMN `is_appointment` tinyint(2) NULL DEFAULT 1 COMMENT '是否预约保费 1否 2是',
 ADD COLUMN `appointment_money` decimal(10, 2) NULL COMMENT '预约保费',
 ADD COLUMN `appointment_money_actual` decimal(10, 2) NULL COMMENT '实际预约保费';
+
+/**
+活动表新增字段
+Date: 2019-08-03 15:52
+ */
+ALTER TABLE `bestop_event`
+ADD COLUMN `areas`  varchar(255) NULL DEFAULT NULL COMMENT '分公司',
+ADD COLUMN `citys`  varchar(255) NULL DEFAULT NULL COMMENT '市';
