@@ -166,3 +166,19 @@ Date: 2019-08-03 15:52
 ALTER TABLE `bestop_event`
 ADD COLUMN `areas`  varchar(255) NULL DEFAULT NULL COMMENT '分公司',
 ADD COLUMN `citys`  varchar(255) NULL DEFAULT NULL COMMENT '市';
+
+/**
+新增活动统计表
+Date: 2019-08-04 17:52
+ */
+CREATE TABLE `bestop_event_tongji` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `e_id` int(11) DEFAULT NULL COMMENT '活动id',
+  `zc_id` int(11) DEFAULT NULL COMMENT '职场id',
+  `app_num` int(11) DEFAULT '0' COMMENT '预约人数',
+  `check_num` int(11) DEFAULT '0' COMMENT '签到人数',
+  `appointment_money` decimal(10,2) DEFAULT '0.00' COMMENT '预约保费',
+  `appointment_money_actual` decimal(10,2) DEFAULT '0.00' COMMENT '实际预约保费',
+  `created_at` int(10) DEFAULT '0' COMMENT '创建时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

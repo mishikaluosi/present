@@ -828,16 +828,6 @@ eot;
     }
     public function total(){
         $pre = C('DB_PREFIX');
-//        获取所有省市区
-        $sql = "select DISTINCT area from {$pre}zc";
-        $area_arr = M('zc')->query($sql);
-        $sql = "select DISTINCT city from {$pre}zc";
-        $city_arr = M('zc')->query($sql);
-        $sql = "select DISTINCT prov from {$pre}zc";
-        $prov_arr = M('zc')->query($sql);
-        $this->assign('areas', $area_arr);
-        $this->assign('citys', $city_arr);
-        $this->assign('provs', $prov_arr);
         //获取搜索参数
         $prov =I("prov");
         $city=I("city");
@@ -855,122 +845,61 @@ eot;
         $this->assign('e_name', $e_name);
         $this->assign('start_date', $start_date);
         $this->assign('end_date', $end_date);
-        //获取活动总数量
         $where="1=1";
-        $and="1=1";
-        $area_range = '';
-        $area_range_count = '';
-        //拼接搜索条件
-        if($prov){//转换成匹配职场
-            $area_range = '';
-            $area_range_count = '';
-            $zc = M("zc")->field(array('id'))->where("prov = '{$prov}'")->select();
-            if(count($zc)>0){
-                foreach($zc as $key => $zc_value){
-                    if($key ==0){
-                        $area_range .= " zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                        $area_range_count .=" e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                    }else{
-                        $area_range .= " or zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                        $area_range_count .=" or e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                    }
-                }
-            }
+//        //拼接搜索条件
+        if($prov){
+            $where .=" and zc.prov='{$prov}'";
         }
-        if($city){//转换成匹配职场
-            $area_range = '';
-            $area_range_count = '';
-            $zc = M("zc")->field(array('id'))->where("city = '{$city}'")->select();
-            if(count($zc)>0){
-                foreach($zc as $key => $zc_value){
-                    if($key ==0){
-                        $area_range .= " zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                        $area_range_count .=" e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                    }else{
-                        $area_range .= " or zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                        $area_range_count .=" or e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                    }
-                }
-            }
+        if($city){
+            $where .=" and zc.city='{$city}'";
         }
-        if($area){//转换成匹配职场
-            $area_range = '';
-            $area_range_count = '';
-            $zc = M("zc")->field(array('id'))->where("area = '{$area}'")->select();
-            if(count($zc)>0){
-                foreach($zc as $key => $zc_value){
-                    if($key ==0){
-                        $area_range .= " zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                        $area_range_count .=" e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                    }else{
-                        $area_range .= " or zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                        $area_range_count .=" or e.zc_ids like '%\$\$\${$zc_value['id']}\$\$\$%'";
-                    }
-                }
-            }
-        }
-        if($area_range){
-            $where .= " and ($area_range)";
-            $and .=  " and ($area_range_count)";
+        if($area){
+            $where .=" and zc.area='{$area}'";
         }
         if($zc_name){
-            $where .= " and zc_info like '%{$zc_name}%'";
-            $and .= " and e.zc_info like '%{$zc_name}%'";
+            $where .= " and zc.name like '%{$zc_name}%'";
         }
         if($area_type){
-            $where .= " and area = '{$area_type}'";
-            $and .= " and e.area = '{$area_type}'";
+            $where .= " and e.area = '{$area_type}'";
         }
         if($e_name){
-            $where .= " and name like '%{$e_name}%'";
-            $and .= " and e.name like '%{$e_name}%'";
+            $where .= " and e.name like '%{$e_name}%'";
         }
         if($start_date){
             $start_date = strtotime($start_date);
-            $where .= " and etime >= '{$start_date}'";
-            $and .= " and e.etime >= '{$start_date}'";
+            $where .= " and e.etime >= '{$start_date}'";
         }
         if($end_date){
             $end_date = strtotime($end_date);
-            $where .= " and etime <= '{$end_date}'";
-            $and .= " and e.etime <= '{$end_date}'";
+            $where .= " and e.etime <= '{$end_date}'";
         }
-        $count = M('event')->where($where)->count();
+        //获取活动总数量
+        $sql = "select count(t.id) as total_count,
+                count(DISTINCT t.e_id) as e_num,
+                sum(t.app_num) as app_num,
+                sum(t.check_num) as check_num,
+                sum(t.appointment_money) as appointment_money,
+                sum(t.appointment_money_actual) as appointment_money_actual
+                from {$pre}event_tongji as t 
+                left join {$pre}event as e on e.id=t.e_id
+                left join {$pre}zc as zc on zc.id=t.zc_id
+                where $where";
+        $total = M('event_tongji')->query($sql);
+        $this->assign('event_total', $total[0]);
         $list_row = 18;
-        $page = new \Common\Lib\Page($count, $list_row);
+        $page = new \Common\Lib\Page($total[0]['total_count'], $list_row);
         $page->rollPage = 7;
         $page->setConfig('theme','%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
         $limit = $page->firstRow. ',' .$page->listRows;
-//        汇总
-        $sql = "select count(b.id) as e_num,
-                sum(b.check_num) as total_check_num,
-                sum(b.app_num) as total_app_num,
-                sum(b.appointment_money) as total_appointment_money,
-                sum(b.appointment_money_actual) as total_appointment_money_actual
-                from (select a.*,count(app.id) as app_num from (select e.id,
-                count(eu.id) as check_num,
-                sum(eu.appointment_money) as appointment_money,
-                sum(eu.appointment_money_actual) as appointment_money_actual 
-                from {$pre}event as e 
-                left join {$pre}event_user as eu on eu.e_id = e.id
-                where $and
-                group by e.id) as a
-                left join {$pre}appointment as app on app.e_id=a.id
-                group by a.id) as b";
-        $event_total = M('event')->query($sql);
-        $this->assign('event_total',$event_total[0]);
 //        获取列表数据
-        $sql = "select a.*,count(app.id) as app_num from (select e.id,e.name,e.area,e.zc_ids,e.zc_info,e.address,e.stime,e.etime,
-                count(eu.id) as check_num,
-                sum(eu.appointment_money) as appointment_money,
-                sum(eu.appointment_money_actual) as appointment_money_actual 
-                from {$pre}event as e 
-                left join {$pre}event_user as eu on eu.e_id = e.id
-                where $and
-                group by e.id limit $limit) as a
-                left join {$pre}appointment as app on app.e_id=a.id
-                group by a.id";
-        $event_info = M('event')->query($sql);
+        $sql = "select t.*,e.name,e.area,e.address,e.stime,e.etime,
+                IFNULL(zc.name ,'其他职场') as zc_name,zc.prov,zc.city,zc.area as areas
+                from {$pre}event_tongji as t 
+                left join {$pre}event as e on e.id=t.e_id
+                left join {$pre}zc as zc on zc.id=t.zc_id
+                where $where
+                limit $limit";
+        $event_info = M('event_tongji')->query($sql);
         foreach ($event_info as $key => $value){
             if($value['area']==1){
                 $event_info[$key]['area']='市活动';
@@ -981,28 +910,109 @@ eot;
             }else{
                 $event_info[$key]['area']='市活动';
             }
-            $zc_info = unserialize($value['zc_info']);
-            $event_info[$key]['zc'] = join(",",array_column($zc_info,'name'));
-            $event_info[$key]['prov'] = "";
-            $event_info[$key]['city'] = "";
-            $event_info[$key]['e_area'] = "";
-//            根据职场id获取省市区
-            $zc_ids = explode("$$$",$value['zc_ids']);
-            $zc_ids = array_filter($zc_ids);
-            $zc_ids = join(",",$zc_ids);
-            if($zc_ids){
-                $zc = M("zc")->where("id in ($zc_ids)")->select();
-//                $prov = join(',',array_unique(array_column($zc,'prov')));
-//                $city = join(',',array_unique(array_column($zc,'city')));
-//                $area = join(',',array_unique(array_column($zc,'area')));
-//                $event_info[$key]['prov'] = $prov;
-//                $event_info[$key]['city'] = $city;
-                $event_info[$key]['zc'] = $zc;
-            }
         }
         $this->assign('vlist',$event_info);
         $this->assign('page', $page->show());
         $this->display();
+    }
+    public function saveTongji(){
+        $pre = C('DB_PREFIX');
+        M('event_tongji')->execute("TRUNCATE {$pre}event_tongji");
+        $sql = "select a.*,count(app.id) as app_num from (select e.id,e.zc_ids,
+                count(eu.id) as check_num,
+                sum(eu.appointment_money) as appointment_money,
+                sum(eu.appointment_money_actual) as appointment_money_actual 
+                from {$pre}event as e 
+                left join {$pre}event_user as eu on eu.e_id = e.id
+                where 1
+                group by e.id ) as a
+                left join {$pre}appointment as app on app.e_id=a.id
+                group by a.id";
+        $event_info = M('event')->query($sql);
+        $data_info = [];
+        foreach ($event_info as $key => $value){
+            //统计活动数据
+            $app_num_total = 0;
+            $check_num_total = 0;
+            $appointment_money_total = 0;
+            $appointment_money_actual_total = 0;
+
+            $zc_ids = explode("$$$",$value['zc_ids']);
+            $zc_ids = array_filter($zc_ids);
+            $zc_ids = join(",",$zc_ids);
+            if($zc_ids){
+                $sql = "select m.zc_id,count(app.id) as app_num 
+                            from {$pre}appointment as app
+                            left join {$pre}member as m on m.id=app.member_id 
+                            where app.e_id = {$value['id']} and m.zc_id in ($zc_ids)
+                            group by m.zc_id";
+                $app = M("appointment")->query($sql);
+                $app = array_column($app,null,'zc_id');
+
+                $sql = "select m.zc_id,
+                            count(eu.id) as check_num,
+                            sum(eu.appointment_money) as appointment_money,
+                            sum(eu.appointment_money_actual) as appointment_money_actual 
+                            from {$pre}event_user as eu
+                            left join {$pre}member as m on m.id=eu.member_id 
+                            where eu.e_id = {$value['id']} and m.zc_id in ($zc_ids)
+                            group by m.zc_id";
+                $eu = M("event_user")->query($sql);
+                $eu = array_column($eu,null,'zc_id');
+
+                $zc = M("zc")->where("id in ($zc_ids)")->field('id')->select();
+                foreach($zc as $j =>$vv){
+                    $tmp_data_info =[];
+                    $tmp_data_info['e_id'] = $value['id'];
+                    $tmp_data_info['zc_id'] = $vv['id'];
+                    $tmp_data_info['created_at'] = time();
+                    if(isset($app[$vv['id']])){
+                        $tmp_data_info['app_num'] = $app[$vv['id']]['app_num'];
+                    }else{
+                        $tmp_data_info['app_num'] = 0;
+                    }
+                    if(isset($eu[$vv['id']])){
+                        $tmp_data_info['check_num'] = $eu[$vv['id']]['check_num'];
+                        $tmp_data_info['appointment_money'] = $eu[$vv['id']]['appointment_money'];
+                        $tmp_data_info['appointment_money_actual'] = $eu[$vv['id']]['appointment_money_actual'];
+                    }else{
+                        $tmp_data_info['check_num'] = 0;
+                        $tmp_data_info['appointment_money'] = 0;
+                        $tmp_data_info['appointment_money_actual'] = 0;
+                    }
+                    $app_num_total += $tmp_data_info['app_num'];
+                    $check_num_total += $tmp_data_info['check_num'];
+                    $appointment_money_total += $tmp_data_info['appointment_money'];
+                    $appointment_money_actual_total += $tmp_data_info['appointment_money_actual'];
+                    $data_info[] = $tmp_data_info;
+                }
+            }else{
+                $kong_event_info =[];
+                $kong_event_info['e_id'] = $value['id'];
+                $kong_event_info['zc_id'] = 0;
+                $kong_event_info['created_at'] = time();
+                $kong_event_info['app_num'] = 0;
+                $kong_event_info['check_num'] = 0;
+                $kong_event_info['appointment_money'] = 0;
+                $kong_event_info['appointment_money_actual'] = 0;
+                $data_info[] = $kong_event_info;
+            }
+            $other['e_id'] = $value['id'];
+            $other['zc_id'] = 0;
+            $other['created_at'] = time();
+            $other['app_num'] = $value['app_num']-$app_num_total;
+            $other['check_num'] = $value['check_num']-$check_num_total;
+            $other['appointment_money'] = $value['appointment_money']-$appointment_money_total;
+            $other['appointment_money_actual'] = $value['appointment_money_actual']-$appointment_money_actual_total;
+            if($other['app_num']>0||$other['check_num']>0||$other['appointment_money']>0||$other['appointment_money_actual']>0){
+                $data_info[] = $other;
+            }
+        }
+        $ret = M('event_tongji')->addAll($data_info);
+        if(!$ret){
+            $this->returnError('获取数据失败');
+        }
+        $this->returnSuccess();
     }
 
 }

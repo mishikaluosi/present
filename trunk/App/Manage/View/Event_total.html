@@ -16,9 +16,13 @@
 </head>
 <body>
 <input type="hidden" id="index_url" value="{:U('Event/total')}">
+<input type="hidden" id="get_data_url" value="{:U('Event/saveTongji')}">
 <div class="main">
     <div class="pos">
         统计列表
+    </div>
+    <div class="operate">
+        <input type="button" class="btn_blue" id="get_tongji" style="float: none" value="获取最新统计数据">
     </div>
     <div class="operate">
         <span style="margin-left: 20px;" class="s_span">区域</span>
@@ -49,10 +53,10 @@
     </div>
     <div class="operate" style="text-align: center;font-size: 20px;">
         <span style="margin-left: 30px;">活动数：{$event_total['e_num']}</span>
-        <span style="margin-left: 30px;">预约人数：{$event_total['total_app_num']}</span>
-        <span style="margin-left: 30px;">签到人数：{$event_total['total_check_num']}</span>
-        <span style="margin-left: 30px;">预约保费：{$event_total['total_appointment_money']}</span>
-        <span style="margin-left: 30px;">实际保费：{$event_total['total_appointment_money_actual']}</span>
+        <span style="margin-left: 30px;">预约人数：{$event_total['app_num']}</span>
+        <span style="margin-left: 30px;">签到人数：{$event_total['check_num']}</span>
+        <span style="margin-left: 30px;">预约保费：{$event_total['appointment_money']}</span>
+        <span style="margin-left: 30px;">实际保费：{$event_total['appointment_money_actual']}</span>
     </div>
     <div class="list guestbook">
         <form action="" method="post" id="form_do" name="form_do">
@@ -61,7 +65,10 @@
                     <th>编号</th>
                     <th>活动名称</th>
                     <th>活动范围</th>
-                    <th>省|市|区|职场</th>
+                    <th>省</th>
+                    <th>市</th>
+                    <th>区</th>
+                    <th>职场</th>
                     <th>预约人数</th>
                     <th>签到人数</th>
                     <th>预约保费</th>
@@ -74,18 +81,10 @@
                         <td>{$v.id}</td>
                         <td>{$v.name}</td>
                         <td>{$v.area}</td>
-                        <td>
-                            <table style="width: 100%">
-                                <foreach name='v.zc' item='vv'>
-                                <tr>
-                                    <td>{$vv.prov}</td>
-                                    <td>{$vv.city}</td>
-                                    <td>{$vv.area}</td>
-                                    <td>{$vv.name}</td>
-                                </tr>
-                                </foreach>
-                            </table>
-                        </td>
+                        <td>{$v.prov}</td>
+                        <td>{$v.city}</td>
+                        <td>{$v.areas}</td>
+                        <td>{$v.zc_name}</td>
                         <td>{$v.app_num}</td>
                         <td>{$v.check_num}</td>
                         <td>{$v.appointment_money}</td>
@@ -105,6 +104,7 @@
 <script>
     $(function(){
         $("#btn_submit").bind("click",choose_data);
+        $("#get_tongji").bind("click",getTongji);
         $.ajax({
             type: "POST",
             url: "{:U('Zc/get_region_jsdata_new')}",
@@ -152,6 +152,16 @@
             url += "&end_date=" + end_date;
         }
         location.href=url;
+    }
+    function getTongji(){
+        var url = $('#get_data_url').val();
+        $.get(url,function(ret){
+            if(ret.status!=0){
+                alert(ret.message);
+                return false;
+            }
+            location.reload();
+        },"json")
     }
 </script>
 </html>
