@@ -245,9 +245,12 @@ class MobileCommonController extends Controller {
     }
 
     //抽奖用户授权登录
-    public function check_oauth_login($e_id){
+    public function check_oauth_login($e_id,$member_id=""){
         $cfg=$this->getWechatConfig();
         $return_url="http://xt.wxlyz.com/index.php/Mobile/Check/getWechat/e_id/{$e_id}";
+        if($member_id>0){
+            $return_url .="/member_id/{$member_id}";
+        }
         $url = str_replace(':APPID', trim($cfg['appid']), $this->weichat_api_url('oauth_user'));
         $url = str_replace(':REDIRECT_URI', $return_url, $url);
         header('Location: ' . $url);

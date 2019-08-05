@@ -25,6 +25,7 @@
     }
 </style>
 <input type="hidden" id="e_id" value="{$e_id}">
+<input type="hidden" id="member_id" value="{$member_id}">
 <input type="hidden" id="uid" value="{$user['id']}">
 <input type="hidden" id="match_url" value="{:U('Check/matchPhone')}">
 <input type="hidden" id="sub_url" value="{:U('Check/subPhone')}">
@@ -44,7 +45,7 @@
             <input id="username" class="weui-input" type="text" placeholder="请输入姓名">
         </div>
     </div>
-    <div class="weui-cell other_info" style="display: none;">
+    <div class="weui-cell other_info mem" style="display: none;">
         <div class="weui-cell__hd"><label class="weui-label">业务员</label></div>
         <div class="weui-cell__bd">
             <input id="member" class="weui-input" type="text" placeholder="请输入业务员">
@@ -93,6 +94,10 @@
                     if(ret.status!=0){
                         app_tip(ret.message);
                         $(".other_info").show();
+                        var c_member_id = $('#member_id').val();
+                        if(c_member_id>0){
+                            $(".mem").hide();
+                        }
                         $("#is_matched").val(1);
                         return false;
                     }else{
@@ -104,19 +109,22 @@
                 var username = $("#username").val();
                 var sex = $("#sex").val();
                 var member = $("#member").val();
+                var member_id = $('#member_id').val();
                 if(!username){
                     app_tip('请填写姓名');
                     return false;
                 }
-                if(!member){
-                    app_tip('请填写业务员');
-                    return false;
+                if(!member_id>0){
+                    if(!member){
+                        app_tip('请填写业务员');
+                        return false;
+                    }
                 }
                 if(!sex){
                     app_tip('请填写性别');
                     return false;
                 }
-                $.post(url,{uid:uid,phone:phone,username:username,member:member,sex:sex},function(ret){
+                $.post(url,{uid:uid,phone:phone,username:username,member:member,sex:sex,member_id:member_id},function(ret){
                     if(ret.status!=0){
                         app_tip(ret.message);
                         return false;

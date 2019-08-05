@@ -82,6 +82,8 @@ class ArticleController extends MobileCommonController{
     }
 
     public function event_detail(){
+        $uid = $this->_xzl_uid;
+        $this->assign('uid', $uid);
         $id = I('id', 0,'intval');
         $this->assign('id', $id);
 
@@ -133,7 +135,7 @@ class ArticleController extends MobileCommonController{
             echo '活动不能为空';
             exit();
         }
-        $url= 'http://'.$_SERVER['HTTP_HOST'].U('Mobile/'.'Check/getWechat/',array('e_id'=>$e_id));
+        $url= 'http://'.$_SERVER['HTTP_HOST'].U('Mobile/'.'Check/getWechat/',array('e_id'=>$e_id,'member_id'=>$this->_xzl_uid));
         $level=3;
         $size=4;
         Vendor('phpqrcode.phpqrcode');

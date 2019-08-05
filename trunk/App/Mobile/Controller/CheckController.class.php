@@ -4,7 +4,7 @@ namespace Mobile\Controller;
 class CheckController extends MobileCommonController{
     public function getWechat(){
         $e_id = I('e_id');
-//        $member_id = I('member_id');
+        $member_id = I('member_id');
         if(!$e_id){
             echo '页面错误';
             exit();
@@ -24,7 +24,7 @@ class CheckController extends MobileCommonController{
         }
         $openid=$_SESSION['web_info']['openid'];
         if(empty($openid)){
-            $this->check_oauth_login($e_id);
+            $this->check_oauth_login($e_id,$member_id);
         }
         $pre = C('DB_PREFIX');
         $data= M('event_user')
@@ -34,9 +34,10 @@ class CheckController extends MobileCommonController{
             ->where(array("eu.open_id"=>$openid,"eu.e_id"=>$e_id))
             ->find();
         if(!$data){
-            $this->check_oauth_login($e_id);
+            $this->check_oauth_login($e_id,$member_id);
         }
         $this->assign('e_id', $e_id);
+        $this->assign('member_id', $member_id);
         $this->assign('user', $data);
         if(empty($data['phone'])){
             $this->display('Event_info');
@@ -66,17 +67,20 @@ class CheckController extends MobileCommonController{
         $phone = I("phone");
         $username = I("username");
         $member_name = trim(I("member"));
+        $member_id = I("member_id");
         $sex = I("sex");
-        $member = M("member")->where(array("name"=>$member_name))->find();
-        if($member){
-            $member_id = $member['id'];
-        }else{
-            $member = M("member")->where(array('name'=>array('like','%'.$member_name.'%')))->find();
-            if($member) {
+        if(!$member_id>0){
+            $member = M("member")->where(array("name"=>$member_name))->find();
+            if($member){
                 $member_id = $member['id'];
             }else{
-                $member_id = 0;
-                $this->returnError("业务员不存在");
+                $member = M("member")->where(array('name'=>array('like','%'.$member_name.'%')))->find();
+                if($member) {
+                    $member_id = $member['id'];
+                }else{
+                    $member_id = 0;
+                    $this->returnError("业务员不存在");
+                }
             }
         }
         $data['phone'] = $phone;
