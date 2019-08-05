@@ -1433,6 +1433,32 @@ eot;
         $objWriter->save('php://output');
         exit;
     }
+    public function close(){
+        $key=I('key',null);
+        if(empty($key)){
+            $this->error('错误的请求...');
+        }
+        if(!is_array($key)){
+            $ids[]=$key;
+        }else{
+            $ids=$key;
+        }
+        $ret=array('ok'=>0,'err'=>0,'cnt'=>count($key));
+        $data['order_state']='close';
+        foreach ($ids as $id){
+            $tmp_flag=M('order')->where(array('order_id'=>$id))->save($data);
+            if($tmp_flag){
+                $ret['ok']+=1;
+            }else{
+                $ret['err']+=1;
+            }
+        }
+        if($ret['cnt']==1){
+            $this->success('关闭成功...', U('Order/index'));
+        }else{
+            $this->success("批量关闭{$ret['cnt']}条，成功{$ret['ok']}条，失败{$ret['err']}条", U('Order/index'),5);
+        }
+    }
 
 }
 
