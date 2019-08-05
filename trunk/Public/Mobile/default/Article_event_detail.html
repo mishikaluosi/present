@@ -18,13 +18,27 @@
         <div class="clear"></div>
         <div class="xian"></div>
         <div class="button-sp-area">
-            <a href="{:U('Article/checkList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">签到列表</a>
-            <a href="{:U('Article/appointmentList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">预约列表</a>
+            <div>
+                <div style="float: left;width: 70%;">
+                    <img style="width:180px;" src="/index.php/Mobile/Article/check_qrcode/id/{$vo.id}">
+                    <div style="width:180px;text-align: center;">签到二维码</div>
+                </div>
+                <div style="float :left;width: 30%;">
+                    <a style="margin-top:72px;font-size:1em;" href="{:U('Article/checkList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">签到列表</a>
+                </div>
+            </div>
+            <div>
+                <div style="float: left;width: 70%;">
+                    <img style="width: 180px;" src="/index.php/Mobile/Article/event_qrcode/id/{$vo.id}">
+                    <div style="width: 180px;text-align: center;">预约二维码</div>
+                </div>
+                <a style="margin-top:72px;font-size:1em;float :left;width: 30%;" href="{:U('Article/appointmentList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">预约列表</a>
+            </div>
         </div>
-        <div class="mat10 font18 c333 aleft">请扫描下方活动二维码：</div>
-        <div class="danye_main mat20">
-            <img src="http://xt.wxlyz.com/index.php/Mobile/Article/event_qrcode/id/{$vo.id}">
-        </div>
+        <!--<div class="mat10 font18 c333 aleft">请扫描下方活动二维码：</div>-->
+        <!--<div class="danye_main mat20">-->
+            <!--<img src="http://xt.wxlyz.com/index.php/Mobile/Article/event_qrcode/id/{$vo.id}">-->
+        <!--</div>-->
     </div>
 </div>
 <include file="Public:footer" />

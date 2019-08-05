@@ -110,6 +110,40 @@ class ArticleController extends MobileCommonController{
         $object->png($url, false, $errorCorrectionLevel, $matrixPointSize, 2);
         exit();
     }
+    //签到二维码
+    public function check_qrcode(){
+//        $id=I('id',null);
+//        $vo=M('event')->find($id);
+//        if(empty($vo)){
+//            exit();
+//        }
+//        $url='http://xt.wxlyz.com/index.php/Mobile/Wenjuan/event/id/'.$id.'/uid/'.$this->_xzl_uid;
+//        //$url='功能开发中，敬请期待';
+//        $level=3;
+//        $size=4;
+//        Vendor('phpqrcode.phpqrcode');
+//        $errorCorrectionLevel =intval($level) ;//容错级别
+//        $matrixPointSize = intval($size);//生成图片大小
+//        $object = new \QRcode();
+//        ob_clean();
+//        $object->png($url, false, $errorCorrectionLevel, $matrixPointSize, 2);
+//        exit();
+        $e_id=I('id',null);
+        if(!is_numeric($e_id)){
+            echo '活动不能为空';
+            exit();
+        }
+        $url= 'http://'.$_SERVER['HTTP_HOST'].U('Mobile/'.'Check/getWechat/',array('e_id'=>$e_id));
+        $level=3;
+        $size=4;
+        Vendor('phpqrcode.phpqrcode');
+        $errorCorrectionLevel =intval($level) ;//容错级别
+        $matrixPointSize = intval($size);//生成图片大小
+        $object = new \QRcode();
+        ob_clean();
+        $object->png($url, false, $errorCorrectionLevel, $matrixPointSize, 2);
+        exit();
+    }
     public function checkList(){
         $e_id = I("e_id");
         $where['e_id'] = $e_id;
