@@ -234,6 +234,63 @@ class UserController extends MobileCommonController{
         $this->assign('keywords',$keywords);
         $this->display();
     }
+    public function orderTongji(){
+        echo '订单统计';
+    }
+    public function eventTongji(){
+        $zc_id = $this->_xzl_zcid;
+        $type = 'city';
+        $pre = C('DB_PREFIX');
+        if($type=='area'){
+            //获取当前用户职场所在支公司
+            $zc = M('zc')->where(array('id'=>$zc_id))->find(array('area'));
+            //获取当前支公司所有职场
+            $zc_id_arr = M('zc')->field(array('id'))->where(array('area'=>$zc['area']))->select();
+            $zc_ids = join(",",array_column($zc_id_arr,'id'));
+        }else if($type=='city'){
+            //获取当前用户职场所在支公司
+            $zc = M('zc')->where(array('id'=>$zc_id))->find(array('city'));
+            //获取当前支公司所有职场
+            $zc_id_arr = M('zc')->field(array('id'))->where(array('city'=>$zc['city']))->select();
+            $zc_ids = join(",",array_column($zc_id_arr,'id'));
+        }else{
+            $zc_ids = $zc_id;
+        }
+        //获取活动总数量
+        $sql = "select count(t.id) as total_count,
+                count(DISTINCT t.e_id) as e_num,
+                sum(t.app_num) as app_num,
+                sum(t.check_num) as check_num,
+                sum(t.appointment_money) as appointment_money,
+                sum(t.appointment_money_actual) as appointment_money_actual
+                from {$pre}event_tongji as t 
+                left join {$pre}event as e on e.id=t.e_id
+                left join {$pre}zc as zc on zc.id=t.zc_id
+                where t.zc_id in($zc_ids)";
+        $total = M('event_tongji')->query($sql);
+        $sql = "select t.*,e.name,e.area,e.address,e.stime,e.etime,
+                IFNULL(zc.name ,'其他职场') as zc_name,zc.prov,zc.city,zc.area as areas
+                from {$pre}event_tongji as t 
+                left join {$pre}event as e on e.id=t.e_id
+                left join {$pre}zc as zc on zc.id=t.zc_id
+                where t.zc_id in($zc_ids)";
+        $event_info = M('event_tongji')->query($sql);
+        foreach ($event_info as $key => $value){
+            if($value['area']==1){
+                $event_info[$key]['area']='市活动';
+            }else if($value['area']==2){
+                $event_info[$key]['area']='分公司活动';
+            }else if($value['area']==3){
+                $event_info[$key]['area']='职场活动';
+            }else{
+                $event_info[$key]['area']='市活动';
+            }
+        }
+        $this->assign('type',$type);
+        $this->assign('event_total',$total[0]);
+        $this->assign('vlist',$event_info);
+        $this->display();
+    }
 }
 
 ?>

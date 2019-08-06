@@ -1,0 +1,35 @@
+﻿<include file="Public:header" />
+<div class="top" style="margin-top: 28px;"></div>
+<div class="main">
+
+    <div class="operate" style="text-align: center;font-size: 1em;height: 40px;line-height: 40px;">
+        <span style="margin-left: 10px;">活动数：{$event_total['e_num']}</span>
+        <span style="margin-left: 10px;">预约人数：{$event_total['app_num']}</span>
+        <span style="margin-left: 10px;">签到人数：{$event_total['check_num']}</span>
+    </div>
+    <div class="operate" style="text-align: center;font-size: 1em;height: 40px;line-height: 40px;">
+        <span style="margin-left: 10px;">预约保费：{$event_total['appointment_money']}</span>
+        <span style="margin-left: 10px;">实际保费：{$event_total['appointment_money_actual']}</span>
+    </div>
+    <table style="width:100%;font-size: 0.8em;line-height: 35px;" border="2" cellpadding=“10” cellspacing="0">
+        <tr>
+            <th>职场名称</th>
+            <th>活动名称</th>
+            <th>预约数</th>
+            <th>签到数</th>
+            <th>预约保费</th>
+            <th>实签保费</th>
+        </tr>
+        <foreach name='vlist' item='v'>
+            <tr>
+                <td>{$v.zc_name}</td>
+                <td>{$v.name}</td>
+                <td>{$v.app_num}</td>
+                <td>{$v.check_num}</td>
+                <td>{$v.appointment_money}</td>
+                <td>{$v.appointment_money_actual}</td>
+            </tr>
+        </foreach>
+    </table>
+</div>
+<include file="Public:footer" />
