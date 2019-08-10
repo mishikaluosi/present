@@ -239,19 +239,52 @@ class UserController extends MobileCommonController{
     }
     public function eventTongji(){
         $zc_id = $this->_xzl_zcid;
-        $type = 'city';
+        $type = 'area';
         $pre = C('DB_PREFIX');
+        //获取搜索条件
+        $zc_name =I("zc_name");
+        $zc_area =I("zc_area");
+        $e_name =I("e_name");
+        $start_date =I("start_date");
+        $end_date =I("end_date");
+        $this->assign('zc_name', $zc_name);
+        $this->assign('zc_area', $zc_area);
+        $this->assign('e_name', $e_name);
+        $this->assign('start_date', $start_date);
+        $this->assign('end_date', $end_date);
+        $where = "1=1";
+        if($zc_name){
+            $where .= " and zc.name like '%{$zc_name}%'";
+        }
+        if($zc_area){
+            $where .= " and zc.area = '{$zc_area}'";
+        }
+        if($e_name){
+            $where .= " and e.name like '%{$e_name}%'";
+        }
+        if($start_date){
+            $start_date = strtotime($start_date);
+            $where .= " and e.etime >= '{$start_date}'";
+        }
+        if($end_date){
+            $end_date = strtotime($end_date);
+            $where .= " and e.etime <= '{$end_date}'";
+        }
         if($type=='area'){
             //获取当前用户职场所在支公司
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('area'));
             //获取当前支公司所有职场
-            $zc_id_arr = M('zc')->field(array('id'))->where(array('area'=>$zc['area']))->select();
+            $zc_id_arr = M('zc')->field(array('id','name'))->where(array('area'=>$zc['area']))->select();
+            $zc_array =array_unique(array_column($zc_id_arr,'name'));
+            $this->assign('zc_array', $zc_array);
             $zc_ids = join(",",array_column($zc_id_arr,'id'));
         }else if($type=='city'){
             //获取当前用户职场所在支公司
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('city'));
             //获取当前支公司所有职场
-            $zc_id_arr = M('zc')->field(array('id'))->where(array('city'=>$zc['city']))->select();
+            $zc_id_arr = M('zc')->field(array('id','name','area'))->where(array('city'=>$zc['city']))->select();
+            $area_array =array_unique(array_column($zc_id_arr,'area'));
+            $this->assign('area_array', $area_array);
             $zc_ids = join(",",array_column($zc_id_arr,'id'));
         }else{
             $zc_ids = $zc_id;
@@ -266,14 +299,14 @@ class UserController extends MobileCommonController{
                 from {$pre}event_tongji as t 
                 left join {$pre}event as e on e.id=t.e_id
                 left join {$pre}zc as zc on zc.id=t.zc_id
-                where t.zc_id in($zc_ids)";
+                where t.zc_id in($zc_ids) and $where";
         $total = M('event_tongji')->query($sql);
         $sql = "select t.*,e.name,e.area,e.address,e.stime,e.etime,
                 IFNULL(zc.name ,'其他职场') as zc_name,zc.prov,zc.city,zc.area as areas
                 from {$pre}event_tongji as t 
                 left join {$pre}event as e on e.id=t.e_id
                 left join {$pre}zc as zc on zc.id=t.zc_id
-                where t.zc_id in($zc_ids)";
+                where t.zc_id in($zc_ids) and $where";
         $event_info = M('event_tongji')->query($sql);
         foreach ($event_info as $key => $value){
             if($value['area']==1){
@@ -286,6 +319,9 @@ class UserController extends MobileCommonController{
                 $event_info[$key]['area']='市活动';
             }
         }
+        //获取所有活动
+        $event = M('event')->field(array('id','name'))->select();
+        $this->assign('event',$event);
         $this->assign('type',$type);
         $this->assign('event_total',$total[0]);
         $this->assign('vlist',$event_info);

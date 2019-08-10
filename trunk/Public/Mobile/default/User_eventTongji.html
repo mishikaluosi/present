@@ -1,7 +1,34 @@
 ﻿<include file="Public:header" />
+<input type="hidden" id="index_url" value="{:U('User/eventTongji')}">
+<script type="text/javascript" src="__PUBLIC__/js/datePicker.js"></script>
 <div class="top" style="margin-top: 28px;"></div>
 <div class="main">
-
+    <div class="operate" style="height: 40px;line-height: 40px;">
+        <if condition="$type eq area">
+            <select style="width: 24%;" id="zc_search" name='zc_search'>
+                <option value="">职场搜索</option>
+                <foreach name='zc_array' item='value'>
+                    <option <?php if($zc_name==$value){ ?>selected="selected"<?php } ?>  value="{$value}">{$value}</option>
+                </foreach>
+            </select>
+            <elseif condition="$type eq city"/>
+            <select style="width: 24%;" id="area_seareh" name='area_seareh'>
+                <option value="">支公司搜索</option>
+                <foreach name='area_array' item='value'>
+                    <option <?php if($zc_area==$value){ ?>selected="selected"<?php } ?> value="{$value}">{$value}</option>
+                </foreach>
+            </select>
+            <else />
+        </if>
+        <select style="width: 24%;" id="event_search" name='event_search'>
+            <option value="">活动搜索</option>
+            <foreach name='event' item='value'>
+                <option <?php if($e_name==$value['name']){ ?>selected="selected"<?php } ?> value="{$value['name']}">{$value['name']}</option>
+            </foreach>
+        </select>
+        <input style="width: 24%;" type='text' id="start_date" class="start_date" value="{$start_date}" placeholder="开始时间" readonly/>
+        <input style="width: 24%;" type='text' id="end_date" class="end_date" value="{$end_date}" placeholder="结束时间" readonly/>
+    </div>
     <div class="operate" style="text-align: center;font-size: 1em;height: 40px;line-height: 40px;">
         <span style="margin-left: 10px;">活动数：{$event_total['e_num']}</span>
         <span style="margin-left: 10px;">预约人数：{$event_total['app_num']}</span>
@@ -13,7 +40,13 @@
     </div>
     <table style="width:100%;font-size: 0.8em;line-height: 35px;" border="2" cellpadding=“10” cellspacing="0">
         <tr>
+            <if condition="$type eq area">
             <th>职场名称</th>
+            <elseif condition="$type eq city"/>
+            <th>支公司</th>
+            <else />
+            <th>职场名称</th>
+            </if>
             <th>活动名称</th>
             <th>预约数</th>
             <th>签到数</th>
@@ -22,7 +55,13 @@
         </tr>
         <foreach name='vlist' item='v'>
             <tr>
-                <td>{$v.zc_name}</td>
+                <if condition="$type eq area">
+                    <td>{$v.zc_name}</td>
+                    <elseif condition="$type eq city"/>
+                    <td>{$v.areas}</td>
+                    <else />
+                    <td>{$v.zc_name}</td>
+                </if>
                 <td>{$v.name}</td>
                 <td>{$v.app_num}</td>
                 <td>{$v.check_num}</td>
@@ -33,3 +72,88 @@
     </table>
 </div>
 <include file="Public:footer" />
+<script>
+    $(function(){
+        $("#zc_search").bind("change",choose_data);
+        $("#area_seareh").bind("change",choose_data);
+        $("#event_search").bind("change",choose_data);
+        var calendar1 = new datePicker();
+        calendar1.init({
+            'trigger': '#start_date',
+            'type': 'date',
+            'minDate':'1900-1-1',
+            'maxDate':'2100-12-31',
+            'onSubmit':function(){
+                var theSelectData=calendar1.value;
+                choose_data();
+            },
+            'onClose':function(){
+            }
+        });
+        var calendar2 = new datePicker();
+        calendar2.init({
+            'trigger': '#end_date',
+            'type': 'date',
+            'minDate':'1900-1-1',
+            'maxDate':'2100-12-31',
+            'onSubmit':function(){
+                var theSelectData=calendar2.value;
+                choose_data();
+            },
+            'onClose':function(){
+            }
+        });
+            $('#showPicker').on('click', function () {
+                weui.picker([{
+                    label: '飞机票',
+                    value: 0
+                }, {
+                    label: '火车票',
+                    value: 1
+                }, {
+                    label: '的士票',
+                    value: 2
+                },{
+                    label: '公交票 (disabled)',
+                    disabled: true,
+                    value: 3
+                }, {
+                    label: '其他',
+                    value: 4
+                }], {
+                    onChange: function (result) {
+                        console.log(result);
+                    },
+                    onConfirm: function (result) {
+                        console.log(result);
+                        console.log(result);
+                    }
+                });
+            });
+    })
+
+    function choose_data(){
+        var url = $("#index_url").val();
+        var zc_name =$("#zc_search").val();
+        var zc_area =$("#area_seareh").val();
+        var e_name =$("#event_search").val();
+        var start_date =$("#start_date").val();
+        var end_date =$("#end_date").val();
+        if(zc_name){
+            url += "&zc_name="+zc_name;
+        }
+        if(zc_area){
+            url += "&zc_area="+zc_area;
+        }
+        if(e_name){
+            url += "&e_name="+e_name;
+        }
+        if(start_date){
+            url += "&start_date="+start_date;
+        }
+        if(end_date) {
+            url += "&end_date=" + end_date;
+        }
+        location.href=url;
+    }
+</script>
