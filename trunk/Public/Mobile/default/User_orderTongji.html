@@ -1,18 +1,18 @@
 ﻿<include file="Public:header" />
-<input type="hidden" id="index_url" value="{:U('User/eventTongji')}">
+<input type="hidden" id="index_url" value="{:U('User/orderTongji')}">
 <script type="text/javascript" src="__PUBLIC__/js/datePicker.js"></script>
 <div class="top" style="margin-top: 28px;"></div>
 <div class="main">
     <div class="operate" style="height: 40px;line-height: 40px;">
         <if condition="$type eq area">
-            <select style="width: 24%;" id="zc_search" name='zc_search'>
+            <select style="width: 33%;" id="zc_search" name='zc_search'>
                 <option value="">职场搜索</option>
                 <foreach name='zc_array' item='value'>
                     <option <?php if($zc_name==$value){ ?>selected="selected"<?php } ?>  value="{$value}">{$value}</option>
                 </foreach>
             </select>
             <elseif condition="$type eq city"/>
-            <select style="width: 24%;" id="area_seareh" name='area_seareh'>
+            <select style="width: 33%;" id="area_seareh" name='area_seareh'>
                 <option value="">支公司搜索</option>
                 <foreach name='area_array' item='value'>
                     <option <?php if($zc_area==$value){ ?>selected="selected"<?php } ?> value="{$value}">{$value}</option>
@@ -20,23 +20,8 @@
             </select>
             <else />
         </if>
-        <select style="width: 24%;" id="event_search" name='event_search'>
-            <option value="">活动搜索</option>
-            <foreach name='event' item='value'>
-                <option <?php if($e_name==$value['name']){ ?>selected="selected"<?php } ?> value="{$value['name']}">{$value['name']}</option>
-            </foreach>
-        </select>
-        <input style="width: 24%;" type='text' id="start_date" class="start_date" value="{$start_date}" placeholder="开始时间" readonly/>
-        <input style="width: 24%;" type='text' id="end_date" class="end_date" value="{$end_date}" placeholder="结束时间" readonly/>
-    </div>
-    <div class="operate" style="text-align: center;font-size: 1em;height: 40px;line-height: 40px;">
-        <span style="margin-left: 10px;">活动数：{$event_total['e_num']}</span>
-        <span style="margin-left: 10px;">预约人数：{$event_total['app_num']}</span>
-        <span style="margin-left: 10px;">签到人数：{$event_total['check_num']}</span>
-    </div>
-    <div class="operate" style="text-align: center;font-size: 1em;height: 40px;line-height: 40px;">
-        <span style="margin-left: 10px;">预约保费：{$event_total['appointment_money']}</span>
-        <span style="margin-left: 10px;">实际保费：{$event_total['appointment_money_actual']}</span>
+        <input style="width: 32%;" type='text' id="start_date" class="start_date" value="{$start_date}" placeholder="开始时间" readonly/>
+        <input style="width: 32%;" type='text' id="end_date" class="end_date" value="{$end_date}" placeholder="结束时间" readonly/>
     </div>
     <table style="width:100%;font-size: 0.8em;line-height: 35px;" border="2" cellpadding=“10” cellspacing="0">
         <tr>
@@ -47,27 +32,27 @@
             <else />
             <th>职场名称</th>
             </if>
-            <th>活动名称</th>
-            <th>预约数</th>
-            <th>签到数</th>
-            <th>预约保费</th>
-            <th>实签保费</th>
+            <th>自购人数</th>
+            <th>产品</th>
+            <th>购买数量</th>
         </tr>
         <foreach name='vlist' item='v'>
+            <foreach name='v.cp_list' key="i"  item='vv'>
             <tr>
+                <if condition="$i eq 0">
                 <if condition="$type eq area">
-                    <td>{$v.zc_name}</td>
+                    <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_name}</td>
                     <elseif condition="$type eq city"/>
-                    <td>{$v.areas}-{$v.zc_name}</td>
+                    <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_area}-{$v.zc_name}</td>
                     <else />
-                    <td>{$v.zc_name}</td>
+                    <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_name}</td>
                 </if>
-                <td>{$v.name}</td>
-                <td>{$v.app_num}</td>
-                <td>{$v.check_num}</td>
-                <td>{$v.appointment_money}</td>
-                <td>{$v.appointment_money_actual}</td>
+                <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.num}</td>
+                </if>
+                <td>{$vv.product_name}</td>
+                <td>{$vv.num}</td>
             </tr>
+            </foreach>
         </foreach>
     </table>
 </div>
@@ -109,7 +94,6 @@
         var url = $("#index_url").val();
         var zc_name =$("#zc_search").val();
         var zc_area =$("#area_seareh").val();
-        var e_name =$("#event_search").val();
         var start_date =$("#start_date").val();
         var end_date =$("#end_date").val();
         if(zc_name){
@@ -117,9 +101,6 @@
         }
         if(zc_area){
             url += "&zc_area="+zc_area;
-        }
-        if(e_name){
-            url += "&e_name="+e_name;
         }
         if(start_date){
             url += "&start_date="+start_date;

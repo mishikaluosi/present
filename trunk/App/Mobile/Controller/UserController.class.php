@@ -235,11 +235,80 @@ class UserController extends MobileCommonController{
         $this->display();
     }
     public function orderTongji(){
-        echo '订单统计';
+        $zc_id = $this->_xzl_zcid;
+        $type = 'area';
+        $pre = C('DB_PREFIX');
+        //获取搜索条件
+        $zc_name =I("zc_name");
+        $zc_area =I("zc_area");
+        $start_date =I("start_date");
+        $end_date =I("end_date");
+        $this->assign('zc_name', $zc_name);
+        $this->assign('zc_area', $zc_area);
+        $this->assign('start_date', $start_date);
+        $this->assign('end_date', $end_date);
+        $where = "1=1";
+        if($zc_name){
+            $where .= " and zc.name like '%{$zc_name}%'";
+        }
+        if($zc_area){
+            $where .= " and zc.area = '{$zc_area}'";
+        }
+        if($start_date){
+            $start_date = strtotime($start_date.' 00:00:00');
+            $where .= " and o.order_ftime >= '{$start_date}'";
+        }
+        if($end_date){
+            $end_date = strtotime($end_date.' 23:59:59');
+            $where .= " and o.order_ftime <= '{$end_date}'";
+        }
+        if($type=='area'){
+            //获取当前用户职场所在支公司
+            $zc = M('zc')->where(array('id'=>$zc_id))->find(array('area'));
+            //获取当前支公司所有职场
+            $zc_id_arr = M('zc')->field(array('id','name'))->where(array('area'=>$zc['area']))->select();
+            $zc_array =array_unique(array_column($zc_id_arr,'name'));
+            $this->assign('zc_array', $zc_array);
+            $zc_ids = join(",",array_column($zc_id_arr,'id'));
+        }else if($type=='city'){
+            //获取当前用户职场所在支公司
+            $zc = M('zc')->where(array('id'=>$zc_id))->find(array('city'));
+            //获取当前支公司所有职场
+            $zc_id_arr = M('zc')->field(array('id','name','area'))->where(array('city'=>$zc['city']))->select();
+            $area_array =array_unique(array_column($zc_id_arr,'area'));
+            $this->assign('area_array', $area_array);
+            $zc_ids = join(",",array_column($zc_id_arr,'id'));
+        }else{
+            $zc_ids = $zc_id;
+        }
+        $where .= " and od.zc_id in($zc_ids)";
+        $sql = "select od.zc_id, sum(product_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num,
+                zc.name as zc_name,zc.area as zc_area,zc.city as zc_city
+                from {$pre}orderdata as od
+                LEFT JOIN {$pre}order as o ON o.order_id=od.order_id
+                LEFT JOIN {$pre}zc as zc ON zc.id=od.zc_id
+                where  o.order_state='success' and {$where}
+                group by od.zc_id
+                order by order_stime desc";
+        $vlist=M('order')->query($sql);
+        foreach ($vlist as $k=>$v){
+            $sql = "select od.product_id,od.product_name, sum(product_num) as num ,sum(product_allmoney) as money 
+                    from {$pre}orderdata as od
+                    LEFT JOIN {$pre}order as o
+                    ON o.order_id=od.order_id
+                    where  o.order_state='success' and o.zc_id={$v['zc_id']}
+                    group by product_id
+                    order by product_id DESC ";
+            $cp=M('order')->query($sql);
+            $vlist[$k]['cp_list']=$cp;
+        }
+        $this->assign('vlist',$vlist);
+        $this->assign('type',$type);
+        $this->display();
     }
     public function eventTongji(){
         $zc_id = $this->_xzl_zcid;
-        $type = 'area';
+        $type = 'city';
         $pre = C('DB_PREFIX');
         //获取搜索条件
         $zc_name =I("zc_name");
@@ -263,11 +332,11 @@ class UserController extends MobileCommonController{
             $where .= " and e.name like '%{$e_name}%'";
         }
         if($start_date){
-            $start_date = strtotime($start_date);
+            $start_date = strtotime($start_date.' 00:00:00');
             $where .= " and e.etime >= '{$start_date}'";
         }
         if($end_date){
-            $end_date = strtotime($end_date);
+            $end_date = strtotime($end_date.' 23:59:59');
             $where .= " and e.etime <= '{$end_date}'";
         }
         if($type=='area'){
