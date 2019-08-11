@@ -29,8 +29,9 @@
         <select id="cmbProvince" name='sprov'></select>
         <select id="cmbCity" name='scity'></select>
         <select id="cmbArea" name='sarea'></select>
-        <script type="text/javascript">
-        </script>
+        <span  style="margin-left: 20px;" class="s_span">活动名称</span>
+        <select id="e_name" name='e_name'></select>
+        <!--<input style="width: 100px;" type="text" id="e_name" name="e_name" class="inp_one" value="{$e_name}" placeholder="活动名称">-->
 
         <span style="margin-left: 20px;" class="s_span">职场名称</span>
         <input style="width: 100px;" type="text" name="zc_name" id="zc_name" class="inp_one" value="{$zc_name}" placeholder="职场名称">
@@ -42,8 +43,6 @@
             <option  <?php if($area_type==2){ ?>selected="selected"<?php } ?> value="2">分公司活动</option>
             <option  <?php if($area_type==3){ ?>selected="selected"<?php } ?> value="3">职场活动</option>
         </select>
-        <span  style="margin-left: 20px;" class="s_span">活动名称</span>
-        <input style="width: 100px;" type="text" id="e_name" name="e_name" class="inp_one" value="{$e_name}" placeholder="活动名称">
 
         <span  style="margin-left: 20px;" class="s_span">活动截止时间</span>
         <input style="width: 100px;" type='text' id="start_date" class="inp_one Wdate start_date" value="{$start_date}" onClick="WdatePicker()" placeholder="开始时间" readonly/>~
@@ -112,7 +111,7 @@
             dataType: "json",
             success: function(data){
                 var provinceList=data;
-                addressInit('cmbProvince', 'cmbCity', 'cmbArea', '{$prov}', '{$city}', '{$area}',provinceList);
+                addressInitNew('cmbProvince', 'cmbCity', 'cmbArea','e_name','{$prov}', '{$city}', '{$area}','{$e_name}',provinceList);
             }
         });
     })
@@ -136,14 +135,14 @@
         if(area && area!='请选择'){
             url += "&area="+area;
         }
+        if(e_name && e_name!='请选择'){
+            url += "&e_name="+e_name;
+        }
         if(zc_name){
             url += "&zc_name="+zc_name;
         }
         if(area_type){
             url += "&area_type="+area_type;
-        }
-        if(e_name){
-            url += "&e_name="+e_name;
         }
         if(start_date){
             url += "&start_date="+start_date;

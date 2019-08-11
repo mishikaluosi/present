@@ -1590,13 +1590,15 @@ function get_region_jsdata($type=null){
     return json_encode($return_arr);
 }
 function get_region_jsdata_new($type=null){//可以选择空
+    $pre = C('DB_PREFIX');
     $return_arr=array();
     $top=get_region_bypid();
     if($type=='select'){
         $add_index=1;
         $return_arr[0]['name']='请选择';
         $return_arr[0]['cityList'][0]['name']='请选择';
-        $return_arr[0]['cityList'][0]['areaList'][]='请选择';
+        $return_arr[0]['cityList'][0]['areaList'][]=array('name'=>'请选择');
+        $return_arr[0]['cityList'][0]['areaList'][0]['eventList'][]='请选择';
     }else{
         $add_index=0;
     }
@@ -1605,13 +1607,24 @@ function get_region_jsdata_new($type=null){//可以选择空
         $child=get_region_bypid($t['region_id'],$t['region_type']+1);
         $child_tmp=array();
         $child_tmp[0]['name']='请选择';
-        $child_tmp[0]['areaList']=array('请选择');
+        $child_tmp[0]['areaList'][0]=array('name'=>'请选择','eventList'=>array('请选择'));
         foreach ($child as $kk=>$c) {
             $add_s=1;
             $end=get_region_bypid($c['region_id'],$c['region_type']+1);
-            $end_tmp=array('请选择');
+            $end_tmp=[];
+            $end_tmp[0]=array('name'=>'请选择','eventList'=>array('请选择'));
             foreach ($end as $kkk=>$e){
-                $end_tmp[]=$e['region_name'];
+                //获取对应区下面的活动
+                $sql = "select e.name
+                from {$pre}event_tongji as t 
+                left join {$pre}event as e on e.id=t.e_id
+                left join {$pre}zc as zc on zc.id=t.zc_id
+                where zc.area='{$e['region_name']}'";
+                $event_arr = array('请选择');
+                $event= M('event_tongji')->query($sql);
+                $event= array_unique(array_column($event,'name'));
+                $event_arr = array_merge($event_arr,$event);
+                $end_tmp[]=array('name'=>$e['region_name'],'eventList'=>$event_arr);
             }
             $child_tmp[$kk+$add_s]['name']=$c['region_name'];
             $child_tmp[$kk+$add_s]['areaList']=$end_tmp;
