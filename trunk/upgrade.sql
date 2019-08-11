@@ -182,3 +182,11 @@ CREATE TABLE `bestop_event_tongji` (
   `created_at` int(10) DEFAULT '0' COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/**
+业务员表新增业务员权限字段
+Date: 2019-08-11 10:15
+ */
+ALTER TABLE `bestop_member`
+ADD COLUMN   `area_level` int(1) DEFAULT '0' COMMENT '是否有支公司权限',
+ADD COLUMN   `city_level` int(1) DEFAULT '0' COMMENT '是否有市级权限';

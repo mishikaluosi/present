@@ -135,6 +135,8 @@
                 <th>所在职场</th>
                 <th>组号</th>
                 <th>工号</th>
+                <th>支公司查看权限</th>
+                <th>市级查看权限</th>
                 <th>注册时间</th>
                 <th>登录时间</th>
                 <th>状态</th>
@@ -152,6 +154,20 @@
                 </td>
                 <td>{$v.group_no}</td>
                 <td>{$v.work_no}</td>
+                <td>
+                    <if condition="$v['city_level']">
+                        有
+                        <else />
+                        无
+                    </if>
+                </td>
+                <td>
+                    <if condition="$v['area_level']">
+                        有
+                        <else />
+                        无
+                    </if>
+                </td>
                 <td>
                     <if condition="$v['regtime']">
                     {$v.regtime|date='Y-m-d H:i:s',###}

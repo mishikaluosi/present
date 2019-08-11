@@ -78,7 +78,15 @@
 					<input type="text" name="work_no" class="inp_one"  value="{$vo.work_no}"/>
 				</dd>
 			</dl>
-
+			<dl>
+				<dt>权限</dt>
+				<dd>
+				<dd>
+					<input type="checkbox" name="area_level" value="1" <if condition='$vo.area_level eq 1'>checked="checked"</if> />支公司数据查看权限
+					<input type="checkbox" name="city_level" value="1" <if condition='$vo.city_level eq 1'>checked="checked"</if> />市级数据查看权限
+				</dd>
+				</dd>
+			</dl>
 			<div class="form_b">
 				<input type="submit" class="btn_blue" id="submit" value="保 存">
 			</div>

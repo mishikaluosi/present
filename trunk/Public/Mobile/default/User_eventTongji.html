@@ -1,5 +1,5 @@
 ﻿<include file="Public:header" />
-<input type="hidden" id="index_url" value="{:U('User/eventTongji')}">
+<input type="hidden" id="index_url" value="{:U('User/eventTongji',array('type'=>$type))}">
 <script type="text/javascript" src="__PUBLIC__/js/datePicker.js"></script>
 <div class="top" style="margin-top: 28px;"></div>
 <div class="main">
@@ -23,7 +23,7 @@
         <select style="width: 24%;" id="event_search" name='event_search'>
             <option value="">活动搜索</option>
             <foreach name='event' item='value'>
-                <option <?php if($e_name==$value['name']){ ?>selected="selected"<?php } ?> value="{$value['name']}">{$value['name']}</option>
+                <option <?php if($e_name==$value){ ?>selected="selected"<?php } ?> value="{$value}">{$value}</option>
             </foreach>
         </select>
         <input style="width: 24%;" type='text' id="start_date" class="start_date" value="{$start_date}" placeholder="开始时间" readonly/>
@@ -58,7 +58,7 @@
                 <if condition="$type eq area">
                     <td>{$v.zc_name}</td>
                     <elseif condition="$type eq city"/>
-                    <td>{$v.areas}-{$v.zc_name}</td>
+                    <td>{$v.areas}</td>
                     <else />
                     <td>{$v.zc_name}</td>
                 </if>

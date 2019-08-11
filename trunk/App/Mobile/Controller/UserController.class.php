@@ -236,7 +236,7 @@ class UserController extends MobileCommonController{
     }
     public function orderTongji(){
         $zc_id = $this->_xzl_zcid;
-        $type = 'area';
+        $type = I('type');
         $pre = C('DB_PREFIX');
         //获取搜索条件
         $zc_name =I("zc_name");
@@ -247,6 +247,7 @@ class UserController extends MobileCommonController{
         $this->assign('zc_area', $zc_area);
         $this->assign('start_date', $start_date);
         $this->assign('end_date', $end_date);
+        $this->assign('type', $type);
         $where = "1=1";
         if($zc_name){
             $where .= " and zc.name like '%{$zc_name}%'";
@@ -270,6 +271,27 @@ class UserController extends MobileCommonController{
             $zc_array =array_unique(array_column($zc_id_arr,'name'));
             $this->assign('zc_array', $zc_array);
             $zc_ids = join(",",array_column($zc_id_arr,'id'));
+            $where .= " and od.zc_id in($zc_ids)";
+            $sql = "select od.zc_id, sum(product_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num,
+                zc.name as zc_name
+                from {$pre}orderdata as od
+                LEFT JOIN {$pre}order as o ON o.order_id=od.order_id
+                LEFT JOIN {$pre}zc as zc ON zc.id=od.zc_id
+                where  o.order_state='success' and {$where}
+                group by od.zc_id
+                order by order_stime desc";
+            $vlist=M('order')->query($sql);
+            foreach ($vlist as $k=>$v){
+                $sql = "select od.product_id,od.product_name, sum(product_num) as num ,sum(product_allmoney) as money 
+                    from {$pre}orderdata as od
+                    LEFT JOIN {$pre}order as o
+                    ON o.order_id=od.order_id
+                    where  o.order_state='success' and o.zc_id={$v['zc_id']}
+                    group by product_id
+                    order by product_id DESC ";
+                $cp=M('order')->query($sql);
+                $vlist[$k]['cp_list']=$cp;
+            }
         }else if($type=='city'){
             //获取当前用户职场所在支公司
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('city'));
@@ -278,29 +300,29 @@ class UserController extends MobileCommonController{
             $area_array =array_unique(array_column($zc_id_arr,'area'));
             $this->assign('area_array', $area_array);
             $zc_ids = join(",",array_column($zc_id_arr,'id'));
-        }else{
-            $zc_ids = $zc_id;
-        }
-        $where .= " and od.zc_id in($zc_ids)";
-        $sql = "select od.zc_id, sum(product_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num,
-                zc.name as zc_name,zc.area as zc_area,zc.city as zc_city
+            $where .= " and od.zc_id in($zc_ids)";
+            $sql = "select group_concat(od.zc_id) as zc_id, sum(product_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num,
+                zc.area as zc_area
                 from {$pre}orderdata as od
                 LEFT JOIN {$pre}order as o ON o.order_id=od.order_id
                 LEFT JOIN {$pre}zc as zc ON zc.id=od.zc_id
                 where  o.order_state='success' and {$where}
-                group by od.zc_id
+                group by zc.area
                 order by order_stime desc";
-        $vlist=M('order')->query($sql);
-        foreach ($vlist as $k=>$v){
-            $sql = "select od.product_id,od.product_name, sum(product_num) as num ,sum(product_allmoney) as money 
+            $vlist=M('order')->query($sql);
+            foreach ($vlist as $k=>$v){
+                $sql = "select od.product_id,od.product_name, sum(product_num) as num ,sum(product_allmoney) as money 
                     from {$pre}orderdata as od
                     LEFT JOIN {$pre}order as o
                     ON o.order_id=od.order_id
-                    where  o.order_state='success' and o.zc_id={$v['zc_id']}
+                    where  o.order_state='success' and o.zc_id in({$v['zc_id']})
                     group by product_id
                     order by product_id DESC ";
-            $cp=M('order')->query($sql);
-            $vlist[$k]['cp_list']=$cp;
+                $cp=M('order')->query($sql);
+                $vlist[$k]['cp_list']=$cp;
+            }
+        }else{
+            $vlist=[];
         }
         $this->assign('vlist',$vlist);
         $this->assign('type',$type);
@@ -308,7 +330,7 @@ class UserController extends MobileCommonController{
     }
     public function eventTongji(){
         $zc_id = $this->_xzl_zcid;
-        $type = 'city';
+        $type = I('type');
         $pre = C('DB_PREFIX');
         //获取搜索条件
         $zc_name =I("zc_name");
@@ -321,6 +343,7 @@ class UserController extends MobileCommonController{
         $this->assign('e_name', $e_name);
         $this->assign('start_date', $start_date);
         $this->assign('end_date', $end_date);
+        $this->assign('type', $type);
         $where = "1=1";
         if($zc_name){
             $where .= " and zc.name like '%{$zc_name}%'";
@@ -347,6 +370,13 @@ class UserController extends MobileCommonController{
             $zc_array =array_unique(array_column($zc_id_arr,'name'));
             $this->assign('zc_array', $zc_array);
             $zc_ids = join(",",array_column($zc_id_arr,'id'));
+            $sql = "select t.app_num,t.check_num,t.appointment_money,t.appointment_money_actual,e.name,e.area,e.address,e.stime,e.etime,
+                IFNULL(zc.name ,'其他职场') as zc_name,zc.prov,zc.city,zc.area as areas
+                from {$pre}event_tongji as t 
+                left join {$pre}event as e on e.id=t.e_id
+                left join {$pre}zc as zc on zc.id=t.zc_id
+                where t.zc_id in($zc_ids) and $where";
+            $event_info = M('event_tongji')->query($sql);
         }else if($type=='city'){
             //获取当前用户职场所在支公司
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('city'));
@@ -355,8 +385,17 @@ class UserController extends MobileCommonController{
             $area_array =array_unique(array_column($zc_id_arr,'area'));
             $this->assign('area_array', $area_array);
             $zc_ids = join(",",array_column($zc_id_arr,'id'));
+            $sql = "select sum(t.app_num) as app_num,sum(t.check_num) as check_num,
+                  sum(t.appointment_money) as appointment_money,sum(t.appointment_money_actual) as appointment_money_actual,
+                e.name,e.area,e.address,e.stime,e.etime,zc.area as areas
+                from {$pre}event_tongji as t 
+                left join {$pre}event as e on e.id=t.e_id
+                left join {$pre}zc as zc on zc.id=t.zc_id
+                where t.zc_id in($zc_ids) and $where
+                group by zc.area,e.id";
+            $event_info = M('event_tongji')->query($sql);
         }else{
-            $zc_ids = $zc_id;
+            $event_info=[];
         }
         //获取活动总数量
         $sql = "select count(t.id) as total_count,
@@ -370,26 +409,14 @@ class UserController extends MobileCommonController{
                 left join {$pre}zc as zc on zc.id=t.zc_id
                 where t.zc_id in($zc_ids) and $where";
         $total = M('event_tongji')->query($sql);
-        $sql = "select t.*,e.name,e.area,e.address,e.stime,e.etime,
-                IFNULL(zc.name ,'其他职场') as zc_name,zc.prov,zc.city,zc.area as areas
+        //获取所有活动
+        $sql = "select e.name
                 from {$pre}event_tongji as t 
                 left join {$pre}event as e on e.id=t.e_id
                 left join {$pre}zc as zc on zc.id=t.zc_id
-                where t.zc_id in($zc_ids) and $where";
-        $event_info = M('event_tongji')->query($sql);
-        foreach ($event_info as $key => $value){
-            if($value['area']==1){
-                $event_info[$key]['area']='市活动';
-            }else if($value['area']==2){
-                $event_info[$key]['area']='分公司活动';
-            }else if($value['area']==3){
-                $event_info[$key]['area']='职场活动';
-            }else{
-                $event_info[$key]['area']='市活动';
-            }
-        }
-        //获取所有活动
-        $event = M('event')->field(array('id','name'))->select();
+                where t.zc_id in($zc_ids)";
+        $event = M('event')->query($sql);
+        $event = array_unique(array_column($event,'name'));
         $this->assign('event',$event);
         $this->assign('type',$type);
         $this->assign('event_total',$total[0]);

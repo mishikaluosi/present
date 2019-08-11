@@ -167,7 +167,8 @@ class MemberController extends CommonController {
         $zc = I('zc', '');
         $group_no = trim(I('group_no', ''));
         $work_no = trim(I('work_no', ''));
-
+        $area_level = I('area_level', 0);
+        $city_level = I('city_level', 0);
         $id = I('id', '');
         //基本验证
 		if(!is_numeric($id)){
@@ -205,6 +206,8 @@ class MemberController extends CommonController {
             'phone'=>$phone,
             'group_no'=>$group_no,
             'work_no'=>$work_no,
+            'area_level'=>$area_level,
+            'city_level'=>$city_level,
         );
         if(is_numeric($zc)&&$zc>0){
             $data['zc_id']=$zc;
