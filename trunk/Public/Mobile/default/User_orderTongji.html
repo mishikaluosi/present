@@ -43,7 +43,7 @@
                 <if condition="$type eq area">
                     <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_name}</td>
                     <elseif condition="$type eq city"/>
-                    <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_area}-{$v.zc_name}</td>
+                    <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_area}}</td>
                     <else />
                     <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_name}</td>
                 </if>
