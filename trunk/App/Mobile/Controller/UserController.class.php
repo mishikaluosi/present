@@ -268,9 +268,9 @@ class UserController extends MobileCommonController{
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('area'));
             //获取当前支公司所有职场
             $zc_id_arr = M('zc')->field(array('id','name'))->where(array('area'=>$zc['area']))->select();
-            $zc_array =array_unique(array_column($zc_id_arr,'name'));
+            $zc_array =array_unique(i_array_column($zc_id_arr,'name'));
             $this->assign('zc_array', $zc_array);
-            $zc_ids = join(",",array_column($zc_id_arr,'id'));
+            $zc_ids = join(",",i_array_column($zc_id_arr,'id'));
             $where .= " and od.zc_id in($zc_ids)";
             $sql = "select od.zc_id, sum(product_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num,
                 zc.name as zc_name
@@ -297,9 +297,9 @@ class UserController extends MobileCommonController{
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('city'));
             //获取当前支公司所有职场
             $zc_id_arr = M('zc')->field(array('id','name','area'))->where(array('city'=>$zc['city']))->select();
-            $area_array =array_unique(array_column($zc_id_arr,'area'));
+            $area_array =array_unique(i_array_column($zc_id_arr,'area'));
             $this->assign('area_array', $area_array);
-            $zc_ids = join(",",array_column($zc_id_arr,'id'));
+            $zc_ids = join(",",i_array_column($zc_id_arr,'id'));
             $where .= " and od.zc_id in($zc_ids)";
             $sql = "select group_concat(od.zc_id) as zc_id, sum(product_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num,
                 zc.area as zc_area
@@ -367,9 +367,9 @@ class UserController extends MobileCommonController{
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('area'));
             //获取当前支公司所有职场
             $zc_id_arr = M('zc')->field(array('id','name'))->where(array('area'=>$zc['area']))->select();
-            $zc_array =array_unique(array_column($zc_id_arr,'name'));
+            $zc_array =array_unique(i_array_column($zc_id_arr,'name'));
             $this->assign('zc_array', $zc_array);
-            $zc_ids = join(",",array_column($zc_id_arr,'id'));
+            $zc_ids = join(",",i_array_column($zc_id_arr,'id'));
             $sql = "select t.app_num,t.check_num,t.appointment_money,t.appointment_money_actual,e.name,e.area,e.address,e.stime,e.etime,
                 IFNULL(zc.name ,'其他职场') as zc_name,zc.prov,zc.city,zc.area as areas
                 from {$pre}event_tongji as t 
@@ -382,9 +382,9 @@ class UserController extends MobileCommonController{
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('city'));
             //获取当前支公司所有职场
             $zc_id_arr = M('zc')->field(array('id','name','area'))->where(array('city'=>$zc['city']))->select();
-            $area_array =array_unique(array_column($zc_id_arr,'area'));
+            $area_array =array_unique(i_array_column($zc_id_arr,'area'));
             $this->assign('area_array', $area_array);
-            $zc_ids = join(",",array_column($zc_id_arr,'id'));
+            $zc_ids = join(",",i_array_column($zc_id_arr,'id'));
             $sql = "select sum(t.app_num) as app_num,sum(t.check_num) as check_num,
                   sum(t.appointment_money) as appointment_money,sum(t.appointment_money_actual) as appointment_money_actual,
                 e.name,e.area,e.address,e.stime,e.etime,zc.area as areas
@@ -416,7 +416,7 @@ class UserController extends MobileCommonController{
                 left join {$pre}zc as zc on zc.id=t.zc_id
                 where t.zc_id in($zc_ids)";
         $event = M('event')->query($sql);
-        $event = array_unique(array_column($event,'name'));
+        $event = array_unique(i_array_column($event,'name'));
         $this->assign('event',$event);
         $this->assign('type',$type);
         $this->assign('event_total',$total[0]);

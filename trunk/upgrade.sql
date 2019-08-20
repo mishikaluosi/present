@@ -10,7 +10,7 @@ CREATE TABLE `bestop_send_code` (
   `type` varchar(255) DEFAULT NULL COMMENT '验证码类型',
   `created_at` int(10) DEFAULT '0' COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*
 
@@ -39,7 +39,7 @@ CREATE TABLE `bestop_award` (
   `created_at` int(10) DEFAULT NULL,
   `adduser` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*
 
@@ -65,7 +65,7 @@ CREATE TABLE `bestop_event_draw` (
   `created_at` int(10) DEFAULT NULL COMMENT '创建时间',
   `updated_at` int(10) DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*
 添加活动中奖表
@@ -78,7 +78,7 @@ CREATE TABLE `bestop_prize` (
   `draw_id` int(11) DEFAULT NULL COMMENT '奖项id',
   `created_at` int(10) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*
 添加参加活动用户表
@@ -92,7 +92,7 @@ CREATE TABLE `bestop_event_user` (
   `thumb_image` varchar(255) DEFAULT NULL COMMENT '缩略图',
   `created_at` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*
 
@@ -118,7 +118,7 @@ CREATE TABLE `bestop_appointment` (
   `created_at` int(10) DEFAULT NULL,
   `adduser` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*
 
@@ -181,7 +181,7 @@ CREATE TABLE `bestop_event_tongji` (
   `appointment_money_actual` decimal(10,2) DEFAULT '0.00' COMMENT '实际预约保费',
   `created_at` int(10) DEFAULT '0' COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /**
 业务员表新增业务员权限字段

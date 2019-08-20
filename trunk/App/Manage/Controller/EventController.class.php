@@ -223,12 +223,12 @@ class EventController extends CommonController {
             $wj['areas']='';
             $where = "city ='{$wj['citys']}'";
             $zc_info = M('zc')->where($where)->select();
-            $zc_info = join(',',array_column($zc_info,"id"));
+            $zc_info = join(',',i_array_column($zc_info,"id"));
         }else if($wj['area']==2){//分公司活动
             $wj['citys']='';
             $where = "area ='{$wj['areas']}'";
             $zc_info = M('zc')->where($where)->select();
-            $zc_info = join(',',array_column($zc_info,"id"));
+            $zc_info = join(',',i_array_column($zc_info,"id"));
         }else{
             $wj['areas']='';
             $wj['citys']='';
@@ -947,7 +947,7 @@ eot;
                             where app.e_id = {$value['id']} and m.zc_id in ($zc_ids)
                             group by m.zc_id";
                 $app = M("appointment")->query($sql);
-                $app = array_column($app,null,'zc_id');
+                $app = i_array_column($app,null,'zc_id');
 
                 $sql = "select m.zc_id,
                             count(eu.id) as check_num,
@@ -958,7 +958,7 @@ eot;
                             where eu.e_id = {$value['id']} and m.zc_id in ($zc_ids)
                             group by m.zc_id";
                 $eu = M("event_user")->query($sql);
-                $eu = array_column($eu,null,'zc_id');
+                $eu = i_array_column($eu,null,'zc_id');
 
                 $zc = M("zc")->where("id in ($zc_ids)")->field('id')->select();
                 foreach($zc as $j =>$vv){

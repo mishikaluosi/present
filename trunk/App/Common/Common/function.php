@@ -1622,7 +1622,7 @@ function get_region_jsdata_new($type=null){//可以选择空
                 where zc.area='{$e['region_name']}'";
                 $event_arr = array('请选择');
                 $event= M('event_tongji')->query($sql);
-                $event= array_unique(array_column($event,'name'));
+                $event= array_unique(i_array_column($event,'name'));
                 $event_arr = array_merge($event_arr,$event);
                 $end_tmp[]=array('name'=>$e['region_name'],'eventList'=>$event_arr);
             }
@@ -1695,5 +1695,34 @@ function pe_ip()
     }
     $ip_arr = explode(',', $realip);
     return $ip_arr[0];
+}
+function i_array_column($input, $columnKey, $indexKey=null){
+    if(!function_exists('array_column')){
+        $columnKeyIsNumber  = (is_numeric($columnKey))?true:false;
+        $indexKeyIsNull            = (is_null($indexKey))?true :false;
+        $indexKeyIsNumber     = (is_numeric($indexKey))?true:false;
+        $result                         = array();
+        foreach((array)$input as $key=>$row){
+            if($columnKeyIsNumber){
+                $tmp= array_slice($row, $columnKey, 1);
+                $tmp= (is_array($tmp) && !empty($tmp))?current($tmp):null;
+            }else{
+                $tmp= isset($row[$columnKey])?$row[$columnKey]:null;
+            }
+            if(!$indexKeyIsNull){
+                if($indexKeyIsNumber){
+                    $key = array_slice($row, $indexKey, 1);
+                    $key = (is_array($key) && !empty($key))?current($key):null;
+                    $key = is_null($key)?0:$key;
+                }else{
+                    $key = isset($row[$indexKey])?$row[$indexKey]:0;
+                }
+            }
+            $result[$key] = $tmp;
+        }
+        return $result;
+    }else{
+        return array_column($input, $columnKey, $indexKey);
+    }
 }
 ?>

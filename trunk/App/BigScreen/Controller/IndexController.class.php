@@ -59,10 +59,10 @@ class IndexController extends Controller
         $cur_award_id = I('cur_award_id');
         //排除已中奖人员id
         $prize = M("prize")->where(['e_id'=>$e_id,])->select();
-        $prize_uids = join(",",array_column($prize,'uid'));
+        $prize_uids = join(",",i_array_column($prize,'uid'));
         //获取所有未中奖人员
         $not_prize = M('event_user')->where(['id'=>['not in',$prize_uids],'e_id'=>$e_id])->select();
-        $not_prize_uids = array_column($not_prize,'id');
+        $not_prize_uids = i_array_column($not_prize,'id');
         //随机生成中奖数据
         $licky_keys = array_rand($not_prize_uids,$luckyNum);
         if(count($licky_keys)>1){
