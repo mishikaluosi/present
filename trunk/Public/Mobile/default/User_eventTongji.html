@@ -2,6 +2,11 @@
 <input type="hidden" id="index_url" value="{:U('User/eventTongji',array('type'=>$type))}">
 <script type="text/javascript" src="__PUBLIC__/js/datePicker.js"></script>
 <div class="top" style="margin-top: 28px;"></div>
+<style>
+    .tab_ul2 td{
+        background: #fff;
+    }
+</style>
 <div class="main">
     <div class="operate" style="height: 40px;line-height: 40px;">
         <if condition="$type eq area">
@@ -38,7 +43,7 @@
         <span style="margin-left: 10px;">预约保费：{$event_total['appointment_money']}</span>
         <span style="margin-left: 10px;">实际保费：{$event_total['appointment_money_actual']}</span>
     </div>
-    <table style="width:100%;font-size: 0.8em;line-height: 35px;" border="2" cellpadding=“10” cellspacing="0">
+    <table style="width:100%;font-size: 0.8em;line-height: 35px;text-align: center">
         <tr>
             <if condition="$type eq area">
             <th>职场名称</th>
@@ -53,8 +58,8 @@
             <th>预约保费</th>
             <th>实签保费</th>
         </tr>
-        <foreach name='vlist' item='v'>
-            <tr>
+        <foreach name='vlist' key="k" item='v'>
+            <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>'>
                 <if condition="$type eq area">
                     <td>{$v.zc_name}</td>
                     <elseif condition="$type eq city"/>

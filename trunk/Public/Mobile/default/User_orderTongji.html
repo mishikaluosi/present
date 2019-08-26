@@ -2,6 +2,11 @@
 <input type="hidden" id="index_url" value="{:U('User/orderTongji',array('type'=>$type))}">
 <script type="text/javascript" src="__PUBLIC__/js/datePicker.js"></script>
 <div class="top" style="margin-top: 28px;"></div>
+<style>
+    .tab_ul2 td{
+        background: #fff;
+    }
+</style>
 <div class="main">
     <div class="operate" style="height: 40px;line-height: 40px;">
         <if condition="$type eq area">
@@ -23,7 +28,7 @@
         <input style="width: 32%;" type='text' id="start_date" class="start_date" value="{$start_date}" placeholder="开始时间" readonly/>
         <input style="width: 32%;" type='text' id="end_date" class="end_date" value="{$end_date}" placeholder="结束时间" readonly/>
     </div>
-    <table style="width:100%;font-size: 0.8em;line-height: 35px;" border="2" cellpadding=“10” cellspacing="0">
+    <table style="width:100%;font-size: 0.8em;line-height: 35px;text-align: center" cellpadding=“10” cellspacing="0">
         <tr>
             <if condition="$type eq area">
             <th>职场名称</th>
@@ -36,9 +41,9 @@
             <th>产品</th>
             <th>购买数量</th>
         </tr>
-        <foreach name='vlist' item='v'>
+        <foreach name='vlist' key="k" item='v'>
             <foreach name='v.cp_list' key="i"  item='vv'>
-            <tr>
+            <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>'>
                 <if condition="$i eq 0">
                 <if condition="$type eq area">
                     <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_name}</td>
