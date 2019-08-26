@@ -2611,7 +2611,6 @@ a.tjbtn {
     min-height: 70px;
     padding-top: 25px;
 }
-
 .user_tx {
     float: left;
     width: 120px;
@@ -2621,10 +2620,16 @@ a.tjbtn {
     background: #fff;
     margin: 12px;
 }
+@media screen and (max-width: 330px) {
+    .user_tx {
+        width: 90px !important;
+        height: 90px !important;
+    }
+}
 
 .user_tx img {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
 
 }
 
