@@ -6,7 +6,7 @@
 <link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
 <script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
-
+<script type="text/javascript" src="__PUBLIC__/js/clipboard.min.js"></script>
 </head>
 <body>
 <div class="main">
@@ -139,7 +139,7 @@
                             <a href="{:U('Event/draw',array('e_id' => $v['id']), '')}">奖项设置</a>
                             <a href="{:U('Lucky/index',array('e_id' => $v['id']), '')}">中奖管理</a>
                             <a href="{:U('BigScreen/'.'Index/index',array('e_id' => $v['id']), '')}"  target="_blank">抽奖链接</a>
-
+                            <a href="javascript:;" class="btn-text copytext" data-clipboard-text="http://xt.wxlyz.com{:U('BigScreen/'.'Index/index',array('e_id' => $v['id']), '')}">复制抽奖链接</a>
                         </if>
                         <a href="{:U('Appointment/index',array('e_id' => $v['id']), '')}">预约管理</a>
                         <a href="{:U('Check/index',array('e_id' => $v['id']), '')}">签到管理</a>
@@ -169,5 +169,16 @@
         height: auto!important;
     }
 </style>
+<script>
+$(function(){
+    var clipboard = new Clipboard('.copytext');  //复制到剪切板
+    clipboard.on('success', function(e) {
+        alert('复制到剪切板成功！');
+    });
+    clipboard.on('error', function(e) {
+        alert('复制失败！');
+    });
+})
+</script>
 </body>
 </html>
