@@ -69,8 +69,17 @@
         <div class="left" style="float: left;margin-top:8px">
             <input type="button" onclick="goUrl('{:U('Member/add')}')" class="btn_blue " value="添加业务员">
             <a href="__PUBLIC__/file/member_tpl.xls" class="btn_blue">下载模板</a>
-            <input type="button" onclick="goUrl('{:U('Member/export_ex')}')" class="btn_blue btn_red" value="导出">
-
+<!--            <input type="button" onclick="goUrl('{:U('Member/export_ex')}')" class="btn_blue btn_red" value="导出">-->
+            <form method="post" action="{:U('Member/export_ex')}" style="float: left">
+                <input type="hidden" name="sname" value="{$sname}">
+                <input type="hidden" name="sphone" value="{$sphone}">
+                <input type="hidden" name="sprov" value="{$sprov}">
+                <input type="hidden" name="scity" value="{$scity}">
+                <input type="hidden" name="sarea" value="{$sarea}">
+                <input type="hidden" name="sgno" value="{$sgno}">
+                <input type="hidden" name="swno" value="{$swno}">
+                <input type="submit" class="btn_blue btn_red" style="float: left" value="导出">
+            </form>
         </div>
         <div class="clear"></div>
     </div>

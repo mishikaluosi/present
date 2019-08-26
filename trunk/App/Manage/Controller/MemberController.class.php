@@ -282,8 +282,21 @@ class MemberController extends CommonController {
      * 导出excel
      */
 	public function export_ex(){
-        $data['list']= M('member')->order('id DESC')->select();
+        $where=' 1=1 ';
+        $kw_arr=array('sname','sphone','sprov','scity','sarea','sgno','swno');
+        $db_arr=array('name','phone','prov','city','area','group_no','work_no');
+        foreach ($kw_arr as $k=>$v){
+            $params[$v] = I($v, '', 'htmlspecialchars,trim');
+            if(!empty($params[$v])&&$params[$v]!='请选择'){
+                if(in_array($v,array('sprov','scity','sarea'))){
+                    $where.=' and '.$db_arr[$k].' like "%'.$params[$v].'%"';
+                }else{
+                    $where.=' and '.$db_arr[$k].' like "%'.$params[$v].'%"';
+                }
 
+            }
+        }
+        $data['list']= M('member')->where($where)->order('id DESC')->select();
         if(count($data['list'])<1){
             $this->error('没有可导出的记录',U('Member/index'));exit();
         }
