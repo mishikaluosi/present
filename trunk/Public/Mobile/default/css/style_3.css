@@ -2595,7 +2595,7 @@ a.tjbtn {
 }
 
 .user_text {
-    float: left;
+    margin-left: 135px;
     color: #fff;
     font-size: 18px;
     line-height: 22px;
