@@ -36,57 +36,78 @@
 <div style="margin-top: 45px;">
 </div>
 <div class="content">
-    <foreach name="event_user" item="user">
-    <div class="weui-form-preview" style="margin-top: 10px;">
-        <div class="weui-form-preview__hd" style="padding: 0">
-            <div class="weui-form-preview__item">
-                <div class="weui-cell weui-cell_example">
-                    <div class="weui-cell__hd">
-                        <img src="{$user.image}" alt="" style="border-radius:24px;width:48px;margin-right:16px;display:block">
-                    </div>
-                    <div class="weui-cell__bd">{$user.name}</div>
-                </div>
-            </div>
-        </div>
-        <div class="weui-form-preview__bd">
-            <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">姓名</label>
-                <span class="weui-form-preview__value">{$user.username}</span>
-            </div>
-            <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">手机号</label>
-                <span class="weui-form-preview__value"><?php echo substr_replace($user['phone'],'****',3,4); ?></span>
-            </div>
-            <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">性别</label>
-                <span class="weui-form-preview__value">{$user.sex}</span>
-            </div>
-            <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">是否预约保费</label>
-                <span class="weui-form-preview__value">
-                    <if condition="$user.is_appointment eq 1">
-                        否
-                        <else />
-                        是
-                    </if>
-                </span>
-            </div>
-            <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">预约保费</label>
-                <span class="weui-form-preview__value">{$user.appointment_money}</span>
-            </div>
-            <div class="weui-form-preview__item">
-                <label class="weui-form-preview__label">实际预约保费</label>
-                <span class="weui-form-preview__value">{$user.appointment_money_actual}</span>
-            </div>
-        </div>
-        <div class="weui-form-preview__ft">
-            <a class="weui-form-preview__btn weui-form-preview__btn_primary showDialog" username="{$user.username}" appointment_money_actual="{$user.appointment_money_actual}" appointment_money="{$user.appointment_money}"  alt="{$user.id}" href="javascript:">填写预约保费</a>
-        </div>
+    <div style="width: 100%;height: 50px;line-height: 50px;background: rgb(95, 151, 116);margin-top: 5px;overflow: hidden">
+        <span style="margin-left: 20px;float: left">{$info['name']}</span>
+        <span style="margin-left: 20px;color: #666666;float: left"><img style="width:20px;height: 20px;margin-top: 15px;float: left" src="__PUBLIC__/images/idp.png" alt="">{$info['work_no']}</span>
+        <span style="margin-left: 20px;color: #666666;float: left"><img style="width:20px;height: 20px;margin-top: 15px;float: left" src="__PUBLIC__/images/link.png" alt="">{$zc['name']}</span>
     </div>
+    <table style="width:100%;font-size: 0.9em;line-height: 4em;text-align: center">
+        <tr>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>预约保费</th>
+            <th>实际保费</th>
+            <th>操作</th>
+        </tr>
+    <foreach name="event_user" item="user" key="key">
+        <tr class='<if condition="(($key+1)%2) eq 1"> tab_ul2 </if> row'>
+            <td>{$user.username}</td>
+            <td>{$user.sex}</td>
+            <td>{$user.appointment_money}</td>
+            <td>{$user.appointment_money_actual}</td>
+            <td> <a class="btn_blue showDialog" username="{$user.username}" appointment_money_actual="{$user.appointment_money_actual}" appointment_money="{$user.appointment_money}"  alt="{$user.id}" href="javascript:">填写预约保费</a></td>
+        </tr>
+<!--    <div class="weui-form-preview" style="margin-top: 10px;">-->
+<!--        <div class="weui-form-preview__hd" style="padding: 0">-->
+<!--            <div class="weui-form-preview__item">-->
+<!--                <div class="weui-cell weui-cell_example">-->
+<!--                    <div class="weui-cell__hd">-->
+<!--                        <img src="{$user.image}" alt="" style="border-radius:24px;width:48px;margin-right:16px;display:block">-->
+<!--                    </div>-->
+<!--                    <div class="weui-cell__bd">{$user.name}</div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="weui-form-preview__bd">-->
+<!--            <div class="weui-form-preview__item">-->
+<!--                <label class="weui-form-preview__label">姓名</label>-->
+<!--                <span class="weui-form-preview__value">{$user.username}</span>-->
+<!--            </div>-->
+<!--            <div class="weui-form-preview__item">-->
+<!--                <label class="weui-form-preview__label">手机号</label>-->
+<!--                <span class="weui-form-preview__value"><?php echo substr_replace($user['phone'],'****',3,4); ?></span>-->
+<!--            </div>-->
+<!--            <div class="weui-form-preview__item">-->
+<!--                <label class="weui-form-preview__label">性别</label>-->
+<!--                <span class="weui-form-preview__value">{$user.sex}</span>-->
+<!--            </div>-->
+<!--            <div class="weui-form-preview__item">-->
+<!--                <label class="weui-form-preview__label">是否预约保费</label>-->
+<!--                <span class="weui-form-preview__value">-->
+<!--                    <if condition="$user.is_appointment eq 1">-->
+<!--                        否-->
+<!--                        <else />-->
+<!--                        是-->
+<!--                    </if>-->
+<!--                </span>-->
+<!--            </div>-->
+<!--            <div class="weui-form-preview__item">-->
+<!--                <label class="weui-form-preview__label">预约保费</label>-->
+<!--                <span class="weui-form-preview__value">{$user.appointment_money}</span>-->
+<!--            </div>-->
+<!--            <div class="weui-form-preview__item">-->
+<!--                <label class="weui-form-preview__label">实际预约保费</label>-->
+<!--                <span class="weui-form-preview__value">{$user.appointment_money_actual}</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="weui-form-preview__ft">-->
+<!--            <a class="weui-form-preview__btn weui-form-preview__btn_primary showDialog" username="{$user.username}" appointment_money_actual="{$user.appointment_money_actual}" appointment_money="{$user.appointment_money}"  alt="{$user.id}" href="javascript:">填写预约保费</a>-->
+<!--        </div>-->
+<!--    </div>-->
     </foreach>
+    </table>
     <div class="js_dialog" id="dialog" style="display: none;">
-        <input type="text" id="user_id" value="0">
+        <input type="hidden" id="user_id" value="0">
         <div class="dialog-mask"></div>
         <div class="dialog-half-screen">
             <div class="weui-half-screen-dialog__hd">
@@ -133,11 +154,11 @@
     $(function(){
         $(".showDialog").bind("click",function () {
             var user_id = parseInt($(this).attr("alt"));
-            $("#dialog").show();
             $("#dialog").find("#user_id").val(user_id);
             $("#dialog").find(".username").val($(this).attr("username"));
             $("#dialog").find(".appointment_money").val($(this).attr("appointment_money"));
             $("#dialog").find(".appointment_money_actual").val($(this).attr("appointment_money_actual"));
+            $("#dialog").show();
         })
         $("#dialog .btn-close").bind("click",function(){
             $("#dialog").hide();
