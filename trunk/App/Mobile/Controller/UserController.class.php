@@ -471,6 +471,27 @@ class UserController extends MobileCommonController{
         $this->assign('vlist',$vlist);
         $this->display();
     }
+    public function checkTongji(){
+        $user_id=$this->_xzl_uid;
+        $pre = C('DB_PREFIX');
+        $where = "eu.member_id = '{$user_id}'";
+        $vlist=M('event_user')
+            ->alias('eu')
+            ->field('eu.*,e.alias as e_name')
+            ->join("{$pre}event e ON e.id=eu.e_id","LEFT")
+            ->where($where)->select();
+        $this->assign('vlist',$vlist);
+        $sql = "select count(DISTINCT eu.e_id) as e_num,sum(eu.appointment_money_actual) as appointment_money_actual,sum(eu.appointment_money) as appointment_money,count(eu.id) as eu_num from {$pre}event_user as eu where $where";
+        $total = M('event_user')->query($sql);
+        $total = $total[0];
+        $total_per = round(($total['appointment_money_actual']/$total['appointment_money'])*100,2)."%";
+        $this->assign('total_event',$total['e_num']);
+        $this->assign('total_user',$total['eu_num']);
+        $this->assign('total_appointment_money',$total['appointment_money']);
+        $this->assign('total_appointment_money_actual',$total['appointment_money_actual']);
+        $this->assign('total_per',$total_per);
+        $this->display();
+    }
 }
 
 ?>

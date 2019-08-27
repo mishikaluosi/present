@@ -1,0 +1,50 @@
+﻿<include file="Public:header" />
+<div class="top" style="margin-top: 28px;"></div>
+<style>
+    .tab_ul2 td{
+        background: #fff;
+    }
+</style>
+<div class="main" style="margin-bottom: 50px;">
+    <table style="width:100%;font-size: 0.9em;line-height: 40px;text-align: center">
+        <tr>
+            <th>活动场次</th>
+            <th>姓名</th>
+            <th>预约保费</th>
+            <th>实签保费</th>
+            <th>时间</th>
+        </tr>
+        <foreach name='vlist' key="k" item='v'>
+            <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>'>
+                <td>{$v.e_name}</td>
+                <td>{$v.username}</td>
+                <td>{$v.appointment_money}</td>
+                <td>{$v.appointment_money_actual}</td>
+                <td>{$v.created_at|date='Y-m-d', ###}</td>
+            </tr>
+        </foreach>
+    </table>
+</div>
+<div class="total" style="background:#fff;height: 50px;width: 100%;position: fixed;z-index:2;left: 0;bottom: 57px;border-top: 1px solid #ccc;">
+    <div style="width:calc(20% - 1px);float: left;text-align: center;border-right: 1px solid #ccc;">
+        <p style="width: 100%;height: 25px;color: #009900;line-height: 25px;">{$total_event}</p>
+        <p style="width: 100%;height: 25px;line-height: 25px;">合计场次</p>
+    </div>
+    <div style="width:calc(20% - 1px);float: left;text-align: center;border-right: 1px solid #ccc;">
+        <p style="width: 100%;height: 25px;color: #009900;line-height: 25px;">{$total_user}</p>
+        <p style="width: 100%;height: 25px;line-height: 25px;">客户数</p>
+    </div>
+    <div style="width:calc(20% - 1px);float: left;text-align: center;border-right: 1px solid #ccc;">
+        <p style="width: 100%;height: 25px;color: #009900;line-height: 25px;">{$total_appointment_money}</p>
+        <p style="width: 100%;height: 25px;line-height: 25px;">预约保费</p>
+    </div>
+    <div style="width:calc(20% - 1px);float: left;text-align: center;border-right: 1px solid #ccc;">
+        <p style="width: 100%;height: 25px;color: #009900;line-height: 25px;">{$total_appointment_money_actual}</p>
+        <p style="width: 100%;height: 25px;line-height: 25px;">实签保费</p>
+    </div>
+    <div style="width: 20%;float: left;text-align: center;">
+        <p style="width: 100%;height: 25px;color: #009900;line-height: 25px;">{$total_per}</p>
+        <p style="width: 100%;height: 25px;line-height: 25px;">回收率</p>
+    </div>
+</div>
+<include file="Public:footer" />
