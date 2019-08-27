@@ -179,6 +179,8 @@ class ArticleController extends MobileCommonController{
         $user_id=$this->_xzl_uid;
         $info=M('member')->find($user_id);
         $this->assign('info', $info);
+        $zc = M("zc")->where(array('id'=>$info['zc_id']))->find();
+        $this->assign('zc', $zc);
         $where['member_id'] = $info['id'];
         $appointment = M("appointment")->where($where)->select();
         $this->assign('e_id', $e_id);
