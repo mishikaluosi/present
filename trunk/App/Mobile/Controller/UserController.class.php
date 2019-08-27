@@ -434,9 +434,41 @@ class UserController extends MobileCommonController{
         $where.=' and (etime>='.strtotime(date("Y-m-d 00:00:00")).' or etime is null or etime="")';
         $where.=' and  zc_ids like "%$$$'.$_SESSION['user_zcid'].'%" ';
         $where.=" and  area = {$type}";
-        $velist=M('event')->where($where)->order($orderby)->limit(10)->select();
+        $velist=M('event')->where($where)->order($orderby)->select();
         $this->assign('velist',$velist);
         $this->assign('type',$type);
+        $this->display();
+    }
+    public function appTongji(){
+        $user_id=$this->_xzl_uid;
+        $pre = C('DB_PREFIX');
+        $where = "a.member_id = '{$user_id}'";
+        $vlist=M('appointment')
+            ->alias('a')
+            ->field('a.*,e.alias as e_name')
+            ->join("{$pre}event e ON e.id=a.e_id","LEFT")
+            ->where($where)->select();
+        $sql = "select count(DISTINCT a.e_id) as e_num from {$pre}appointment as a where $where";
+        $total = M('appointment')->query($sql);
+        $total_event = $total[0]['e_num'];
+        $total_app = 0;
+        $total_active = 0;
+        foreach($vlist as &$v){
+            $event_user = M('event_user')->where(array('e_id'=>$v['e_id'],'phone'=>$v['phone']))->find();
+            if($event_user['id']){
+                $v['is_active'] = '是';
+                $total_active++;
+            }else{
+                $v['is_active'] = '否';
+            }
+            $total_app++;
+        }
+        $total_active_per = round(($total_active/$total_app)*100,2)."%";
+        $this->assign('total_event',$total_event);
+        $this->assign('total_app',$total_app);
+        $this->assign('total_active',$total_active);
+        $this->assign('total_active_per',$total_active_per);
+        $this->assign('vlist',$vlist);
         $this->display();
     }
 }
