@@ -5,36 +5,50 @@
     }
 </style>
 <div class="content">
-
     <div class="dingdan_info1">
         <div class="mat10 font18 c333 aleft">{$vo.name}</div>
         <div class="mat10 font12 c999 ">发布日期：{$vo.addtime|date="Y-m-d",###}</div>
         <if condition="$vo.stime neq null">
-            <div class="mat10 font12 c999 ">开始时间：{$vo.stime|date="Y-m-d",###}</div>
+            <div class="mat5 font12 c999 ">开始时间：{$vo.stime|date="Y-m-d",###}</div>
         </if>
         <if condition="$vo.etime neq null">
-            <div class="mat10 font12 c999 ">截止时间：{$vo.etime|date="Y-m-d",###}</div>
+            <div class="mat5 font12 c999 ">截止时间：{$vo.etime|date="Y-m-d",###}</div>
+        </if>
+        <if condition="$vo.alias neq null">
+            <div class="mat5 font12 c999 ">活动场次：{$vo.alias}</div>
+        </if>
+        <if condition="$vo.address neq null">
+            <div class="mat5 font12 c999 ">活动地址：{$vo.address}</div>
+        </if>
+        <if condition="$vo.address neq null">
+            <div class="mat5 font12 c999 ">活动介绍：</div>
+            <div style="width: 100%;">
+                {$vo.content}
+            </div>
         </if>
         <div class="clear"></div>
         <div class="xian"></div>
-        <div class="button-sp-area">
-            <div>
-                <div style="float: left;width: 70%;">
-                    <img style="width:180px;" src="/index.php/Mobile/Article/check_qrcode/id/{$vo.id}">
-                    <div style="width:180px;text-align: center;">签到二维码</div>
-                </div>
-                <div style="float :left;width: 30%;">
-                    <a style="margin-top:72px;font-size:1em;" href="{:U('Article/checkList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">签到列表</a>
-                </div>
-            </div>
-            <div>
-                <div style="float: left;width: 70%;">
-                    <img style="width: 180px;" src="/index.php/Mobile/Article/event_qrcode/id/{$vo.id}">
-                    <div style="width: 180px;text-align: center;">预约二维码</div>
-                </div>
-                <a style="margin-top:72px;font-size:1em;float :left;width: 30%;" href="{:U('Article/appointmentList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">预约列表</a>
-            </div>
-        </div>
+        <a style="margin-left:2%;margin-top:24px;font-size:1em;float :left;width: 45%;" href="{:U('Article/appointmentList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">立即报名</a>
+        <a style="margin-left:5%;margin-top:24px;font-size:1em;float :left;width: 45%;" href="{:U('Article/checkList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">会场签到</a>
+
+<!--        <div class="button-sp-area">-->
+<!--            <div>-->
+<!--                <div style="float: left;width: 70%;">-->
+<!--                    <img style="width:180px;" src="/index.php/Mobile/Article/check_qrcode/id/{$vo.id}">-->
+<!--                    <div style="width:180px;text-align: center;">签到二维码</div>-->
+<!--                </div>-->
+<!--                <div style="float :left;width: 30%;">-->
+<!--                    <a style="margin-top:72px;font-size:1em;" href="{:U('Article/checkList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">签到列表</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <div style="float: left;width: 70%;">-->
+<!--                    <img style="width: 180px;" src="/index.php/Mobile/Article/event_qrcode/id/{$vo.id}">-->
+<!--                    <div style="width: 180px;text-align: center;">预约二维码</div>-->
+<!--                </div>-->
+<!--                <a style="margin-top:72px;font-size:1em;float :left;width: 30%;" href="{:U('Article/appointmentList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">预约列表</a>-->
+<!--            </div>-->
+<!--        </div>-->
         <!--<div class="mat10 font18 c333 aleft">请扫描下方活动二维码：</div>-->
         <!--<div class="danye_main mat20">-->
             <!--<img src="http://xt.wxlyz.com/index.php/Mobile/Article/event_qrcode/id/{$vo.id}">-->

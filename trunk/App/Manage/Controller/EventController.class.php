@@ -217,6 +217,7 @@ class EventController extends CommonController {
         $wj['area']  = I('area')? I('area') : 3;
         $wj['areas']  = I('areas')? I('areas') : "";  //活动分公司
         $wj['citys']  = I('citys')? I('citys') : "";  //活动城市
+        $wj['alias']  = I('alias')? I('alias') : "";  //活动城市
         $zc_info =I('zc_info',null);
 
         if($wj['area']==1){ //市活动

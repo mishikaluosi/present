@@ -1,47 +1,107 @@
 <include file="Public:header" />
-<div style="margin-top: 84px;">
+<div style="margin-top: 40px;">
 </div>
 <input type="hidden" id="del_url" value="{:U('Article/deleteApp')}">
+<input type="hidden" id="save_url" value="{:U('Article/saveApp',array('e_id'=>$e_id))}">
+<input type="hidden" id="index_url" value="{:U('Article/appointmentList',array('e_id'=>$e_id))}">
+<style>
+    .tab_ul2 td{
+        background: #eee;
+    }
+</style>
 <div class="content">
-    <div class="weui-gallery__opr" style="background:#fff;z-index: 100;top: 45px;position: fixed;height: 50px;width: 100%;">
+    <div class="weui-gallery__opr" style="background:rgb(95, 151, 116);z-index: 100;bottom: 100px;right:20px;left:unset;position: fixed;height: 50px;width:50px;border-radius: 25px;">
         <a id="del-batch" href="javascript:" class="weui-gallery__del" style="height: 50px;">
-            <i class="weui-icon-delete weui-icon_gallery-delete" style="line-height: 50px;color: #666;"></i>
+            <i class="weui-icon-delete weui-icon_gallery-delete" style="line-height: 50px;color: #fff;"></i>
         </a>
     </div>
-    <a href="{:U('Article/addApp',array('e_id'=>$e_id))}" style="width: 60px;height: 60px;z-index: 100; border-radius: 30px;background: #07C160;position: fixed;bottom: 80px;right:20px;">
-        <div style="text-align: center;height:60px;line-height: 52px;color: #fff;font-size: 60px;" >+</div>
-    </a>
+    <div class="weui-cells weui-cells_form" style="margin-top: 50px">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+            <div class="weui-cell__bd">
+                <input id="name" class="weui-input" type="text" placeholder="请输入姓名">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">手机号</label>
+            </div>
+            <div class="weui-cell__bd">
+                <input id="phone" class="weui-input" type="tel" placeholder="请输入手机号">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">房间号</label></div>
+            <div class="weui-cell__bd">
+                <input id="room_num" class="weui-input" type="text" value="" placeholder="请输入房间号">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd">
+                <label class="weui-label">性别</label>
+            </div>
+            <select id="sex" class="weui-select" name="select1">
+                <option value="">请选择性别</option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+        </div>
+        <div class="button-sp-area">
+            <a href="javascript:;" id="submit_info" class="weui-btn weui-btn_block weui-btn_primary">保存</a>
+        </div>
+    </div>
         <div class="weui-cells weui-cells_checkbox">
+            <table style="width:100%;font-size: 0.8em;line-height: 3em;text-align: center">
+                <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>手机号</th>
+                    <th>性别</th>
+                    <th>房间号</th>
+                    <th>预约时间</th>
+                </tr>
             <foreach name="appointment" item="user" key="key">
-            <label class="weui-cell weui-check__label row" for="{$user['id']}">
-                <div class="weui-cell__hd">
-                    <input type="checkbox" class="weui-check checkbox" name="checkbox1" id="{$user['id']}">
-                    <i class="weui-icon-checked"></i>
-                </div>
-                <div class="weui-form-preview__bd" style="width: 100%;">
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">姓名</label>
-                        <span class="weui-form-preview__value">{$user['name']}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">手机号</label>
-                        <span class="weui-form-preview__value"><?php echo substr_replace($user['phone'],'****',3,4); ?></span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">性别</label>
-                        <span class="weui-form-preview__value">{$user['sex']}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">房间号</label>
-                        <span class="weui-form-preview__value">{$user['room_num']}</span>
-                    </div>
-                    <div class="weui-form-preview__item">
-                        <label class="weui-form-preview__label">预约时间</label>
-                        <span class="weui-form-preview__value"><?php echo date("Y-m-d",$user['created_at']); ?></span>
-                    </div>
-                </div>
-            </label>
+                <tr class='<if condition="(($key+1)%2) eq 1"> tab_ul2 </if> row'>
+                    <td>
+                        <input type="checkbox" class="checkbox" name="list" value="{$user['id']}">
+                        {$key+1}
+                    </td>
+                    <td>{$user['name']}</td>
+                    <td><?php echo substr_replace($user['phone'],'****',3,4); ?></td>
+                    <td>{$user['sex']}</td>
+                    <td>{$user['room_num']}</td>
+                    <td><?php echo date("Y-m-d",$user['created_at']); ?></td>
+                </tr>
+<!--            <label class="weui-cell weui-check__label row" for="{$user['id']}">-->
+<!--                <div class="weui-cell__hd">-->
+<!--                    <input type="checkbox" class="weui-check checkbox" name="checkbox1" id="{$user['id']}">-->
+<!--                    <i class="weui-icon-checked"></i>-->
+<!--                </div>-->
+<!--                <div class="weui-form-preview__bd" style="width: 100%;">-->
+<!--                    <div class="weui-form-preview__item">-->
+<!--                        <label class="weui-form-preview__label">姓名</label>-->
+<!--                        <span class="weui-form-preview__value">{$user['name']}</span>-->
+<!--                    </div>-->
+<!--                    <div class="weui-form-preview__item">-->
+<!--                        <label class="weui-form-preview__label">手机号</label>-->
+<!--                        <span class="weui-form-preview__value"><?php echo substr_replace($user['phone'],'****',3,4); ?></span>-->
+<!--                    </div>-->
+<!--                    <div class="weui-form-preview__item">-->
+<!--                        <label class="weui-form-preview__label">性别</label>-->
+<!--                        <span class="weui-form-preview__value">{$user['sex']}</span>-->
+<!--                    </div>-->
+<!--                    <div class="weui-form-preview__item">-->
+<!--                        <label class="weui-form-preview__label">房间号</label>-->
+<!--                        <span class="weui-form-preview__value">{$user['room_num']}</span>-->
+<!--                    </div>-->
+<!--                    <div class="weui-form-preview__item">-->
+<!--                        <label class="weui-form-preview__label">预约时间</label>-->
+<!--                        <span class="weui-form-preview__value"><?php echo date("Y-m-d",$user['created_at']); ?></span>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </label>-->
             </foreach>
+            </table>
         </div>
 </div>
 <include file="Public:footer" />
@@ -51,21 +111,55 @@
             var ids=[];
             $(".row").each(function(){
                 if($(this).find(".checkbox").prop("checked")==true){
-                    ids.push($(this).attr("for"));
+                    ids.push($(this).find(".checkbox").val());
                 }
             })
             if(!ids.length>0){
                 app_tip("请选择要删除的客户");
                 return false;
             }
-            var url =$('#del_url').val();
-            $.post(url,{ids:ids.toString()},function(ret){
-                if(ret.status!=0){
-                    app_tip(ret.message);
-                    return false;
-                }
-                location.reload();
-            },"json")
+            if(confirm("确定删除客户吗")){
+                var url =$('#del_url').val();
+                $.post(url,{ids:ids.toString()},function(ret){
+                    if(ret.status!=0){
+                        app_tip(ret.message);
+                        return false;
+                    }
+                    location.reload();
+                },"json")
+            }
         })
+    })
+    $("#submit_info").bind("click",function(){
+        var name = $("#name").val();
+        var phone = $("#phone").val();
+        var room_num = $("#room_num").val();
+        var sex = $("#sex").val();
+        if(!name){
+            app_tip('请填写姓名');
+            return false;
+        }
+        if(!phone){
+            app_tip('请填写手机号');
+            return false;
+        }
+        var pattern = /^1[3|4|5|6|7|8|9][0-9]{9}$/;
+        if(!pattern.test(phone)){
+            app_tip('手机号格式不正确');
+            return false;
+        }
+        if(!sex){
+            app_tip('请填写性别');
+            return false;
+        }
+        var url = $("#save_url").val();
+        var index_url = $("#index_url").val();
+        $.post(url,{name:name,phone:phone,sex:sex,room_num:room_num},function(ret){
+            if(ret.status!=0){
+                app_tip(ret.message);
+                return false;
+            }
+            location.href=index_url;
+        },"json")
     })
 </script>
