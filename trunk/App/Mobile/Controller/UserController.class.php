@@ -426,6 +426,19 @@ class UserController extends MobileCommonController{
     public function event(){
         $this->display();
     }
+    public function event_list(){
+        $type  = I('type',1);
+        $orderby='addtime desc,id desc';
+        $where=' 1=1 and status=1';
+        $where.=' and (stime<='.strtotime(date("Y-m-d 00:00:00")).' or stime is null or stime="")';
+        $where.=' and (etime>='.strtotime(date("Y-m-d 00:00:00")).' or etime is null or etime="")';
+        $where.=' and  zc_ids like "%$$$'.$_SESSION['user_zcid'].'%" ';
+        $where.=" and  area = {$type}";
+        $velist=M('event')->where($where)->order($orderby)->limit(10)->select();
+        $this->assign('velist',$velist);
+        $this->assign('type',$type);
+        $this->display();
+    }
 }
 
 ?>

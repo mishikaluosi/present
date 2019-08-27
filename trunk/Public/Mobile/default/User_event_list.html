@@ -1,0 +1,24 @@
+﻿<include file="Public:header" />
+<style>
+    a:hover{
+        color: unset;
+    }
+</style>
+<div class="content"  style="margin-top:10px;">
+    <div class="weui-cells">
+        <foreach name='velist' key="k" item='v'>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-panel__bd">
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title">{$v.name}</h4>
+                    <p class="weui-media-box__desc"><span>活动时间：</span><span style="color: red">{$v.stime|date="Y-m-d",###}至{$v.etime|date="Y-m-d",###}</span></p>
+                    <p class="weui-media-box__desc"><span>活动地址：</span>{$v.address}</p>
+                    <p class="weui-media-box__desc"><span>活动场次：</span>{$v.alias}</p>
+                </div>
+            </div>
+            <div class="weui-cell__ft"></div>
+        </a>
+        </foreach>
+    </div>
+</div>
+<include file="Public:footer" />

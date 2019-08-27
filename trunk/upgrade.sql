@@ -190,3 +190,10 @@ Date: 2019-08-11 10:15
 ALTER TABLE `bestop_member`
 ADD COLUMN   `area_level` int(1) DEFAULT '0' COMMENT '是否有支公司权限',
 ADD COLUMN   `city_level` int(1) DEFAULT '0' COMMENT '是否有市级权限';
+
+/**
+活动表添加场次别名
+Date: 2019-08-27 13:31
+ */
+ALTER TABLE `bestop_event`
+    ADD COLUMN `alias` varchar(255) NULL COMMENT '场次';
