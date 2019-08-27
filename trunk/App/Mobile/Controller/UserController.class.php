@@ -24,13 +24,13 @@ class UserController extends MobileCommonController{
         $order['month']=pe_num('order',sprintf($order_where,strtotime(date("Y-m-01 00:00:00")),strtotime(date("Y-m-31 23:59:59"))));
         $order['year']=pe_num('order',sprintf($order_where,strtotime(date("Y-01-01 00:00:00")),strtotime(date("Y-12-31 23:59:59"))));
 
-        $orderby='addtime desc,id desc';
-        $where=' 1=1 and status=1';
-        $where.=' and (stime<='.strtotime(date("Y-m-d 00:00:00")).' or stime is null or stime="")';
-        $where.=' and (etime>='.strtotime(date("Y-m-d 00:00:00")).' or etime is null or etime="")';
-        $where.=' and  zc_ids like "%$$$'.$_SESSION['user_zcid'].'%" ';
-        $velist=M('event')->where($where)->order($orderby)->limit(10)->select();
-        $this->assign('velist',$velist);
+//        $orderby='addtime desc,id desc';
+//        $where=' 1=1 and status=1';
+//        $where.=' and (stime<='.strtotime(date("Y-m-d 00:00:00")).' or stime is null or stime="")';
+//        $where.=' and (etime>='.strtotime(date("Y-m-d 00:00:00")).' or etime is null or etime="")';
+//        $where.=' and  zc_ids like "%$$$'.$_SESSION['user_zcid'].'%" ';
+//        $velist=M('event')->where($where)->order($orderby)->limit(10)->select();
+//        $this->assign('velist',$velist);
 
         $this->assign('order',$order);
         $this->assign('info',$info);
@@ -421,6 +421,9 @@ class UserController extends MobileCommonController{
         $this->assign('type',$type);
         $this->assign('event_total',$total[0]);
         $this->assign('vlist',$event_info);
+        $this->display();
+    }
+    public function event(){
         $this->display();
     }
 }

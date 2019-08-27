@@ -34,34 +34,40 @@
             <div class="clear"></div>
         </div>
 
+<!--        <div class="nav" style="padding-bottom: 0px;">-->
+<!--            <a class="tgdd_tt" href="#" style="margin-bottom: 0px;">-->
+<!--                <span class="fl">我的活动</span>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--            <div class="fenlei_list zx_list" style="margin-top:0px;">-->
+<!--                <ul>-->
+<!--                    <foreach name="velist" item="vo">-->
+<!--                        <li>-->
+<!--                            <a href="{:U('article/event_detail',array('id'=>$vo['id']))}" title="{$vo.name}">-->
+<!--                                {$vo.name}-->
+<!--                                <if condition="$vo.stime neq null">-->
+<!--                                    <p class="cbbb font12 num">开始时间：{$vo.stime|date="Y-m-d",###}</p>-->
+<!--                                </if>-->
+<!--                                <if condition="$vo.etime neq null">-->
+<!--                                    <p class="cbbb font12 num">截止时间：{$vo.etime|date="Y-m-d",###}</p>-->
+<!--                                </if>-->
+<!--                                <if condition="$vo.etime eq null and $vo.stime eq null">-->
+<!--                                    <p class="cbbb font12 num">添加时间：{$vo.addtime|date="Y-m-d",###}</p>-->
+<!--                                </if>-->
+
+<!--                            </a>-->
+<!--                            <i></i>-->
+<!--                        </li>-->
+<!--                    </foreach>-->
+<!--                </ul>-->
+<!--                <div class="clear"></div>-->
+<!--            </div>-->
         <div class="nav" style="padding-bottom: 0px;">
-            <a class="tgdd_tt" href="#" style="margin-bottom: 0px;">
-                <span class="fl">我的活动</span>
+            <a class="tgdd_tt" href="{:U('user/event')}">
+                <span class="fl">我的活动</span><span class="fr c888 font13">查看全部活动</span>
+                <i class="more_jt"></i>
             </a>
         </div>
-            <div class="fenlei_list zx_list" style="margin-top:0px;">
-                <ul>
-                    <foreach name="velist" item="vo">
-                        <li>
-                            <a href="{:U('article/event_detail',array('id'=>$vo['id']))}" title="{$vo.name}">
-                                {$vo.name}
-                                <if condition="$vo.stime neq null">
-                                    <p class="cbbb font12 num">开始时间：{$vo.stime|date="Y-m-d",###}</p>
-                                </if>
-                                <if condition="$vo.etime neq null">
-                                    <p class="cbbb font12 num">截止时间：{$vo.etime|date="Y-m-d",###}</p>
-                                </if>
-                                <if condition="$vo.etime eq null and $vo.stime eq null">
-                                    <p class="cbbb font12 num">添加时间：{$vo.addtime|date="Y-m-d",###}</p>
-                                </if>
-
-                            </a>
-                            <i></i>
-                        </li>
-                    </foreach>
-                </ul>
-                <div class="clear"></div>
-            </div>
             <div class="clear"></div>
         <div class="nav" style="padding-bottom: 0px;">
             <a class="tgdd_tt" href="{:U('user/customer')}">
