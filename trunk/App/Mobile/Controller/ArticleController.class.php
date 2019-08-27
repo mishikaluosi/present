@@ -178,6 +178,7 @@ class ArticleController extends MobileCommonController{
         //获取业务员id；
         $user_id=$this->_xzl_uid;
         $info=M('member')->find($user_id);
+        $this->assign('info', $info);
         $where['member_id'] = $info['id'];
         $appointment = M("appointment")->where($where)->select();
         $this->assign('e_id', $e_id);

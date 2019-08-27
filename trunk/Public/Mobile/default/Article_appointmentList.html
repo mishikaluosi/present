@@ -31,12 +31,6 @@
             </div>
         </div>
         <div class="weui-cell">
-            <div class="weui-cell__hd"><label class="weui-label">房间号</label></div>
-            <div class="weui-cell__bd">
-                <input id="room_num" class="weui-input" type="text" value="" placeholder="请输入房间号">
-            </div>
-        </div>
-        <div class="weui-cell">
             <div class="weui-cell__hd">
                 <label class="weui-label">性别</label>
             </div>
@@ -46,8 +40,14 @@
                 <option value="女">女</option>
             </select>
         </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">业务员工号</label></div>
+            <div class="weui-cell__bd">
+                <input id="member_code" class="weui-input" type="text" value="{$info['work_no']}" readonly>
+            </div>
+        </div>
         <div class="button-sp-area">
-            <a href="javascript:;" id="submit_info" class="weui-btn weui-btn_block weui-btn_primary">保存</a>
+            <a href="javascript:;" id="submit_info" class="weui-btn weui-btn_block weui-btn_primary">提交</a>
         </div>
     </div>
         <div class="weui-cells weui-cells_checkbox">
@@ -57,7 +57,7 @@
                     <th>姓名</th>
 <!--                    <th>手机号</th>-->
                     <th>性别</th>
-                    <th>房间号</th>
+<!--                    <th>房间号</th>-->
                     <th>报名时间</th>
                     <th>操作</th>
                 </tr>
@@ -70,7 +70,7 @@
                     <td>{$user['name']}</td>
 <!--                    <td><?php echo substr_replace($user['phone'],'****',3,4); ?></td>-->
                     <td>{$user['sex']}</td>
-                    <td>{$user['room_num']}</td>
+<!--                    <td>{$user['room_num']}</td>-->
                     <td><?php echo date("Y-m-d",$user['created_at']); ?></td>
                     <td class="delete_row" alt="{$user['id']}">删除</td>
                 </tr>
@@ -147,7 +147,7 @@
         $("#submit_info").bind("click",function(){
             var name = $("#name").val();
             var phone = $("#phone").val();
-            var room_num = $("#room_num").val();
+            var room_num = "";
             var sex = $("#sex").val();
             if(!name){
                 app_tip('请填写姓名');
