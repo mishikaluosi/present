@@ -148,13 +148,14 @@ class ArticleController extends MobileCommonController{
     }
     public function checkList(){
         $e_id = I("e_id");
-        $where['e_id'] = $e_id;
+        $this->assign('e_id', $e_id);
         //获取业务员id；
         $user_id=$this->_xzl_uid;
         $info=M('member')->find($user_id);
         $this->assign('info', $info);
         $zc = M('zc')->where(['id'=>$info['zc_id']])->find();
         $this->assign('zc', $zc);
+        $where['e_id'] = $e_id;
         $where['member_id'] = $info['id'];
         $event_user = M("event_user")->where($where)->select();
         $this->assign('event_user', $event_user);

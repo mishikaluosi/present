@@ -36,6 +36,12 @@
 <div style="margin-top: 45px;">
 </div>
 <div class="content">
+    <div class="weui-gallery__opr" style="background:rgb(95, 151, 116);z-index: 100;bottom: 100px;right:20px;left:unset;position: fixed;height: 50px;width:50px;border-radius: 25px;">
+        <a id="show-qr" href="javascript:" style="height: 50px;">
+            <img style="float:left;margin-left:10px;margin-top:5px;width: 30px;height: 30px;" src="__PUBLIC__/images/qr.png">
+            <span style="width:100%;text-align:center;float:left;height: 10px;line-height: 10px;font-size: 10px;color: #fff">签到码</span>
+        </a>
+    </div>
     <div style="width: 100%;height: 50px;line-height: 50px;background: rgb(95, 151, 116);margin-top: 5px;overflow: hidden">
         <span style="margin-left: 20px;float: left">{$info['name']}</span>
         <span style="margin-left: 20px;color: #666666;float: left"><img style="width:20px;height: 20px;margin-top: 15px;float: left" src="__PUBLIC__/images/idp.png" alt="">{$info['work_no']}</span>
@@ -106,6 +112,24 @@
 <!--    </div>-->
     </foreach>
     </table>
+    <div id="qr_img" style="width: 100%;height: 100%;display: none;">
+        <div class="mask" style="    position: fixed;
+    z-index: 10000;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    transition-duration: .3s;"></div>
+        <div class="image-box" style="width: 80%;height: 300px;background: #fff;position: fixed;top: 100px;left: 10%;z-index: 10001">
+            <div class="weui-half-screen-dialog__hd__side">
+                <span class="btn-close" style="border: none;margin-left: 10px;margin-top: 5px;">关闭</span>
+                <div class="image" style="width: 200px;height: 200px;margin: 20px auto;">
+                    <img src="/index.php/Mobile/Article/check_qrcode/id/{$e_id}" style="width: 200px;height: 200px;">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="js_dialog" id="dialog" style="display: none;">
         <input type="hidden" id="user_id" value="0">
         <div class="dialog-mask"></div>
@@ -152,6 +176,12 @@
 <link rel="stylesheet" href="__PUBLIC__/css/weui.css">
 <script>
     $(function(){
+        $("#show-qr").bind("click",function(){
+            $("#qr_img").show();
+            $("#qr_img .btn-close").bind("click",function(){
+                $("#qr_img").hide();
+            })
+        })
         $(".showDialog").bind("click",function () {
             var user_id = parseInt($(this).attr("alt"));
             $("#dialog").find("#user_id").val(user_id);
