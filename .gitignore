@@ -1,9 +1,8 @@
 .DS_Store
-trunk/.idea/
-trunk/App/Common/Conf/db.php
-trunk/App/Runtime/Cache/
-trunk/App/Runtime/Logs/
-trunk/App/Runtime/Data/
-trunk/App/Runtime/Temp/
-trunk/uploads/
-.idea
+.idea/
+App/Common/Conf/db.php
+App/Runtime/Cache/
+App/Runtime/Logs/
+App/Runtime/Data/
+App/Runtime/Temp/
+uploads/
