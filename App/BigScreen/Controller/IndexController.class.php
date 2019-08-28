@@ -5,8 +5,6 @@ class IndexController extends Controller
 {
     public function index()
     {
-        echo 1;
-        die();
         $e_id = I('e_id');
 
         if(!$e_id){
