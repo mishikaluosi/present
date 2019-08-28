@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+<script type="text/javascript">
+	var data_path = "__DATA__";
+	var tpl_public = "__PUBLIC__";
+	var tpl_upload = "__UPLOAD__";
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/jBox.config.js"></script>
+<script type="text/javascript">
+$(function () {
+	//缩略图上传
+	var litpic_tip = $(".litpic_tip");
+	var btn = $(".litpic_btn span");
+	$("#fileupload").wrap("<form id='myupload' action='{:U('Public/upload', array('tb' => 2))}' method='post' enctype='multipart/form-data'></form>");
+    $("#fileupload").change(function(){
+    	if($("#fileupload").val() == "") return;
+		$("#myupload").ajaxSubmit({
+			dataType:  'json',
+			beforeSend: function() {
+        		$('#litpic_show').empty();
+				btn.html("上传中...");
+    		},
+			success: function(data) {
+
+				if(data.state == 'SUCCESS'){
+					litpic_tip.html(""+ data.info[0].name +" 上传成功("+data.info[0].size+"k)");
+					var img = data.info[0].url;//原图
+					$('#litpic_show').html("<img src='"+tpl_upload+img+"' width='120'>");
+					$("#CFG_WATER_IMG").val(img);
+				}else {
+					litpic_tip.html(data.state);		
+				}			
+					btn.html("添加缩略图");
+
+			},
+			error:function(xhr){
+				btn.html("上传失败");
+				litpic_tip.html(xhr);
+			}
+		});
+	});
+
+	$('#CK_JumpUrl').click(function(){
+            var inputs = $(this).parents('dl').find('input');
+            if($(this).attr('checked')) {
+                $('#JumpUrlDiv').show();
+
+            }else {
+                $('#JumpUrlDiv').hide();
+            }
+            
+     });
+	
+});
+
+
+$(function () {
+
+	$('#BrowerPicture').click(function(){
+		$.jBox("iframe:{:U('Public/browseFile', array('stype' => 'picture'))}",{
+			title:'窗口',
+			width: 650,
+   			height: 350,
+    		buttons: { '关闭': true }
+   			}
+		);
+	});	
+
+});
+
+
+function selectPicture(sfile) {
+	$.jBox.tip("选择文件成功");
+	$.jBox.close(true);
+	$("#CFG_WATER_IMG").val(sfile);
+	$('#litpic_show').html("<img src='"+tpl_upload+sfile+"' width='120'>");
+}
+</script>
+
+<script>
+function weizhi(){
+	var wz=$("input:radio[name='CFG_WATER_MARK']:checked").val();
+	//alert(wz);
+	if(wz==5){
+		$("#image").css({"top":"150px","left":"180px"}); //正中
+	}
+	else if(wz==1){
+		$("#image").css({"top":"0px","left":"0px"});	//左上
+	}
+	else if(wz==3){
+		$("#image").css({"top":"0px","left":"360px"});	//右上
+	}
+	else if(wz==9){
+		$("#image").css({"top":"320px","left":"360px"}); //右下
+	}
+	else if(wz==7){
+		$("#image").css({"top":"320px","left":"0px"}); //左下
+	}
+	else if(wz==2){
+		$("#image").css({"top":"0px","left":"180px"});	//中上
+	}
+	else if(wz==6){
+		$("#image").css({"top":"150px","left":"360px"}); //右中
+	}
+	else if(wz==8){
+		$("#image").css({"top":"320px","left":"180px"}); //中下
+	}
+	else if(wz==4){
+		$("#image").css({"top":"150px","left":"0px"});		//左中
+	}
+	
+	
+}
+</script>
+
+<script>
+$(function(){ 
+if ($.browser.msie) { 
+$('input:checkbox').click(function () { 
+this.blur(); 
+this.focus(); 
+}); 
+}; 
+
+$("input:radio[name='CFG_WATER_MARK']").change(function() { 
+	weizhi();
+}); 
+}); 
+</script>
+
+</head>
+<body onload="weizhi()">
+<div class="main">
+    <div class="pos">水印及缩略图</div>
+	<div class="form form3">
+		<form method='post' id="form_do" name="form_do" action="{:U('System/site3')}">
+		<div id="div_setting" >	
+			
+			<dl>
+				<dt>允许上传大小</dt>
+				<dd>
+					<input type="text" class="inp_large" name="CFG_UPLOAD_MAXSIZE" value="{:get_config('CFG_UPLOAD_MAXSIZE')}">
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>默认缩略图大小</dt>
+				<dd>
+					<input type="text" value="{:get_config('CFG_IMGTHUMB_WIDTH')}" name="CFG_IMGTHUMB_WIDTH"  class="inp_large" >
+					例480,360		
+				</dd>
+			</dl>
+			<dl>
+				<dt>产品缩略图启用</dt>
+				<dd>
+					<input type="radio" value="0" name="CFG_PRODUCT_USE" <if condition="get_config('CFG_PRODUCT_USE') eq 0">checked="checked"</if> >未启用
+					<input type="radio" value="1" name="CFG_PRODUCT_USE" <if condition="get_config('CFG_PRODUCT_USE') eq 1">checked="checked"</if> >启用
+				</dd>
+			</dl>
+			<dl>
+				<dt>产品缩略图大小</dt>
+				<dd>
+					<input type="text" value="{:get_config('CFG_PRODUCT_THUMB')}" name="CFG_PRODUCT_THUMB"  class="inp_large" >	
+				</dd>
+			</dl>
+			<dl>
+				<dt>产品缩略图生成方式</dt>
+				<dd>
+					<input type="radio" value="1" name="CFG_PRODUCT_TYPE" <if condition="get_config('CFG_PRODUCT_TYPE') eq 1">checked="checked"</if> >缩放 
+					<input type="radio" value="2" name="CFG_PRODUCT_TYPE" <if condition="get_config('CFG_PRODUCT_TYPE') eq 2">checked="checked"</if> >拉伸					
+				</dd>
+			</dl>
+			<dl>
+				<dt>案例缩略图启用</dt>
+				<dd>
+					<input type="radio" value="0" name="CFG_CASE_USE" <if condition="get_config('CFG_CASE_USE') eq 0">checked="checked"</if> >未启用
+					<input type="radio" value="1" name="CFG_CASE_USE" <if condition="get_config('CFG_CASE_USE') eq 1">checked="checked"</if> >启用
+				</dd>
+			</dl>
+			<dl>
+				<dt>案例缩略图大小</dt>
+				<dd>
+					<input type="text" value="{:get_config('CFG_CASE_THUMB')}" name="CFG_CASE_THUMB" class="inp_large">
+				</dd>
+			</dl>
+			<dl>
+				<dt>案例缩略图生成方式</dt>
+				<dd>
+					<input type="radio" value="1" name="CFG_CASE_TYPE" <if condition="get_config('CFG_CASE_TYPE') eq 1">checked="checked"</if> >缩放 
+					<input type="radio" value="2" name="CFG_CASE_TYPE" <if condition="get_config('CFG_CASE_TYPE') eq 2">checked="checked"</if> >拉伸					
+				</dd>
+			</dl>
+			<dl>
+				<dt>新闻缩略图启用</dt>
+				<dd>
+					<input type="radio" value="0" name="CFG_NEWS_USE" <if condition="get_config('CFG_NEWS_USE') eq 0">checked="checked"</if> >未启用
+					<input type="radio" value="1" name="CFG_NEWS_USE" <if condition="get_config('CFG_NEWS_USE') eq 1">checked="checked"</if> >启用
+				</dd>
+			</dl>
+			<dl>
+				<dt>新闻缩略图大小</dt>
+				<dd>
+					<input type="text" value="{:get_config('CFG_NEWS_THUMB')}" name="CFG_NEWS_THUMB" class="inp_large">				</dd>
+			</dl>
+			<dl>
+				<dt>新闻缩略图生成方式</dt>
+				<dd>
+					<input type="radio" value="1" name="CFG_NEWS_TYPE" <if condition="get_config('CFG_NEWS_TYPE') eq 1">checked="checked"</if> >缩放 
+					<input type="radio" value="2" name="CFG_NEWS_TYPE" <if condition="get_config('CFG_NEWS_TYPE') eq 2">checked="checked"</if> >拉伸					
+				</dd>
+			</dl>
+
+				
+			
+			<dl>
+				<dt>是否开启水印</dt>
+				<dd>
+					<input type="radio" value="1" name="CFG_WATER_IF" <if condition="get_config('CFG_WATER_IF') eq 1">checked="checked"</if> >是 
+					<input type="radio" value="0" name="CFG_WATER_IF" <if condition="get_config('CFG_WATER_IF') eq 0">checked="checked"</if> >否
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>选择水印样式</dt>
+				<dd>
+					<input type="radio" value="1" name="CFG_WATER_TYPE" <if condition="get_config('CFG_WATER_TYPE') eq 1">checked="checked"</if> >图片水印 
+					<!--<input type="radio" value="0" name="CFG_WATER_TYPE" <if condition="get_config('CFG_WATER_TYPE') eq 0">checked="checked"</if> >文字水印-->
+				</dd>
+			</dl>
+			
+			<dl>
+				<dt>水印位置</dt>
+				<dd>
+					<input type="radio" value="1" name="CFG_WATER_MARK" <if condition="get_config('CFG_WATER_MARK') eq 1">checked="checked"</if> >左上
+					<input type="radio" value="2" name="CFG_WATER_MARK" <if condition="get_config('CFG_WATER_MARK') eq 2">checked="checked"</if> >顶中 
+					<input type="radio" value="3" name="CFG_WATER_MARK" <if condition="get_config('CFG_WATER_MARK') eq 3">checked="checked"</if> >右上 
+					<input type="radio" value="4" name="CFG_WATER_MARK" <if condition="get_config('CFG_WATER_MARK') eq 4">checked="checked"</if> >左中
+					<input type="radio" value="5" name="CFG_WATER_MARK" <if condition="get_config('CFG_WATER_MARK') eq 5">checked="checked"</if> >中间
+					<input type="radio" value="6" name="CFG_WATER_MARK" <if condition="get_config('CFG_WATER_MARK') eq 6">checked="checked"</if> >右中 
+					<input type="radio" value="7" name="CFG_WATER_MARK" <if condition="get_config('CFG_WATER_MARK') eq 7">checked="checked"</if> >左下 
+					<input type="radio" value="8" name="CFG_WATER_MARK" <if condition="get_config('CFG_WATER_MARK') eq 8">checked="checked"</if> >底中
+					<input type="radio" value="9" name="CFG_WATER_MARK" <if condition="get_config('CFG_WATER_MARK') eq 9">checked="checked"</if> >右下 
+				</dd>
+			</dl>
+			
+			<dl >
+				<dt>上传水印图片</dt>
+				<dd>
+					<div class="litpic_show">
+                        <div class="litpic_btn">
+							<span>添加缩略图</span>
+							<input id="fileupload" type="file" name="mypic">
+						</div>
+						<div style="float:left;">
+							<input type="text" class="inp_w250 inp_w251" name="CFG_WATER_IMG" id="CFG_WATER_IMG"  value="{:get_config('CFG_WATER_IMG')}" />
+							<input type="button" class="btn_blue_b" id="BrowerPicture" value="选择站内图片">
+						</div>
+						
+						<div class="litpic_tip"></div>
+					   <div class="clear"></div>
+					</div>
+                    	<div id="litpic_show"> </div>
+				</dd>
+			</dl>
+			
+			
+			<!--<dl>
+				<dt>水印文字</dt>
+				<dd>
+					<input type="text" value="{:get_config('CFG_WATER_TEXT')}" name="CFG_WATER_TEXT" class="inp_large">				</dd>
+			</dl>
+			
+			<dl>
+				<dt>水印文字大小</dt>
+				<dd>
+					<input type="text" value="{:get_config('CFG_WATER_SIZE')}" name="CFG_WATER_SIZE" class="inp_large">				</dd>
+			</dl>
+			
+			<dl>
+				<dt>水印字体颜色</dt>
+				<dd>
+					<select name="CFG_WATER_COLOR">
+					<option value="#FFFFFF" <if condition="get_config('CFG_WATER_COLOR') eq '#FFFFFF'">selected="selected"</if> >白色</option>
+					<option value="#FFFF00" <if condition="get_config('CFG_WATER_COLOR') eq '#FFFF00'">selected="selected"</if> >黄色</option> 
+					<option value="#008000" <if condition="get_config('CFG_WATER_COLOR') eq '#008000'">selected="selected"</if> >绿色</option> 
+					<option value="#FF8000" <if condition="get_config('CFG_WATER_COLOR') eq '#FF8000'">selected="selected"</if> >橙色</option> 
+					<option value="#800080" <if condition="get_config('CFG_WATER_COLOR') eq '#800080'">selected="selected"</if> >紫色</option> 
+					<option value="#0000FF" <if condition="get_config('CFG_WATER_COLOR') eq '#0000FF'">selected="selected"</if> >蓝色</option> 
+					<option value="#800000" <if condition="get_config('CFG_WATER_COLOR') eq '#800000'">selected="selected"</if> >褐色</option> 
+					<option value="#00FFFF" <if condition="get_config('CFG_WATER_COLOR') eq '#00FFFF'">selected="selected"</if> >粉绿</option> 
+					<option value="#7FFFD4" <if condition="get_config('CFG_WATER_COLOR') eq '#7FFFD4'">selected="selected"</if> >淡绿</option> 
+					<option value="#FFE4C4" <if condition="get_config('CFG_WATER_COLOR') eq '#FFE4C4'">selected="selected"</if> >黄灰</option> 
+					<option value="#7FFF00" <if condition="get_config('CFG_WATER_COLOR') eq '#7FFF00'">selected="selected"</if> >翠绿</option> 
+					<option value="#D2691E" <if condition="get_config('CFG_WATER_COLOR') eq '#D2691E'">selected="selected"</if> >综红</option> 
+					<option value="#FF7F50" <if condition="get_config('CFG_WATER_COLOR') eq '#FF7F50'">selected="selected"</if> >砖红</option> 
+					<option value="#6495ED" <if condition="get_config('CFG_WATER_COLOR') eq '#6495ED'">selected="selected"</if> >淡蓝</option> 
+					<option value="#DC143C" <if condition="get_config('CFG_WATER_COLOR') eq '#DC143C'">selected="selected"</if> >暗红</option> 
+					<option value="#FF1493" <if condition="get_config('CFG_WATER_COLOR') eq '#FF1493'">selected="selected"</if> >玫红</option> 
+					<option value="#FF00FF" <if condition="get_config('CFG_WATER_COLOR') eq '#FF00FF'">selected="selected"</if> >紫红</option> 
+					<option value="#FFD700" <if condition="get_config('CFG_WATER_COLOR') eq '#FFD700'">selected="selected"</if> >桔黄</option> 
+					<option value="#DAA520" <if condition="get_config('CFG_WATER_COLOR') eq '#DAA520'">selected="selected"</if> >军黄</option> 
+					<option value="#808080" <if condition="get_config('CFG_WATER_COLOR') eq '#808080'">selected="selected"</if> >烟灰</option> 
+					<option value="#778899" <if condition="get_config('CFG_WATER_COLOR') eq '#778899'">selected="selected"</if> >深灰</option> 
+					<option value="#B0C4DE" <if condition="get_config('CFG_WATER_COLOR') eq '#B0C4DE'">selected="selected"</if> >灰蓝</option>
+					</select>
+					</dd>
+			</dl>
+			
+			<style>
+			.thumb{background:url("uploads/system/nopic.png") ; width:480px; height:360px; }
+			</style>
+			
+			
+			<dl>
+				<dt>水印图效果展示</dt>
+				<dd><div class="thumb" id="thumb"><img id="image" src="uploads/{:get_config('CFG_WATER_IMG')}" style="position:relative; "></div></dd>
+			</dl>-->
+			
+			
+		</div>
+		<div class="form_b">
+			<input type="submit" class="btn_blue" id="submit" value="保存">
+		</div>
+		
+
+
+		</div>
+		
+	   </form>
+	</div>
+
+
+</body>
+</html>

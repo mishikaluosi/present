@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <title><yang:sitename/></title>
+    <meta name="keywords" content="<yang:sitekeywords />" />
+    <meta name="description" content="<yang:sitedescription />" />
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" type="image/ico" href="favicon.ico">
+
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style2.css" />
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style_1.css" />
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/global.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/arttpl.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/css/iconfont.css" />
+</head>
+<body>
+<div class="top_box1">
+    <div class="pagetop1">
+        <div class="top_logo">
+            <a href="{:U('Index/index')}">
+                <img src="__PUBLIC__/images/logo_small.jpg" alt="<yang:sitename/>" />
+            </a>
+        </div>
+        <!--<div class="sear" onclick="javascript:app_iframe('{$pe['host_root']}index.php?mod=search');">
+            <div class="sear_input_box"><input name="keyword" type="text" class="sear_input" placeholder="搜索关键字" /></div>
+            <div class="sear_tj"><input type="button" value=" "></div>
+            <div class="clear"></div>
+        </div>-->
+        <div class="sear" style="text-align: center;font-size: 16px;font-weight: bold;letter-spacing: 4px"><yang:sitename/></div>
+        <div class="cd">
+            <a href="javascript:top_menu();"></a>
+        </div>
+        <div class="top_tc" id="top_menu">
+            <ul>
+                <li><a href="{:U('Index/index')}"><i class="top_tb1"></i><span>首页</span></a></li>
+                <li><a href="{:U('Cart/index')}"><i class="top_tb3"></i><span>购物车</span></a></li>
+                <li><a href="{:U('User/index')}"><i class="top_tb4"></i><span>个人中心</span></a></li>
+                <li><a href="{:U('User/order')}"><i class="top_tb2"></i><span>订单</span></a></li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

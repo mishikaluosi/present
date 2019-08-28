@@ -1,0 +1,32 @@
+﻿<include file="Public:header" />
+<div class="content">
+    <div class="subnav1" style="margin-top:24px;">
+
+        <foreach name="clist" item="vo">
+        <a href="{:U('article/index',array('cid'=>$vo['id']))}" title="{$vo.name}" <if condition="$cid eq $vo['id']">class="sel"</if>>{$vo.name}</a>
+        </foreach>
+        <div class="clear"></div>
+    </div>
+
+    <div class="fenlei_list zx_list">
+        <ul>
+            <foreach name="vlist" item="vo">
+            <li>
+                <a href="{:U('article/detail',array('id'=>$vo['id']))}" title="{$vo.title}">
+                    {$vo.title}
+                    <p class="cbbb font12 num">{$vo.publishtime|date="Y-m-d",###}</p>
+                </a>
+                <i></i>
+            </li>
+            </foreach>
+        </ul>
+        <div class="clear"></div>
+    </div>
+
+    <div class="fenye mat10 mab10">
+        {$page}
+        <div class="clear"></div>
+    </div>
+</div>
+
+<include file="Public:footer" />

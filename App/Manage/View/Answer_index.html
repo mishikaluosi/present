@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+<style type="text/css">
+	.list td a {
+		color: #ffffff;
+	}
+</style>
+	<script type="text/javascript">
+        var data_path = "__DATA__";
+        var tpl_public = "__PUBLIC__";
+        var tpl_upload = "__UPLOAD__";
+	</script>
+</head>
+<body>
+<div class="main">
+	<div class="pos">活动管理</div>
+
+	<div class="operate">
+		<div class="left">
+			<input type="button" onclick="goUrl('{:U('Answer/addevent')}')" class="btn_blue btn_red" value="添加活动">
+			<span style="color: orangered;">请在无锡技术的指导下添加活动，否则添加的活动无效</span>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="list">
+			<table width="100%">
+				<tr>
+					<th><input type="checkbox" id="check"></th>
+					<th>期数</th>
+					<th>活动名</th>
+					<th>活动状态</th>
+					<th>活动批次号</th>
+					<th>上次开始时间</th>
+					<th>上次结束时间</th>
+					<th>主图</th>
+					<th>主链接</th>
+					<th>操作</th>
+				</tr>
+				<foreach name='event_list' item='event'>
+
+					<tr>
+						<td><input type="checkbox" name="key[]" value="{$v.id}"></td>
+						<td>{$event.id}</td>
+						<td style="text-align: left">
+							{$event.name}
+						</td>
+						<td><?php if($event['flag']==1){echo '未开始';}else if($event['flag']==2){ echo '<span style="color:red">正在进行中</td>';}else{ echo '已经结束';}?></td>
+						<td>{$event.number}</td>
+						<td><?php if($event['s_time']){ echo date("Y-m-d H:i:s",$event['s_time']);}?></td>
+						<td><?php if($event['e_time']){ echo date("Y-m-d H:i:s",$event['e_time']);}?></td>
+						<td><?php if($event['img']){ ?><img src="__UPLOAD__<?php echo $event['img']?>" alt=""/> <?php }?></td>
+						<td><?php if($event['link']){ ?><a style="color: blue" href="<?php echo $event['link']?>" target="_blank">点此查看</a> <?php }?></td>
+						<td>
+							<a class="btn_blue" href="{:U('Answer/addevent',array('id' => $event['id']))}">修改</a>
+
+							<?php if($event['flag']==1){ ?>
+							<a href="javascript:;" class="btn_blue"  onclick="toConfirm('{:U('Answer/event_opt',array('flag' =>2,'type' =>$event['id']), '')}', '确定要开始答题活动吗？')">点此开始答题活动</a>
+							<?php } ?>
+
+							<?php if($event['flag']==2){ ?>
+							<a href="javascript:;" class="btn_blue"  onclick="toConfirm('{:U('Answer/event_opt',array('flag' =>3,'type' =>$event['id']), '')}', '确定要关闭答题活动吗？')">点此关闭答题活动</a>
+							<?php } ?>
+
+							<?php if($event['flag']==3){ ?>
+							<a href="javascript:;" class="btn_blue"  onclick="toConfirm('{:U('Answer/event_opt',array('flag' =>2,'type' =>$event['id']), '')}', '确定要开始答题活动吗？')">点此开始新一轮答题活动</a>
+							<?php } ?>
+
+						</td>
+					</tr>
+				</foreach>
+			</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+	<style type="text/css">
+		.field_box{border:2px solid #666;padding: 20px;margin: 10px;width: 85%;}
+		.field_box legend{color: deepskyblue;font-size: 16px;}
+		.field_f{float: left;width: 45%;}
+	</style>
+</head>
+<body>
+<div class="main">
+    <div class="pos">留言配置</div>
+	<div class="">
+
+			<fieldset class="field_box field_f" style="width: 40%">
+				<legend>固定字段</legend>
+				<div class="form">
+					<dl><dt>姓名</dt><dd>username</dd></dl>
+					<dl><dt>电话</dt><dd>tel</dd></dl>
+					<dl><dt>邮箱</dt><dd>email</dd></dl>
+					<dl><dt>QQ</dt><dd>qq</dd></dl>
+					<dl><dt>留言内容</dt><dd>content</dd></dl>
+					<dl><dt>类型</dt><dd>type</dd></dl>
+				</div>
+			</fieldset>
+			<fieldset class="field_box field_f" style="width: 40%">
+				<legend>其他字段</legend>
+				<div class="form">
+					<foreach name='other_field' item='v'>
+					<dl><dt>{$v.name}</dt><dd>{$v.value}</dd></dl>
+					</foreach>
+				</div>
+			</fieldset>
+			<div style="clear: none"></div>
+			<fieldset class="field_box">
+				<legend>添加类型:用于多个表单 &nbsp;&nbsp;&nbsp;&nbsp;<a href="{:U('Dmsg/msg')}">点此到留言列表页</a></legend>
+				<form method='post' id="form_do2" name="form_do" action="{:U('Dmsg/add_type')}">
+				<div class="form">
+					<dl>
+						<dt>添加类型</dt>
+						<dd>
+							<input type="text" name="tname" class="inp_w250" style="width:150px;" maxlength="250"/>
+							<input type="text" name="tvalue" class="inp_w250" style="width:150px;"  maxlength="250"/>
+							<span style="color: orangered;margin-left: 10px;">第一个框是类型名,第二个框是值。类型名：如我要预约；值：如1,2,3，值为数字,请确保值唯一;</span>
+						</dd>
+					</dl>
+
+					<dl>
+						<dt>已有类型</dt>
+						<dd>
+							<foreach name='type_list' item='v'>
+								{$v.name}:{$v.value}<br/>
+							</foreach>
+						</dd>
+					</dl>
+				</div>
+
+				<div class="form_b">
+					<input type="submit" class="btn_blue" id="submit" value="保  存">
+				</div>
+				</form>
+			</fieldset>
+
+			<fieldset class="field_box">
+				<legend>添加字段</legend>
+				<form method='post' id="form_do" name="form_do" action="{:U('Dmsg/add_field')}">
+				<div class="form">
+					<dl>
+						<dt>字段1</dt>
+						<dd>
+							<input type="text" name="f1_name" class="inp_w250" style="width:180px;" maxlength="250"/>
+							<input type="text" name="f1_value" class="inp_w250" style="width:180px;"  maxlength="250"/><span style="color: orangered;margin-left: 10px;">第一个框是name,第二个框是key。name：如性别;key：如sex,请确保key唯一;</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>字段2</dt>
+						<dd>
+							<input type="text" name="f2_name" class="inp_w250" style="width:180px;" maxlength="250"/>
+							<input type="text" name="f2_value" class="inp_w250" style="width:180px;"  maxlength="250"/>
+						</dd>
+					</dl>
+					<dl>
+						<dt>字段3</dt>
+						<dd>
+							<input type="text" name="f3_name" class="inp_w250" style="width:180px;" maxlength="250"/>
+							<input type="text" name="f3_value" class="inp_w250" style="width:180px;"  maxlength="250"/>
+						</dd>
+					</dl>
+					<dl>
+						<dt>字段4</dt>
+						<dd>
+							<input type="text" name="f4_name" class="inp_w250" style="width:180px;" maxlength="250"/>
+							<input type="text" name="f4_value" class="inp_w250" style="width:180px;"  maxlength="250"/>
+						</dd>
+					</dl>
+					<dl>
+						<dt>字段5</dt>
+						<dd>
+							<input type="text" name="f5_name" class="inp_w250" style="width:180px;" maxlength="250"/>
+							<input type="text" name="f5_value" class="inp_w250" style="width:180px;"  maxlength="250"/>
+						</dd>
+					</dl>
+				</div>
+
+				<div class="form_b">
+					<input type="submit" class="btn_blue" id="add" onclick="" value="保  存">
+				</div>
+				</form>
+			</fieldset>
+	</div>
+</div>
+</body>
+</html>

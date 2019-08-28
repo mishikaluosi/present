@@ -1,0 +1,310 @@
+[ 2019-08-18T13:23:23+08:00 ] ::1 /index.php?s=/Manage/Event/total&prov=%E6%B1%9F%E8%8B%8F&city=%E6%97%A0%E9%94%A1&area=%E5%9B%BD%E5%AF%BF%E6%83%A0%E5%B1%B1%E6%94%AF%E5%85%AC%E5%8F%B8&e_name=%E6%9C%89%E6%95%B0%E6%8D%AE%E7%9A%84%E6%B4%BB%E5%8A%A8
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000242s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0023s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.017367s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.017561s ]
+SQL: SHOW COLUMNS FROM `bestop_event_tongji` [ RunTime:0.0010s ]
+SQL: select count(t.id) as total_count,
+                count(DISTINCT t.e_id) as e_num,
+                sum(t.app_num) as app_num,
+                sum(t.check_num) as check_num,
+                sum(t.appointment_money) as appointment_money,
+                sum(t.appointment_money_actual) as appointment_money_actual
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where 1=1 and zc.prov='江苏' and zc.city='无锡' and zc.area='国寿惠山支公司' and e.name like '%有数据的活动%' [ RunTime:0.0012s ]
+SQL: select t.*,e.name,e.area,e.address,e.stime,e.etime,
+                IFNULL(zc.name ,'其他职场') as zc_name,zc.prov,zc.city,zc.area as areas
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where 1=1 and zc.prov='江苏' and zc.city='无锡' and zc.area='国寿惠山支公司' and e.name like '%有数据的活动%'
+                limit 0,18 [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000176s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000328s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.141505s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.141696s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.010131s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.010288s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.010520s ]
+INFO: [ app_end ] --END-- [ RunTime:0.010723s ]
+
+[ 2019-08-18T13:23:24+08:00 ] ::1 /index.php?s=/Manage/Zc/get_region_jsdata_new
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000064s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000374s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0014s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001683s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001966s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 16 AND `region_type` = 2 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 220 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_event_tongji` [ RunTime:0.0008s ]
+SQL: select e.name
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where zc.area='国寿高淳支公司' [ RunTime:0.0011s ]
+SQL: select e.name
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where zc.area='国寿南京银保营业部' [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 221 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 222 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+SQL: select e.name
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where zc.area='国寿惠山支公司' [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 223 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 224 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 225 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 226 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 227 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 228 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 229 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 230 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 231 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 232 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+
+[ 2019-08-18T13:23:24+08:00 ] ::1 /index.php?s=/Manage/Zc/get_region_jsdata_new
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000211s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0018s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001049s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001254s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 16 AND `region_type` = 2 ORDER BY sort asc,region_id asc  [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 220 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_event_tongji` [ RunTime:0.0008s ]
+SQL: select e.name
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where zc.area='国寿高淳支公司' [ RunTime:0.0010s ]
+SQL: select e.name
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where zc.area='国寿南京银保营业部' [ RunTime:0.0004s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 221 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 222 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: select e.name
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where zc.area='国寿惠山支公司' [ RunTime:0.0004s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 223 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 224 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 225 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0006s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 226 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 227 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 228 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 229 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 230 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 231 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 232 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+
+[ 2019-08-18T13:23:29+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000205s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0015s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000711s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000867s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000170s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000369s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.116952s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.117175s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000717s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000858s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000847s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000994s ]
+
+[ 2019-08-18T13:23:30+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000188s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001269s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001501s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0067s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000167s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000326s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031036s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031216s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000702s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000869s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001111s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001291s ]
+
+[ 2019-08-18T13:23:31+08:00 ] ::1 /index.php?s=/Manage/Event/total
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000231s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0012s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000681s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000822s ]
+SQL: SHOW COLUMNS FROM `bestop_event_tongji` [ RunTime:0.0008s ]
+SQL: select count(t.id) as total_count,
+                count(DISTINCT t.e_id) as e_num,
+                sum(t.app_num) as app_num,
+                sum(t.check_num) as check_num,
+                sum(t.appointment_money) as appointment_money,
+                sum(t.appointment_money_actual) as appointment_money_actual
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where 1=1 [ RunTime:0.0008s ]
+SQL: select t.*,e.name,e.area,e.address,e.stime,e.etime,
+                IFNULL(zc.name ,'其他职场') as zc_name,zc.prov,zc.city,zc.area as areas
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where 1=1
+                limit 0,18 [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000171s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000323s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.016621s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016776s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000593s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000726s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001145s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001410s ]
+
+[ 2019-08-18T13:23:31+08:00 ] ::1 /index.php?s=/Manage/Zc/get_region_jsdata_new
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000064s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000527s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0012s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.005074s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.005440s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0006s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 16 AND `region_type` = 2 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 220 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_event_tongji` [ RunTime:0.0011s ]
+SQL: select e.name
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where zc.area='国寿高淳支公司' [ RunTime:0.0008s ]
+SQL: select e.name
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where zc.area='国寿南京银保营业部' [ RunTime:0.0006s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 221 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 222 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: select e.name
+                from bestop_event_tongji as t 
+                left join bestop_event as e on e.id=t.e_id
+                left join bestop_zc as zc on zc.id=t.zc_id
+                where zc.area='国寿惠山支公司' [ RunTime:0.0004s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 223 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 224 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 225 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 226 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 227 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 228 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 229 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 230 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 231 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 232 AND `region_type` = 3 ORDER BY sort asc,region_id asc  [ RunTime:0.0003s ]
+

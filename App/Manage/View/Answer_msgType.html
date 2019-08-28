@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+	<script type="text/javascript">
+        var data_path = "__DATA__";
+        var tpl_public = "__PUBLIC__";
+        var tpl_upload = "__UPLOAD__";
+	</script>
+</head>
+<body>
+<div class="main">
+	<div class="pos">{$type}</div>
+
+	<div class="operate">
+		<div class="left">
+			<input type="button" onclick="goUrl('{:U('Answer/msgtype_add')}')" class="btn_blue btn_red" value="添加消息类型">
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="list">
+			<table width="100%">
+				<tr>
+					<th><input type="checkbox" id="check"></th>
+					<th>编号</th>
+					<th>类型名</th>
+					<th>图标</th>
+					<th>是否显示</th>
+					<th>添加时间</th>
+					<th>操作</th>
+				</tr>
+				<foreach name='vlist' item='v'>
+					<tr>
+						<td><input type="checkbox" name="key[]" value="{$v.id}"></td>
+						<td>{$v.id}</td>
+						<td style="text-align: left">
+							{$v.name}
+						</td>
+						<td><?php if($v['img']){ ?><img src="__UPLOAD__<?php echo $v['img']?>" alt=""/> <?php }?></td>
+						<td>
+							<?php if($v['is_display']==1){?>
+							是
+							<?php }else{ ?>
+							否
+							<?php } ?>
+						</td>
+						<td><?php if($v['addtime']){ echo date("Y-m-d H:i:s",$v['addtime']);}?></td>
+						<td>
+							<a href="{:U('Answer/msgtype_add',array('id' => $v['id']))}">修改</a>
+						</td>
+					</tr>
+				</foreach>
+			</table>
+		<div class="page">
+			{$page}
+		</div>
+	</div>
+
+</body>
+</html>

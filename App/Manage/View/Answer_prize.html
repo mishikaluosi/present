@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+	<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+	<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+	<script language="JavaScript">
+        <!--
+        var URL = '__URL__';
+        var APP	 = '__APP__';
+        var SELF='__SELF__';
+        var PUBLIC='__PUBLIC__';
+        var UPLOAD = "__UPLOAD__";
+        //-->
+	</script>
+	<script language="JavaScript">
+        function sorts(id)
+        {
+            var sort = $(".sort"+id).val();
+            $.ajax({
+                type: "POST",
+                url: "{:U('Answer/prize_sort')}",
+                data: {sort:sort,id:id},
+                dataType: "text",
+                success: function(data){
+					if(data==1){
+					  //  alert("ok");
+					}else{
+					 //   alert("error");
+					}
+                }
+
+            });
+        }
+	</script>
+</head>
+<body>
+<style>
+	.list td img{width:170px!important;height:50px!important;background:#ff9743}
+
+</style>
+
+<div class="main">
+	<div class="pos">{$type}</div>
+	</br>
+	<div class="left"><input type="button" onclick="goUrl('{:U('Answer/addprize')}')" class="btn_blue btn_red" value="添加奖品">
+	</br>
+		<div class="operate">
+			<style>
+				ul,li,a{ text-decoration:none;list-style: none; }
+				.vatice{overflow: hidden;border-bottom:1px solid #ccc;font-size: 16px;}
+				.vatice li{ float: left;padding:0 10px 5px; text-align:center;  }
+				.vatice li a{ color:#666; }
+				.vatice li.on,.vatice li:hover{ border-bottom:2px solid #21a0fd; }
+			</style>
+			<ul class="vatice">
+				<foreach name='tab_list' item='tab'>
+					<?php if($tab['type']<5 || $tab['type']==99){ ?>
+					<li <?php if($qtype==$tab['type']){ ?>class="on" <?php }?>><a href="{:U('Answer/prize',array('qtype'=>$tab['type']))}">{$tab.jp_name}</a></li>
+					<?php }?>
+				</foreach>
+
+			</ul>
+		</div>
+	<div class="list">
+		<form method="post" id="form_do" name="form_do">
+			<table width="100%">
+				<tr>
+					<?php if($qtype==99){?>
+						<th>编号</th>
+						<th>奖品</th>
+						<th>奖品图片</th>
+						<th>奖品数量</th>
+						<th>抽奖顺序</th>
+						<th>添加时间</th>
+						<th>操作</th>
+					<?php }else{ ?>
+
+						<th>编号</th>
+						<th>奖项</th>
+						<th>奖品</th>
+						<th>奖品数量</th>
+						<th>应答对题目数</th>
+						<th>获奖称号</th>
+						<th>称号图片</th>
+						<th>添加时间</th>
+						<th>操作</th>
+					<?php }?>
+				</tr>
+				<foreach name='vlist' item='v'>
+					<?php if($qtype==99){ ?>
+					<tr>
+						<td>{$v.id}</td>
+						<td  style="width: 120px;">{$v.name}</td>
+						<td>
+							<img style="width:120px!important;height:90px!important; " src="/Public/Home/default/images/prize/{$v.img}" alt=""/>
+						</td>
+						<td >{$v.cnt}</td>
+
+						<td ><input type="text" name="psort" value="{$v.sort}" onblur="sorts({$v.id})" class="sort{$v.id}"  size="5" /></td>
+
+						<td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
+						<td>
+
+							<a href="{:U('Answer/addprize',array('id' => $v['id']))}">编辑</a>
+						</td>
+					</tr>
+					<?php }else{ ?>
+
+					<tr>
+						<td>{$v.id}</td>
+						<td >{$v.level}</td>
+						<td >{$v.name}</td>
+						<td >{$v.cnt}</td>
+						<td >
+							<?php if($v['min_score']==$v['max_score']){ echo  $v['min_score'];}else{ echo '['.$v['min_score'].'~'.$v['max_score'].']';}?>
+
+						</td>
+						<td >{$v.title}</td>
+						<td style="" >
+							<img style="height:100px; " src="/Public/Mobile/default/images/{$v.img}" alt=""/>
+						</td>
+						<td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
+						<td>
+
+							<a href="{:U('Answer/addprize',array('id' => $v['id']))}">编辑</a>
+
+							<a href="javascript:;" onclick="toConfirm('{:U('Answer/prize_del',array('id' => $v['id']), '')}', '确实要删除吗？')">删除</a>
+						</td>
+					</tr>
+					<?php }?>
+				</foreach>
+			</table>
+			<div class="page" style="clear: both;">{$page}</div>
+		</form>
+	</div>
+</div>
+
+</html>

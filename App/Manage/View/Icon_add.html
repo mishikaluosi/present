@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+<script type="text/javascript" src="{:U('Public/editor')}"></script>
+<script type="text/javascript">
+	var data_path = "__DATA__";
+	var tpl_public = "__PUBLIC__";
+	var tpl_upload = "__UPLOAD__";
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/calendar.config.js"></script>
+<script type="text/javascript" src="__DATA__/static/jq_plugins/iColorPicker/iColorPicker.js"></script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">添加记录</div>
+	<div class="form">
+		<form method='post' id="form_do" name="form_do" action="{:U('Icon/add',array('id' => $id), '')}">
+		<dl>
+			<dt>类型</dt>
+			<dd>
+				<select name="type">
+					<option value="income" selected="selected">充值百拓币</option>
+          <option value="pay" >扣除百拓币</option>
+				</select>
+			</dd>
+		</dl>
+		<dl>
+			<dt> 数量</dt>
+			<dd>
+				<input type="text" name="num" class="inp_w250" value=""/>
+			</dd>
+		</dl>
+    <dl>
+			<dt> 交易细节</dt>
+			<dd>
+				<textarea name="tip" class="tarea_default tarea_default2"></textarea> <i></i>
+			</dd>
+		</dl>
+		<dl>
+			<dl>
+      <dt> 发布时间</dt>
+      <dd>
+          <input type="text" class="inp_one" name="time" id="publishtime" value="{:date('Y-m-d H:i:s',time())}">
+          <script type="text/javascript">
+              Calendar.setup({
+                  weekNumbers: true,
+                  inputField : "publishtime",
+                  trigger    : "publishtime",
+                  dateFormat: "%Y-%m-%d %H:%M:%S",
+                  showTime: true,
+                  minuteStep: 1,
+                  onSelect   : function() {this.hide();}
+              });
+          </script>
+      </dd>
+    </dl>
+		<div class="form_b">
+      <input type="hidden" name="member_id" value="{$id}">
+			<input type="submit" class="btn_blue" id="submit" value="保 存">
+		</div>
+	   </form>
+	</div>
+</div>
+
+
+</body>
+</html>

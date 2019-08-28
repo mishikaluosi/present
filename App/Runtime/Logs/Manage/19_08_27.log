@@ -1,0 +1,2279 @@
+[ 2019-08-27T19:44:26+08:00 ] ::1 /?s=manage
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000078s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000426s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0014s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001914s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002680s ]
+SQL: SHOW COLUMNS FROM `bestop_menu` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `bestop_menu` WHERE `status` = 1 ORDER BY sort,id  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `bestop_menu` WHERE `status` = 1 AND `quick` = 1 ORDER BY sort,id  [ RunTime:0.0005s ]
+NOTIC: [8] Undefined index: _ACCESS_LIST C:\wamp64\www\gift\trunk\App\Manage\Controller\IndexController.class.php 第 24 行.
+SQL: SHOW COLUMNS FROM `bestop_meta` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `bestop_meta` WHERE ( name = 'HOME_HTML_CACHE_ON' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_meta` WHERE ( name = 'MOBILE_HTML_CACHE_ON' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000303s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000649s ]
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 133 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+NOTIC: [8] Undefined index: ADMIN_AUTH_KEY C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68f715bab1cf6587892bdf9c173d4e9e.php 第 155 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.171763s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.172132s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001661s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001974s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001224s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001542s ]
+
+[ 2019-08-27T19:44:26+08:00 ] ::1 /index.php?s=/Manage/Public/main
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000060s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000357s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0015s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0008s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001503s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001868s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000377s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000739s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.127932s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.128307s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001070s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001430s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001492s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002334s ]
+
+[ 2019-08-27T19:44:26+08:00 ] ::1 /index.php?s=/Manage/Index/getParentCate&pid=0&rnd=66190
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000067s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000377s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0016s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001127s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001398s ]
+SQL: SHOW COLUMNS FROM `bestop_category` [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `bestop_model` [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SELECT COUNT(*) AS tp_count FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE category.pid = 0 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE category.pid = 0 ORDER BY category.sort ASC,category.id ASC  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `bestop_category_access` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: yang_adm_roleid C:\wamp64\www\gift\trunk\App\Manage\Controller\IndexController.class.php 第 75 行.
+SQL: SELECT DISTINCT  `catid` FROM `bestop_category_access` WHERE `flag` = 1 AND `roleid` = 0  [ RunTime:0.0004s ]
+NOTIC: [8] Undefined index: list C:\wamp64\www\gift\trunk\App\Manage\Controller\IndexController.class.php 第 97 行.
+NOTIC: [2] Invalid argument supplied for foreach() C:\wamp64\www\gift\trunk\App\Manage\Controller\IndexController.class.php 第 97 行.
+NOTIC: [8] Undefined index: list C:\wamp64\www\gift\trunk\App\Manage\Controller\IndexController.class.php 第 110 行.
+NOTIC: [2] Invalid argument supplied for foreach() C:\wamp64\www\gift\trunk\App\Manage\Controller\IndexController.class.php 第 110 行.
+
+[ 2019-08-27T19:44:27+08:00 ] ::1 /index.php?s=/Manage/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000069s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000437s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0014s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001202s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001569s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000300s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000821s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.072609s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.072980s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001044s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001436s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001082s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001640s ]
+
+[ 2019-08-27T19:44:27+08:00 ] ::1 /index.php?s=/Manage/Login/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000071s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000423s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0011s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001237s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001600s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000224s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000561s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.021448s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.021802s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001382s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001709s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001915s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002276s ]
+
+[ 2019-08-27T19:44:28+08:00 ] ::1 /index.php?s=/Manage/Login/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000069s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000396s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001302s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001645s ]
+SQL: SHOW COLUMNS FROM `bestop_admin` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_admin` WHERE `username` = 'admin' LIMIT 1   [ RunTime:0.0006s ]
+SQL: UPDATE `bestop_admin` SET `logintime`='1566906268',`loginip`='0.0.0.0' WHERE `id` = 1 [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_role_user` [ RunTime:0.0009s ]
+SQL: SELECT `role_id` FROM `bestop_role_user` WHERE `user_id` = '1' LIMIT 1   [ RunTime:0.0004s ]
+
+[ 2019-08-27T19:44:29+08:00 ] ::1 /index.php?s=/Manage/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000070s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000397s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001054s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001373s ]
+SQL: SHOW COLUMNS FROM `bestop_menu` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `bestop_menu` WHERE `status` = 1 ORDER BY sort,id  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `bestop_menu` WHERE `status` = 1 AND `quick` = 1 ORDER BY sort,id  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_meta` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `bestop_meta` WHERE ( name = 'HOME_HTML_CACHE_ON' ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_meta` WHERE ( name = 'MOBILE_HTML_CACHE_ON' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000366s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000749s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.061206s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.061602s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000966s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001221s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.013898s ]
+INFO: [ app_end ] --END-- [ RunTime:0.014251s ]
+
+[ 2019-08-27T19:44:29+08:00 ] ::1 /index.php?s=/Manage/Qrcode/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000074s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000430s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0014s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001170s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001518s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001535s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001918s ]
+
+[ 2019-08-27T19:44:29+08:00 ] ::1 /index.php?s=/Manage/Public/main
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000073s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000446s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001043s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001345s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000278s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000634s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.024969s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.025321s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001092s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001394s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001272s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001629s ]
+
+[ 2019-08-27T19:44:29+08:00 ] ::1 /index.php?s=/Manage/Index/getParentCate&pid=0&rnd=53473
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000082s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000463s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0013s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001389s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001670s ]
+SQL: SHOW COLUMNS FROM `bestop_category` [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `bestop_model` [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SELECT COUNT(*) AS tp_count FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE category.pid = 0 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE category.pid = 0 ORDER BY category.sort ASC,category.id ASC  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0015s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 7 )  [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 9 )  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 8 )  [ RunTime:0.0008s ]
+
+[ 2019-08-27T19:44:34+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000079s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000454s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001060s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001393s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0012s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000211s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000418s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.133115s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.133334s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000814s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000998s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001033s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001235s ]
+
+[ 2019-08-27T19:44:34+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000049s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000412s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001046s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001407s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0017s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0011s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000215s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000426s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.139389s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.139877s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002507s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002741s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001988s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002341s ]
+
+[ 2019-08-27T19:44:47+08:00 ] ::1 /index.php?s=/Manage/Event/msg/id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000052s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000246s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000829s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001021s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0012s ]
+SQL: select DISTINCT area from bestop_zc [ RunTime:0.0005s ]
+SQL: select DISTINCT city from bestop_zc [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000294s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000511s ]
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 108 行.
+NOTIC: [8] Use of undefined constant zc_info - assumed 'zc_info' C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.085403s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.085612s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000691s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000883s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001462s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001774s ]
+
+[ 2019-08-27T19:44:47+08:00 ] ::1 /index.php?s=/Manage/Public/editor
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000062s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000351s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001317s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001684s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001035s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001221s ]
+
+[ 2019-08-27T19:44:48+08:00 ] ::1 /index.php?s=/Manage/Zc/get_prov_jsdata
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000082s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000538s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0014s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001040s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001318s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0016s ]
+
+[ 2019-08-27T19:44:58+08:00 ] ::1 /index.php?s=/Manage/Event/msg_save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000254s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001021s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001308s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `bestop_zc` WHERE ( city ='无锡' )  [ RunTime:0.0006s ]
+SQL: SELECT * FROM `bestop_zc` WHERE (  id in (54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,73,74) )  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0014s ]
+SQL: UPDATE `bestop_event` SET `name`='有数据的活动',`address`='那是',`stime`='1562860800',`etime`='1565193600',`content`='<p>2&nbsp; 1&nbsp; 0&nbsp; 20人活动</p>',`area`='1',`is_draw`='1',`is_order`='1',`max_member`='30',`areas`='',`citys`='无锡',`alias`='',`zc_info`='a:20:{i:54;a:2:{s:2:\"id\";s:2:\"54\";s:4:\"name\";s:6:\"雪狼\";}i:55;a:2:{s:2:\"id\";s:2:\"55\";s:4:\"name\";s:6:\"雄鹰\";}i:56;a:2:{s:2:\"id\";s:2:\"56\";s:4:\"name\";s:6:\"希望\";}i:57;a:2:{s:2:\"id\";s:2:\"57\";s:4:\"name\";s:6:\"天一\";}i:58;a:2:{s:2:\"id\";s:2:\"58\";s:4:\"name\";s:12:\"双联一部\";}i:59;a:2:{s:2:\"id\";s:2:\"59\";s:4:\"name\";s:12:\"双联二部\";}i:60;a:2:{s:2:\"id\";s:2:\"60\";s:4:\"name\";s:12:\"双成一部\";}i:61;a:2:{s:2:\"id\";s:2:\"61\";s:4:\"name\";s:12:\"双成五部\";}i:62;a:2:{s:2:\"id\";s:2:\"62\";s:4:\"name\";s:12:\"双成三部\";}i:63;a:2:{s:2:\"id\";s:2:\"63\";s:4:\"name\";s:12:\"双成二部\";}i:64;a:2:{s:2:\"id\";s:2:\"64\";s:4:\"name\";s:6:\"前进\";}i:65;a:2:{s:2:\"id\";s:2:\"65\";s:4:\"name\";s:6:\"凌云\";}i:66;a:2:{s:2:\"id\";s:2:\"66\";s:4:\"name\";s:12:\"亮剑一部\";}i:67;a:2:{s:2:\"id\";s:2:\"67\";s:4:\"name\";s:12:\"亮剑二部\";}i:68;a:2:{s:2:\"id\";s:2:\"68\";s:4:\"name\";s:6:\"蓝海\";}i:69;a:2:{s:2:\"id\";s:2:\"69\";s:4:\"name\";s:12:\"辉煌一部\";}i:70;a:2:{s:2:\"id\";s:2:\"70\";s:4:\"name\";s:12:\"辉煌二部\";}i:71;a:2:{s:2:\"id\";s:2:\"71\";s:4:\"name\";s:6:\"飞扬\";}i:73;a:2:{s:2:\"id\";s:2:\"73\";s:4:\"name\";s:6:\"朝阳\";}i:74;a:2:{s:2:\"id\";s:2:\"74\";s:4:\"name\";s:6:\"超越\";}}',`zc_ids`='$$$54$$$55$$$56$$$57$$$58$$$59$$$60$$$61$$$62$$$63$$$64$$$65$$$66$$$67$$$68$$$69$$$70$$$71$$$73$$$74$$$' WHERE `id` = '7' [ RunTime:0.0009s ]
+
+[ 2019-08-27T19:44:58+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000235s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000872s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001109s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0123s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000220s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000475s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.162129s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.162329s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000741s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000896s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001463s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001649s ]
+
+[ 2019-08-27T19:45:03+08:00 ] ::1 /index.php?s=/Manage/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000078s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000388s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0013s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000802s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000981s ]
+SQL: SHOW COLUMNS FROM `bestop_menu` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `bestop_menu` WHERE `status` = 1 ORDER BY sort,id  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `bestop_menu` WHERE `status` = 1 AND `quick` = 1 ORDER BY sort,id  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_meta` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `bestop_meta` WHERE ( name = 'HOME_HTML_CACHE_ON' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `bestop_meta` WHERE ( name = 'MOBILE_HTML_CACHE_ON' ) LIMIT 1   [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000190s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000379s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.042369s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.042631s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000741s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000907s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002994s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003600s ]
+
+[ 2019-08-27T19:45:03+08:00 ] ::1 /index.php?s=/Manage/Qrcode/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000347s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000843s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001034s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001040s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001233s ]
+
+[ 2019-08-27T19:45:03+08:00 ] ::1 /index.php?s=/Manage/Public/main
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000073s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000394s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0012s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001105s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001489s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000170s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000378s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015653s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015881s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000644s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000805s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000900s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001144s ]
+
+[ 2019-08-27T19:45:03+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000120s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000478s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0023s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001106s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001468s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0009s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000279s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000540s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.121189s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.121388s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000680s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000834s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001350s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001615s ]
+
+[ 2019-08-27T19:45:03+08:00 ] ::1 /index.php?s=/Manage/Index/getParentCate&pid=0&rnd=30534
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000098s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000488s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001537s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001948s ]
+SQL: SHOW COLUMNS FROM `bestop_category` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `bestop_model` [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE category.pid = 0 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE category.pid = 0 ORDER BY category.sort ASC,category.id ASC  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 7 )  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 9 )  [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 8 )  [ RunTime:0.0004s ]
+
+[ 2019-08-27T19:45:04+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000079s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000387s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000763s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000943s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0014s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0011s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000217s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000407s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.107257s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.107595s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000741s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000908s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001760s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002155s ]
+
+[ 2019-08-27T19:45:08+08:00 ] ::1 /index.php?s=/Manage/Event/msg/id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000240s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000908s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001115s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0013s ]
+SQL: select DISTINCT area from bestop_zc [ RunTime:0.0005s ]
+SQL: select DISTINCT city from bestop_zc [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000290s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000542s ]
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 108 行.
+NOTIC: [8] Use of undefined constant zc_info - assumed 'zc_info' C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.100444s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.100697s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000956s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001150s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001472s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001736s ]
+
+[ 2019-08-27T19:45:08+08:00 ] ::1 /index.php?s=/Manage/Public/editor
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000079s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000427s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001030s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001309s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001024s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001226s ]
+
+[ 2019-08-27T19:45:08+08:00 ] ::1 /index.php?s=/Manage/Zc/get_prov_jsdata
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000069s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000410s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0014s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000824s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000978s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+
+[ 2019-08-27T19:45:12+08:00 ] ::1 /index.php?s=/Manage/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000059s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000311s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0014s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001139s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001423s ]
+SQL: SHOW COLUMNS FROM `bestop_menu` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `bestop_menu` WHERE `status` = 1 ORDER BY sort,id  [ RunTime:0.0018s ]
+SQL: SELECT * FROM `bestop_menu` WHERE `status` = 1 AND `quick` = 1 ORDER BY sort,id  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_meta` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `bestop_meta` WHERE ( name = 'HOME_HTML_CACHE_ON' ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT * FROM `bestop_meta` WHERE ( name = 'MOBILE_HTML_CACHE_ON' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000306s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000586s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.057855s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.058131s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001030s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001279s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003220s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003602s ]
+
+[ 2019-08-27T19:45:13+08:00 ] ::1 /index.php?s=/Manage/Qrcode/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000273s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0012s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001249s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001615s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001451s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001796s ]
+
+[ 2019-08-27T19:45:13+08:00 ] ::1 /index.php?s=/Manage/Public/main
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000062s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000368s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0008s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001153s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001486s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000278s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000537s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018877s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.019153s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000964s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001151s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000883s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001055s ]
+
+[ 2019-08-27T19:45:13+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000061s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000334s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001525s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001935s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0019s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000264s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000556s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.131046s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.131339s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000733s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000998s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001328s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001593s ]
+
+[ 2019-08-27T19:45:13+08:00 ] ::1 /index.php?s=/Manage/Index/getParentCate&pid=0&rnd=59741
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000085s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000474s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0010s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001552s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001878s ]
+SQL: SHOW COLUMNS FROM `bestop_category` [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `bestop_model` [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SELECT COUNT(*) AS tp_count FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE category.pid = 0 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0010s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE category.pid = 0 ORDER BY category.sort ASC,category.id ASC  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 7 )  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 9 )  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0012s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 8 )  [ RunTime:0.0007s ]
+
+[ 2019-08-27T19:45:16+08:00 ] ::1 /index.php?s=/Manage/Event/msg/id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000071s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000424s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000853s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001048s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0009s ]
+SQL: select DISTINCT area from bestop_zc [ RunTime:0.0005s ]
+SQL: select DISTINCT city from bestop_zc [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000288s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000493s ]
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 108 行.
+NOTIC: [8] Use of undefined constant zc_info - assumed 'zc_info' C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.082659s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.082864s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000795s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001028s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001981s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002357s ]
+
+[ 2019-08-27T19:45:16+08:00 ] ::1 /index.php?s=/Manage/Public/editor
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000215s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001229s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001586s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001456s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001820s ]
+
+[ 2019-08-27T19:45:16+08:00 ] ::1 /index.php?s=/Manage/Zc/get_prov_jsdata
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000068s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000409s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000817s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001003s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0005s ]
+
+[ 2019-08-27T19:45:23+08:00 ] ::1 /index.php?s=/Manage/Event/msg/id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000079s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000433s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001216s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001582s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0015s ]
+SQL: select DISTINCT area from bestop_zc [ RunTime:0.0007s ]
+SQL: select DISTINCT city from bestop_zc [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000395s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000816s ]
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 108 行.
+NOTIC: [8] Use of undefined constant zc_info - assumed 'zc_info' C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.114099s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.114427s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000995s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001303s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002508s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002926s ]
+
+[ 2019-08-27T19:45:23+08:00 ] ::1 /index.php?s=/Manage/Public/editor
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000108s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000453s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0011s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001563s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001498s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001861s ]
+
+[ 2019-08-27T19:45:24+08:00 ] ::1 /index.php?s=/Manage/Zc/get_prov_jsdata
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000074s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000413s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0012s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001298s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001601s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0007s ]
+
+[ 2019-08-27T19:45:27+08:00 ] ::1 /index.php?s=/Manage/Event/msg/id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000137s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000856s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0016s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0021s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0009s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001689s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002239s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0015s ]
+SQL: select DISTINCT area from bestop_zc [ RunTime:0.0013s ]
+SQL: select DISTINCT city from bestop_zc [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0013s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000523s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000822s ]
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 108 行.
+NOTIC: [8] Use of undefined constant zc_info - assumed 'zc_info' C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.126854s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.127185s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001015s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001250s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002387s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002753s ]
+
+[ 2019-08-27T19:45:27+08:00 ] ::1 /index.php?s=/Manage/Public/editor
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000075s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000424s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001254s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001518s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001467s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001809s ]
+
+[ 2019-08-27T19:45:27+08:00 ] ::1 /index.php?s=/Manage/Zc/get_prov_jsdata
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000088s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000427s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001153s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001460s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0006s ]
+
+[ 2019-08-27T19:45:28+08:00 ] ::1 /index.php?s=/Manage/Event/msg/id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000337s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0015s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001778s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002298s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0015s ]
+SQL: select DISTINCT area from bestop_zc [ RunTime:0.0007s ]
+SQL: select DISTINCT city from bestop_zc [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000399s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000753s ]
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 108 行.
+NOTIC: [8] Use of undefined constant zc_info - assumed 'zc_info' C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.122405s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.122679s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001040s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001292s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002357s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002756s ]
+
+[ 2019-08-27T19:45:28+08:00 ] ::1 /index.php?s=/Manage/Public/editor
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000065s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000357s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000842s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001017s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000917s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001102s ]
+
+[ 2019-08-27T19:45:28+08:00 ] ::1 /index.php?s=/Manage/Zc/get_prov_jsdata
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000077s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000404s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0011s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001116s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001390s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0007s ]
+
+[ 2019-08-27T19:45:34+08:00 ] ::1 /index.php?s=/Manage/Event/msg_save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000224s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000896s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001070s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_zc` WHERE ( city ='无锡' )  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_zc` WHERE (  id in (54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,73,74) )  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0007s ]
+SQL: UPDATE `bestop_event` SET `name`='有数据的活动',`address`='那是',`stime`='1562860800',`etime`='1565193600',`content`='<p>2&nbsp; 1&nbsp; 0&nbsp; 20人活动</p>',`area`='1',`is_draw`='1',`is_order`='1',`max_member`='30',`areas`='',`citys`='无锡',`alias`='hahah ',`zc_info`='a:20:{i:54;a:2:{s:2:\"id\";s:2:\"54\";s:4:\"name\";s:6:\"雪狼\";}i:55;a:2:{s:2:\"id\";s:2:\"55\";s:4:\"name\";s:6:\"雄鹰\";}i:56;a:2:{s:2:\"id\";s:2:\"56\";s:4:\"name\";s:6:\"希望\";}i:57;a:2:{s:2:\"id\";s:2:\"57\";s:4:\"name\";s:6:\"天一\";}i:58;a:2:{s:2:\"id\";s:2:\"58\";s:4:\"name\";s:12:\"双联一部\";}i:59;a:2:{s:2:\"id\";s:2:\"59\";s:4:\"name\";s:12:\"双联二部\";}i:60;a:2:{s:2:\"id\";s:2:\"60\";s:4:\"name\";s:12:\"双成一部\";}i:61;a:2:{s:2:\"id\";s:2:\"61\";s:4:\"name\";s:12:\"双成五部\";}i:62;a:2:{s:2:\"id\";s:2:\"62\";s:4:\"name\";s:12:\"双成三部\";}i:63;a:2:{s:2:\"id\";s:2:\"63\";s:4:\"name\";s:12:\"双成二部\";}i:64;a:2:{s:2:\"id\";s:2:\"64\";s:4:\"name\";s:6:\"前进\";}i:65;a:2:{s:2:\"id\";s:2:\"65\";s:4:\"name\";s:6:\"凌云\";}i:66;a:2:{s:2:\"id\";s:2:\"66\";s:4:\"name\";s:12:\"亮剑一部\";}i:67;a:2:{s:2:\"id\";s:2:\"67\";s:4:\"name\";s:12:\"亮剑二部\";}i:68;a:2:{s:2:\"id\";s:2:\"68\";s:4:\"name\";s:6:\"蓝海\";}i:69;a:2:{s:2:\"id\";s:2:\"69\";s:4:\"name\";s:12:\"辉煌一部\";}i:70;a:2:{s:2:\"id\";s:2:\"70\";s:4:\"name\";s:12:\"辉煌二部\";}i:71;a:2:{s:2:\"id\";s:2:\"71\";s:4:\"name\";s:6:\"飞扬\";}i:73;a:2:{s:2:\"id\";s:2:\"73\";s:4:\"name\";s:6:\"朝阳\";}i:74;a:2:{s:2:\"id\";s:2:\"74\";s:4:\"name\";s:6:\"超越\";}}',`zc_ids`='$$$54$$$55$$$56$$$57$$$58$$$59$$$60$$$61$$$62$$$63$$$64$$$65$$$66$$$67$$$68$$$69$$$70$$$71$$$73$$$74$$$' WHERE `id` = '7' [ RunTime:0.0006s ]
+
+[ 2019-08-27T19:45:34+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000203s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000720s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000885s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000185s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000374s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.123029s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.123219s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000754s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000914s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001936s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002239s ]
+
+[ 2019-08-27T19:45:39+08:00 ] ::1 /index.php?s=/Manage/Event/msg/id/5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000057s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000260s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000809s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000984s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0010s ]
+SQL: select DISTINCT area from bestop_zc [ RunTime:0.0005s ]
+SQL: select DISTINCT city from bestop_zc [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000240s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000416s ]
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 108 行.
+NOTIC: [8] Use of undefined constant zc_info - assumed 'zc_info' C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.073889s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.074063s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000730s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000886s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001770s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002052s ]
+
+[ 2019-08-27T19:45:39+08:00 ] ::1 /index.php?s=/Manage/Public/editor
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000066s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000369s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001545s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001913s ]
+
+[ 2019-08-27T19:45:39+08:00 ] ::1 /index.php?s=/Manage/Zc/get_prov_jsdata
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000213s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0015s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001435s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001880s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0006s ]
+
+[ 2019-08-27T19:45:48+08:00 ] ::1 /index.php?s=/Manage/Event/msg_save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000796s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000966s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `bestop_zc` WHERE ( city ='南京' )  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `bestop_zc` WHERE (  id in (53,52) )  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0007s ]
+SQL: UPDATE `bestop_event` SET `name`='测试活动',`address`='不知道',`stime`='1562774400',`etime`='1562860800',`content`='<p>哈哈哈哈</p>',`area`='1',`is_draw`='1',`is_order`='1',`max_member`='0',`areas`='',`citys`='南京',`alias`='zhezhezhe',`zc_info`='a:2:{i:52;a:2:{s:2:\"id\";s:2:\"52\";s:4:\"name\";s:9:\"营业部\";}i:53;a:2:{s:2:\"id\";s:2:\"53\";s:4:\"name\";s:15:\"银保营业部\";}}',`zc_ids`='$$$52$$$53$$$' WHERE `id` = '5' [ RunTime:0.0006s ]
+
+[ 2019-08-27T19:45:48+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000205s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000873s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001054s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0124s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000187s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000371s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.119653s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.119837s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001128s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001398s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001485s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002143s ]
+
+[ 2019-08-27T19:45:53+08:00 ] ::1 /index.php?s=/Manage/Event/msg/id/5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000240s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000822s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001013s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0008s ]
+SQL: select DISTINCT area from bestop_zc [ RunTime:0.0005s ]
+SQL: select DISTINCT city from bestop_zc [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000288s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000494s ]
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 108 行.
+NOTIC: [8] Use of undefined constant zc_info - assumed 'zc_info' C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.084048s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.084246s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000807s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000989s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002637s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002975s ]
+
+[ 2019-08-27T19:45:53+08:00 ] ::1 /index.php?s=/Manage/Public/editor
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000076s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000430s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000777s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000951s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001283s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001574s ]
+
+[ 2019-08-27T19:45:53+08:00 ] ::1 /index.php?s=/Manage/Zc/get_prov_jsdata
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000072s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000430s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0013s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001244s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001634s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0007s ]
+
+[ 2019-08-27T19:45:57+08:00 ] ::1 /index.php?s=/Manage/Event/msg_save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000252s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001289s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001825s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `bestop_zc` WHERE ( city ='无锡' )  [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_zc` WHERE (  id in (54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,73,74) )  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0010s ]
+SQL: UPDATE `bestop_event` SET `name`='测试活动',`address`='不知道',`stime`='1562774400',`etime`='1562860800',`content`='<p>哈哈哈哈</p>',`area`='1',`is_draw`='1',`is_order`='1',`max_member`='0',`areas`='',`citys`='无锡',`alias`='zhezhezhe',`zc_info`='a:20:{i:54;a:2:{s:2:\"id\";s:2:\"54\";s:4:\"name\";s:6:\"雪狼\";}i:55;a:2:{s:2:\"id\";s:2:\"55\";s:4:\"name\";s:6:\"雄鹰\";}i:56;a:2:{s:2:\"id\";s:2:\"56\";s:4:\"name\";s:6:\"希望\";}i:57;a:2:{s:2:\"id\";s:2:\"57\";s:4:\"name\";s:6:\"天一\";}i:58;a:2:{s:2:\"id\";s:2:\"58\";s:4:\"name\";s:12:\"双联一部\";}i:59;a:2:{s:2:\"id\";s:2:\"59\";s:4:\"name\";s:12:\"双联二部\";}i:60;a:2:{s:2:\"id\";s:2:\"60\";s:4:\"name\";s:12:\"双成一部\";}i:61;a:2:{s:2:\"id\";s:2:\"61\";s:4:\"name\";s:12:\"双成五部\";}i:62;a:2:{s:2:\"id\";s:2:\"62\";s:4:\"name\";s:12:\"双成三部\";}i:63;a:2:{s:2:\"id\";s:2:\"63\";s:4:\"name\";s:12:\"双成二部\";}i:64;a:2:{s:2:\"id\";s:2:\"64\";s:4:\"name\";s:6:\"前进\";}i:65;a:2:{s:2:\"id\";s:2:\"65\";s:4:\"name\";s:6:\"凌云\";}i:66;a:2:{s:2:\"id\";s:2:\"66\";s:4:\"name\";s:12:\"亮剑一部\";}i:67;a:2:{s:2:\"id\";s:2:\"67\";s:4:\"name\";s:12:\"亮剑二部\";}i:68;a:2:{s:2:\"id\";s:2:\"68\";s:4:\"name\";s:6:\"蓝海\";}i:69;a:2:{s:2:\"id\";s:2:\"69\";s:4:\"name\";s:12:\"辉煌一部\";}i:70;a:2:{s:2:\"id\";s:2:\"70\";s:4:\"name\";s:12:\"辉煌二部\";}i:71;a:2:{s:2:\"id\";s:2:\"71\";s:4:\"name\";s:6:\"飞扬\";}i:73;a:2:{s:2:\"id\";s:2:\"73\";s:4:\"name\";s:6:\"朝阳\";}i:74;a:2:{s:2:\"id\";s:2:\"74\";s:4:\"name\";s:6:\"超越\";}}',`zc_ids`='$$$54$$$55$$$56$$$57$$$58$$$59$$$60$$$61$$$62$$$63$$$64$$$65$$$66$$$67$$$68$$$69$$$70$$$71$$$73$$$74$$$' WHERE `id` = '5' [ RunTime:0.0007s ]
+
+[ 2019-08-27T19:45:57+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000075s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000331s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000672s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000839s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0011s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000182s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000357s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.124448s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.124672s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000766s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000925s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001587s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002301s ]
+
+[ 2019-08-27T19:46:04+08:00 ] ::1 /index.php?s=/Manage/Event/msg/id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000238s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0014s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001326s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001538s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0011s ]
+SQL: select DISTINCT area from bestop_zc [ RunTime:0.0005s ]
+SQL: select DISTINCT city from bestop_zc [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0123s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000255s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000438s ]
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 108 行.
+NOTIC: [8] Use of undefined constant zc_info - assumed 'zc_info' C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.079684s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.079865s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001061s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001238s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001071s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001380s ]
+
+[ 2019-08-27T19:46:04+08:00 ] ::1 /index.php?s=/Manage/Public/editor
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000070s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000568s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000812s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001173s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001417s ]
+
+[ 2019-08-27T19:46:05+08:00 ] ::1 /index.php?s=/Manage/Zc/get_prov_jsdata
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000996s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001296s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0010s ]
+
+[ 2019-08-27T19:46:09+08:00 ] ::1 /index.php?s=/Manage/Event/msg_save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000267s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000870s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001130s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_zc` WHERE ( city ='无锡' )  [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_zc` WHERE (  id in (54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,73,74) )  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0010s ]
+SQL: UPDATE `bestop_event` SET `name`='有数据的活动',`address`='那是',`stime`='1562860800',`etime`='1567267200',`content`='<p>2&nbsp; 1&nbsp; 0&nbsp; 20人活动</p>',`area`='1',`is_draw`='1',`is_order`='1',`max_member`='30',`areas`='',`citys`='无锡',`alias`='hahah ',`zc_info`='a:20:{i:54;a:2:{s:2:\"id\";s:2:\"54\";s:4:\"name\";s:6:\"雪狼\";}i:55;a:2:{s:2:\"id\";s:2:\"55\";s:4:\"name\";s:6:\"雄鹰\";}i:56;a:2:{s:2:\"id\";s:2:\"56\";s:4:\"name\";s:6:\"希望\";}i:57;a:2:{s:2:\"id\";s:2:\"57\";s:4:\"name\";s:6:\"天一\";}i:58;a:2:{s:2:\"id\";s:2:\"58\";s:4:\"name\";s:12:\"双联一部\";}i:59;a:2:{s:2:\"id\";s:2:\"59\";s:4:\"name\";s:12:\"双联二部\";}i:60;a:2:{s:2:\"id\";s:2:\"60\";s:4:\"name\";s:12:\"双成一部\";}i:61;a:2:{s:2:\"id\";s:2:\"61\";s:4:\"name\";s:12:\"双成五部\";}i:62;a:2:{s:2:\"id\";s:2:\"62\";s:4:\"name\";s:12:\"双成三部\";}i:63;a:2:{s:2:\"id\";s:2:\"63\";s:4:\"name\";s:12:\"双成二部\";}i:64;a:2:{s:2:\"id\";s:2:\"64\";s:4:\"name\";s:6:\"前进\";}i:65;a:2:{s:2:\"id\";s:2:\"65\";s:4:\"name\";s:6:\"凌云\";}i:66;a:2:{s:2:\"id\";s:2:\"66\";s:4:\"name\";s:12:\"亮剑一部\";}i:67;a:2:{s:2:\"id\";s:2:\"67\";s:4:\"name\";s:12:\"亮剑二部\";}i:68;a:2:{s:2:\"id\";s:2:\"68\";s:4:\"name\";s:6:\"蓝海\";}i:69;a:2:{s:2:\"id\";s:2:\"69\";s:4:\"name\";s:12:\"辉煌一部\";}i:70;a:2:{s:2:\"id\";s:2:\"70\";s:4:\"name\";s:12:\"辉煌二部\";}i:71;a:2:{s:2:\"id\";s:2:\"71\";s:4:\"name\";s:6:\"飞扬\";}i:73;a:2:{s:2:\"id\";s:2:\"73\";s:4:\"name\";s:6:\"朝阳\";}i:74;a:2:{s:2:\"id\";s:2:\"74\";s:4:\"name\";s:6:\"超越\";}}',`zc_ids`='$$$54$$$55$$$56$$$57$$$58$$$59$$$60$$$61$$$62$$$63$$$64$$$65$$$66$$$67$$$68$$$69$$$70$$$71$$$73$$$74$$$' WHERE `id` = '7' [ RunTime:0.0008s ]
+
+[ 2019-08-27T19:46:10+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000251s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000906s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001115s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0015s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000212s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000419s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.132224s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.132455s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001115s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001296s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001646s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002030s ]
+
+[ 2019-08-27T19:46:13+08:00 ] ::1 /index.php?s=/Manage/Event/msg/id/5
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000246s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000753s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000972s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0015s ]
+SQL: select DISTINCT area from bestop_zc [ RunTime:0.0005s ]
+SQL: select DISTINCT city from bestop_zc [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000251s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000427s ]
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 108 行.
+NOTIC: [8] Use of undefined constant zc_info - assumed 'zc_info' C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+NOTIC: [8] Array to string conversion C:\wamp64\www\gift\trunk\App\Runtime\Cache\Manage\68b0e89e9306d5f3028fcb7a3b162e21.php 第 110 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.087688s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.087864s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000833s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001002s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.005298s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006324s ]
+
+[ 2019-08-27T19:46:13+08:00 ] ::1 /index.php?s=/Manage/Public/editor
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000074s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000426s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001341s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001702s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001006s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001198s ]
+
+[ 2019-08-27T19:46:13+08:00 ] ::1 /index.php?s=/Manage/Zc/get_prov_jsdata
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000163s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000505s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0011s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0008s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001053s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001336s ]
+SQL: SHOW COLUMNS FROM `bestop_region` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `bestop_region` WHERE `parent_id` = 1 AND `region_type` = 1 ORDER BY sort asc,region_id asc  [ RunTime:0.0006s ]
+
+[ 2019-08-27T19:46:18+08:00 ] ::1 /index.php?s=/Manage/Event/msg_save
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000047s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000248s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000855s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001056s ]
+SQL: SHOW COLUMNS FROM `bestop_zc` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `bestop_zc` WHERE ( city ='无锡' )  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `bestop_zc` WHERE (  id in (54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,73,74) )  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0012s ]
+SQL: UPDATE `bestop_event` SET `name`='测试活动',`address`='不知道',`stime`='1562774400',`etime`='1569600000',`content`='<p>哈哈哈哈</p>',`area`='1',`is_draw`='1',`is_order`='1',`max_member`='0',`areas`='',`citys`='无锡',`alias`='zhezhezhe',`zc_info`='a:20:{i:54;a:2:{s:2:\"id\";s:2:\"54\";s:4:\"name\";s:6:\"雪狼\";}i:55;a:2:{s:2:\"id\";s:2:\"55\";s:4:\"name\";s:6:\"雄鹰\";}i:56;a:2:{s:2:\"id\";s:2:\"56\";s:4:\"name\";s:6:\"希望\";}i:57;a:2:{s:2:\"id\";s:2:\"57\";s:4:\"name\";s:6:\"天一\";}i:58;a:2:{s:2:\"id\";s:2:\"58\";s:4:\"name\";s:12:\"双联一部\";}i:59;a:2:{s:2:\"id\";s:2:\"59\";s:4:\"name\";s:12:\"双联二部\";}i:60;a:2:{s:2:\"id\";s:2:\"60\";s:4:\"name\";s:12:\"双成一部\";}i:61;a:2:{s:2:\"id\";s:2:\"61\";s:4:\"name\";s:12:\"双成五部\";}i:62;a:2:{s:2:\"id\";s:2:\"62\";s:4:\"name\";s:12:\"双成三部\";}i:63;a:2:{s:2:\"id\";s:2:\"63\";s:4:\"name\";s:12:\"双成二部\";}i:64;a:2:{s:2:\"id\";s:2:\"64\";s:4:\"name\";s:6:\"前进\";}i:65;a:2:{s:2:\"id\";s:2:\"65\";s:4:\"name\";s:6:\"凌云\";}i:66;a:2:{s:2:\"id\";s:2:\"66\";s:4:\"name\";s:12:\"亮剑一部\";}i:67;a:2:{s:2:\"id\";s:2:\"67\";s:4:\"name\";s:12:\"亮剑二部\";}i:68;a:2:{s:2:\"id\";s:2:\"68\";s:4:\"name\";s:6:\"蓝海\";}i:69;a:2:{s:2:\"id\";s:2:\"69\";s:4:\"name\";s:12:\"辉煌一部\";}i:70;a:2:{s:2:\"id\";s:2:\"70\";s:4:\"name\";s:12:\"辉煌二部\";}i:71;a:2:{s:2:\"id\";s:2:\"71\";s:4:\"name\";s:6:\"飞扬\";}i:73;a:2:{s:2:\"id\";s:2:\"73\";s:4:\"name\";s:6:\"朝阳\";}i:74;a:2:{s:2:\"id\";s:2:\"74\";s:4:\"name\";s:6:\"超越\";}}',`zc_ids`='$$$54$$$55$$$56$$$57$$$58$$$59$$$60$$$61$$$62$$$63$$$64$$$65$$$66$$$67$$$68$$$69$$$70$$$71$$$73$$$74$$$' WHERE `id` = '5' [ RunTime:0.0008s ]
+
+[ 2019-08-27T19:46:18+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000044s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000975s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001202s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0017s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000228s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000506s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.141429s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.141658s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000806s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001104s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002099s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002472s ]
+
+[ 2019-08-27T19:46:20+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000213s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0006s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001157s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001597s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0139s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0012s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000220s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000455s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.186979s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.187188s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000720s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000887s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002784s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003366s ]
+
+[ 2019-08-27T20:14:29+08:00 ] ::1 /index.php?s=/Manage/Check/index/e_id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000238s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001026s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001220s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_event_user` [ RunTime:0.0011s ]
+SQL: SELECT COUNT(*) AS tp_count FROM bestop_event_user eu LEFT JOIN bestop_member bm ON bm.id=eu.member_id LEFT JOIN bestop_zc z on z.id=bm.zc_id  WHERE (  eu.e_id = 7  ) LIMIT 1   [ RunTime:0.0008s ]
+SQL: SELECT eu.*,bm.name as member FROM bestop_event_user eu LEFT JOIN bestop_member bm ON bm.id=eu.member_id LEFT JOIN bestop_zc z on z.id=bm.zc_id  WHERE (  eu.e_id = 7  ) ORDER BY eu.id desc LIMIT 0,18   [ RunTime:0.0011s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000280s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000496s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.090480s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.090680s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000633s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000781s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001410s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001689s ]
+
+[ 2019-08-27T20:14:34+08:00 ] ::1 /index.php?s=/Manage/Appointment/getMember&keywords=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000239s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000881s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001009s ]
+SQL: SHOW COLUMNS FROM `bestop_member` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_member` WHERE ( 1 ) LIMIT 20   [ RunTime:0.0006s ]
+
+[ 2019-08-27T20:14:36+08:00 ] ::1 /index.php?s=/Manage/Check/index/e_id/7&member_id=1&member=%E9%99%88%E7%8F%8A%E7%8F%8A
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000209s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000910s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001138s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_event_user` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM bestop_event_user eu LEFT JOIN bestop_member bm ON bm.id=eu.member_id LEFT JOIN bestop_zc z on z.id=bm.zc_id  WHERE (  eu.e_id = 7  and eu.member_id=1 ) LIMIT 1   [ RunTime:0.0073s ]
+SQL: SELECT eu.*,bm.name as member FROM bestop_event_user eu LEFT JOIN bestop_member bm ON bm.id=eu.member_id LEFT JOIN bestop_zc z on z.id=bm.zc_id  WHERE (  eu.e_id = 7  and eu.member_id=1 ) ORDER BY eu.id desc LIMIT 0,18   [ RunTime:0.0008s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000245s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000421s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.074409s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.074632s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000880s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001196s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001893s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002185s ]
+
+[ 2019-08-27T20:14:37+08:00 ] ::1 /index.php?s=/Manage/Check/index/e_id/7&member_id=1&member=%E9%99%88%E7%8F%8A%E7%8F%8A
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000232s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000853s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001044s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_event_user` [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM bestop_event_user eu LEFT JOIN bestop_member bm ON bm.id=eu.member_id LEFT JOIN bestop_zc z on z.id=bm.zc_id  WHERE (  eu.e_id = 7  and eu.member_id=1 ) LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT eu.*,bm.name as member FROM bestop_event_user eu LEFT JOIN bestop_member bm ON bm.id=eu.member_id LEFT JOIN bestop_zc z on z.id=bm.zc_id  WHERE (  eu.e_id = 7  and eu.member_id=1 ) ORDER BY eu.id desc LIMIT 0,18   [ RunTime:0.0007s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000259s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000423s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.067374s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.067562s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000572s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000728s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001769s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002189s ]
+
+[ 2019-08-27T20:17:32+08:00 ] ::1 /index.php?s=/Manage/Appointment/index/e_id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000075s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000452s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0010s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000717s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000892s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = '7' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `bestop_appointment` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM bestop_appointment a LEFT JOIN bestop_member bm ON bm.id=a.member_id LEFT JOIN bestop_zc z on z.id=bm.zc_id  WHERE (  a.e_id = 7  ) LIMIT 1   [ RunTime:0.0006s ]
+SQL: SELECT a.*,bm.name as member FROM bestop_appointment a LEFT JOIN bestop_member bm ON bm.id=a.member_id LEFT JOIN bestop_zc z on z.id=bm.zc_id  WHERE (  a.e_id = 7  ) ORDER BY a.id desc LIMIT 0,18   [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000258s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000439s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.087043s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.087221s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000712s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000860s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001241s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001500s ]
+
+[ 2019-08-27T20:17:33+08:00 ] ::1 /index.php?s=/Manage/Appointment/getMember&keywords=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000236s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000672s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000798s ]
+SQL: SHOW COLUMNS FROM `bestop_member` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_member` WHERE ( 1 ) LIMIT 20   [ RunTime:0.0006s ]
+
+[ 2019-08-27T20:17:34+08:00 ] ::1 /index.php?s=/Manage/Appointment/getMember&keywords=s
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000233s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000753s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000900s ]
+SQL: SHOW COLUMNS FROM `bestop_member` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_member` WHERE ( 1 and name like '%s%' ) LIMIT 20   [ RunTime:0.0010s ]
+
+[ 2019-08-27T20:17:35+08:00 ] ::1 /index.php?s=/Manage/Appointment/getMember&keywords=s
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000305s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000806s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000964s ]
+SQL: SHOW COLUMNS FROM `bestop_member` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_member` WHERE ( 1 and name like '%s%' ) LIMIT 20   [ RunTime:0.0012s ]
+
+[ 2019-08-27T20:17:36+08:00 ] ::1 /index.php?s=/Manage/Appointment/getMember&keywords=
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000233s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0007s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000686s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000820s ]
+SQL: SHOW COLUMNS FROM `bestop_member` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_member` WHERE ( 1 ) LIMIT 20   [ RunTime:0.0006s ]
+
+[ 2019-08-27T20:17:36+08:00 ] ::1 /index.php?s=/Manage/Appointment/index/e_id/7&member_id=1&member=%E9%99%88%E7%8F%8A%E7%8F%8A
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000205s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0006s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0006s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000708s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000874s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_event` WHERE `id` = '7' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `bestop_appointment` [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM bestop_appointment a LEFT JOIN bestop_member bm ON bm.id=a.member_id LEFT JOIN bestop_zc z on z.id=bm.zc_id  WHERE (  a.e_id = 7  and a.member_id=1 ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT a.*,bm.name as member FROM bestop_appointment a LEFT JOIN bestop_member bm ON bm.id=a.member_id LEFT JOIN bestop_zc z on z.id=bm.zc_id  WHERE (  a.e_id = 7  and a.member_id=1 ) ORDER BY a.id desc LIMIT 0,18   [ RunTime:0.0004s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000231s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000405s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.060904s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.061080s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000691s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000837s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001742s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001979s ]
+
+[ 2019-08-27T21:25:28+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000060s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000524s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0008s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000773s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000945s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0013s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0008s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000185s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000371s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.132604s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.132835s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000767s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001009s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002803s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003224s ]
+
+[ 2019-08-27T21:25:30+08:00 ] ::1 /index.php?s=/Manage/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000215s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0012s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0008s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0004s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000728s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000888s ]
+SQL: SHOW COLUMNS FROM `bestop_menu` [ RunTime:0.0065s ]
+SQL: SELECT * FROM `bestop_menu` WHERE `status` = 1 ORDER BY sort,id  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `bestop_menu` WHERE `status` = 1 AND `quick` = 1 ORDER BY sort,id  [ RunTime:0.0004s ]
+SQL: SHOW COLUMNS FROM `bestop_meta` [ RunTime:0.0074s ]
+SQL: SELECT * FROM `bestop_meta` WHERE ( name = 'HOME_HTML_CACHE_ON' ) LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `bestop_meta` WHERE ( name = 'MOBILE_HTML_CACHE_ON' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000179s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000438s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.146941s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.147168s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000771s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000933s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.005979s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006827s ]
+
+[ 2019-08-27T21:25:30+08:00 ] ::1 /index.php?s=/Manage/Qrcode/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000065s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0013s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0007s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000722s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000914s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001651s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001866s ]
+
+[ 2019-08-27T21:25:31+08:00 ] ::1 /index.php?s=/Manage/Public/main
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000071s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000394s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0007s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001135s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001484s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000179s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000375s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.044976s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.045257s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000640s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000808s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001003s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001230s ]
+
+[ 2019-08-27T21:25:31+08:00 ] ::1 /index.php?s=/Manage/Event/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000068s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000409s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0009s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0009s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001354s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001772s ]
+SQL: SHOW COLUMNS FROM `bestop_event` [ RunTime:0.0010s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event` WHERE ( 1=1 ) LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `bestop_event` WHERE ( 1=1 ) ORDER BY addtime desc,id desc LIMIT 0,18   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `bestop_event_info` [ RunTime:0.0012s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '7' LIMIT 1   [ RunTime:0.0005s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '5' LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '4' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '3' LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `bestop_event_info` WHERE `event_id` = '2' LIMIT 1   [ RunTime:0.0003s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000333s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000730s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.131512s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.131710s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001054s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001378s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001978s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002266s ]
+
+[ 2019-08-27T21:25:31+08:00 ] ::1 /index.php?s=/Manage/Index/getParentCate&pid=0&rnd=94699
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000063s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000367s ]
+SQL: SHOW COLUMNS FROM `bestop_payment` [ RunTime:0.0011s ]
+NOTIC: [2] Missing argument 1 for Think\Model::where(), called in C:\wamp64\www\gift\trunk\App\Common\Common\other.php on line 552 and defined C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1785 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1793 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1796 行.
+NOTIC: [8] Undefined variable: where C:\wamp64\www\gift\trunk\Include\Library\Think\Model.class.php 第 1804 行.
+SQL: SELECT `payment_id`,`payment_name`,`payment_type`,`payment_desc`,`payment_config`,`payment_state` FROM `bestop_payment` ORDER BY `payment_order` asc, `payment_id` asc  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `bestop_config` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `bestop_config` WHERE ( name = 'CFG_MOBILE_AUTO' ) LIMIT 1   [ RunTime:0.0005s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001052s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001313s ]
+SQL: SHOW COLUMNS FROM `bestop_category` [ RunTime:0.0071s ]
+SQL: SHOW COLUMNS FROM `bestop_model` [ RunTime:0.0077s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0007s ]
+SQL: SELECT COUNT(*) AS tp_count FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE category.pid = 0 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0008s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0006s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE category.pid = 0 ORDER BY category.sort ASC,category.id ASC  [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0006s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 7 )  [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0009s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0006s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 9 )  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM bestop_category [ RunTime:0.0008s ]
+SQL: SELECT category.id AS id,category.name AS name,category.ename AS ename,category.catpic AS catpic,category.links AS links,category.pid AS pid,category.modelid AS modelid,category.type AS type,category.seotitle AS seotitle,category.keywords AS keywords,category.description AS description,category.template_category AS template_category,category.template_list AS template_list,category.template_show AS template_show,category.content AS content,category.status AS status,category.sort AS sort,model.name AS modelname,model.tablename AS tablename FROM bestop_category category LEFT JOIN bestop_model model ON category.modelid = model.id WHERE ( pid = 8 )  [ RunTime:0.0004s ]
+

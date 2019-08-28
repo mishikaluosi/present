@@ -1,0 +1,94 @@
+﻿<include file="Public:header" />
+
+<div class="content" >
+    <div class="swiper-container jdt">
+        <div class="swiper-wrapper">
+            <yang:abc limit="8" id="1">
+                <div class="swiper-slide">
+                    <a href="{$abc.url}" ><img src="__UPLOAD__{$abc.content}" /></a>
+                </div>
+            </yang:abc>
+            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+        </div>
+        <!-- 如果需要分页器 -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="index_gg" id="gundong_html">
+        <div class="gg_tt">公告</div>
+        <div class="index_gglist gundong_list">
+            <div class="tempWrap" style="overflow:hidden; position:relative; height:21px">
+                <ul style="height: 84px; position: relative; padding: 0px; margin: 0px; top: -42px;">
+                   <foreach name="news_list" item="vo">
+                    <li style="height: 21px;"><a class="new_name" href="{:U('article/detail',array('id'=>$vo['id']))}">{$vo.title}</a></li>
+                   </foreach>
+                </ul>
+            </div>
+            <a class="new_more" href="{:U('article/index',array('cid'=>C('_Index_News_cid')))}">更多</a>
+        </div>
+    </div>
+
+
+    <div class="tuijian_list mat10">
+    <a href="#" title="">
+        <div class="tuijian_tt">
+            <p></p>所有礼品<i class="tj_more"></i></div>
+    </a>
+    <ul>
+        <foreach name="plist" item="v" key="k">
+        <li>
+            <div class="li_box">
+                <a href="{:U('Product/detail',array('id'=>$v['id']))}" title="{$v['title']}">
+                    <div class="prolist_logo">
+                        <img src="__PUBLIC__/images/pixel.gif" data-url="__UPLOAD__/{$v['litpic']|get_picture=400,400}"  title="{$v['title']}" class="js_imgload" />
+                    </div>
+                </a>
+                <div class="prolist_name">
+                    <p><a href="{:U('Product/detail',array('id'=>$v['id']))}" title="{$v['title']}">{$v['title']}</a></p>
+                    <span>¥{$v['money']}</span>
+                </div>
+            </div>
+        </li>
+        </foreach>
+
+    </ul>
+    <div class="clear"></div>
+    </div>
+    <div class="fenye mat10 mab10">
+        {$page}
+        <div class="clear"></div>
+    </div>
+    <link type="text/css" rel="stylesheet" href="__PUBLIC__/css/swiper.min.css" />
+    <script type="text/javascript" src="__PUBLIC__/js/swiper.jquery.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery.superslide.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            //var jdt_height = $(".content").width()/1.33;
+            $(".jdt, .jdt img").height(200);
+            //焦点图切换
+            var swiper = new Swiper('.swiper-container', {
+                pagination: '.swiper-pagination',
+                paginationClickable: true,
+                // Disable preloading of all images
+                preloadImages: false,
+                // Enable lazy loading
+                lazyLoading: true,
+                initialSlide: 0,
+                autoplay: 2000,
+                loop: true
+            });
+            pe_jstime(".huodong_time", '1545267728', 'html');
+        })
+        //滚动公告
+        $("#gundong_html").slide({
+            mainCell: ".gundong_list ul",
+            effect: "topLoop",
+            vis: 1,
+            delayTime: 1000,
+            interTime: 3000,
+            autoPage: true,
+            autoPlay: true
+        });
+    </script>
+
+<include file="Public:footer" />

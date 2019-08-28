@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+
+    <link rel='stylesheet' type="text/css" href="__PUBLIC__/layui/css/layui.css" />
+    <script type="text/javascript" src="__PUBLIC__/layui/layui.js"></script>
+ <script language="JavaScript">
+        <!--
+        var URL = '__URL__';
+        var APP	 = '__APP__';
+        var SELF='__SELF__';
+        var PUBLIC='__PUBLIC__';
+        //-->
+        </script>
+    <script language="JavaScript">
+        function sorts(id)
+        {
+            var sort = $(".sort"+id).val();
+            $.ajax({
+                type: "POST",
+                url: "{:U('Region/sort')}",
+                data: {sort:sort,id:id},
+                dataType: "text",
+                success: function(data){
+
+                }
+
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="main">
+    <div class="pos">地区区域管理</div>
+
+
+    <div class="list list0">
+        <form action="{:U('Region/sort')}" method="post" id="form_do" name="form_do">
+            <table width="100%">
+                <tr class="one">
+                    <th><input type="checkbox" id="check"></th>
+                    <th>编号</th>
+                    <th>名称</th>
+                    <th>排序</th>
+                    <th>操作</th>
+                </tr>
+                <foreach name='vlist' item='v'>
+                    <tr >
+                        <td><input type="checkbox" name="key[]" value="{$v.region_id}"></td>
+                        <td>{$v.region_id}</td>
+                        <td class="aleft">{$v.region_name}</td>
+
+                        <td>
+                            <input type="text" name="sort" value="{$v.sort}" onblur="sorts({$v.region_id})" class="sort{$v.region_id}"  size="5" /></td>
+                        <td>
+                            <if condition="$v['region_type'] lt 3">
+                            <a href="{:U('Region/index', array('pid' => $v['region_id'],'type'=>$v['region_type']+1))}">查看</a>
+                            </if>
+                            <if condition="$v['region_type'] lt 3">
+                            <a href="{:U('Region/msg',array('pid' => $v['region_id']))}">添加子级</a>
+                            </if>
+
+                            <a href="{:U('Region/msg',array('id' => $v['region_id'],'parameter'=>I('parameter')))}">修改</a>
+                            <a href="javascript:;" onclick="toConfirm('{:U('Region/del', array('id' => $v['region_id'],'parameter'=>I('parameter')))}', '确实要删除吗？')">删除</a>
+                        </td>
+                    </tr>
+                </foreach>
+            </table>
+            <div class="page" style="clear: both;"> </div>
+        </form>
+    </div>
+
+</div>
+</body>
+</html>

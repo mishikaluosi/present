@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel='stylesheet' type="text/css" href="__PUBLIC__/css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.form.min.js"></script>
+
+
+	<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style_shop.css" />
+	<script type="text/javascript" src="__PUBLIC__/shop/js/global.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/shop/js/arttpl.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/shop/plugin/layer/layer.js"></script>
+</head>
+<body style="background:#fff;padding:10px">
+<form method="post" id="form" autocomplete="off">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="wenzhang_bak mab10">
+		<?php $rule_num=1?>
+		<if condition="$cache_rule">
+		<foreach name="cache_rule" item="v" key="k" >
+		<tr>
+			<td class="bgtt" style="padding-left:10px;height:20px;line-height:20px" width="150">
+				{$rule_num++}) {$v['rule_name']}
+				<if condition="$v['rule_memo']"><span class="cbbb mal5">[{$v['rule_memo']}]</span></if></td>
+			<td>
+				<if condition="$v['list'] ">
+				<foreach name="v.list" item="vv">
+				<label class="rule_id">
+					<input type="checkbox" name="ruledata_id[]" value="{$vv['ruledata_id']}" class="mar5 inputfix" <?php if(in_array($vv['ruledata_id'], $ruledata_id)){ ?>checked="checked"<?php } ?> />
+					{$vv['ruledata_name']}<i></i>
+				</label>
+				</foreach>
+				</if>
+			</td>
+		</tr>
+		</foreach>
+		</if>
+	</table>
+	<div class="mat20 center"><input type="button" value="生成数据" class="tjbtn" /></div>
+</form>
+<script type="text/javascript">
+    function ruledata_select() {
+        $("label :input").each(function(){
+            if ($(this).is(":checked")) {
+                $(this).parent("label").addClass("sel");
+            }
+            else {
+                $(this).parent("label").removeClass("sel");
+            }
+        })
+    }
+    $(function(){
+        ruledata_select();
+        $("label").click(function(){
+            ruledata_select();
+        })
+        $(":button").click(function(){
+            var ruledata_id = new Array();
+            $("input[name='ruledata_id[]']:checked").each(function(){
+                ruledata_id.push($(this).val());
+            })
+            window.parent.rule_list(ruledata_id, 'datalist_new');
+            window.parent.layer.closeAll();;
+        })
+    })
+</script>
+<style>
+	.rule_id{min-width:80px; _width:80px; padding:2px 10px; margin:6px 10px 6px 0}
+</style>
+<style type="text/css">
+	.right_bottom{padding:0;border:0;border-top:1px solid #f1f1f1;padding-top:10px}
+	#fabu_btn{position:fixed; display:block; bottom:0; left:0; height:40px; line-height:40px; width:100%;  text-align:center; background:#fff; padding-bottom:10px}
+	#fabu_btn a{background:#f8f8f8; color:#666; font-size:15px; display:block; border-radius:20px; margin:0 15px; border:1px solid #ddd}
+	#fabu_btn:hover{color:#fff}
+</style>
+</body>
+</html>
