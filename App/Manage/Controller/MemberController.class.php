@@ -463,7 +463,7 @@ class MemberController extends CommonController {
         $chk_colum_len=8;
 
         $db_insert_arr=array(
-            'name','phone',"group_no","work_no","prov","city",'area','zc_id'
+            'name','phone',"group_no","work_no","prov","city",'area','zc_before','zc_id'
         );
 
         for($currentRow = 2;$currentRow <= $allRow;$currentRow++){
@@ -485,7 +485,7 @@ class MemberController extends CommonController {
                 }
             }
             if(!empty($data1['name'])&&!empty($data1['phone'])&&$this->_chk($data1['phone'])==false){
-                $zc_id=$data1['zc_id'];
+                $zc_id=$data1['zc_before'].$data1['zc_id'];
                 if(!empty($zc_id)){
                     $zc_info=get_zc_byname($zc_id);
                     if($zc_info){
