@@ -167,9 +167,9 @@ class DoController extends Controller{
         if(empty($password)){
             $this->_frm_json_login(false,'密码不得为空');
         }
-        if(empty($exc_code)){
-            $this->_frm_json_login(false,'验证码不得为空');
-        }
+//        if(empty($exc_code)){
+//            $this->_frm_json_login(false,'验证码不得为空');
+//        }
         $where=array('phone'=>pe_dbhold($phone));
         $user=M('member')->where($where)->find();
         if($user){
@@ -177,14 +177,14 @@ class DoController extends Controller{
                 $this->_frm_json_login(false,'手机号或密码错误');
             }
             //验证验证码
-            $send_code=M('send_code')->where(array('phone'=>$phone,'code'=>$exc_code,'type'=>'login'))->order('id desc')->find();
-            if(!$send_code){
-                $this->_frm_json_login(false,'验证码不存在');
-            }
-            $pass_time = time()-$send_code['created_at'];
-            if($pass_time>15*60){
-                $this->_frm_json_login(false,'验证码已超时，请重新获取');
-            }
+//            $send_code=M('send_code')->where(array('phone'=>$phone,'code'=>$exc_code,'type'=>'login'))->order('id desc')->find();
+//            if(!$send_code){
+//                $this->_frm_json_login(false,'验证码不存在');
+//            }
+//            $pass_time = time()-$send_code['created_at'];
+//            if($pass_time>15*60){
+//                $this->_frm_json_login(false,'验证码已超时，请重新获取');
+//            }
             if($user['islock']==1){
                 $this->_frm_json_login(false,'您的账户已被锁定，请联系管理员解锁');
             }
