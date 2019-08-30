@@ -88,11 +88,12 @@
                     <elseif condition="$info.role_level eq 3" />
                     <li><a href="{:U('User/orderTongji',array('type'=>'city'))}"><i class="ck_i7"></i><span>订单统计</span><p></p></a></li>
                 </if>
-<!--                <if condition="$info.role_level eq 1">-->
-
-<!--                    <li><a href="{:U('User/eventTongji',array('type'=>'area'))}"><i class="ck_i8"></i><span>职场-活动统计</span><p></p></a></li>-->
-<!--                    <li><a href="{:U('User/eventTongji',array('type'=>'city'))}"><i class="ck_i8"></i><span>支公司-活动统计</span><p></p></a></li>-->
-<!--                </if>-->
+                <if condition="$info.role_level eq 3">
+                    <li><a href="{:U('User/eventTongji',array('type'=>'area'))}"><i class="ck_i8"></i><span>职场-活动统计</span><p></p></a></li>
+                    <li><a href="{:U('User/eventTongji',array('type'=>'city'))}"><i class="ck_i8"></i><span>支公司-活动统计</span><p></p></a></li>
+                    <elseif condition="$info.role_level eq 2" />
+                    <li><a href="{:U('User/eventTongji',array('type'=>'area'))}"><i class="ck_i8"></i><span>职场-活动统计</span><p></p></a></li>
+                </if>
             </ul>
             <div class="clear"></div>
         </div>
