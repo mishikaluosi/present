@@ -342,10 +342,11 @@ class UserController extends MobileCommonController{
             $this->assign('l_zc_id', $zc_id);
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('id'));
             $this->assign('level',$zc['name']);
-
             //获取职场所有的业务员
             $member_array = M('member')->where(array('zc_id'=>$zc_id))->select();
             $this->assign('member_array', $member_array);
+            $member_ids = join(",",i_array_column($member_array,'id'));
+            $where .= " and m.id in($member_ids)";
             $sql = "select group_concat(od.zc_id) as zc_id, sum(product_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num
                 ,m.name as member_name,o.user_id as user_id
                 from {$pre}orderdata as od
