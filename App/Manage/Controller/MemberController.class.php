@@ -460,7 +460,7 @@ class MemberController extends CommonController {
                 return $retrun_arr;
             }
         }
-        $chk_colum_len=8;
+        $chk_colum_len=9;
 
         $db_insert_arr=array(
             'name','phone',"group_no","work_no","prov","city",'area','zc_before','zc_id'
@@ -486,6 +486,7 @@ class MemberController extends CommonController {
             }
             if(!empty($data1['name'])&&!empty($data1['phone'])&&$this->_chk($data1['phone'])==false){
                 $zc_id=$data1['zc_before'].$data1['zc_id'];
+                unset($data1['zc_before']);
                 if(!empty($zc_id)){
                     $zc_info=get_zc_byname($zc_id);
                     if($zc_info){
@@ -511,7 +512,8 @@ class MemberController extends CommonController {
                 //覆盖
                 $ret=M('member')->where(array('phone'=>trim($data1['phone'])))->find();
                 if($ret){
-                    $zc_id=$data1['zc_id'];
+                    $zc_id=$data1['zc_before'].$data1['zc_id'];
+                    unset($data1['zc_before']);
                     if(!empty($zc_id)){
                         $zc_info=get_zc_byname($zc_id);
                         if($zc_info){
