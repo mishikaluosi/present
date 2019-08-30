@@ -160,17 +160,32 @@ class DoController extends Controller{
 	public function login_in(){
         $phone=I('phone', '');
         $password=I('user_pw', '');
+        $exc_code=I('exc_code', '');
         if(empty($phone)){
             $this->_frm_json_login(false,'手机号不得为空');
         }
         if(empty($password)){
             $this->_frm_json_login(false,'密码不得为空');
         }
+        if(empty($exc_code)){
+            $this->_frm_json_login(false,'验证码不得为空');
+        }
         $where=array('phone'=>pe_dbhold($phone));
         $user=M('member')->where($where)->find();
         if($user){
             if($user['password'] != get_password($password, $user['encrypt'])){
                 $this->_frm_json_login(false,'手机号或密码错误');
+            }
+            //验证验证码
+            $send_code=M('send_code')->where(array('phone'=>$phone,'code'=>$exc_code,'type'=>'login'))->order('id desc')->find();
+            echo json_encode($send_code);
+            die();
+            if(!$send_code){
+                $this->_frm_json_login(false,'验证码不存在');
+            }
+            $pass_time = time()-$send_code['created_at'];
+            if($pass_time>15*60){
+                $this->_frm_json_login(false,'验证码已超时，请重新获取');
             }
             if($user['islock']==1){
                 $this->_frm_json_login(false,'您的账户已被锁定，请联系管理员解锁');
@@ -315,7 +330,7 @@ class DoController extends Controller{
         $_SESSION['user_zcid'] = $user['zc_id'];
         $_SESSION['user_ltime'] = $user['logintime'];
         if(!empty($user['user_wx_openid'])){
-//            $_SESSION['U']['openid']=$user['user_wx_openid'];
+            $_SESSION['U']['openid']=$user['user_wx_openid'];
         }
     }
     public function sendCode(){
