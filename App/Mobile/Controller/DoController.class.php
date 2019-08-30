@@ -178,8 +178,6 @@ class DoController extends Controller{
             }
             //验证验证码
             $send_code=M('send_code')->where(array('phone'=>$phone,'code'=>$exc_code,'type'=>'login'))->order('id desc')->find();
-            echo json_encode($send_code);
-            die();
             if(!$send_code){
                 $this->_frm_json_login(false,'验证码不存在');
             }
