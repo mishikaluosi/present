@@ -160,16 +160,16 @@ class DoController extends Controller{
 	public function login_in(){
         $phone=I('phone', '');
         $password=I('user_pw', '');
-        $exc_code=I('exc_code', '');
+      //  $exc_code=I('exc_code', '');
         if(empty($phone)){
             $this->_frm_json_login(false,'手机号不得为空');
         }
         if(empty($password)){
             $this->_frm_json_login(false,'密码不得为空');
         }
-        if(empty($exc_code)){
-            $this->_frm_json_login(false,'验证码不得为空');
-        }
+        //if(empty($exc_code)){
+           // $this->_frm_json_login(false,'验证码不得为空');
+       // }
         $where=array('phone'=>pe_dbhold($phone));
         $user=M('member')->where($where)->find();
         if($user){
