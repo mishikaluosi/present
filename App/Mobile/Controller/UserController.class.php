@@ -271,6 +271,8 @@ class UserController extends MobileCommonController{
             $where .= " and o.order_ftime <= '{$end_date}'";
             $detail_where .= " and o.order_ftime <= '{$end_date}'";
         }
+        $total_buyer = 0;
+        $total_order = 0;
         if($type=='area'){
             //获取当前用户职场所在支公司
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('area'));
@@ -295,6 +297,7 @@ class UserController extends MobileCommonController{
                 order by order_stime desc";
             $vlist=M('order')->query($sql);
             foreach ($vlist as $k=>$v){
+                $total_buyer = $total_buyer+$v['buy_num'];
                 $sql = "select od.product_id,od.product_name, sum(product_num) as num ,sum(product_allmoney) as money 
                     from {$pre}orderdata as od
                     LEFT JOIN {$pre}order as o
@@ -303,6 +306,9 @@ class UserController extends MobileCommonController{
                     group by product_id
                     order by product_id DESC ";
                 $cp=M('order')->query($sql);
+                foreach ($cp as $p){
+                    $total_order = $total_order+$p['num'];
+                }
                 $vlist[$k]['cp_list']=$cp;
             }
         }else if($type=='city'){
@@ -325,6 +331,7 @@ class UserController extends MobileCommonController{
                 order by order_stime desc";
             $vlist=M('order')->query($sql);
             foreach ($vlist as $k=>$v){
+                $total_buyer = $total_buyer+$v['buy_num'];
                 $sql = "select od.product_id,od.product_name, sum(product_num) as num ,sum(product_allmoney) as money 
                     from {$pre}orderdata as od
                     LEFT JOIN {$pre}order as o
@@ -333,6 +340,9 @@ class UserController extends MobileCommonController{
                     group by product_id
                     order by product_id DESC ";
                 $cp=M('order')->query($sql);
+                foreach ($cp as $p){
+                    $total_order = $total_order+$p['num'];
+                }
                 $vlist[$k]['cp_list']=$cp;
             }
         }else if($type=='member'){
@@ -358,6 +368,7 @@ class UserController extends MobileCommonController{
                 order by order_stime desc";
             $vlist=M('order')->query($sql);
             foreach ($vlist as $k=>$v){
+                $total_buyer = $total_buyer+$v['buy_num'];
                 $sql = "select od.product_id,od.product_name, sum(product_num) as num ,sum(product_allmoney) as money 
                     from {$pre}orderdata as od
                     LEFT JOIN {$pre}order as o
@@ -367,12 +378,17 @@ class UserController extends MobileCommonController{
                     group by product_id
                     order by product_id DESC ";
                 $cp=M('order')->query($sql);
+                foreach ($cp as $p){
+                    $total_order = $total_order+$p['num'];
+                }
                 $vlist[$k]['cp_list']=$cp;
             }
         }else{
             $vlist=[];
         }
         $this->assign('vlist',$vlist);
+        $this->assign('total_order',$total_order);
+        $this->assign('total_buyer',$total_buyer);
         $this->assign('type',$type);
         $this->display();
     }

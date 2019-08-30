@@ -94,6 +94,16 @@
         </foreach>
     </table>
 </div>
+<div class="total" style="background:#fff;height: 50px;width: 100%;position: fixed;z-index:2;left: 0;bottom: 57px;border-top: 1px solid #ccc;">
+    <div style="width:calc(50% - 1px);float: left;text-align: center;border-right: 1px solid #ccc;">
+        <p style="width: 100%;height: 25px;color: #009900;line-height: 25px;">{$total_buyer}</p>
+        <p style="width: 100%;height: 25px;line-height: 25px;">购买总人数</p>
+    </div>
+    <div style="width:50%;float: left;text-align: center;">
+        <p style="width: 100%;height: 25px;color: #009900;line-height: 25px;">{$total_order}</p>
+        <p style="width: 100%;height: 25px;line-height: 25px;">购买总商品数</p>
+    </div>
+</div>
 <include file="Public:footer" />
 <script>
     $(function(){
