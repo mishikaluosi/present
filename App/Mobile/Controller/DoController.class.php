@@ -160,31 +160,31 @@ class DoController extends Controller{
 	public function login_in(){
         $phone=I('phone', '');
         $password=I('user_pw', '');
-      //  $exc_code=I('exc_code', '');
+        $exc_code=I('exc_code', '');
         if(empty($phone)){
             $this->_frm_json_login(false,'手机号不得为空');
         }
         if(empty($password)){
             $this->_frm_json_login(false,'密码不得为空');
         }
-        //if(empty($exc_code)){
-           // $this->_frm_json_login(false,'验证码不得为空');
-       // }
+        if(empty($exc_code)){
+            $this->_frm_json_login(false,'验证码不得为空');
+        }
         $where=array('phone'=>pe_dbhold($phone));
         $user=M('member')->where($where)->find();
         if($user){
             if($user['password'] != get_password($password, $user['encrypt'])){
                 $this->_frm_json_login(false,'手机号或密码错误');
             }
-//            //验证验证码
-//            $send_code=M('send_code')->where(array('phone'=>$phone,'code'=>$exc_code,'type'=>'login'))->order('id desc')->find();
-//            if(!$send_code){
-//                $this->_frm_json_login(false,'验证码不存在');
-//            }
-//            $pass_time = time()-$send_code['created_at'];
-//            if($pass_time>15*60){
-//                $this->_frm_json_login(false,'验证码已超时，请重新获取');
-//            }
+            //验证验证码
+            $send_code=M('send_code')->where(array('phone'=>$phone,'code'=>$exc_code,'type'=>'login'))->order('id desc')->find();
+            if(!$send_code){
+                $this->_frm_json_login(false,'验证码不存在');
+            }
+            $pass_time = time()-$send_code['created_at'];
+            if($pass_time>15*60){
+                $this->_frm_json_login(false,'验证码已超时，请重新获取');
+            }
             if($user['islock']==1){
                 $this->_frm_json_login(false,'您的账户已被锁定，请联系管理员解锁');
             }
@@ -333,12 +333,17 @@ class DoController extends Controller{
     }
     public function sendCode(){
         $phone = I("phone");
-//        $code = rand(100000, 999999);
-        $code = 123456;//未接入短信平台 ，测试123456
+        $code = rand(100000, 999999);
+//        $code = 123456;//未接入短信平台 ，测试123456
         if(!pe_formcheck('phone',$phone)) {
             $this->returnError('手机号格式不正确');
         }
         //发送验证码给手机
+        $ret  = $this->sendsms($phone,$code);
+        $ret = json_decode($ret,true);
+        if($ret['result']!=0){
+            $this->returnError($ret['errmsg']);
+        }
         $item = array(
             'phone'	=> 	$phone,
             'code'	=> 	$code,
@@ -351,6 +356,62 @@ class DoController extends Controller{
        }
         $this->returnSuccess($phone);
         exit();
+    }
+    function sendsms($phone,$code){
+        $strMobile = $phone; //tel 的 mobile 字段的内容
+        $strAppKey = "29ecbbdf6d66fe75b28833934d729ee7"; //sdkappid 对应的 appkey，需要业务方高度保密
+        $strAppid = "1400248288";
+        $strRand = rand(100000, 999999); //URL 中的 random 字段的值
+        $strTime = time(); //UNIX 时间戳
+        $sig =  hash("sha256", "appkey=$strAppKey&random=$strRand&time=$strTime&mobile=$strMobile");
+        $tpl_id =405171;
+        $url = "https://yun.tim.qq.com/v5/tlssmssvr/sendsms?sdkappid=".$strAppid."&random=".$strRand;
+        $params = array($code,'15');
+        $sign = "新吴区新之礼日用品商行";
+        $tel['mobile'] = $phone;
+        $tel['nationcode'] = '86';
+
+        $send_param['ext'] ='';
+        $send_param['extend'] ='';
+        $send_param['params'] =$params;
+        $send_param['sig'] =$sig;
+        $send_param['sign'] =$sign;
+        $send_param['tel'] =$tel;
+        $send_param['time'] =$strTime;
+        $send_param['tpl_id'] =$tpl_id;
+        $send_param = json_encode($send_param);
+        $ret = $this->http_post($url,$send_param);
+        return $ret;
+    }
+    function http_post($url, $param, $post_file = false)
+    {
+        $oCurl = curl_init();
+        if (stripos($url, "https://") !== FALSE) {
+            curl_setopt($oCurl, CURLOPT_SSL_VERIFYPEER, FALSE);
+            curl_setopt($oCurl, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($oCurl, CURLOPT_SSLVERSION, 1); //CURL_SSLVERSION_TLSv1
+        }
+        if (is_string($param) || $post_file) {
+            $strPOST = $param;
+        } else {
+            $aPOST = array();
+            foreach ($param as $key => $val) {
+                $aPOST[] = $key . "=" . urlencode($val);
+            }
+            $strPOST = join("&", $aPOST);
+        }
+        curl_setopt($oCurl, CURLOPT_URL, $url);
+        curl_setopt($oCurl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($oCurl, CURLOPT_POST, true);
+        curl_setopt($oCurl, CURLOPT_POSTFIELDS, $strPOST);
+        $sContent = curl_exec($oCurl);
+        $aStatus  = curl_getinfo($oCurl);
+        curl_close($oCurl);
+        if (intval($aStatus["http_code"]) == 200) {
+            return $sContent;
+        } else {
+            return false;
+        }
     }
 }
 
