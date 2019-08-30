@@ -144,8 +144,7 @@
                 <th>所在职场</th>
                 <th>组号</th>
                 <th>工号</th>
-                <th>支公司查看权限</th>
-                <th>市级查看权限</th>
+                <th>数据查看权限</th>
                 <th>注册时间</th>
                 <th>登录时间</th>
                 <th>状态</th>
@@ -164,17 +163,14 @@
                 <td>{$v.group_no}</td>
                 <td>{$v.work_no}</td>
                 <td>
-                    <if condition="$v['area_level']">
-                        有
+                    <if condition="$v['role_level'] eq 1">
+                        职场数据查看权限
+                        <elseif condition="$v['role_level'] eq 2"/>
+                        支公司数据查看权限
+                        <elseif condition="$v['role_level'] eq 3"/>
+                        市级数据查看权限
                         <else />
-                        无
-                    </if>
-                </td>
-                <td>
-                    <if condition="$v['city_level']">
-                        有
-                        <else />
-                        无
+                        职场数据查看权限
                     </if>
                 </td>
                 <td>

@@ -241,10 +241,12 @@ class UserController extends MobileCommonController{
         //获取搜索条件
         $zc_name =I("zc_name");
         $zc_area =I("zc_area");
+        $zc_member =I("zc_member");
         $start_date =I("start_date");
         $end_date =I("end_date");
         $this->assign('zc_name', $zc_name);
         $this->assign('zc_area', $zc_area);
+        $this->assign('zc_member', $zc_member);
         $this->assign('start_date', $start_date);
         $this->assign('end_date', $end_date);
         $this->assign('type', $type);
@@ -255,17 +257,28 @@ class UserController extends MobileCommonController{
         if($zc_area){
             $where .= " and zc.area = '{$zc_area}'";
         }
+        if($zc_member){
+            $where .= " and m.id = '{$zc_member}'";
+        }
+        $detail_where = " 1=1";
         if($start_date){
             $start_date = strtotime($start_date.' 00:00:00');
             $where .= " and o.order_ftime >= '{$start_date}'";
+            $detail_where .= " and o.order_ftime >= '{$start_date}'";
         }
         if($end_date){
             $end_date = strtotime($end_date.' 23:59:59');
             $where .= " and o.order_ftime <= '{$end_date}'";
+            $detail_where .= " and o.order_ftime <= '{$end_date}'";
         }
         if($type=='area'){
             //获取当前用户职场所在支公司
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('area'));
+            if(I('l_zc_area')){
+                $zc['area'] = I('l_zc_area');
+            }
+            $this->assign('level',$zc['area']);
+            $this->assign('l_zc_area',$zc['area']);
             //获取当前支公司所有职场
             $zc_id_arr = M('zc')->field(array('id','name'))->where(array('area'=>$zc['area']))->select();
             $zc_array =array_unique(i_array_column($zc_id_arr,'name'));
@@ -286,16 +299,17 @@ class UserController extends MobileCommonController{
                     from {$pre}orderdata as od
                     LEFT JOIN {$pre}order as o
                     ON o.order_id=od.order_id
-                    where  o.order_state='success' and o.zc_id={$v['zc_id']}
+                    where  o.order_state='success' and o.zc_id={$v['zc_id']} and {$detail_where}
                     group by product_id
                     order by product_id DESC ";
                 $cp=M('order')->query($sql);
                 $vlist[$k]['cp_list']=$cp;
             }
         }else if($type=='city'){
-            //获取当前用户职场所在支公司
+            //获取当前用户职场所在城市
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('city'));
-            //获取当前支公司所有职场
+            $this->assign('level',$zc['city']);
+            //获取当前城市所有支公司
             $zc_id_arr = M('zc')->field(array('id','name','area'))->where(array('city'=>$zc['city']))->select();
             $area_array =array_unique(i_array_column($zc_id_arr,'area'));
             $this->assign('area_array', $area_array);
@@ -315,7 +329,40 @@ class UserController extends MobileCommonController{
                     from {$pre}orderdata as od
                     LEFT JOIN {$pre}order as o
                     ON o.order_id=od.order_id
-                    where  o.order_state='success' and o.zc_id in({$v['zc_id']})
+                    where  o.order_state='success' and o.zc_id in({$v['zc_id']}) and {$detail_where}
+                    group by product_id
+                    order by product_id DESC ";
+                $cp=M('order')->query($sql);
+                $vlist[$k]['cp_list']=$cp;
+            }
+        }else if($type=='member'){
+            if(I('l_zc_id')){
+                $zc_id = I('l_zc_id');
+            }
+            $this->assign('l_zc_id', $zc_id);
+            $zc = M('zc')->where(array('id'=>$zc_id))->find(array('id'));
+            $this->assign('level',$zc['name']);
+
+            //获取职场所有的业务员
+            $member_array = M('member')->where(array('zc_id'=>$zc_id))->select();
+            $this->assign('member_array', $member_array);
+            $sql = "select group_concat(od.zc_id) as zc_id, sum(product_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num
+                ,m.name as member_name,o.user_id as user_id
+                from {$pre}orderdata as od
+                LEFT JOIN {$pre}order as o ON o.order_id=od.order_id
+                LEFT JOIN {$pre}zc as zc ON zc.id=od.zc_id
+                left join {$pre}member as m on m.id = o.user_id
+                where  o.order_state='success' and {$where}
+                group by o.user_id
+                order by order_stime desc";
+            $vlist=M('order')->query($sql);
+            foreach ($vlist as $k=>$v){
+                $sql = "select od.product_id,od.product_name, sum(product_num) as num ,sum(product_allmoney) as money 
+                    from {$pre}orderdata as od
+                    LEFT JOIN {$pre}order as o
+                    left join {$pre}member as m on m.id = o.user_id
+                    ON o.order_id=od.order_id
+                    where  o.order_state='success' and o.user_id in({$v['user_id']}) and {$detail_where}
                     group by product_id
                     order by product_id DESC ";
                 $cp=M('order')->query($sql);

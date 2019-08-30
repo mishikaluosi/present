@@ -82,8 +82,9 @@
 				<dt>权限</dt>
 				<dd>
 				<dd>
-					<input type="checkbox" name="area_level" value="1" <if condition='$vo.area_level eq 1'>checked="checked"</if> />支公司数据查看权限
-					<input type="checkbox" name="city_level" value="1" <if condition='$vo.city_level eq 1'>checked="checked"</if> />市级数据查看权限
+					<input type="radio" name="role_level" value="1" <if condition='$vo.role_level eq 1'>checked="checked"</if> />职场数据查看权限
+					<input type="radio" name="role_level" value="2" <if condition='$vo.role_level eq 2'>checked="checked"</if> />支公司数据查看权限
+					<input type="radio" name="role_level" value="3" <if condition='$vo.role_level eq 3'>checked="checked"</if> />市级数据查看权限
 				</dd>
 				</dd>
 			</dl>

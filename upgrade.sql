@@ -197,3 +197,11 @@ Date: 2019-08-27 13:31
  */
 ALTER TABLE `bestop_event`
     ADD COLUMN `alias` varchar(255) NULL COMMENT '场次';
+
+
+/**
+业务员表添加角色权限
+Date: 2019-08-30 14:58
+ */
+ALTER TABLE `bestop_member`
+ADD COLUMN `role_level` tinyint(1) NULL DEFAULT 1 COMMENT '1职场权限 2支公司权限 3市级权限';

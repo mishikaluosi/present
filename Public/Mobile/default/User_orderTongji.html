@@ -1,13 +1,23 @@
 ﻿<include file="Public:header" />
-<input type="hidden" id="index_url" value="{:U('User/orderTongji',array('type'=>$type))}">
+<if condition="$type eq city">
+    <input type="hidden" id="index_url" value="{:U('User/orderTongji',array('type'=>$type))}">
+    <elseif condition="$type eq area"/>
+<input type="hidden" id="index_url" value="{:U('User/orderTongji',array('type'=>$type,'l_zc_area'=>$l_zc_area))}">
+    <elseif condition="$type eq member"/>
+    <input type="hidden" id="index_url" value="{:U('User/orderTongji',array('type'=>$type,'l_zc_id'=>$l_zc_id))}">
+</if>
 <script type="text/javascript" src="__PUBLIC__/js/datePicker.js"></script>
 <div class="top" style="margin-top: 28px;"></div>
 <style>
     .tab_ul2 td{
         background: #fff;
     }
+    .list_title{
+        text-align: center;
+    }
 </style>
 <div class="main">
+    <div class="list_title">{$level}-订单数据</div>
     <div class="operate" style="height: 40px;line-height: 40px;">
         <if condition="$type eq area">
             <select style="width: 33%;" id="zc_search" name='zc_search'>
@@ -23,19 +33,25 @@
                     <option <?php if($zc_area==$value){ ?>selected="selected"<?php } ?> value="{$value}">{$value}</option>
                 </foreach>
             </select>
-            <else />
+            <elseif condition="$type eq member" />
+            <select style="width: 33%;" id="member_seareh" name='member_seareh'>
+                <option value="">业务员搜索</option>
+                <foreach name='member_array' item='value'>
+                    <option <?php if($zc_member==$value['id']){ ?>selected="selected"<?php } ?> value="{$value['id']}">{$value['name']}</option>
+                </foreach>
+            </select>
         </if>
         <input style="width: 32%;" type='text' id="start_date" class="start_date" value="{$start_date}" placeholder="开始时间" readonly/>
         <input style="width: 32%;" type='text' id="end_date" class="end_date" value="{$end_date}" placeholder="结束时间" readonly/>
     </div>
     <table style="width:100%;font-size: 0.8em;line-height: 35px;text-align: center" cellpadding=“10” cellspacing="0">
         <tr>
-            <if condition="$type eq area">
-            <th>职场名称</th>
-            <elseif condition="$type eq city"/>
-            <th>支公司</th>
-            <else />
-            <th>职场名称</th>
+            <if condition="$type eq city">
+                <th>支公司</th>
+            <elseif condition="$type eq area"/>
+                <th>职场名称</th>
+            <elseif condition="$type eq member"/>
+                <th>业务员</th>
             </if>
             <th>自购人数</th>
             <th>产品</th>
@@ -43,20 +59,37 @@
         </tr>
         <foreach name='vlist' key="k" item='v'>
             <foreach name='v.cp_list' key="i"  item='vv'>
-            <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>'>
-                <if condition="$i eq 0">
-                <if condition="$type eq area">
-                    <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_name}</td>
-                    <elseif condition="$type eq city"/>
-                    <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_area}}</td>
-                    <else />
-                    <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_name}</td>
+                <if condition="$type eq city">
+                    <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>' onclick="location.href='{:U(\'User/orderTongji\',array(\'type\'=>\'area\',\'l_zc_area\'=>$v[\'zc_area\']))}'">
+                        <if condition="$i eq 0">
+                            <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_area}</td>
+                            <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.buy_num}</td>
+                        </if>
+
+                        <td>{$vv.product_name}</td>
+                        <td>{$vv.num}</td>
+                    </tr>
+
+                <elseif condition="$type eq area"/>
+                    <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>' onclick="location.href='{:U(\'User/orderTongji\',array(\'type\'=>\'member\',\'l_zc_id\'=>$v[\'zc_id\']))}'">
+                        <if condition="$i eq 0">
+                            <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_name}</td>
+                            <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.buy_num}</td>
+                        </if>
+
+                        <td>{$vv.product_name}</td>
+                        <td>{$vv.num}</td>
+                    </tr>
+                <elseif condition="$type eq member"/>
+                    <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>'>
+                        <if condition="$i eq 0">
+                            <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.member_name}</td>
+                            <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.buy_num}</td>
+                        </if>
+                        <td>{$vv.product_name}</td>
+                        <td>{$vv.num}</td>
+                    </tr>
                 </if>
-                <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.buy_num}</td>
-                </if>
-                <td>{$vv.product_name}</td>
-                <td>{$vv.num}</td>
-            </tr>
             </foreach>
         </foreach>
     </table>
@@ -67,6 +100,7 @@
         $("#zc_search").bind("change",choose_data);
         $("#area_seareh").bind("change",choose_data);
         $("#event_search").bind("change",choose_data);
+        $("#member_seareh").bind("change",choose_data);
         var calendar1 = new datePicker();
         calendar1.init({
             'trigger': '#start_date',
@@ -98,6 +132,7 @@
     function choose_data(){
         var url = $("#index_url").val();
         var zc_name =$("#zc_search").val();
+        var zc_member =$("#member_seareh").val();
         var zc_area =$("#area_seareh").val();
         var start_date =$("#start_date").val();
         var end_date =$("#end_date").val();
@@ -106,6 +141,9 @@
         }
         if(zc_area){
             url += "&zc_area="+zc_area;
+        }
+        if(zc_member){
+            url += "&zc_member="+zc_member;
         }
         if(start_date){
             url += "&start_date="+start_date;
