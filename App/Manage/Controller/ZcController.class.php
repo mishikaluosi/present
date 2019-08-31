@@ -410,7 +410,7 @@ class ZcController extends CommonController {
             'info' => '必须选择上传文件'
         );
         //检测基本格式 职场名称	联系人	联系电话	省	市	区	详细地址	排序
-        $chk_filed=array('A'=>'职场名称','B'=>'联系人','C'=>'联系电话','D'=>'省','E'=>'市','F'=>'区','G'=>'详细地址');
+        $chk_filed=array('A'=>'职场前缀','B'=>'职场名称','C'=>'联系人','D'=>'联系电话','E'=>'省','F'=>'市','G'=>'区','H'=>'详细地址');
         foreach ($chk_filed as $key=>$chk){
             $filed_1=$currentSheet->getCellByColumnAndRow(ord($key) - 65,1);
             $val_1 = $filed_1->getValue();
@@ -419,10 +419,10 @@ class ZcController extends CommonController {
                 return $retrun_arr;
             }
         }
-        $chk_colum_len=8;
+        $chk_colum_len=9;
 
         $db_insert_arr=array(
-            'name','contact',"tel","prov","city","area",'addr','sort'
+            'zc_before','name','contact',"tel","prov","city","area",'addr','sort'
         );
 
         for($currentRow = 2;$currentRow <= $allRow;$currentRow++){
@@ -442,6 +442,8 @@ class ZcController extends CommonController {
                 }
             }
             if(!empty($data1['name'])&&!empty($data1['contact'])){
+                $data1['name'] =  $data1['zc_before'].$data1['name'];
+                unset($data1['zc_before']);
                 $data1['sort']=is_numeric($data1['sort'])&&$data1['sort']>0?$data1['sort']:1;
                 $data1['addtime']=time();
                 M('zc')->add($data1);
