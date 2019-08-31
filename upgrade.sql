@@ -204,4 +204,4 @@ ALTER TABLE `bestop_event`
 Date: 2019-08-30 14:58
  */
 ALTER TABLE `bestop_member`
-ADD COLUMN `role_level` tinyint(1) NULL DEFAULT 1 COMMENT '1职场权限 2支公司权限 3市级权限';
+ADD COLUMN `role_level` tinyint(1) NULL DEFAULT 0 COMMENT  '0无权限 1职场权限 2支公司权限 3市级权限';

@@ -167,7 +167,7 @@ class MemberController extends CommonController {
         $zc = I('zc', '');
         $group_no = trim(I('group_no', ''));
         $work_no = trim(I('work_no', ''));
-        $role_level = I('role_level', 1);
+        $role_level = I('role_level', 0);
         $id = I('id', '');
         //基本验证
 		if(!is_numeric($id)){
