@@ -292,7 +292,7 @@ class UserController extends MobileCommonController{
                 from {$pre}orderdata as od
                 LEFT JOIN {$pre}order as o ON o.order_id=od.order_id
                 LEFT JOIN {$pre}zc as zc ON zc.id=od.zc_id
-                where  o.order_state='success' and {$where}
+                where  (o.order_state='success' or o.order_pstate=1) and {$where}
                 group by od.zc_id
                 order by order_stime desc";
             $vlist=M('order')->query($sql);
@@ -302,7 +302,7 @@ class UserController extends MobileCommonController{
                     from {$pre}orderdata as od
                     LEFT JOIN {$pre}order as o
                     ON o.order_id=od.order_id
-                    where  o.order_state='success' and o.zc_id={$v['zc_id']} and {$detail_where}
+                    where  (o.order_state='success' or o.order_pstate=1) and o.zc_id={$v['zc_id']} and {$detail_where}
                     group by product_id
                     order by product_id DESC ";
                 $cp=M('order')->query($sql);
@@ -326,7 +326,7 @@ class UserController extends MobileCommonController{
                 from {$pre}orderdata as od
                 LEFT JOIN {$pre}order as o ON o.order_id=od.order_id
                 LEFT JOIN {$pre}zc as zc ON zc.id=od.zc_id
-                where  o.order_state='success' and {$where}
+                where  (o.order_state='success' or o.order_pstate=1) and {$where}
                 group by zc.area
                 order by order_stime desc";
             $vlist=M('order')->query($sql);
@@ -336,7 +336,7 @@ class UserController extends MobileCommonController{
                     from {$pre}orderdata as od
                     LEFT JOIN {$pre}order as o
                     ON o.order_id=od.order_id
-                    where  o.order_state='success' and o.zc_id in({$v['zc_id']}) and {$detail_where}
+                    where  (o.order_state='success' or o.order_pstate=1) and o.zc_id in({$v['zc_id']}) and {$detail_where}
                     group by product_id
                     order by product_id DESC ";
                 $cp=M('order')->query($sql);
@@ -363,7 +363,7 @@ class UserController extends MobileCommonController{
                 LEFT JOIN {$pre}order as o ON o.order_id=od.order_id
                 LEFT JOIN {$pre}zc as zc ON zc.id=od.zc_id
                 left join {$pre}member as m on m.id = o.user_id
-                where  o.order_state='success' and {$where}
+                where  (o.order_state='success' or o.order_pstate=1) and {$where}
                 group by o.user_id
                 order by order_stime desc";
             $vlist=M('order')->query($sql);
@@ -374,7 +374,7 @@ class UserController extends MobileCommonController{
                     LEFT JOIN {$pre}order as o
                     left join {$pre}member as m on m.id = o.user_id
                     ON o.order_id=od.order_id
-                    where  o.order_state='success' and o.user_id in({$v['user_id']}) and {$detail_where}
+                    where  (o.order_state='success' or o.order_pstate=1) and o.user_id in({$v['user_id']}) and {$detail_where}
                     group by product_id
                     order by product_id DESC ";
                 $cp=M('order')->query($sql);
