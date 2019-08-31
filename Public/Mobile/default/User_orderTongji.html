@@ -60,7 +60,7 @@
         <foreach name='vlist' key="k" item='v'>
             <foreach name='v.cp_list' key="i"  item='vv'>
                 <if condition="$type eq city">
-                    <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>' onclick="location.href='{:U(\'User/orderTongji\',array(\'type\'=>\'area\',\'l_zc_area\'=>$v[\'zc_area\']))}'">
+                    <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>' onclick="location.href='{:U(\'User/orderTongji\',array(\'type\'=>\'area\',\'l_zc_area\'=>$v[\'zc_area\'],\'start_date\'=>$start_date,\'end_date\'=>$end_date))}'">
                         <if condition="$i eq 0">
                             <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_area}</td>
                             <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.buy_num}</td>
@@ -71,7 +71,7 @@
                     </tr>
 
                 <elseif condition="$type eq area"/>
-                    <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>' onclick="location.href='{:U(\'User/orderTongji\',array(\'type\'=>\'member\',\'l_zc_id\'=>$v[\'zc_id\']))}'">
+                    <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>' onclick="location.href='{:U(\'User/orderTongji\',array(\'type\'=>\'member\',\'l_zc_id\'=>$v[\'zc_id\'],\'start_date\'=>$start_date,\'end_date\'=>$end_date))}'">
                         <if condition="$i eq 0">
                             <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.zc_name}</td>
                             <td rowspan="<?php echo count($v['cp_list']); ?>">{$v.buy_num}</td>
