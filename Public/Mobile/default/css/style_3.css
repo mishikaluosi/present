@@ -2595,11 +2595,11 @@ a.tjbtn {
 }
 
 .user_text {
-    margin-left: 135px;
+    margin-left: 110px;
     color: #fff;
     font-size: 18px;
     line-height: 22px;
-    padding-top: 5px;
+    padding-top: 13px;
 }
 
 .user_text a {
