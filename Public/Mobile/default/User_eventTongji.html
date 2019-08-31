@@ -2,12 +2,18 @@
 <input type="hidden" id="index_url" value="{:U('User/eventTongji',array('type'=>$type))}">
 <script type="text/javascript" src="__PUBLIC__/js/datePicker.js"></script>
 <div class="top" style="margin-top: 28px;"></div>
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/css/style_2.css" />
 <style>
     .tab_ul2 td{
         background: #fff;
     }
+    .list_title{
+        text-align: center;
+    }
 </style>
 <div class="main">
+    <a class="u_fh" style="top:53px;" href="javascript:window.history.go(-1);"><i class="sy_ico"></i></a>
+    <div class="list_title">活动数据</div>
     <div class="operate" style="height: 40px;line-height: 40px;">
         <if condition="$type eq area">
             <select style="width: 24%;" id="zc_search" name='zc_search'>
