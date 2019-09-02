@@ -263,13 +263,13 @@ class UserController extends MobileCommonController{
         $detail_where = " 1=1";
         if($start_date){
             $start_date = strtotime($start_date.' 00:00:00');
-            $where .= " and o.order_ftime >= '{$start_date}'";
-            $detail_where .= " and o.order_ftime >= '{$start_date}'";
+            $where .= " and o.order_atime >= '{$start_date}'";
+            $detail_where .= " and o.order_atime >= '{$start_date}'";
         }
         if($end_date){
             $end_date = strtotime($end_date.' 23:59:59');
-            $where .= " and o.order_ftime <= '{$end_date}'";
-            $detail_where .= " and o.order_ftime <= '{$end_date}'";
+            $where .= " and o.order_atime <= '{$end_date}'";
+            $detail_where .= " and o.order_atime <= '{$end_date}'";
         }
         $total_buyer = 0;
         $total_order = 0;
