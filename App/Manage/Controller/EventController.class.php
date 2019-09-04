@@ -27,7 +27,7 @@ class EventController extends CommonController {
 
     private function _get_search($sstype=1){
         $_zcinfo=$this->_get_zcinfo();
-        $arr=array('sname');
+        $arr=array('sname', 'setime', 'eetime');
         $search_arr=array();
         foreach ($arr as $a){
             $search_arr[$a]=I($a);
@@ -64,6 +64,12 @@ class EventController extends CommonController {
                 switch ($k){
                     case 'sname':
                         $where.=' and name like "%'.$v.'%"';
+                        break;
+                    case 'setime':
+                        $where.=" and etime>=".strtotime($v . " 00:00:00");
+                        break;
+                    case 'eetime':
+                        $where .= " and etime<=".strtotime($v . " 23:59:59");
                         break;
                 }
             }

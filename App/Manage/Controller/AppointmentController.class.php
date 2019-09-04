@@ -97,6 +97,19 @@ class AppointmentController extends CommonController
         $this->assign('vo', $vo);
         $this->display();
     }
+
+    public function save_room(){
+        $id = I('id', 0, 'intval');
+        $room_num = I('room_num', '');
+
+        $data = array(
+            'room_num' => $room_num
+        );
+
+        M('appointment')->where(array('id' => $id))->save($data);
+        $this->returnSuccess('');
+    }
+
     public function getMember(){
         $keywords = I('keywords');
         $where  = "1";
@@ -203,7 +216,7 @@ class AppointmentController extends CommonController
         foreach ($app as $k => $v) {
             $num = $k + 2;
             $objActiveSheet->setCellValue("A$num", $v['name'])
-                ->setCellValue("B$num", $v['phone'])
+                ->setCellValue("B$num", str_replace(substr($v['phone'], 3, 4), '****', $v['phone']))
                 ->setCellValue("C$num", $v['sex'])
                 ->setCellValue("D$num", $v['member'])
                 ->setCellValue("E$num", $v['room_num']);

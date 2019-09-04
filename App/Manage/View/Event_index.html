@@ -7,6 +7,12 @@
 <script type="text/javascript" src="__PUBLIC__/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/common.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/clipboard.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/calendar/jscal2.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/calendar/border-radius.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/js/calendar/win2k.css"/>
+    <script type="text/javascript" src="__PUBLIC__/js/calendar/calendar.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/calendar/lang/en.js"></script>
 </head>
 <body>
 <div class="main">
@@ -49,8 +55,33 @@
     <div class="operate">
         <div class="left">
             <form method="post" action="{:U('Event/index')}">
-                <span class="s_span">名称</span>
+                <span class="s_span">名称:</span>
                 <input type="text" name="sname" class="inp_one" value="{$sname}" >
+                <span class="s_span">活动结束时间:</span>
+                <input type="text" style="width:100px;" name="setime" id="setime" class="inp_one" value="{$setime}" />
+                <script type="text/javascript">
+                    Calendar.setup({
+                        weekNumbers: true,
+                        inputField : "setime",
+                        trigger    : "setime",
+                        dateFormat: "%Y-%m-%d",
+                        showTime: true,
+                        minuteStep: 1,
+                        onSelect   : function() {this.hide();}
+                    });
+                </script>
+                <input type="text" style="width:100px;" name="eetime" id="eetime" class="inp_one" value="{$eetime}" />
+                <script type="text/javascript">
+                    Calendar.setup({
+                        weekNumbers: true,
+                        inputField : "eetime",
+                        trigger    : "eetime",
+                        dateFormat: "%Y-%m-%d",
+                        showTime: true,
+                        minuteStep: 1,
+                        onSelect   : function() {this.hide();}
+                    });
+                </script>
                 <input type="hidden" name="fp" value="{$fp}"/>
                 <input type="submit" class="btn_blue" style="float: none" value="查  询">
             </form>
@@ -138,16 +169,20 @@
                     </td>
                     <td>{$v.addtime|date='Y-m-d H:i:s', ###}</td>
                     <td>
-                        <a href="{:U('Home/'.'Event/index',array('id' => $v['id']), '')}" target="_blank">查看二维码</a>
                         <if condition="$v['is_draw'] eq 1">
                             <a href="{:U('Event/draw',array('e_id' => $v['id']), '')}">奖项设置</a>
-                            <a href="{:U('Lucky/index',array('e_id' => $v['id']), '')}">中奖管理</a>
+                            <a href="{:U('Lucky/index',array('e_id' => $v['id']), '')}">中奖名单</a>
+                            <br>
                             <a href="{:U('BigScreen/'.'Index/index',array('e_id' => $v['id']), '')}"  target="_blank">抽奖链接</a>
                             <a href="javascript:;" class="btn-text copytext" data-clipboard-text="http://xt.wxlyz.com{:U('BigScreen/'.'Index/index',array('e_id' => $v['id']), '')}">复制抽奖链接</a>
+                            <br>
                         </if>
-                        <a href="{:U('Appointment/index',array('e_id' => $v['id']), '')}">预约管理</a>
-                        <a href="{:U('Check/index',array('e_id' => $v['id']), '')}">签到管理</a>
-                        <a href="{:U('Event/msg',array('id' => $v['id']), '')}">编辑</a>
+                        <a href="{:U('Home/'.'Event/index',array('id' => $v['id']), '')}" target="_blank">预约二维码</a>
+                        <a href="{:U('Appointment/index',array('e_id' => $v['id']), '')}">分配房间</a>
+                        <br>
+                        <a href="{:U('Check/index',array('e_id' => $v['id']), '')}">签到明细</a>
+                        <a href="{:U('Event/msg',array('id' => $v['id']), '')}">活动编辑</a>
+                        <br>
                         <if condition="$v['acnt'] lt 1">
                             <a href="javascript:;" onclick="toConfirm('{:U('Event/del',array('id' => $v['id']), '')}', '确实要删除吗？')">删除</a>
                         </if>

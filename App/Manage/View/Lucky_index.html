@@ -21,7 +21,7 @@
     <div class="pos">
         {$event['name']}--中奖列表
     </div>
-    <!--<div class="operate">-->
+    <div class="operate">
         <!--<div class="left">-->
             <!--<input type="button" onclick="goUrl('{:U('Appointment/add',array('e_id'=>$event['id']))}')" class="btn_blue btn_red" value="添加报名成员">-->
         <!--</div>-->
@@ -35,24 +35,12 @@
                 <!--<input type="file" alt={:U('Appointment/upload')} name="inputExcel" id="inputExcel" style="display:none;" class="btn_blue" value="批量导入">-->
             <!--</form>-->
         <!--</div>-->
-        <!--<div class="left">-->
-            <!--&lt;!&ndash;<form action="{:U('appointment/exportEx')}" method="post">&ndash;&gt;-->
-                <!--<input type="button" id="exportEx" class="btn_blue btn_red" value="批量导出">-->
-            <!--&lt;!&ndash;</form>&ndash;&gt;-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--<div class="operate">-->
-        <!--<div class="left search_box" style="position: relative">-->
-            <!--&lt;!&ndash;<form method="post" action="{:U('Appointment/index')}">&ndash;&gt;-->
-
-                <!--<input type="text" id="member" class="inp_one" autocomplete="off" alt="{$member_id}" value="{$member}" placeholder="业务员搜索" style="margin-right: 50px;">-->
-                <!--<input type="text" id="name" name="name" class="inp_one" autocomplete="off" value="{$name}" placeholder="关键词">-->
-                <!--<input type="button" id="search_btn" class="btn_blue" style="float: none" value="查  询">-->
-
-            <!--&lt;!&ndash;</form>&ndash;&gt;-->
-        <!--</div>-->
-        <!--<div class="clear"></div>-->
-    <!--</div>-->
+        <div class="left">
+            <!--<form action="{:U('appointment/exportEx')}" method="post">-->
+                <input type="button" onclick="goUrl('{:U('Lucky/export_zjlb_ex',array('e_id'=>$event['id']))}')" id="exportEx" class="btn_blue btn_red" value="导出">
+            <!--</form>-->
+        </div>
+    </div>
 
     <div class="list guestbook">
         <form action="" method="post" id="form_do" name="form_do">

@@ -1083,7 +1083,7 @@ eot;
         $pro_list=M('order')->query($pro_sql);
 
 
-        $name='职场商品分类发货清单';
+        $name='职场发货清单';
         ini_set('max_execution_time', '180');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");
@@ -1270,7 +1270,7 @@ eot;
         $pro_list=M('order')->query($pro_sql);
 
 
-        $name='业务员自购商品数量合计清单';
+        $name='自购清单';
         ini_set('max_execution_time', '180');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");

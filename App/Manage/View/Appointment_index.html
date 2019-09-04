@@ -110,10 +110,9 @@
                     </td>
                     <td>{$v.sex}</td>
                     <td>{$v.member}</td>
-                    <td>{$v.room_num}</td>
+                    <td alt="{$v.id}"><input class="room_num" type="text" value="{$v.room_num}"></td>
                     <td>
                         <a href="{:U('Appointment/add',array('id' => $v['id']), '')}">编辑</a>
-                        <a href="javascript:;" onclick="toConfirm('{:U('Appointment/del',array('id' => $v['id'],'e_id' => $event['id']), '')}', '确实要删除吗？')">删除</a>
                     </td>
                 </tr>
             </foreach>
@@ -208,6 +207,15 @@
             };
 
             xhr.send();
+        })
+
+        $('.room_num').bind('blur', function(){
+            var id = $(this).parent('td').attr('alt'),
+                room_num = $(this).val()
+            console.log(id, room_num)
+            $.post('?s=Manage/Appointment/save_room', {id: id, room_num: room_num}, function(){
+                window.location.reload()
+            })
         })
     })
     function downloadTemplate(fname) {
