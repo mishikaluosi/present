@@ -242,7 +242,7 @@ class UserController extends MobileCommonController{
         $zc_name =I("zc_name");
         $zc_area =I("zc_area");
         $zc_member =I("zc_member");
-        $start_date =I("start_date");
+        $start_date =I("start_date", date('Y-m-01'));
         $end_date =I("end_date");
         $this->assign('zc_name', $zc_name);
         $this->assign('zc_area', $zc_area);

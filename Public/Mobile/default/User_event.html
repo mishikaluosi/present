@@ -3,12 +3,16 @@
     a:hover{
         color: #fff;
     }
+    .w50{
+        width: 50%;
+    }
+
 </style>
-<div class="content" style="margin-top:62px;">
+<div class="content" style="margin-top:40%;">
 <div class="button-sp-area">
-    <a href="{:U('user/event_list',array('type'=>'1'))}" class="weui-btn weui-btn_primary">市公司活动列表</a>
-    <a href="{:U('user/event_list',array('type'=>'2'))}" class="weui-btn weui-btn_primary">支公司活动列表</a>
-    <a href="{:U('user/event_list',array('type'=>'3'))}" class="weui-btn weui-btn_primary">职场活动列表</a>
+    <a href="{:U('user/event_list',array('type'=>'1'))}" class="weui-btn weui-btn_primary w50">市公司活动列表</a>
+    <a href="{:U('user/event_list',array('type'=>'2'))}" class="weui-btn weui-btn_primary w50">支公司活动列表</a>
+    <a href="{:U('user/event_list',array('type'=>'3'))}" class="weui-btn weui-btn_primary w50">职场活动列表</a>
 </div>
 </div>
 <include file="Public:footer" />

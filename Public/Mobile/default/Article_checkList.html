@@ -36,13 +36,13 @@
 <div style="margin-top: 45px;">
 </div>
 <div class="content">
-    <div class="weui-gallery__opr" style="background:rgb(95, 151, 116);z-index: 100;bottom: 100px;right:20px;left:unset;position: fixed;height: 50px;width:50px;border-radius: 25px;">
-        <a id="show-qr" href="javascript:" style="height: 50px;">
-            <span style="margin-top:5px;width:100%;text-align:center;float:left;height: 20px;line-height: 20px;font-size: 12px;color: #fff">签到</span>
-            <span style="width:100%;text-align:center;float:left;height: 25px;line-height: 16px;font-size: 12px;color: #fff">明细</span>
-        </a>
-    </div>
-    <div style="width: 100%;height: 50px;line-height: 50px;background: rgb(95, 151, 116);margin-top: 5px;overflow: hidden">
+    <!--<div class="weui-gallery__opr" style="background:#1aad19;z-index: 100;bottom: 100px;right:20px;left:unset;position: fixed;height: 50px;width:50px;border-radius: 25px;">-->
+        <!--<a id="show-qr" href="javascript:" style="height: 50px;">-->
+            <!--<span style="margin-top:5px;width:100%;text-align:center;float:left;height: 20px;line-height: 20px;font-size: 12px;color: #fff">签到</span>-->
+            <!--<span style="width:100%;text-align:center;float:left;height: 25px;line-height: 16px;font-size: 12px;color: #fff">明细</span>-->
+        <!--</a>-->
+    <!--</div>-->
+    <div style="width: 100%;height: 50px;line-height: 50px;background: #1aad19;margin-top: 5px;overflow: hidden">
         <span style="margin:0px 20px 10px;float: left;color: #fff;">{$info['name']}</span>
         <span style="margin:0px 20px 10px;color: #fff;float: left"><img style="width:20px;height: 20px;margin-top: 15px;float: left" src="__PUBLIC__/images/card-sf.png" alt="">{$info['work_no']}</span>
         <span style="margin:0px 20px 10px;color: #fff;float: left"><img style="width:20px;height: 20px;margin-top: 15px;float: left" src="__PUBLIC__/images/link-white.png" alt="">{$zc['name']}</span>
@@ -51,6 +51,7 @@
         <tr>
             <th>姓名</th>
             <th>性别</th>
+            <th>手机号</th>
             <th>预约保费</th>
             <th>实际保费</th>
             <th>操作</th>
@@ -59,6 +60,7 @@
         <tr class='<if condition="(($key+1)%2) eq 1"> tab_ul2 </if> row'>
             <td>{$user.username}</td>
             <td>{$user.sex}</td>
+            <td>{$user.phone}</td>
             <td>{$user.appointment_money}</td>
             <td>{$user.appointment_money_actual}</td>
             <td> <a class="btn_blue showDialog" username="{$user.username}" appointment_money_actual="{$user.appointment_money_actual}" appointment_money="{$user.appointment_money}"  alt="{$user.id}" href="javascript:">填写预约保费</a></td>
