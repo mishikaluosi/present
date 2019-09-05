@@ -526,8 +526,19 @@ textarea {
 .top_logo {
     max-height: 30px;
     position: absolute;
-    left: 15px;
+    left: 40px;
     top:6px;
+}
+
+.back {
+    position:absolute;
+    left: 10px;
+    color:#777;
+    font-size:22px;
+    /*top:7px;*/
+}
+.back i.sy_ico{
+    background-position:-103px -25px ;
 }
 
 .top_logo img {
