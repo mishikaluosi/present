@@ -205,3 +205,16 @@ Date: 2019-08-30 14:58
  */
 ALTER TABLE `bestop_member`
 ADD COLUMN `role_level` tinyint(1) NULL DEFAULT 0 COMMENT  '0无权限 1职场权限 2支公司权限 3市级权限';
+
+
+/**
+业务员活动关系表
+ */
+CREATE TABLE `bestop_member_event_relation` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `member_id` int(11) NOT NULL,
+  `event_id` int(11) DEFAULT NULL,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
