@@ -17,7 +17,6 @@
     }
 </style>
 <div class="main" style="margin-bottom: 55px; !important;">
-    <a class="u_fh" style="top:53px;" href="javascript:window.history.go(-1);"><i class="sy_ico"></i></a>
     <div class="list_title">活动数据</div>
     <div class="operate" style="height: 40px;line-height: 40px;">
         <if condition="$type eq area">
@@ -68,6 +67,9 @@
             <th>签到数</th>
             <th>预约保费</th>
             <th>实签保费</th>
+            <if condition="$type eq area">
+                <th>业务员数量</th>
+            </if>
         </tr>
         <foreach name='vlist' key="k" item='v'>
             <tr class='<if condition="(($k+1)%2) eq 1"> tab_ul2 </if>'>
@@ -83,6 +85,9 @@
                 <td>{$v.check_num}</td>
                 <td>{$v.appointment_money}</td>
                 <td>{$v.appointment_money_actual}</td>
+                <if condition="$type eq area">
+                    <td>{$v.count}</td>
+                </if>
             </tr>
         </foreach>
     </table>

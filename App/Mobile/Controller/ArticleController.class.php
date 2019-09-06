@@ -94,6 +94,32 @@ class ArticleController extends MobileCommonController{
         $this->display();
     }
 
+
+    //业务员报名
+    public function event_ywu_bm(){
+        $uid = $this->_xzl_uid;
+        $id = I('id', 0,'intval');
+
+        $data = M('member_event_relation')->where(array('member_id' => $uid, 'event_id' => $id))->find();
+        if($data){
+            $this->returnError("您已报名");
+        }
+        $arr = array(
+            'member_id' => $uid,
+            'event_id' => $id,
+            'created_at' => time(),
+            'updated_at' => time()
+        );
+        if(M('member_event_relation')->add($arr)){
+            $this->returnSuccess('');
+        }else{
+            $this->returnError('报名失败');
+        }
+
+    }
+
+
+
     public function event_qrcode(){
         $id=I('id',null);
         $vo=M('event')->find($id);

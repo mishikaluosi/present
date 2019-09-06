@@ -394,6 +394,7 @@ class UserController extends MobileCommonController{
     }
     public function eventTongji(){
         $zc_id = $this->_xzl_zcid;
+        $uid = $this->_xzl_uid;
         $type = I('type');
         $pre = C('DB_PREFIX');
         //获取搜索条件
@@ -435,12 +436,30 @@ class UserController extends MobileCommonController{
             $this->assign('zc_array', $zc_array);
             $zc_ids = join(",",i_array_column($zc_id_arr,'id'));
             $sql = "select t.app_num,t.check_num,t.appointment_money,t.appointment_money_actual,e.name,e.area,e.address,e.stime,e.etime,
-                IFNULL(zc.name ,'其他职场') as zc_name,zc.prov,zc.city,zc.area as areas
+                IFNULL(zc.name ,'其他职场') as zc_name,zc.prov,zc.city,zc.area as areas,t.e_id,group_concat(m.id) as member_ids
                 from {$pre}event_tongji as t 
                 left join {$pre}event as e on e.id=t.e_id
-                left join {$pre}zc as zc on zc.id=t.zc_id
-                where t.zc_id in($zc_ids) and $where";
+                left join {$pre}zc as zc on zc.id=t.zc_id 
+                left join {$pre}member as m on m.zc_id=zc.id
+                where t.zc_id in($zc_ids) and $where group by zc.id";
             $event_info = M('event_tongji')->query($sql);
+            //print_r($event_info[13]);exit;
+            foreach($event_info as $k=>$v){
+                $v['member_ids'] = trim($v['member_ids'], ',');
+                if(!$v['member_ids'] || !$v['e_id']){
+                    $event_info[$k]['count'] = 0;
+                    continue;
+                }
+                //$arr = explode(',', $v['member_ids']);
+                //if(in_array(1, $arr) && $v['e_id'] == 6){
+                //    print_r($v);exit;
+                //}
+                $sql = "select count(id) as total from {$pre}member_event_relation 
+                          where member_id in({$v['member_ids']}) and event_id={$v['e_id']} limit 1";
+                $tmp = M('member_event_relation')->query($sql);
+                $event_info[$k]['count'] = $tmp[0]['total'];
+            }
+            //exit;
         }else if($type=='city'){
             //获取当前用户职场所在支公司
             $zc = M('zc')->where(array('id'=>$zc_id))->find(array('city'));
