@@ -263,13 +263,13 @@ class UserController extends MobileCommonController{
         $detail_where = " 1=1";
         if($start_date){
             $start_date = strtotime($start_date.' 00:00:00');
-            $where .= " and o.order_atime >= '{$start_date}'";
-            $detail_where .= " and o.order_atime >= '{$start_date}'";
+            $where .= " and o.order_stime >= '{$start_date}'";
+            $detail_where .= " and o.order_stime >= '{$start_date}'";
         }
         if($end_date){
             $end_date = strtotime($end_date.' 23:59:59');
-            $where .= " and o.order_atime <= '{$end_date}'";
-            $detail_where .= " and o.order_atime <= '{$end_date}'";
+            $where .= " and o.order_stime <= '{$end_date}'";
+            $detail_where .= " and o.order_stime <= '{$end_date}'";
         }
         $total_buyer = 0;
         $total_order = 0;
@@ -513,7 +513,7 @@ class UserController extends MobileCommonController{
         $type  = I('type',1);
         $orderby='addtime desc,id desc';
         $where=' 1=1 and status=1';
-        $where.=' and (stime<='.strtotime(date("Y-m-d 00:00:00")).' or stime is null or stime="")';
+        //$where.=' and (stime<='.strtotime(date("Y-m-d 00:00:00")).' or stime is null or stime="")';
         $where.=' and (etime>='.strtotime(date("Y-m-d 00:00:00")).' or etime is null or etime="")';
         $where.=' and  zc_ids like "%$$$'.$_SESSION['user_zcid'].'%" ';
         $where.=" and  area = {$type}";

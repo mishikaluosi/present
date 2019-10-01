@@ -11,14 +11,14 @@
 $(function(){
 	
 	function get_cate(){
-		
+
 		if($.cookie('href') != null)
 			$("#main").attr("src",$.cookie('href'));
-		
-		
+
+
 		$.get("{:U('Index/getParentCate')}",
             {
-                'pid' : 0, 
+                'pid' : 0,
                 'rnd' : Math.floor(111+Math.random()*100000)
             },
             function(data){
@@ -44,7 +44,7 @@ $(function(){
 									html1 += '</ul>';
 								}
 							});
-							
+
 						}
 						html1 += "</dd></ul></dl>";
 						leftlist.append(html1);
@@ -52,12 +52,12 @@ $(function(){
 						sidebar();
                     });
                 }
-                               
-        },'json');
-		
 
-		
-		
+        },'json');
+
+
+
+
 	}
 	get_cate();
 })	
@@ -173,8 +173,8 @@ $().ready(function(){
 				</dd>
 			</dl>
 				<?php }?>
-			</volist>	
-			
+			</volist>
+
 		</div>
 
 		</foreach>

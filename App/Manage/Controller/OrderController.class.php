@@ -338,6 +338,34 @@ eot;
             $where.=' and  '.$table_pre.'zc_id='.$_zcinfo['zc_id'].'';
         }
 
+        //加入权限判断
+        $role_id = $_SESSION['yang_adm_roleid'];
+        $uid = $_SESSION['adm_uid'];
+        $pre = 'bestop_';
+        $sql = "select n.name 
+                  from {$pre}node  n left join {$pre}access a on n.id=a.node_id 
+                  where a.role_id=$role_id";
+        $auth_name = M('node')->query($sql);
+        $auth_name = array_column($auth_name, 'name');
+        $admin = M('admin')->where(array('id' => $uid))->find();
+        if(session(C('ADMIN_AUTH_KEY')) !== true){
+            if(in_array('get_region_jsdata', $auth_name)){
+                $where .= '';
+            } else if(in_array('get_prov_jsdata', $auth_name)){
+                //查看当前省的数据
+                $where .= ' and ' .$table_pre . 'prov=' . $admin['prov'];
+            }else if(in_array('get_city_jsdata', $auth_name)){
+                //当前市数据
+                $where .= ' and ' . $table_pre . 'city=' . $admin['city'];
+            }else if(in_array('get_area_jsdata', $auth_name)){
+                //区域
+                $where .= ' and ' .$table_pre . 'area=' . $admin['area'];
+            }else if(in_array('get_zc_jsdata', $auth_name)){
+                //职场
+                $where .= ' and ' .$table_pre . 'zc_id=' . $admin['zc_id'];
+            }
+        }
+
         return $where;
     }
 

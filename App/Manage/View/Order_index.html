@@ -116,11 +116,11 @@
     </div>
     <div class="list">
         <form action="{:U('Order/fhAll')}" method="post" id="form_do" name="form_do">
-            <div>
+            <div style="position: absolute;top: 155px;right: 50px;">
                 <input type="button" style="color: red!important" onclick="doConfirmBatch('{:U('Order/fh', array('batchFlag' => 1,'pid' => $pid))}', '确实要批量发货吗？')" class="btn_blue btn_f" value="批量发货">
                 <input type="button" style="color: red!important" onclick="doConfirmBatch('{:U('Order/close', array('batchFlag' => 1,'pid' => $pid))}', '确实要批量关闭吗？')" class="btn_blue btn_f" value="批量关闭">
             </div>
-            <table width="100%">
+            <table width="100%" style="position: relative">
                 <tr>
                     <th ><input type="checkbox" id="check"></th>
                     <th >商品信息</th>

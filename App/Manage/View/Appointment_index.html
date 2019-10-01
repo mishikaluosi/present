@@ -95,6 +95,8 @@
                 <th>手机号</th>
                 <th>性别</th>
                 <th>业务员</th>
+                <th>业务员手机号</th>
+                <th>职场</th>
                 <th>房间号</th>
                 <th style="width: 150px">操作</th>
             </tr>
@@ -110,7 +112,9 @@
                     </td>
                     <td>{$v.sex}</td>
                     <td>{$v.member}</td>
-                    <td alt="{$v.id}"><input class="room_num" type="text" value="{$v.room_num}"></td>
+                    <td>{$v.member_phone}</td>
+                    <td>{$v.zc_name}</td>
+                    <td alt="{$v.id}"><input class="room_num" type="text" value="{$v.room_num}" style="width: 200px;"></td>
                     <td>
                         <a href="{:U('Appointment/add',array('id' => $v['id']), '')}">编辑</a>
                     </td>

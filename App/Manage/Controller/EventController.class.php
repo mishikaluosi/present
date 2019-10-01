@@ -25,6 +25,20 @@ class EventController extends CommonController {
 		$this->display();
 	}
 
+
+	public function copy_event(){
+        $id = I('id', 0);
+        $event = M('event')->where(array('id' => $id))->find();
+        if(!$event){
+            $this->error('未获取到活动');
+        }
+        unset($event['id']);
+        $event['addtime'] = time();
+        M('event')->add($event);
+        $this->success('复制成功');
+    }
+
+
     private function _get_search($sstype=1){
         $_zcinfo=$this->_get_zcinfo();
         $arr=array('sname', 'setime', 'eetime');

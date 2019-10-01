@@ -218,3 +218,14 @@ CREATE TABLE `bestop_member_event_relation` (
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+/**
+新添加的权限
+ */
+
+insert into bestop_node(id,name,title,status,remark,sort,pid,level) values(10000,'event_auth','活动权限管理','1','','1','1',2);
+insert into bestop_node(id,name,title,status,remark,sort,pid,level) values(10001,'event_auth_none','无活动权限','1','','1','10000',3);
+insert into bestop_node(id,name,title,status,remark,sort,pid,level) values(10002,'event_auth_zc','职场活动权限','1','','1','10000',3);
+insert into bestop_node(id,name,title,status,remark,sort,pid,level) values(10003,'event_auth_fgs','分公司活动权限','1','','1','10000',3);
+insert into bestop_node(id,name,title,status,remark,sort,pid,level) values(10004,'event_auth_city','市活动权限','1','','1','10000',3);

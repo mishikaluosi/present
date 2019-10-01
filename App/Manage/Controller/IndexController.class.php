@@ -25,19 +25,31 @@ class IndexController extends CommonController{
             }
 
             foreach ($menu as $k => $v) {
-            	if (empty($v['module']) || empty($v['action'])) {
-            		$menu_c[] = $v;
-            	} else if (isset($accessList[strtoupper(MODULE_NAME)][strtoupper($v['module'])][strtoupper($v['action'])])) {
-            		$menu_c[] = $v;
-            	}
+                //若无活动权限,不展示活动管理和抽奖管理
+                if(isset($accessList['MANAGE']['EVENT_AUTH']['EVENT_AUTH_NONE'])){
+                    if(strtoupper($v['module']) == 'EVENT' || strtoupper($v['module'] == 'Award')){
+                        continue;
+                    }
+                }
+                if (empty($v['module']) || empty($v['action'])) {
+                    $menu_c[] = $v;
+                } else if (isset($accessList[strtoupper(MODULE_NAME)][strtoupper($v['module'])][strtoupper($v['action'])])) {
+                    $menu_c[] = $v;
+                }
             }
 
             foreach ($qmenu as $k => $v) {
-            	if (empty($v['module']) || empty($v['action'])) {
-            		$qmenu_c[] = $v;
-            	} elseif (isset($accessList[strtoupper(MODULE_NAME)][strtoupper($v['module'])][strtoupper($v['action'])])) {
-            		$qmenu_c[] = $v;
-            	}
+                //若无活动权限,不展示活动管理和抽奖管理
+                if(isset($accessList['MANAGE']['EVENT_AUTH']['EVENT_AUTH_NONE'])){
+                    if(strtoupper($v['module']) == 'EVENT' || strtoupper($v['module'] == 'Award')){
+                        continue;
+                    }
+                }
+                if (empty($v['module']) || empty($v['action'])) {
+                    $qmenu_c[] = $v;
+                } elseif (isset($accessList[strtoupper(MODULE_NAME)][strtoupper($v['module'])][strtoupper($v['action'])])) {
+                    $qmenu_c[] = $v;
+                }
             }
           
             
