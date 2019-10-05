@@ -358,16 +358,16 @@ eot;
                 $where .= '';
             } else if(in_array('get_prov_jsdata', $auth_name) && $admin['prov']){
                 //查看当前省的数据
-                $where .= ' and ' .$table_pre . 'prov=' . $admin['prov'];
+                $where .= ' and ' .$table_pre . 'prov="' . $admin['prov'] . '"';
             }else if(in_array('get_city_jsdata', $auth_name) && $admin['city']){
                 //当前市数据
-                $where .= ' and ' . $table_pre . 'city=' . $admin['city'];
+                $where .= ' and ' . $table_pre . 'city="' . $admin['city'] . '"';
             }else if(in_array('get_area_jsdata', $auth_name) && $admin['area']){
                 //区域
-                $where .= ' and ' .$table_pre . 'area=' . $admin['area'];
+                $where .= ' and ' .$table_pre . 'area="' . $admin['area'] . '"';
             }else if(in_array('get_zc_jsdata', $auth_name) && $admin['zc_id']){
                 //职场
-                $where .= ' and ' .$table_pre . 'zc_id=' . $admin['zc_id'];
+                $where .= ' and ' .$table_pre . 'zc_id="' . $admin['zc_id'] . '"';
             }
         }
 
