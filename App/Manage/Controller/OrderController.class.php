@@ -346,7 +346,12 @@ eot;
                   from {$pre}node  n left join {$pre}access a on n.id=a.node_id 
                   where a.role_id=$role_id";
         $auth_name = M('node')->query($sql);
-        $auth_name = array_column($auth_name, 'name');
+        $tmp = array();
+        foreach($auth_name as $n){
+            $tmp[] = $n['name'];
+        }
+        $auth_name = $tmp;
+        //$auth_name = array_column($auth_name, 'name');
         $admin = M('admin')->where(array('id' => $uid))->find();
         if(session(C('ADMIN_AUTH_KEY')) !== true){
             if(in_array('get_region_jsdata', $auth_name)){
