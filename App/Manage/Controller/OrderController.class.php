@@ -190,7 +190,6 @@ where  bestop_order.order_state="success" and {$where}
 group by product_id,zc_id
 order by order_stime desc
 eot;
-        //var_dump($sql);exit();
         $vlist=M('order')->query($sql);
         $info_list=null;
         $total_num=$total_money=0;
@@ -334,11 +333,12 @@ eot;
             $where.=' and '.$table_pre.'order_ftime <='.strtotime($params['setime_e'].' 23:59:59')." ";
         }
 
-        if(!empty($_zcinfo)){
+        if(!empty($_zcinfo) && $_zcinfo['zc_id']){
             $where.=' and  '.$table_pre.'zc_id='.$_zcinfo['zc_id'].'';
         }
 
         //加入权限判断
+
         $role_id = $_SESSION['yang_adm_roleid'];
         $uid = $_SESSION['adm_uid'];
         $pre = 'bestop_';
@@ -351,16 +351,16 @@ eot;
         if(session(C('ADMIN_AUTH_KEY')) !== true){
             if(in_array('get_region_jsdata', $auth_name)){
                 $where .= '';
-            } else if(in_array('get_prov_jsdata', $auth_name)){
+            } else if(in_array('get_prov_jsdata', $auth_name) && $admin['prov']){
                 //查看当前省的数据
                 $where .= ' and ' .$table_pre . 'prov=' . $admin['prov'];
-            }else if(in_array('get_city_jsdata', $auth_name)){
+            }else if(in_array('get_city_jsdata', $auth_name) && $admin['city']){
                 //当前市数据
                 $where .= ' and ' . $table_pre . 'city=' . $admin['city'];
-            }else if(in_array('get_area_jsdata', $auth_name)){
+            }else if(in_array('get_area_jsdata', $auth_name) && $admin['area']){
                 //区域
                 $where .= ' and ' .$table_pre . 'area=' . $admin['area'];
-            }else if(in_array('get_zc_jsdata', $auth_name)){
+            }else if(in_array('get_zc_jsdata', $auth_name) && $admin['zc_id']){
                 //职场
                 $where .= ' and ' .$table_pre . 'zc_id=' . $admin['zc_id'];
             }
