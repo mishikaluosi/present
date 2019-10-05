@@ -333,9 +333,9 @@ eot;
             $where.=' and '.$table_pre.'order_ftime <='.strtotime($params['setime_e'].' 23:59:59')." ";
         }
 
-        if(!empty($_zcinfo) && $_zcinfo['zc_id']){
-            $where.=' and  '.$table_pre.'zc_id='.$_zcinfo['zc_id'].'';
-        }
+        //if(!empty($_zcinfo) && $_zcinfo['zc_id']){
+        //    $where.=' and  '.$table_pre.'zc_id='.$_zcinfo['zc_id'].'';
+        //}
 
         //加入权限判断
 
