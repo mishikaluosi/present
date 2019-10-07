@@ -247,6 +247,11 @@ class ArticleController extends MobileCommonController{
         $data['member_id'] = $info['id'];
         $data['adduser'] = $info['name'];
         $data['created_at'] = time();
+
+        if(M('appointment')->where(array('e_id' => $data['e_id'], 'phone' => $data['phone']))->find()){
+            $this->returnError("手机号不能重复");
+        }
+
         $ret =  M("appointment")->add($data);
         if(!$ret){
             $this->returnError("保存客户失败");

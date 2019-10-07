@@ -34,6 +34,7 @@ class EventController extends CommonController {
         }
         unset($event['id']);
         $event['addtime'] = time();
+        $event['name'] .= '-复制';
         M('event')->add($event);
         $this->success('复制成功');
     }

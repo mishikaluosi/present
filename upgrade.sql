@@ -229,3 +229,9 @@ insert into bestop_node(id,name,title,status,remark,sort,pid,level) values(10001
 insert into bestop_node(id,name,title,status,remark,sort,pid,level) values(10002,'event_auth_zc','职场活动权限','1','','1','10000',3);
 insert into bestop_node(id,name,title,status,remark,sort,pid,level) values(10003,'event_auth_fgs','分公司活动权限','1','','1','10000',3);
 insert into bestop_node(id,name,title,status,remark,sort,pid,level) values(10004,'event_auth_city','市活动权限','1','','1','10000',3);
+
+
+/**
+预约保费改为int
+ */
+ALTER TABLE `bestop_event_user` MODIFY COLUMN `appointment_money` int(11) NULL DEFAULT NULL COMMENT '预约保费' AFTER `is_appointment`;

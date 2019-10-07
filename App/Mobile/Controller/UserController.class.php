@@ -530,7 +530,7 @@ class UserController extends MobileCommonController{
             ->alias('a')
             ->field('a.*,e.alias as e_name')
             ->join("{$pre}event e ON e.id=a.e_id","LEFT")
-            ->where($where)->select();
+            ->where($where)->order('e_name,id desc')->select();
         $sql = "select count(DISTINCT a.e_id) as e_num from {$pre}appointment as a where $where";
         $total = M('appointment')->query($sql);
         $total_event = $total[0]['e_num'];
@@ -562,7 +562,7 @@ class UserController extends MobileCommonController{
             ->alias('eu')
             ->field('eu.*,e.alias as e_name')
             ->join("{$pre}event e ON e.id=eu.e_id","LEFT")
-            ->where($where)->select();
+            ->where($where)->order('e_name,id desc')->select();
         $this->assign('vlist',$vlist);
         $sql = "select count(DISTINCT eu.e_id) as e_num,sum(eu.appointment_money_actual) as appointment_money_actual,sum(eu.appointment_money) as appointment_money,count(eu.id) as eu_num from {$pre}event_user as eu where $where";
         $total = M('event_user')->query($sql);

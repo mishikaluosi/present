@@ -58,7 +58,7 @@ class AppointmentController extends CommonController
         $page->setConfig('theme','%HEADER% %FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END%');
         $limit = $page->firstRow. ',' .$page->listRows;
         $list =  M('appointment')->alias('a')
-            ->field('a.*,bm.name as member,bm.phone as member_phone,z.name as zc_name')
+            ->field('a.*,bm.name as member,bm.phone as member_phone,bm.prov,bm.city,bm.area,z.name as zc_name')
             ->join("{$pre}member bm ON bm.id=a.member_id","LEFT")
             ->join("{$pre}zc z on z.id=bm.zc_id", "LEFT")
             ->where($where)

@@ -140,7 +140,15 @@ class ZcController extends CommonController {
      */
     public function get_region_jsdata(){
         $type=I('type',null);
-        echo get_region_jsdata($type);
+        $id = $_GET['id'];
+        $data = get_region_jsdata($type);
+        $data = json_decode($data, true);
+        $ret = array('data' => $data);
+        //增加一个本身的数据
+        $zc = M('zc')->where(array('id' => $id))->find();
+        $ret['zc'] = $zc;
+        echo json_encode($ret);
+
         exit();
     }
     /***
