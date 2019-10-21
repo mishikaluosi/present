@@ -62,9 +62,10 @@
                             url: "{:U('Zc/get_region_jsdata', array('id' => $vo['id']))}",
                             dataType: "json",
                             success: function(data){
-                                var provinceList=data['data'];
-                                var zc = data['zc'];
-                                addressInit('cmbProvince', 'cmbCity', 'cmbArea', zc.prov, zc.city, zc.area,provinceList);
+//                                var provinceList=data['data'];
+//                                var zc = data['zc'];
+                                var provinceList=data;
+                                addressInit('cmbProvince', 'cmbCity', 'cmbArea', '', '', '',provinceList);
                             }
                         });
                     </script>
