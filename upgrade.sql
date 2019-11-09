@@ -235,3 +235,11 @@ insert into bestop_node(id,name,title,status,remark,sort,pid,level) values(10004
 预约保费改为int
  */
 ALTER TABLE `bestop_event_user` MODIFY COLUMN `appointment_money` int(11) NULL DEFAULT NULL COMMENT '预约保费' AFTER `is_appointment`;
+
+
+/**
+增加预约时间
+ */
+ALTER TABLE `bestop_event`
+ADD COLUMN `appointment_stime` bigint(11) NULL COMMENT '预约时间',
+ADD COLUMN `appointment_etime` bigint(11) NULL COMMENT '预约时间';

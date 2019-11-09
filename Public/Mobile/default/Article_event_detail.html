@@ -28,9 +28,10 @@
         </if>
         <div class="clear"></div>
         <div class="xian"></div>
-        <if condition="$vo.stime gt time()">
-        <a style="margin-left:2%;margin-top:24px;font-size:1em;float :left;width: 40%;" href="{:U('Article/appointmentList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">客户预约</a>
+        <if condition="($vo.appointment_stime lt time() ) and ($vo.appointment_etime gt time())">
+        <input type="hidden" value="{:U('Article/appointmentList',array('e_id'=>$vo['id']))}" id="app_url">
         </if>
+        <a style="margin-left:2%;margin-top:24px;font-size:1em;float :left;width: 40%;" href="javascript:;" onClick="doConfirm()" class="weui-btn weui-btn_block weui-btn_primary">客户预约</a>
         <a style="margin-left:10%;margin-top:24px;font-size:1em;float :left;width: 40%;" href="{:U('Article/checkList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">签到明细</a>
         <!--<a style="margin-left:5%;margin-top:24px;font-size:1em;float :left;width: 28%;" href="javascript:;" class="weui-btn weui-btn_block weui-btn_primary wybm">我要报名</a>-->
         <input type="hidden" id="event_id" value="{$vo.id}">
@@ -73,6 +74,16 @@
             })
         });
     })
+
+    function doConfirm(){
+        var ele = $('#app_url')
+        if(ele.length == 0){
+            alert('预约时间已过')
+        }else{
+
+            location.href = ele.val()
+        }
+    }
 </script>
 
 <include file="Public:footer" />

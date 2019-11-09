@@ -230,6 +230,8 @@ class EventController extends CommonController {
         $wj['address']=I('address',null, 'htmlspecialchars,rtrim');
         $wj['stime']=I('stime',null);
         $wj['etime']=I('etime',null);
+        $wj['appointment_stime'] = I('appointment_stime',null);
+        $wj['appointment_etime'] = I('appointment_etime',null);
         $wj['content'] = I('content', '', '');
         $wj['area'] = I('area');
         $wj['is_draw'] = I('is_draw') ? I('is_draw') : 0;
@@ -284,6 +286,16 @@ class EventController extends CommonController {
         }else{
             unset($wj['etime']);
         }
+        if(!empty($wj['appointment_stime'])){
+            $wj['appointment_stime']=strtotime($wj['appointment_stime']);
+        }else{
+            unset($wj['appointment_stime']);
+        }
+        if(!empty($wj['appointment_etime'])){
+            $wj['appointment_etime']=strtotime($wj['appointment_etime']);
+        }else{
+            unset($wj['appointment_etime']);
+        }
 
         if(empty($wj['name'])){
             $this->error('活动名不得为空');
@@ -291,6 +303,11 @@ class EventController extends CommonController {
 
         if(!empty($wj['stime'])&&!empty($wj['etime'])){
             if($wj['stime']>$wj['etime']){
+                $this->error('截止时间不得小于开始时间');
+            }
+        }
+        if(!empty($wj['appointment_stime'])&&!empty($wj['appointment_etime'])){
+            if($wj['appointment_stime']>$wj['appointment_etime']){
                 $this->error('截止时间不得小于开始时间');
             }
         }
@@ -907,6 +924,7 @@ eot;
                 left join {$pre}zc as zc on zc.id=t.zc_id
                 where $where";
         $total = M('event_tongji')->query($sql);
+
         $this->assign('event_total', $total[0]);
         $list_row = 18;
         $page = new \Common\Lib\Page($total[0]['total_count'], $list_row);
@@ -950,6 +968,7 @@ eot;
                 group by e.id ) as a
                 left join {$pre}appointment as app on app.e_id=a.id
                 group by a.id";
+
         $event_info = M('event')->query($sql);
         $data_info = [];
         foreach ($event_info as $key => $value){

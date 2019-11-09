@@ -70,6 +70,38 @@
 				</dd>
 			</dl>
 			<dl>
+				<dt>活动预约时间</dt>
+				<dd>
+
+					<input type="text" class="inp_one" name="appointment_stime" id="appointment_stime" <if condition="$vo and $vo.appointment_stime neq 0">value="{$vo.appointment_stime|date='Y-m-d', ###}"</if> >
+					<script type="text/javascript">
+                        Calendar.setup({
+                            weekNumbers: true,
+                            inputField : "appointment_stime",
+                            trigger    : "appointment_stime",
+                            dateFormat: "%Y-%m-%d",
+                            showTime: true,
+                            minuteStep: 1,
+                            onSelect   : function() {this.hide();}
+                        });
+					</script>
+
+					~ <input type="text" class="inp_one" name="appointment_etime" id="appointment_etime" <if condition="$vo and $vo.appointment_etime  neq 0">value="{$vo.appointment_etime|date='Y-m-d', ###}"</if> >
+					<script type="text/javascript">
+                        Calendar.setup({
+                            weekNumbers: true,
+                            inputField : "appointment_etime",
+                            trigger    : "appointment_etime",
+                            dateFormat: "%Y-%m-%d",
+                            showTime: true,
+                            minuteStep: 1,
+                            onSelect   : function() {this.hide();}
+                        });
+					</script>
+					<span class="tips">默认没有时间限制</span>
+				</dd>
+			</dl>
+			<dl>
 				<dt>活动地点</dt>
 				<dd>
 					<input type="text" name="address" id="address" class="inp_large" maxlength="255"  value="{$vo.address}" />
