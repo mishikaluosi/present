@@ -48,8 +48,11 @@ class EventController extends CommonController {
             $search_arr[$a]=I($a);
             $this->assign($a, $search_arr[$a]);
         }
-
+        $adduser = $_SESSION['yang_adm_username'];
         $where="1=1";
+        if($adduser && $adduser != 'admin'){
+            $where .= " and adduser='$adduser'";
+        }
         switch ($sstype){
             case 1:
                 //$where['status']=1;
@@ -306,8 +309,8 @@ class EventController extends CommonController {
                 $this->error('截止时间不得小于开始时间');
             }
         }
-        if(!empty($wj['appointment_stime'])&&!empty($wj['appointment_etime'])){
-            if($wj['appointment_stime']>$wj['appointment_etime']){
+        if(!empty($wj['appointment_stime'])&&!empty($wj['appointment_stime'])){
+            if($wj['stime']>$wj['etime']){
                 $this->error('截止时间不得小于开始时间');
             }
         }
@@ -912,6 +915,35 @@ eot;
             $end_date = strtotime($end_date);
             $where .= " and e.etime <= '{$end_date}'";
         }
+
+
+        //权限
+        $role_id = $_SESSION['yang_adm_roleid'];
+        //2是超级管理员
+        if($role_id != 2){
+            //权限
+            $accesses = M('access')->where(array('role_id' => $role_id))->field(array('node_id'))->select();
+            $access = array();
+            foreach($accesses as $a){
+                $access[] = $a['node_id'];
+            }
+            $map['id'] = array('in', $access);
+            $nodes = M('node')->where($map)->field('name')->select();
+            $node = array();
+            foreach ($nodes as $n) {
+                $node[] = $n['name'];
+            }
+            if(in_array('event_auth_zc', $node)){
+                $where .= " and e.area=3";
+            }else if(in_array('event_auth_fgs', $node)){
+                $where .= " and e.area=2";
+            }else if(in_array('event_auth_city', $node)){
+                $where .= " and e.area=1";
+            }else{
+                $where .= " and e.area=0";
+            }
+        }
+
         //获取活动总数量
         $sql = "select count(t.id) as total_count,
                 count(DISTINCT t.e_id) as e_num,
