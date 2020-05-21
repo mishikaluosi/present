@@ -78,7 +78,7 @@ class ZcController extends CommonController {
         if(empty($data['addr'])){
             $this->error('地址不得为空');
         }
-        
+
         if(isset($data['is_edit_area']) && $data['is_edit_area'] == 'yes'){
             //修改
             if(empty($data['prov'])||empty($data['city'])||empty($data['area'])){
