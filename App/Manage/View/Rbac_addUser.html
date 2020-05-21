@@ -195,6 +195,10 @@
     function add_option(id,json) {
         var html_str='';
         for(var o in json){
+        	// var selected = '';
+        	// if(match == json[o].region_name){
+        	// 	selected = 'selected';
+			// }
             html_str+='<option value="'+json[o].region_id+'">'+json[o].region_name+'</option>';
         }
         $("#"+id).html(html_str);

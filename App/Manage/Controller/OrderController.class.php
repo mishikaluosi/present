@@ -144,6 +144,7 @@ eot;
                 $info_list[$k]['uname']=$tmp_uinfo['name'];
                 $info_list[$k]['tel']=$tmp_uinfo['phone'];
                 $info_list[$k]['group_no']=$tmp_uinfo['group_no'];
+                $info_list[$k]['work_no']=$tmp_uinfo['work_no'];
                 $tmp_zc=M('zc')->where(array('id'=>$tmp_uinfo['zc_id']))->find();
                 if($tmp_zc){
                     $info_list[$k]['prov']=$tmp_zc['prov'];
@@ -1116,7 +1117,7 @@ eot;
         $pro_list=M('order')->query($pro_sql);
 
 
-        $name='职场发货清单';
+        $name='职场清单';
         ini_set('max_execution_time', '180');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");
@@ -1303,7 +1304,7 @@ eot;
         $pro_list=M('order')->query($pro_sql);
 
 
-        $name='自购清单';
+        $name='业务员自购清单';
         ini_set('max_execution_time', '180');
         import("Org.Util.PHPExcel");
         import("Org.Util.PHPExcel.IOFactory");
@@ -1357,6 +1358,10 @@ eot;
             $excel_index+=1;
             $objPHPExcel->setActiveSheetIndex(0)->setCellValue($c_array[$excel_index].$num, $V['group_no']);
             $head_array[$c_array[$excel_index]]='组号';
+            $end_array[$c_array[$excel_index]]='';
+            $excel_index+=1;
+            $objPHPExcel->setActiveSheetIndex(0)->setCellValue($c_array[$excel_index].$num, $V['work_no']);
+            $head_array[$c_array[$excel_index]]='工号';
             $end_array[$c_array[$excel_index]]='';
             $excel_index+=1;
             $objPHPExcel->setActiveSheetIndex(0)->setCellValue($c_array[$excel_index].$num, $V['uname']);

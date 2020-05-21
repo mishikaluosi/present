@@ -332,11 +332,12 @@ class UserController extends MobileCommonController{
             $vlist=M('order')->query($sql);
             foreach ($vlist as $k=>$v){
                 $total_buyer = $total_buyer+$v['buy_num'];
+                $tmp = trim($v['zc_id'], ',');
                 $sql = "select od.product_id,od.product_name, sum(product_num) as num ,sum(product_allmoney) as money 
                     from {$pre}orderdata as od
                     LEFT JOIN {$pre}order as o
                     ON o.order_id=od.order_id
-                    where  (o.order_state='success' or o.order_pstate=1) and o.zc_id in({$v['zc_id']}) and {$detail_where}
+                    where  (o.order_state='success' or o.order_pstate=1) and o.zc_id in({$tmp}) and {$detail_where}
                     group by product_id
                     order by product_id DESC ";
                 $cp=M('order')->query($sql);
@@ -513,7 +514,7 @@ class UserController extends MobileCommonController{
         $type  = I('type',1);
         $orderby='addtime desc,id desc';
         $where=' 1=1 and status=1';
-        //$where.=' and (stime<='.strtotime(date("Y-m-d 00:00:00")).' or stime is null or stime="")';
+        $where.=' and (stime<='.strtotime(date("Y-m-d 00:00:00")).' or stime is null or stime="")';
         $where.=' and (etime>='.strtotime(date("Y-m-d 00:00:00")).' or etime is null or etime="")';
         $where.=' and  zc_ids like "%$$$'.$_SESSION['user_zcid'].'%" ';
         $where.=" and  area = {$type}";

@@ -6,7 +6,7 @@
 </style>
 <div class="content">
     <div class="dingdan_info1">
-        <div class="mat10 font18 c333 aleft">{$vo.name}</div>
+        <div class="mat10 font17 c333 aleft">{$vo.name}</div>
         <div class="mat10 font12 c999 ">发布日期：{$vo.addtime|date="Y-m-d",###}</div>
         <if condition="$vo.stime neq null">
             <div class="mat5 font12 c999 ">开始时间：{$vo.stime|date="Y-m-d",###}</div>
@@ -31,8 +31,8 @@
         <if condition="($vo.appointment_stime lt time() ) and ($vo.appointment_etime gt time())">
         <input type="hidden" value="{:U('Article/appointmentList',array('e_id'=>$vo['id']))}" id="app_url">
         </if>
-        <a style="margin-left:2%;margin-top:24px;font-size:1em;float :left;width: 40%;" href="javascript:;" onClick="doConfirm()" class="weui-btn weui-btn_block weui-btn_primary">客户预约</a>
-        <a style="margin-left:10%;margin-top:24px;font-size:1em;float :left;width: 40%;" href="{:U('Article/checkList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">签到明细</a>
+        <a style="margin-left:2%;margin-top:24px;font-size:0.9em;float :left;width: 40%;" href="javascript:;" onClick="doConfirm()" class="weui-btn weui-btn_block weui-btn_primary">客户预约</a>
+        <a style="margin-left:10%;margin-top:24px;font-size:0.9em;float :left;width: 40%;" href="{:U('Article/checkList',array('e_id'=>$vo['id']))}" class="weui-btn weui-btn_block weui-btn_primary">签到明细</a>
         <!--<a style="margin-left:5%;margin-top:24px;font-size:1em;float :left;width: 28%;" href="javascript:;" class="weui-btn weui-btn_block weui-btn_primary wybm">我要报名</a>-->
         <input type="hidden" id="event_id" value="{$vo.id}">
 <!--        <div class="button-sp-area">-->

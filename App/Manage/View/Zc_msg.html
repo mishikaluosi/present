@@ -50,9 +50,17 @@
                     <input type="text" name="addr" id="addr" class="inp_w250" value="{$vo.addr}"/>
                 </dd>
             </dl>
-            <dl>
+
+            <if condition="$opt == 2">
+<!--                编辑-->
+            <dl alt="{$opt}">
                 <dt>所在区域</dt>
-                <dd>
+                <dd id="dd1">
+                    <input type="text" name="area" id="area" disabled class="inp_w250" value="{$vo.prov}-{$vo.city}-{$vo.area}"/>
+                    <a href="javascript:;" id="change_edit" style="color: blue;">修改</a>
+                </dd>
+                <input type="hidden" id="is_edit_area" name="is_edit_area" value="no">
+                <dd id="dd2" style="display: none;">
                     <select id="cmbProvince" name='prov'></select>
                     <select id="cmbCity" name='city'></select>
                     <select id="cmbArea" name='area'></select>
@@ -70,7 +78,43 @@
                         });
                     </script>
                 </dd>
+                <script>
+                    $(function() {
+                        $('#change_edit').on('click', function() {
+                            $('#dd1').hide()
+                            $('#dd2').show()
+                            $('#is_edit_area').val('yes')
+                        })
+                    })
+                </script>
             </dl>
+            </if>
+
+            <if condition="$opt == 1">
+                <dl alt="{$opt}">
+                    <dt>所在区域</dt>
+                    <dd>
+                        <select id="cmbProvince" name='prov'></select>
+                        <select id="cmbCity" name='city'></select>
+                        <select id="cmbArea" name='area'></select>
+                        <input type="hidden" id="is_edit_area" name="is_edit_area" value="yes">
+                        <script type="text/javascript">
+                            $.ajax({
+                                type: "POST",
+                                url: "{:U('Zc/get_region_jsdata', array('id' => $vo['id']))}",
+                                dataType: "json",
+                                success: function(data){
+//                                var provinceList=data['data'];
+//                                var zc = data['zc'];
+                                    var provinceList=data;
+                                    addressInit('cmbProvince', 'cmbCity', 'cmbArea', '', '', '',provinceList);
+                                }
+                            });
+                        </script>
+                    </dd>
+                </dl>
+            </if>
+
             <dl>
                 <dt> 排序</dt>
                 <dd>

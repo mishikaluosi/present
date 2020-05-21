@@ -49,12 +49,15 @@ class ZcController extends CommonController {
         }
         if($vo){
             $type_title='修改职场';
+            $opt = 2;
         }else{
             $type_title='添加职场';
+            $opt = 1;
         }
 
         $this->assign('type_title', $type_title);
         $this->assign('vo', $vo);
+        $this->assign('opt', $opt);
         $this->display();
     }
 
@@ -75,9 +78,18 @@ class ZcController extends CommonController {
         if(empty($data['addr'])){
             $this->error('地址不得为空');
         }
-        if(empty($data['prov'])||empty($data['city'])||empty($data['area'])){
-            $this->error('请选择所在区域');
+        
+        if(isset($data['is_edit_area']) && $data['is_edit_area'] == 'yes'){
+            //修改
+            if(empty($data['prov'])||empty($data['city'])||empty($data['area'])){
+                $this->error('请选择所在区域');
+            }
+        }else{
+            //不修改
+            unset($data['prov'], $data['city'], $data['area']);
         }
+
+
         if($this->_chk($data['name'],$data['id'])){
             $this->error($data['name'].'已经存在，请更换职场名');
         }
