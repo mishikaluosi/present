@@ -56,11 +56,70 @@ class OrderController extends CommonController {
     }
 
     public function zcrytj(){
-        $ret=$this->get_zcrytj();
+        $ret=$this->get_zcrytj1();
         $this->assign('total_num',$ret['total_num']);
         $this->assign('total_money',$ret['total_money']);
         $this->assign('vlist',$ret['info_list']);
         $this->display();
+    }
+
+    public function get_zcrytj1(){
+        $where=$this->_zc_search();
+        if($where != ' 1=1 ') {
+            $sql=<<<eot
+select bestop_orderdata.uid,bestop_orderdata.zc_id, sum(product_num) as num ,sum(product_allmoney) as money 
+from bestop_orderdata 
+LEFT JOIN bestop_order
+ON bestop_order.order_id=bestop_orderdata.order_id
+where  bestop_order.order_state="success" and {$where}
+group by bestop_orderdata.uid
+order by bestop_orderdata.zc_id desc,order_stime desc
+eot;
+            //var_dump($sql);exit();
+            $vlist=M('order')->query($sql);
+            $info_list=null;
+            $total_num=$total_money=0;
+            foreach ($vlist as $k=>$v){
+                $total_num+=$v['num'];
+                $total_money+=$v['money'];
+                $info_list[$k]=$v;
+                $tmp_uinfo=M('member')->where(array('id'=>$v['uid']))->find();
+                if($tmp_uinfo){
+                    $info_list[$k]['uname']=$tmp_uinfo['name'];
+                    $info_list[$k]['tel']=$tmp_uinfo['phone'];
+                    $info_list[$k]['group_no']=$tmp_uinfo['group_no'];
+                    $info_list[$k]['work_no']=$tmp_uinfo['work_no'];
+                    $tmp_zc=M('zc')->where(array('id'=>$tmp_uinfo['zc_id']))->find();
+                    if($tmp_zc){
+                        $info_list[$k]['prov']=$tmp_zc['prov'];
+                        $info_list[$k]['city']=$tmp_zc['city'];
+                        $info_list[$k]['area']=$tmp_zc['area'];
+                        $info_list[$k]['addr']=$tmp_zc['addr'];
+                        $info_list[$k]['zc']=$tmp_zc['name'];
+                    }
+
+                    //产品详情
+                    $cp_sql=<<<eot
+select bestop_orderdata.product_id,bestop_orderdata.product_name, sum(product_num) as num ,sum(product_allmoney) as money 
+from bestop_orderdata 
+LEFT JOIN bestop_order
+ON bestop_order.order_id=bestop_orderdata.order_id
+where  bestop_order.order_state="success"  and bestop_orderdata.uid={$v['uid']} and {$where}
+group by product_id
+order by product_id DESC 
+eot;
+                    $cp=M('order')->query($cp_sql);
+                    $info_list[$k]['cp_list']=$cp;
+                }
+
+            }
+        }else{
+            $info_list = [];
+            $total_money = 0;
+            $total_num = 0;
+        }
+
+        return array('info_list'=>$info_list,"total_money"=>$total_money,"total_num"=>$total_num);
     }
 
     public function get_zccptj(){

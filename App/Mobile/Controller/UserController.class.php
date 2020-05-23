@@ -321,7 +321,7 @@ class UserController extends MobileCommonController{
             $this->assign('area_array', $area_array);
             $zc_ids = join(",",i_array_column($zc_id_arr,'id'));
             $where .= " and od.zc_id in($zc_ids)";
-            $sql = "select group_concat(od.zc_id) as zc_id, sum(pMemberroduct_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num,
+            $sql = "select group_concat(od.zc_id) as zc_id, sum(product_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num,
                 zc.area as zc_area
                 from {$pre}orderdata as od
                 LEFT JOIN {$pre}order as o ON o.order_id=od.order_id
