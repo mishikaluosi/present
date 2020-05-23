@@ -263,13 +263,13 @@ class UserController extends MobileCommonController{
         $detail_where = " 1=1";
         if($start_date){
             $start_date = strtotime($start_date.' 00:00:00');
-            $where .= " and o.order_stime >= '{$start_date}'";
-            $detail_where .= " and o.order_stime >= '{$start_date}'";
+            $where .= " and o.order_atime >= '{$start_date}'";
+            $detail_where .= " and o.order_atime >= '{$start_date}'";
         }
         if($end_date){
             $end_date = strtotime($end_date.' 23:59:59');
-            $where .= " and o.order_stime <= '{$end_date}'";
-            $detail_where .= " and o.order_stime <= '{$end_date}'";
+            $where .= " and o.order_atime <= '{$end_date}'";
+            $detail_where .= " and o.order_atime <= '{$end_date}'";
         }
         $total_buyer = 0;
         $total_order = 0;
@@ -293,8 +293,8 @@ class UserController extends MobileCommonController{
                 LEFT JOIN {$pre}order as o ON o.order_id=od.order_id
                 LEFT JOIN {$pre}zc as zc ON zc.id=od.zc_id
                 where  (o.order_state='success' or o.order_pstate=1) and {$where}
-                group by od.zc_id
-                order by order_stime desc";
+                group by od.zc_id 
+                order by order_atime desc";
             $vlist=M('order')->query($sql);
             foreach ($vlist as $k=>$v){
                 $total_buyer = $total_buyer+$v['buy_num'];
@@ -303,7 +303,7 @@ class UserController extends MobileCommonController{
                     LEFT JOIN {$pre}order as o
                     ON o.order_id=od.order_id
                     where  (o.order_state='success' or o.order_pstate=1) and o.zc_id={$v['zc_id']} and {$detail_where}
-                    group by product_id
+                    group by product_id 
                     order by product_id DESC ";
                 $cp=M('order')->query($sql);
                 foreach ($cp as $p){
@@ -321,14 +321,14 @@ class UserController extends MobileCommonController{
             $this->assign('area_array', $area_array);
             $zc_ids = join(",",i_array_column($zc_id_arr,'id'));
             $where .= " and od.zc_id in($zc_ids)";
-            $sql = "select group_concat(od.zc_id) as zc_id, sum(product_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num,
+            $sql = "select group_concat(od.zc_id) as zc_id, sum(pMemberroduct_num) as num ,sum(product_allmoney) as money,count(distinct o.user_id) as buy_num,
                 zc.area as zc_area
                 from {$pre}orderdata as od
                 LEFT JOIN {$pre}order as o ON o.order_id=od.order_id
                 LEFT JOIN {$pre}zc as zc ON zc.id=od.zc_id
                 where  (o.order_state='success' or o.order_pstate=1) and {$where}
-                group by zc.area
-                order by order_stime desc";
+                group by zc.area 
+                order by order_atime desc";
             $vlist=M('order')->query($sql);
             foreach ($vlist as $k=>$v){
                 $total_buyer = $total_buyer+$v['buy_num'];
@@ -368,7 +368,7 @@ class UserController extends MobileCommonController{
                 left join {$pre}member as m on m.id = o.user_id
                 where  (o.order_state='success' or o.order_pstate=1) and {$where}
                 group by o.user_id
-                order by order_stime desc";
+                order by order_atime desc";
             $vlist=M('order')->query($sql);
             foreach ($vlist as $k=>$v){
                 $total_buyer = $total_buyer+$v['buy_num'];
